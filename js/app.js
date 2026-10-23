@@ -10,6 +10,7 @@
   const pad = (n) => String(n).padStart(2, "0");
   const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
   const stripTags = (s) => String(s).replace(/<[^>]+>/g, " ");
+  const deepClone = (o) => JSON.parse(JSON.stringify(o));
 
   const RIDES = window.RIDES || [];
   const GROUPS = window.GROUPS || [];
@@ -17,19 +18,74 @@
   const MECH = window.MECH;
   const LAB = window.LAB;
   const PARKS = window.PARK_MATRIX_DATA || {};
-  const NOTES = window.DISTINCTIONS_DATA || [];
-  const TECH = window.TECHNIQUES || { visual: [], interaction: [] };
-  const FACTS = window.FACTS || [];
+  let NOTES = window.DISTINCTIONS_DATA || [];
+  let TECH = window.TECHNIQUES || { visual: [], interaction: [] };
+  let FACTS = window.FACTS || [];
+
+  const LANGS = window.DRA_LANGS || [
+    { code: "zh", htmlLang: "zh-CN", dir: "ltr", name: "中文" },
+    { code: "en", htmlLang: "en", dir: "ltr", name: "English" },
+    { code: "es", htmlLang: "es", dir: "ltr", name: "Español" },
+    { code: "fr", htmlLang: "fr", dir: "ltr", name: "Français" },
+    { code: "ja", htmlLang: "ja", dir: "ltr", name: "日本語" },
+    { code: "ko", htmlLang: "ko", dir: "ltr", name: "한국어" },
+    { code: "de", htmlLang: "de", dir: "ltr", name: "Deutsch" },
+    { code: "ru", htmlLang: "ru", dir: "ltr", name: "Русский" },
+    { code: "ar", htmlLang: "ar", dir: "rtl", name: "العربية" }
+  ];
+  const CORE = window.DRA_CORE || {};
+
+  /* Snapshot base (zh) data so language switching is 100% reversible */
+  RIDES.forEach((r) => {
+    r._zh = { zh: r.zh, en: r.en, park: r.park, mfg: r.mfg, text: r.text, note: r.note ? deepClone(r.note) : null };
+  });
+  GROUPS.forEach((g) => {
+    g._zhLabel = g.label;
+  });
+  MECH.parts.forEach((p) => {
+    p._zh = { label: p.label, title: p.title, note: p.note };
+    p.cats.forEach((c) => {
+      c._zh = { title: c.title, en: c.en, desc: c.desc };
+      const snapNode = (n) => {
+        if (n.children) {
+          n._zhTitle = n.title;
+          n.children.forEach(snapNode);
+        } else {
+          n._zh = {
+            short: n.short,
+            title: n.title,
+            en: n.en,
+            support: n.support,
+            dof: n.dof,
+            mfg: n.mfg,
+            text: n.text,
+            demoNote: n.demoNote || "",
+            parks: deepClone(n.parks || [])
+          };
+        }
+      };
+      c.children.forEach(snapNode);
+    });
+  });
+  LAB.modes.forEach((m) => {
+    m._zh = {
+      t: m.t,
+      title: m.title,
+      body: m.body,
+      controls: m.controls.map((c) => c.label),
+      videos: m.videos.map((v) => v.label)
+    };
+  });
+  const BASE_PARKS = deepClone(PARKS);
+  const BASE_NOTES = deepClone(NOTES);
+  const BASE_TECH = deepClone(TECH);
+  const BASE_FACTS = deepClone(FACTS);
 
   const GROUP_LABEL = {};
-  GROUPS.forEach((g) => (GROUP_LABEL[g.key] = g.label));
-
-  const VIDEO_TYPES = [
-    ["pov", "实拍"],
-    ["lights", "开灯"],
-    ["demo", "厂商演示"],
-    ["explain", "原理讲解"]
-  ];
+  const syncGroupLabels = () => {
+    GROUPS.forEach((g) => (GROUP_LABEL[g.key] = g.label));
+  };
+  syncGroupLabels();
 
   // Stills: prefer a frame from inside the video (hq1–hq3) over the uploader's thumbnail, which often has text on it.
   const frameOf = (id) => (VIDEOS[id] && VIDEOS[id].f ? VIDEOS[id].f.slice(2) : "");
@@ -44,10 +100,6 @@
   const ytUrl = (id) => "https://www.youtube.com/watch?v=" + id;
   const ytSearch = (q) => "https://www.youtube.com/results?search_query=" + encodeURIComponent(q);
   const biliSearch = (q) => "https://search.bilibili.com/all?keyword=" + encodeURIComponent(q);
-  const embed = (id) =>
-    '<iframe src="https://www.youtube-nocookie.com/embed/' + id +
-    '?autoplay=1&rel=0&modestbranding=1&playsinline=1" title="YouTube 视频播放器" ' +
-    'allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
 
   /* ------------------------------------------------------- mechanism index */
   const LEAVES = [];
@@ -86,7 +138,16 @@
     }
   };
 
+  function detectInitialLang() {
+    const m = location.search.match(/[?&]lang=(zh|en|es|fr|ja|ko|de|ru|ar)/);
+    if (m) return m[1];
+    const saved = store.get("dra-lang", "");
+    if (saved && LANGS.some((l) => l.code === saved)) return saved;
+    return "zh";
+  }
+
   const state = {
+    lang: detectInitialLang(),
     view: null,
     group: "all",
     cat: "all",
@@ -108,6 +169,301 @@
   };
   MECH.parts.forEach((p) => p.cats.forEach((c) => (state.collapsed[c.key] = true)));
 
+  /* ------------------------------------------------------------------- i18n */
+  function uiDict() {
+    const c = CORE[state.lang] || CORE.zh || {};
+    const fallback = (CORE.zh && CORE.zh.ui) || {};
+    return Object.assign({}, fallback, c.ui || {});
+  }
+
+  function T(key, vars) {
+    const d = uiDict();
+    let s = d[key] != null ? d[key] : key;
+    if (vars) {
+      Object.keys(vars).forEach((k) => {
+        s = s.replace(new RegExp("\\{" + k + "\\}", "g"), vars[k]);
+      });
+    }
+    return s;
+  }
+
+  function videoTypes() {
+    return [
+      ["pov", T("vtypePov")],
+      ["lights", T("vtypeLights")],
+      ["demo", T("vtypeDemo")],
+      ["explain", T("vtypeExplain")]
+    ];
+  }
+
+  function embed(id) {
+    return (
+      '<iframe src="https://www.youtube-nocookie.com/embed/' + id +
+      '?autoplay=1&rel=0&modestbranding=1&playsinline=1" title="' + esc(T("ytPlayerTitle")) + '" ' +
+      'allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>'
+    );
+  }
+
+  let PARK_TABS = (CORE.zh && CORE.zh.parkTabs) || [
+    { key: "disney", label: "迪士尼", title: "全球迪士尼", note: "6 个度假区 · 12 座乐园" },
+    { key: "universal", label: "环球影城", title: "全球环球影城", note: "5 个度假区 · 7 座乐园（含史诗宇宙）" },
+    { key: "fantawild", label: "方特", title: "中国方特", note: "按硬件门类归类 · 全国 38 座乐园" },
+    { key: "chimelong", label: "长隆", title: "中国长隆集团", note: "珠海宇宙飞船 · 珠海海洋王国 · 广州长隆 · 清远长隆" },
+    { key: "oct", label: "华侨城", title: "中国华侨城集团", note: "襄阳奇幻谷 · 东部华侨城 · 全国九大欢乐谷 · 卡乐星球" },
+    { key: "merlin", label: "默林集团", title: "英国默林娱乐集团", note: "Alton Towers · Thorpe Park · Chessington · Gardaland · Heide Park · 全球 11 座乐高乐园" },
+    { key: "sixflags", label: "六旗与雪松会", title: "美国六旗与雪松会集团", note: "Six Flags · Cedar Point · 诺氏百乐坊 · 国王岛 · 加拿大奇幻乐园等" },
+    { key: "dubai", label: "迪拜与阿布扎比", title: "迪拜与阿布扎比", note: "7 座乐园" },
+    { key: "genting", label: "云顶天城", title: "云顶天城世界", note: "马来西亚 · 原二十世纪福斯主题乐园" },
+    { key: "europe", label: "欧洲四园", title: "欧洲四大暗黑乘骑乐园", note: "Phantasialand · Efteling · Europa-Park · Futuroscope" },
+    { key: "eurocoaster", label: "欧洲名园", title: "欧洲六大过山车与电影主题名园", note: "PortAventura · Movieland · Parc Astérix · Liseberg · Alton Towers · Gardaland" }
+  ];
+
+  const loadingLocales = {};
+  function ensureLocaleLoaded(code, cb) {
+    if (code === "zh") return cb();
+    if (window.DRA_LOCALES && window.DRA_LOCALES[code]) return cb();
+    if (loadingLocales[code]) {
+      loadingLocales[code].push(cb);
+      return;
+    }
+    loadingLocales[code] = [cb];
+    const s = document.createElement("script");
+    s.src = "js/i18n/locale-" + code + ".js";
+    const done = () => {
+      const list = loadingLocales[code] || [];
+      delete loadingLocales[code];
+      list.forEach((fn) => fn());
+    };
+    s.onload = done;
+    s.onerror = done;
+    document.head.appendChild(s);
+  }
+
+  function applyCoreData(code) {
+    const c = CORE[code] || CORE.zh;
+    if (!c) return;
+    const grpMap = c.groups || {};
+    GROUPS.forEach((g) => {
+      g.label = grpMap[g.key] || g._zhLabel;
+    });
+    syncGroupLabels();
+    if (c.parkTabs) PARK_TABS = c.parkTabs;
+    if (c.lab) {
+      window.LAB_SVG = code === "zh" ? null : c.lab.svg || null;
+      if (c.lab.modes) {
+        LAB.modes.forEach((m, i) => {
+          const lm = c.lab.modes[i];
+          if (!lm) return;
+          m.t = lm.t || m._zh.t;
+          m.title = lm.title || m._zh.title;
+          m.body = lm.body || m._zh.body;
+          if (lm.controls) m.controls.forEach((ctl, j) => { if (lm.controls[j]) ctl.label = lm.controls[j]; });
+          if (lm.videos) m.videos.forEach((vid, j) => { if (lm.videos[j]) vid.label = lm.videos[j]; });
+        });
+      }
+    }
+  }
+
+  function applyDatasetLocale(code) {
+    if (code === "zh" || !(window.DRA_LOCALES && window.DRA_LOCALES[code])) {
+      RIDES.forEach((r) => {
+        r.zh = r._zh.zh;
+        r.en = r._zh.en;
+        r.park = r._zh.park;
+        r.mfg = r._zh.mfg;
+        r.text = r._zh.text;
+        r.note = r._zh.note ? deepClone(r._zh.note) : null;
+      });
+      MECH.parts.forEach((p) => {
+        p.label = p._zh.label;
+        p.title = p._zh.title;
+        p.note = p._zh.note;
+        p.cats.forEach((c) => {
+          c.title = c._zh.title;
+          c.en = c._zh.en;
+          c.desc = c._zh.desc;
+          const restoreNode = (n) => {
+            if (n.children) {
+              n.title = n._zhTitle;
+              n.children.forEach(restoreNode);
+            } else {
+              Object.assign(n, deepClone(n._zh));
+            }
+          };
+          c.children.forEach(restoreNode);
+        });
+      });
+      Object.keys(BASE_PARKS).forEach((k) => {
+        PARKS[k] = deepClone(BASE_PARKS[k]);
+      });
+      NOTES = deepClone(BASE_NOTES);
+      TECH = deepClone(BASE_TECH);
+      FACTS = deepClone(BASE_FACTS);
+      return;
+    }
+
+    const loc = window.DRA_LOCALES[code];
+    if (loc.rides) {
+      const pMap = loc.rides.parks || {};
+      const mMap = loc.rides.mfgs || {};
+      const rMap = loc.rides.rides || {};
+      RIDES.forEach((r) => {
+        const tr = rMap[r.id] || {};
+        const primary = tr.title || (code === "en" ? r._zh.en : r._zh.zh);
+        r.zh = primary;
+        if (code === "en") {
+          r.en = primary.toLowerCase() === r._zh.en.toLowerCase() ? "" : r._zh.en;
+        } else {
+          r.en = primary.toLowerCase() === r._zh.en.toLowerCase() ? "" : r._zh.en;
+        }
+        r.park = pMap[r._zh.park] || r._zh.park;
+        r.mfg = (r._zh.mfg && mMap[r._zh.mfg]) || r._zh.mfg;
+        r.text = tr.text || r._zh.text;
+        r.note = tr.note || r._zh.note;
+      });
+    }
+
+    if (loc.mech) {
+      const mp = loc.mech.parts || {};
+      const mc = loc.mech.cats || {};
+      const mb = loc.mech.branches || {};
+      const ml = loc.mech.leaves || {};
+      MECH.parts.forEach((p) => {
+        if (mp[p.id]) {
+          p.label = mp[p.id].label || p._zh.label;
+          p.title = mp[p.id].title || p._zh.title;
+          p.note = mp[p.id].note || p._zh.note;
+        }
+        p.cats.forEach((c) => {
+          if (mc[c.key]) {
+            c.title = mc[c.key].title || c._zh.title;
+            c.desc = mc[c.key].desc || c._zh.desc;
+          }
+          const applyNode = (n) => {
+            if (n.children) {
+              if (mb[n.code]) n.title = mb[n.code];
+              n.children.forEach(applyNode);
+            } else {
+              const l = ml[n.code];
+              if (l) {
+                n.short = l.short || n._zh.short;
+                n.title = l.title || n._zh.title;
+                n.en = code === "en" && n.title.toLowerCase() === n._zh.en.toLowerCase() ? "" : n._zh.en;
+                n.support = l.support || n._zh.support;
+                n.dof = l.dof || n._zh.dof;
+                n.mfg = l.mfg || n._zh.mfg;
+                n.text = l.text || n._zh.text;
+                n.demoNote = l.demoNote != null ? l.demoNote : n._zh.demoNote;
+                n.parks = l.parks || n._zh.parks;
+              }
+            }
+          };
+          c.children.forEach(applyNode);
+        });
+      });
+    }
+
+    if (loc.parks) {
+      Object.keys(loc.parks).forEach((k) => {
+        PARKS[k] = loc.parks[k];
+      });
+    }
+
+    if (loc.distinctions) {
+      if (loc.distinctions.distinctions) NOTES = loc.distinctions.distinctions;
+      if (loc.distinctions.techniques) TECH = loc.distinctions.techniques;
+      if (loc.distinctions.facts) FACTS = loc.distinctions.facts;
+    }
+  }
+
+  function applyStaticI18n() {
+    const meta = LANGS.find((l) => l.code === state.lang) || LANGS[0];
+    document.documentElement.lang = meta.htmlLang;
+    document.documentElement.dir = meta.dir;
+
+    $$("[data-i18n]").forEach((el) => {
+      el.textContent = T(el.dataset.i18n);
+    });
+    $$("[data-i18n-html]").forEach((el) => {
+      el.innerHTML = T(el.dataset.i18nHtml);
+    });
+    $$("[data-i18n-placeholder]").forEach((el) => {
+      el.placeholder = T(el.dataset.i18nPlaceholder);
+    });
+    $$("[data-i18n-aria]").forEach((el) => {
+      el.setAttribute("aria-label", T(el.dataset.i18nAria));
+    });
+
+    const descMeta = $('meta[name="description"]');
+    if (descMeta) descMeta.content = T("docDesc");
+    const ogTitle = $('meta[property="og:title"]');
+    if (ogTitle) ogTitle.content = T("docTitle");
+    const ogDesc = $('meta[property="og:description"]');
+    if (ogDesc) ogDesc.content = T("docDesc");
+
+    const cur = $("#lang-current");
+    if (cur) cur.textContent = meta.name;
+    renderLangMenu();
+    applyTheme();
+  }
+
+  function renderLangMenu() {
+    const menu = $("#lang-menu");
+    if (!menu) return;
+    menu.innerHTML = LANGS.map(
+      (l) =>
+        '<button class="lang-option" type="button" role="option" data-lang="' +
+        l.code +
+        '" aria-selected="' +
+        (l.code === state.lang) +
+        '"><span>' +
+        esc(l.name) +
+        '</span><span class="lang-code">' +
+        l.code +
+        "</span></button>"
+    ).join("");
+  }
+
+  function toggleLangMenu(forceOpen) {
+    const menu = $("#lang-menu");
+    const btn = $("#lang-toggle");
+    if (!menu || !btn) return;
+    const open = forceOpen != null ? forceOpen : menu.hidden;
+    menu.hidden = !open;
+    btn.setAttribute("aria-expanded", String(open));
+  }
+
+  function setLang(code) {
+    if (!LANGS.some((l) => l.code === code)) code = "zh";
+    state.lang = code;
+    store.set("dra-lang", code);
+    toggleLangMenu(false);
+    applyCoreData(code);
+    applyStaticI18n();
+    ensureLocaleLoaded(code, () => {
+      if (state.lang !== code) return;
+      applyDatasetLocale(code);
+      rerenderAll();
+    });
+  }
+
+  function rerenderAll() {
+    updateDocumentTitle();
+    renderHero();
+    renderCatSelect();
+    renderRides();
+    renderMechNav();
+    if (state.view === "mechanisms") selectMech(state.mech);
+    else if (state.view === "lab") selectLab(state.lab);
+    else if (state.view === "parks") selectPark(state.park);
+    renderNotes();
+    renderGlossary();
+    renderTray();
+    if (state.ride && $("#ride-backdrop").classList.contains("is-open")) openRide(state.ride.id);
+    if ($("#compare-backdrop").classList.contains("is-open")) openCompare();
+    if ($("#palette-backdrop").classList.contains("is-open")) renderPalette($("#palette-input").value);
+  }
+
   /* ------------------------------------------------------------------ theme */
   const root = document.documentElement;
   const themeParam = location.search.match(/[?&]theme=(light|dark)/);
@@ -117,15 +473,35 @@
     if (theme === "light") root.setAttribute("data-theme", "light");
     else root.removeAttribute("data-theme");
     const btn = $("#theme-toggle");
-    btn.innerHTML = (theme === "light" ? icon("moon") : icon("bulb")) + '<span class="label">' + (theme === "light" ? "关灯" : "开灯") + "</span>";
-    btn.setAttribute("aria-label", theme === "light" ? "切换到暗色" : "切换到亮色");
-    btn.title = theme === "light" ? "关灯（暗色）" : "开灯（亮色）";
+    if (!btn) return;
+    btn.innerHTML =
+      (theme === "light" ? icon("moon") : icon("bulb")) +
+      '<span class="label">' +
+      esc(theme === "light" ? T("themeDarkLabel") : T("themeLightLabel")) +
+      "</span>";
+    btn.setAttribute("aria-label", theme === "light" ? T("themeToDarkAria") : T("themeToLightAria"));
+    btn.title = theme === "light" ? T("themeDarkTitle") : T("themeLightTitle");
     const meta = $('meta[name="theme-color"]');
     if (meta) meta.content = theme === "light" ? "#f4f2ec" : "#0e0e0d";
   }
 
   /* ------------------------------------------------------------------ views */
-  const VIEW_TITLES = { rides: "", mechanisms: "机制", lab: "原理", parks: "乐园", notes: "辨析", glossary: "视效与交互" };
+  function viewTitle(name) {
+    const map = {
+      rides: "",
+      mechanisms: T("navMechanisms"),
+      lab: T("navLab"),
+      parks: T("navParks"),
+      notes: T("navNotes"),
+      glossary: T("navGlossary")
+    };
+    return map[name] || "";
+  }
+
+  function updateDocumentTitle() {
+    const vt = viewTitle(state.view);
+    document.title = (vt ? vt + " · " : "") + T("docTitle");
+  }
 
   function showView(name) {
     const changed = state.view !== name;
@@ -135,7 +511,7 @@
       if (a.dataset.route === name) a.setAttribute("aria-current", "page");
       else a.removeAttribute("aria-current");
     });
-    document.title = (VIEW_TITLES[name] ? VIEW_TITLES[name] + " · " : "") + "Dark Ride Atlas · 黑暗乘骑图鉴";
+    updateDocumentTitle();
     if (name !== "lab") stopLab();
     if (changed) window.scrollTo(0, 0);
     return changed;
@@ -143,10 +519,15 @@
 
   /* ------------------------------------------------------------------- hero */
   function renderHero() {
-    $("#stat-cats").textContent = MECH.parts[0].cats.length;
-    $("#stat-mechs").textContent = LEAVES.length;
-    $("#stat-rides").textContent = RIDES.length;
-    $("#stat-videos").textContent = usedVideos.size;
+    const countEl = $("#hero-count");
+    if (countEl) {
+      countEl.innerHTML = T("heroCountHtml", {
+        cats: MECH.parts[0].cats.length,
+        mechs: LEAVES.length,
+        rides: RIDES.length,
+        videos: usedVideos.size
+      });
+    }
     renderFact();
   }
 
@@ -159,12 +540,12 @@
       '<a class="plate-media" href="' + ytUrl(f.video) + '" data-video="' + f.video + '" data-title="' + esc(f.caption) + '">' +
       '<img src="' + big(f.video) + '" data-fallback="' + thumb(f.video) + '" alt="">' +
       '<span class="thumb-play">' + icon("play") + "</span></a>" +
-      '<figcaption class="plate-caption"><span class="plate-no">图 ' + pad(i + 1) + " / " + pad(FACTS.length) + "</span>" +
+      '<figcaption class="plate-caption"><span class="plate-no">' + esc(T("plateFigPrefix")) + " " + pad(i + 1) + " / " + pad(FACTS.length) + "</span>" +
       "<span>" + esc(f.caption) + "</span></figcaption>" +
-      '<div class="plate-body"><p class="plate-kicker">你可能不知道</p>' +
+      '<div class="plate-body"><p class="plate-kicker">' + esc(T("plateKicker")) + "</p>" +
       '<blockquote class="plate-text">' + esc(f.text) + "</blockquote>" +
       '<div class="plate-foot"><a class="text-link" href="#/mechanisms/' + f.code + '"><span class="code">' + f.code + "</span>" + esc(e ? e.node.short : "") + icon("arrowRight") + "</a>" +
-      '<button class="plate-shuffle" type="button" data-action="next-fact">' + icon("refresh") + "换一条</button></div></div>";
+      '<button class="plate-shuffle" type="button" data-action="next-fact">' + icon("refresh") + esc(T("plateNext")) + "</button></div></div>";
   }
 
   /* --------------------------------------------------------------- rides */
@@ -175,7 +556,20 @@
     if (state.onlyDemo && !(r.v && (r.v.demo || r.v.explain))) return false;
     if (state.q) {
       const e = LEAF[r.code];
-      const hay = [r.zh, r.en, r.park, r.mfg, r.code, GROUP_LABEL[r.g], e ? e.node.title + e.node.short : ""].join(" ").toLowerCase();
+      const hay = [
+        r.zh,
+        r.en,
+        r._zh.zh,
+        r._zh.en,
+        r.park,
+        r._zh.park,
+        r.mfg,
+        r.code,
+        GROUP_LABEL[r.g],
+        e ? e.node.title + " " + e.node.short + " " + e.node._zh.title : ""
+      ]
+        .join(" ")
+        .toLowerCase();
       if (!state.q.toLowerCase().split(/\s+/).every((t) => hay.indexOf(t) !== -1)) return false;
     }
     return true;
@@ -188,8 +582,8 @@
     let media;
     if (vid) {
       const tags = [];
-      if (v.lights) tags.push('<span class="thumb-tag is-lit">开灯</span>');
-      if (v.demo) tags.push('<span class="thumb-tag">厂商演示</span>');
+      if (v.lights) tags.push('<span class="thumb-tag is-lit">' + esc(T("tagLights")) + "</span>");
+      if (v.demo) tags.push('<span class="thumb-tag">' + esc(T("tagDemo")) + "</span>");
       media =
         '<div class="thumb"><img loading="lazy" decoding="async" src="' + card(vid) + '" data-fallback="' + thumb(vid) + '" alt="">' +
         (tags.length ? '<span class="thumb-tags">' + tags.join("") + "</span>" : "") +
@@ -197,7 +591,7 @@
     } else {
       media =
         '<div class="thumb is-empty">' + glyph(catKeyOf(r.code)) +
-        '<span class="thumb-empty-note">暂无可嵌入影像</span></div>';
+        '<span class="thumb-empty-note">' + esc(T("noEmbedThumb")) + "</span></div>";
     }
     const on = state.compare.indexOf(r.id) !== -1;
     return (
@@ -206,32 +600,42 @@
       '<div class="ride-body"><p class="ride-meta"><span class="park">' + esc(r.park) + "</span>" +
       (r.year ? '<span class="year">' + r.year + "</span>" : "") + "</p>" +
       '<h3 class="ride-title">' + esc(r.zh) + "</h3>" +
-      '<p class="ride-en">' + esc(r.en) + "</p>" +
+      (r.en ? '<p class="ride-en">' + esc(r.en) + "</p>" : "") +
       (mini ? "" : '<p class="ride-summary">' + esc(r.text) + "</p>") +
       "</div></a>" +
       (mini
         ? ""
         : '<div class="ride-foot"><span class="ride-mech"><span class="code">' + r.code + "</span>" + esc(e ? e.node.short : "") + "</span>" +
           '<button class="compare-toggle" type="button" data-compare="' + r.id + '" aria-pressed="' + on + '">' +
-          icon(on ? "check" : "plus") + "<span>" + (on ? "已加入对比" : "对比") + "</span></button></div>") +
+          icon(on ? "check" : "plus") + "<span>" + esc(on ? T("comparedBtn") : T("compareBtn")) + "</span></button></div>") +
       "</article>"
     );
   }
 
   function rideTable(list) {
     return (
-      '<div class="table-wrap"><table class="ride-table"><thead><tr><th>编号</th><th>项目</th><th>乐园</th><th>制造商</th><th>影像</th></tr></thead><tbody>' +
+      '<div class="table-wrap"><table class="ride-table"><thead><tr><th>' +
+      esc(T("thCode")) +
+      "</th><th>" +
+      esc(T("thRide")) +
+      "</th><th>" +
+      esc(T("thPark")) +
+      "</th><th>" +
+      esc(T("thMfg")) +
+      "</th><th>" +
+      esc(T("thMedia")) +
+      "</th></tr></thead><tbody>" +
       list
         .map((r) => {
           const v = r.v || {};
           return (
             '<tr data-ride="' + r.id + '" tabindex="0"><td class="t-code">' + r.code + "</td>" +
-            '<td><span class="t-title">' + esc(r.zh) + '</span><span class="t-en">' + esc(r.en) + "</span></td>" +
+            '<td><span class="t-title">' + esc(r.zh) + "</span>" + (r.en ? '<span class="t-en">' + esc(r.en) + "</span>" : "") + "</td>" +
             '<td class="t-muted">' + esc(r.park) + (r.year ? " · " + r.year : "") + "</td>" +
             '<td class="t-muted">' + esc(r.mfg || "—") + "</td>" +
-            '<td><span class="media-marks"><span class="' + (v.pov ? "on" : "") + '">实拍</span>' +
-            '<span class="' + (v.lights ? "on" : "") + '">开灯</span>' +
-            '<span class="' + (v.demo || v.explain ? "on" : "") + '">演示</span></span></td></tr>'
+            '<td><span class="media-marks"><span class="' + (v.pov ? "on" : "") + '">' + esc(T("markPov")) + "</span>" +
+            '<span class="' + (v.lights ? "on" : "") + '">' + esc(T("markLights")) + "</span>" +
+            '<span class="' + (v.demo || v.explain ? "on" : "") + '">' + esc(T("markDemo")) + "</span></span></td></tr>"
           );
         })
         .join("") +
@@ -247,28 +651,30 @@
         counts[r.g] = (counts[r.g] || 0) + 1;
       }
     });
-    $("#group-chips").innerHTML = [{ key: "all", label: "全部" }]
+    const allLabel = (CORE[state.lang] && CORE[state.lang].groups && CORE[state.lang].groups.all) || "全部";
+    $("#group-chips").innerHTML = [{ key: "all", label: allLabel }]
       .concat(GROUPS)
-      .map((g) => '<button class="chip" type="button" data-group="' + g.key + '" aria-pressed="' + (state.group === g.key) + '">' + g.label + '<span class="count">' + (counts[g.key] || 0) + "</span></button>")
+      .map((g) => '<button class="chip" type="button" data-group="' + g.key + '" aria-pressed="' + (state.group === g.key) + '">' + esc(g.label) + '<span class="count">' + (counts[g.key] || 0) + "</span></button>")
       .join("");
   }
 
   function renderCatSelect() {
     $("#cat-select").innerHTML =
-      '<option value="all">全部门类</option>' +
-      MECH.parts.map((p) => '<optgroup label="' + p.label + '">' + p.cats.map((c) => '<option value="' + c.key + '">' + c.num + " · " + c.title + "</option>").join("") + "</optgroup>").join("");
+      '<option value="all">' + esc(T("filterAllCats")) + "</option>" +
+      MECH.parts.map((p) => '<optgroup label="' + esc(p.label) + '">' + p.cats.map((c) => '<option value="' + c.key + '">' + c.num + " · " + esc(c.title) + "</option>").join("") + "</optgroup>").join("");
     $("#cat-select").value = state.cat;
   }
 
   function renderRides() {
     renderGroupChips();
     const list = RIDES.filter((r) => matches(r));
-    $("#result-count").innerHTML = "<strong>" + list.length + "</strong> / " + RIDES.length + " 个项目";
+    $("#result-count").innerHTML = T("resultCountHtml", { count: list.length, total: RIDES.length });
     $$("#layout-switch button").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.layout === state.layout)));
     const box = $("#ride-results");
     if (!list.length) {
       box.className = "ride-grid";
-      box.innerHTML = '<div class="empty-state"><h3>没有找到符合条件的项目</h3><p>换个关键词，或者清除筛选条件。</p><button class="btn" type="button" data-action="reset-filters">清除筛选</button></div>';
+      box.innerHTML =
+        '<div class="empty-state"><h3>' + esc(T("emptyRidesTitle")) + "</h3><p>" + esc(T("emptyRidesText")) + '</p><button class="btn" type="button" data-action="reset-filters">' + esc(T("resetFiltersBtn")) + "</button></div>";
       return;
     }
     if (state.layout === "list") {
@@ -300,22 +706,22 @@
     if (meta.noEmbed) {
       return (
         '<div class="player"><img src="' + big(id) + '" data-fallback="' + thumb(id) + '" alt="">' +
-        '<a class="player-start" href="' + ytUrl(id) + '" target="_blank" rel="noopener" aria-label="在 YouTube 观看"><span class="ring">' + icon("external") + "</span></a>" +
-        '<span class="player-caption">' + esc(caption || "") + "（该视频需在 YouTube 观看）</span></div>"
+        '<a class="player-start" href="' + ytUrl(id) + '" target="_blank" rel="noopener" aria-label="' + esc(T("watchOnYtAria")) + '"><span class="ring">' + icon("external") + "</span></a>" +
+        '<span class="player-caption">' + esc(caption || "") + esc(T("watchOnYtNote")) + "</span></div>"
       );
     }
     return (
       '<div class="player"><img src="' + big(id) + '" data-fallback="' + thumb(id) + '" alt="">' +
-      '<button class="player-start" type="button" data-play="' + id + '" aria-label="播放视频"><span class="ring">' + icon("play") + "</span></button>" + cap + "</div>"
+      '<button class="player-start" type="button" data-play="' + id + '" aria-label="' + esc(T("playVideoAria")) + '"><span class="ring">' + icon("play") + "</span></button>" + cap + "</div>"
     );
   }
 
   function emptyPlayer(r) {
     return (
       '<div class="player is-empty"><div>' + glyph(catKeyOf(r.code)) +
-      "<p>暂未收录可嵌入的影像</p><p>" +
-      '<a class="text-link" href="' + biliSearch(r.bili || r.zh) + '" target="_blank" rel="noopener">在 B 站搜索</a> · ' +
-      '<a class="text-link" href="' + ytSearch(r.en + " ride") + '" target="_blank" rel="noopener">在 YouTube 搜索</a></p></div></div>'
+      "<p>" + esc(T("emptyPlayerNote")) + "</p><p>" +
+      '<a class="text-link" href="' + biliSearch(r.bili || r._zh.zh) + '" target="_blank" rel="noopener">' + esc(T("searchBili")) + "</a> · " +
+      '<a class="text-link" href="' + ytSearch(r._zh.en + " ride") + '" target="_blank" rel="noopener">' + esc(T("searchYt")) + "</a></p></div></div>"
     );
   }
 
@@ -363,40 +769,40 @@
     const r = RIDES.find((x) => x.id === id);
     if (!r) return;
     const e = LEAF[r.code];
-    const types = VIDEO_TYPES.filter((t) => r.v && r.v[t[0]]);
+    const types = videoTypes().filter((t) => r.v && r.v[t[0]]);
     const first = types.length ? types[0][0] : null;
     const on = state.compare.indexOf(r.id) !== -1;
     state.ride = r;
 
     const tabs = types.length
       ? '<div class="media-tabs">' +
-        types.map((t) => '<button class="chip" type="button" data-vtype="' + t[0] + '" aria-selected="' + (t[0] === first) + '">' + t[1] + "</button>").join("") +
+        types.map((t) => '<button class="chip" type="button" data-vtype="' + t[0] + '" aria-selected="' + (t[0] === first) + '">' + esc(t[1]) + "</button>").join("") +
         '<span class="source" id="ride-source">' + sourceLine(r, first) + "</span></div>"
       : "";
 
     $("#ride-dialog").innerHTML =
-      '<button class="dialog-close" type="button" data-close="ride" aria-label="关闭">' + icon("close") + "</button>" +
+      '<button class="dialog-close" type="button" data-close="ride" aria-label="' + esc(T("closeAria")) + '">' + icon("close") + "</button>" +
       '<div id="ride-player">' + (first ? playerHTML(r.v[first], captionFor(r, first)) : emptyPlayer(r)) + "</div>" + tabs +
       '<div class="dialog-body"><div>' +
       (e ? '<a class="dialog-kicker" href="#/mechanisms/' + r.code + '"><span class="code">' + r.code + "</span><span>" + esc(e.node.title) + "</span>" + icon("arrowRight") + "</a>" : "") +
       '<h2 class="dialog-title" id="ride-dialog-title">' + esc(r.zh) + "</h2>" +
-      '<p class="dialog-en">' + esc(r.en) + "</p>" +
+      (r.en ? '<p class="dialog-en">' + esc(r.en) + "</p>" : "") +
       '<p class="dialog-summary">' + esc(r.text) + "</p>" +
       '<div class="dialog-actions">' +
       (first
-        ? '<a class="btn" id="ride-yt" href="' + ytUrl(r.v[first]) + '" target="_blank" rel="noopener">在 YouTube 打开' + icon("external") + "</a>"
+        ? '<a class="btn" id="ride-yt" href="' + ytUrl(r.v[first]) + '" target="_blank" rel="noopener">' + esc(T("openOnYt")) + icon("external") + "</a>"
         : "") +
-      '<a class="btn" href="' + biliSearch(r.bili || r.zh) + '" target="_blank" rel="noopener">在 B 站搜索' + icon("external") + "</a>" +
-      '<button class="btn" type="button" data-compare="' + r.id + '" aria-pressed="' + on + '">' + (on ? "已加入对比" : "加入对比") + "</button>" +
+      '<a class="btn" href="' + biliSearch(r.bili || r._zh.zh) + '" target="_blank" rel="noopener">' + esc(T("searchBili")) + icon("external") + "</a>" +
+      '<button class="btn" type="button" data-compare="' + r.id + '" aria-pressed="' + on + '">' + esc(on ? T("comparedBtn") : T("addCompareBtn")) + "</button>" +
       "</div></div>" +
-      '<dl class="spec"><dt>乐园</dt><dd>' + esc(r.park) + "</dd>" +
-      (r.year ? "<dt>开业</dt><dd>" + r.year + "</dd>" : "") +
+      '<dl class="spec"><dt>' + esc(T("specPark")) + "</dt><dd>" + esc(r.park) + "</dd>" +
+      (r.year ? "<dt>" + esc(T("specYear")) + "</dt><dd>" + r.year + "</dd>" : "") +
       (e
-        ? "<dt>门类</dt><dd>" + e.cat.num + " · " + esc(e.cat.title) + "</dd>" +
-          "<dt>支撑与导引</dt><dd>" + esc(e.node.support) + "</dd>" +
-          "<dt>自由度</dt><dd>" + esc(e.node.dof) + "</dd>"
+        ? "<dt>" + esc(T("specCat")) + "</dt><dd>" + e.cat.num + " · " + esc(e.cat.title) + "</dd>" +
+          "<dt>" + esc(T("specSupport")) + "</dt><dd>" + esc(e.node.support) + "</dd>" +
+          "<dt>" + esc(T("specDof")) + "</dt><dd>" + esc(e.node.dof) + "</dd>"
         : "") +
-      "<dt>制造商</dt><dd>" + esc(r.mfg || "—") + "</dd></dl></div>";
+      "<dt>" + esc(T("thMfg")) + "</dt><dd>" + esc(r.mfg || "—") + "</dd></dl></div>";
 
     openBackdrop("ride-backdrop");
 
@@ -452,7 +858,7 @@
       return;
     }
     $("#video-dialog").innerHTML =
-      '<button class="dialog-close" type="button" data-close="video" aria-label="关闭">' + icon("close") + "</button>" +
+      '<button class="dialog-close" type="button" data-close="video" aria-label="' + esc(T("closeAria")) + '">' + icon("close") + "</button>" +
       '<div class="player">' + embed(id) + "</div>" +
       '<div class="media-tabs"><span class="video-title">' + esc(label || meta.t || "") + "</span>" +
       '<a class="source text-link" href="' + ytUrl(id) + '" target="_blank" rel="noopener">' + esc(meta.c || "YouTube") + icon("external") + "</a></div>";
@@ -471,8 +877,8 @@
     $$("[data-compare]").forEach((b) => {
       const on = state.compare.indexOf(b.dataset.compare) !== -1;
       b.setAttribute("aria-pressed", String(on));
-      if (b.classList.contains("compare-toggle")) b.innerHTML = icon(on ? "check" : "plus") + "<span>" + (on ? "已加入对比" : "对比") + "</span>";
-      else b.textContent = on ? "已加入对比" : "加入对比";
+      if (b.classList.contains("compare-toggle")) b.innerHTML = icon(on ? "check" : "plus") + "<span>" + esc(on ? T("comparedBtn") : T("compareBtn")) + "</span>";
+      else b.textContent = on ? T("comparedBtn") : T("addCompareBtn");
     });
   }
 
@@ -482,12 +888,12 @@
     $("#tray-items").innerHTML = state.compare
       .map((id) => {
         const r = RIDES.find((x) => x.id === id);
-        return '<span class="tray-item">' + esc(r.zh) + '<button type="button" data-uncompare="' + id + '" aria-label="移出对比">' + icon("close") + "</button></span>";
+        return '<span class="tray-item">' + esc(r.zh) + '<button type="button" data-uncompare="' + id + '" aria-label="' + esc(T("trayRemoveAria")) + '">' + icon("close") + "</button></span>";
       })
       .join("");
     const go = $("#tray-go");
     go.disabled = n < 2;
-    go.textContent = n < 2 ? "再选一个" : "对比 " + n + " 项";
+    go.textContent = n < 2 ? T("trayPickMore") : T("trayCompareN", { n: n });
   }
 
   function openCompare() {
@@ -495,20 +901,20 @@
     if (rs.length < 2) return;
     const leaf = (r) => LEAF[r.code] || { node: {}, cat: {} };
     const rows = [
-      ["乐园", (r) => esc(r.park)],
-      ["开业", (r) => r.year || "—"],
-      ["机制", (r) => '<a class="code-link" href="#/mechanisms/' + r.code + '">' + r.code + "</a> " + esc(leaf(r).node.title || "")],
-      ["支撑与导引", (r) => esc(leaf(r).node.support || "—")],
-      ["自由度", (r) => esc(leaf(r).node.dof || "—")],
-      ["制造商", (r) => esc(r.mfg || "—")],
-      ["简介", (r) => esc(r.text)]
+      [T("specPark"), (r) => esc(r.park)],
+      [T("specYear"), (r) => r.year || "—"],
+      [T("specMech"), (r) => '<a class="code-link" href="#/mechanisms/' + r.code + '">' + r.code + "</a> " + esc(leaf(r).node.title || "")],
+      [T("specSupport"), (r) => esc(leaf(r).node.support || "—")],
+      [T("specDof"), (r) => esc(leaf(r).node.dof || "—")],
+      [T("thMfg"), (r) => esc(r.mfg || "—")],
+      [T("specSummary"), (r) => esc(r.text)]
     ];
     $("#compare-dialog").innerHTML =
-      '<div class="dialog-head"><h2>项目对比</h2><button class="dialog-close" type="button" data-close="compare" aria-label="关闭">' + icon("close") + "</button></div>" +
+      '<div class="dialog-head"><h2>' + esc(T("compareDialogTitle")) + '</h2><button class="dialog-close" type="button" data-close="compare" aria-label="' + esc(T("closeAria")) + '">' + icon("close") + "</button></div>" +
       '<div class="compare-body"><div class="table-wrap"><table class="data-table"><thead><tr><th></th>' +
       rs.map((r) => "<th>" + (firstVideo(r) ? '<img src="' + thumb(firstVideo(r)) + '" alt="">' : "") + esc(r.zh) + "</th>").join("") +
       "</tr></thead><tbody>" +
-      rows.map((row) => "<tr><td>" + row[0] + "</td>" + rs.map((r) => "<td>" + row[1](r) + "</td>").join("") + "</tr>").join("") +
+      rows.map((row) => "<tr><td>" + esc(row[0]) + "</td>" + rs.map((r) => "<td>" + row[1](r) + "</td>").join("") + "</tr>").join("") +
       "</tbody></table></div></div>";
     openBackdrop("compare-backdrop");
   }
@@ -517,7 +923,7 @@
   function renderMechNav() {
     const part = MECH.parts.find((p) => p.id === state.part) || MECH.parts[0];
     $("#part-switch").innerHTML = MECH.parts
-      .map((p) => '<button type="button" data-part="' + p.id + '" aria-pressed="' + (p.id === part.id) + '">' + p.label + "</button>")
+      .map((p) => '<button type="button" data-part="' + p.id + '" aria-pressed="' + (p.id === part.id) + '">' + esc(p.label) + "</button>")
       .join("");
     $("#mech-tree").innerHTML = part.cats
       .map((cat) => {
@@ -567,34 +973,34 @@
     if (n.demo) video = { id: n.demo, caption: n.demoNote };
     else {
       const r = related.find((x) => x.v && x.v.pov);
-      if (r) video = { id: r.v.pov, caption: "相关项目：" + r.zh };
+      if (r) video = { id: r.v.pov, caption: T("mechRelatedVideoPrefix") + r.zh };
     }
     const prev = LEAVES[e.index - 1];
     const next = LEAVES[e.index + 1];
 
     $("#mech-article").innerHTML =
-      '<nav class="crumbs" aria-label="所在位置">' + crumbs.map((c) => "<span>" + esc(c) + "</span>").join("") + "</nav>" +
+      '<nav class="crumbs" aria-label="' + esc(T("crumbsAria")) + '">' + crumbs.map((c) => "<span>" + esc(c) + "</span>").join("") + "</nav>" +
       '<p class="article-code">' + n.code + "</p>" +
       '<h2 class="article-title">' + esc(n.title) + "</h2>" +
-      '<p class="article-en">' + esc(n.en) + "</p>" +
+      (n.en ? '<p class="article-en">' + esc(n.en) + "</p>" : "") +
       '<p class="article-lede">' + esc(n.text) + "</p>" +
-      '<dl class="spec-grid"><div><dt>支撑与导引</dt><dd>' + esc(n.support) + "</dd></div>" +
-      "<div><dt>自由度</dt><dd>" + esc(n.dof) + "</dd></div>" +
-      "<div><dt>主要制造商</dt><dd>" + esc(n.mfg) + "</dd></div></dl>" +
+      '<dl class="spec-grid"><div><dt>' + esc(T("specSupport")) + "</dt><dd>" + esc(n.support) + "</dd></div>" +
+      "<div><dt>" + esc(T("specDof")) + "</dt><dd>" + esc(n.dof) + "</dd></div>" +
+      "<div><dt>" + esc(T("specMfg")) + "</dt><dd>" + esc(n.mfg) + "</dd></div></dl>" +
       (video
         ? '<figure class="article-video">' + playerHTML(video.id, "") +
           "<figcaption><span>" + esc(video.caption || "") + "</span><span>" + (VIDEOS[video.id] && VIDEOS[video.id].c ? "YouTube · " + esc(VIDEOS[video.id].c) : "") + "</span></figcaption></figure>"
         : "") +
-      '<section class="article-section"><h3 class="article-h">各乐园的同类项目</h3><dl class="park-rows">' +
+      '<section class="article-section"><h3 class="article-h">' + esc(T("mechParkSectionTitle")) + '</h3><dl class="park-rows">' +
       n.parks.map((p) => '<div class="park-row"><dt>' + esc(p[0]) + "</dt><dd>" + esc(p[1]) + "</dd></div>").join("") +
       "</dl></section>" +
       (related.length
-        ? '<section class="article-section"><h3 class="article-h">收录的项目<small>' + related.length + " 个</small></h3>" +
+        ? '<section class="article-section"><h3 class="article-h">' + esc(T("mechRelatedTitle")) + "<small>" + esc(T("mechRelatedCount", { count: related.length })) + "</small></h3>" +
           '<div class="mini-grid">' + related.map((r) => rideCard(r, true)).join("") + "</div></section>"
         : "") +
-      '<nav class="pager" aria-label="翻页">' +
-      (prev ? '<a href="#/mechanisms/' + prev.node.code + '"><small>上一个</small><span class="code">' + prev.node.code + "</span>" + esc(prev.node.short) + "</a>" : "<span></span>") +
-      (next ? '<a class="next" href="#/mechanisms/' + next.node.code + '"><small>下一个</small><span class="code">' + next.node.code + "</span>" + esc(next.node.short) + "</a>" : "") +
+      '<nav class="pager" aria-label="' + esc(T("pagerAria")) + '">' +
+      (prev ? '<a href="#/mechanisms/' + prev.node.code + '"><small>' + esc(T("pagerPrev")) + '</small><span class="code">' + prev.node.code + "</span>" + esc(prev.node.short) + "</a>" : "<span></span>") +
+      (next ? '<a class="next" href="#/mechanisms/' + next.node.code + '"><small>' + esc(T("pagerNext")) + '</small><span class="code">' + next.node.code + "</span>" + esc(next.node.short) + "</a>" : "") +
       "</nav>";
   }
 
@@ -625,9 +1031,9 @@
     drawLab();
     renderLabNotes();
     $("#lab-tb").innerHTML =
-      "<span><small>图号</small>DRA–" + pad(i + 1) + "</span>" +
-      "<span><small>比例</small>示意 · 不按比例</span>" +
-      "<span><small>对照</small>" + esc(m.s) + "</span>";
+      "<span><small>" + esc(T("labTbNo")) + "</small>DRA–" + pad(i + 1) + "</span>" +
+      "<span><small>" + esc(T("labTbScale")) + "</small>" + esc(T("labTbScaleVal")) + "</span>" +
+      "<span><small>" + esc(T("labTbVs")) + "</small>" + esc(m.s) + "</span>";
   }
 
   function drawLab() {
@@ -643,7 +1049,7 @@
           '<input id="ctl-' + c.k + '" type="range" min="' + c.min + '" max="' + c.max + '" step="1" value="' + state.labParams[c.k] + '" data-ctl="' + c.k + '"></div>')
         .join("") +
       '<div class="lab-buttons"><button class="btn btn-sm" type="button" data-action="lab-play" id="lab-play"></button>' +
-      '<button class="btn btn-sm" type="button" data-action="lab-reset">' + icon("refresh") + "复位</button></div>";
+      '<button class="btn btn-sm" type="button" data-action="lab-reset">' + icon("refresh") + esc(T("labReset")) + "</button></div>";
     updatePlayButton();
   }
 
@@ -653,8 +1059,8 @@
       '<div><p class="eyebrow">' + pad(state.lab + 1) + " · " + esc(m.s) + "</p><h2>" + esc(m.title) + "</h2><p>" + esc(m.body) + "</p>" +
       '<div class="links">' +
       m.links.map((c) => '<a class="text-link" href="#/mechanisms/' + c + '">' + c + " " + esc(LEAF[c] ? LEAF[c].node.short : "") + "</a>").join("") +
-      '<a class="text-link" href="#/notes/' + (m.note + 1) + '">读辨析' + icon("arrowRight") + "</a></div></div>" +
-      '<div><p class="eyebrow" style="margin-bottom:10px">相关影像</p><div class="video-list">' +
+      '<a class="text-link" href="#/notes/' + (m.note + 1) + '">' + esc(T("labReadNote")) + icon("arrowRight") + "</a></div></div>" +
+      '<div><p class="eyebrow" style="margin-bottom:10px">' + esc(T("labRelatedVideos")) + '</p><div class="video-list">' +
       m.videos
         .map((v) =>
           '<button class="video-row" type="button" data-video="' + v.id + '" data-title="' + esc(v.label) + '">' +
@@ -665,7 +1071,7 @@
 
   function updatePlayButton() {
     const b = $("#lab-play");
-    if (b) b.innerHTML = state.playing ? icon("pause") + "暂停" : icon("play") + "自动演示";
+    if (b) b.innerHTML = state.playing ? icon("pause") + esc(T("labPause")) : icon("play") + esc(T("labAutoPlay"));
   }
 
   function tick(now) {
@@ -701,20 +1107,6 @@
   }
 
   /* --------------------------------------------------------------- parks */
-  const PARK_TABS = [
-    { key: "disney", label: "迪士尼", title: "全球迪士尼", note: "6 个度假区 · 12 座乐园" },
-    { key: "universal", label: "环球影城", title: "全球环球影城", note: "5 个度假区 · 7 座乐园（含史诗宇宙）" },
-    { key: "fantawild", label: "方特", title: "中国方特", note: "按硬件门类归类 · 全国 38 座乐园" },
-    { key: "chimelong", label: "长隆", title: "中国长隆集团", note: "珠海宇宙飞船 · 珠海海洋王国 · 广州长隆 · 清远长隆" },
-    { key: "oct", label: "华侨城", title: "中国华侨城集团", note: "襄阳奇幻谷 · 东部华侨城 · 全国九大欢乐谷 · 卡乐星球" },
-    { key: "merlin", label: "默林集团", title: "英国默林娱乐集团", note: "Alton Towers · Thorpe Park · Chessington · Gardaland · Heide Park · 全球 11 座乐高乐园" },
-    { key: "sixflags", label: "六旗与雪松会", title: "美国六旗与雪松会集团", note: "Six Flags · Cedar Point · 诺氏百乐坊 · 国王岛 · 加拿大奇幻乐园等" },
-    { key: "dubai", label: "迪拜与阿布扎比", title: "迪拜与阿布扎比", note: "7 座乐园" },
-    { key: "genting", label: "云顶天城", title: "云顶天城世界", note: "马来西亚 · 原二十世纪福斯主题乐园" },
-    { key: "europe", label: "欧洲四园", title: "欧洲四大暗黑乘骑乐园", note: "Phantasialand · Efteling · Europa-Park · Futuroscope" },
-    { key: "eurocoaster", label: "欧洲名园", title: "欧洲六大过山车与电影主题名园", note: "PortAventura · Movieland · Parc Astérix · Liseberg · Alton Towers · Gardaland" }
-  ];
-
   function linkCodes(html) {
     return String(html).replace(/<code>([^<]+)<\/code>/g, (_, inner) =>
       inner
@@ -728,8 +1120,8 @@
 
   function selectPark(key) {
     state.park = PARKS[key] ? key : "disney";
-    const tab = PARK_TABS.find((t) => t.key === state.park);
-    $("#park-tabs").innerHTML = PARK_TABS.map((t) => '<a class="chip" role="tab" href="#/parks/' + t.key + '" aria-selected="' + (t.key === state.park) + '">' + t.label + "</a>").join("");
+    const tab = PARK_TABS.find((t) => t.key === state.park) || PARK_TABS[0];
+    $("#park-tabs").innerHTML = PARK_TABS.map((t) => '<a class="chip" role="tab" href="#/parks/' + t.key + '" aria-selected="' + (t.key === state.park) + '">' + esc(t.label) + "</a>").join("");
     $("#park-title").textContent = tab.title;
     $("#park-note").textContent = tab.note;
     renderParkTable();
@@ -737,6 +1129,7 @@
 
   function renderParkTable() {
     const data = PARKS[state.park];
+    if (!data) return;
     const q = state.parkQ.toLowerCase();
     const rows = data.rows.filter((r) => !q || stripTags([r.col1].concat(r.col2, r.col3).join(" ")).toLowerCase().indexOf(q) !== -1);
     $("#park-table").innerHTML = rows.length
@@ -748,12 +1141,12 @@
             "<td><ul>" + r.col3.map((i) => "<li>" + linkCodes(i) + "</li>").join("") + "</ul></td></tr>")
           .join("") +
         "</tbody></table>"
-      : '<div class="empty-state" style="border:0"><h3>没有匹配的内容</h3><p>换个关键词试试。</p></div>';
+      : '<div class="empty-state" style="border:0"><h3>' + esc(T("emptyParksTitle")) + "</h3><p>" + esc(T("emptyParksText")) + "</p></div>";
   }
 
   /* --------------------------------------------------------------- notes */
-  const cleanTitle = (t) => t.replace(/^辨析[一二三四五六]：/, "").replace("终极", "");
-  const shortTitle = (t) => cleanTitle(t).split("——")[0].split("（")[0];
+  const cleanTitle = (t) => String(t).replace(/^(辨析[一二三四五六]|Distinction\s*\d+|Distinción\s*\d+|Distinction\s*[IVX\d]+|Различие\s*\d+|التمييز\s*\S+|구분\s*\d+|検証\s*\d+|Unterscheidung\s*\d+)\s*[：:—–-]\s*/i, "").replace("终极", "");
+  const shortTitle = (t) => cleanTitle(t).split("——")[0].split(" — ")[0].split("（")[0].split(" (")[0];
   let noteObserver = null;
 
   function renderNotes() {
@@ -768,7 +1161,7 @@
         '<div class="table-wrap"><table class="data-table"><thead><tr>' + d.headers.map((h) => "<th>" + esc(h) + "</th>").join("") + "</tr></thead><tbody>" +
         d.rows.map((row) => "<tr>" + row.map((c) => "<td>" + c + "</td>").join("") + "</tr>").join("") +
         "</tbody></table></div>" +
-        '<div class="note-foot"><a class="text-link" href="#/lab/' + (d.labTab + 1) + '">在原理实验室里看' + icon("arrowRight") + "</a>" +
+        '<div class="note-foot"><a class="text-link" href="#/lab/' + (d.labTab + 1) + '">' + esc(T("notesSeeLab")) + icon("arrowRight") + "</a>" +
         codes.map((c) => '<a class="text-link" href="#/mechanisms/' + c + '">' + c + " " + esc(LEAF[c].node.short) + "</a>").join("") +
         "</div></article>"
       );
@@ -793,10 +1186,10 @@
   /* ------------------------------------------------------------ glossary */
   function renderGlossary() {
     const col = (title, items) =>
-      '<section class="gloss-col"><h2>' + title + "<small>" + items.length + "</small></h2>" +
+      '<section class="gloss-col"><h2>' + esc(title) + "<small>" + items.length + "</small></h2>" +
       items.map((t, i) => '<div class="gloss-item"><span class="num">' + pad(i + 1) + "</span><h3>" + esc(t.name) + "</h3><p>" + esc(t.desc) + '</p><p class="ex">' + esc(t.ex) + "</p></div>").join("") +
       "</section>";
-    $("#glossary").innerHTML = col("视觉呈现", TECH.visual) + col("乘客互动", TECH.interaction);
+    $("#glossary").innerHTML = col(T("glossaryVisualTitle"), TECH.visual || []) + col(T("glossaryInteractionTitle"), TECH.interaction || []);
   }
 
   /* ------------------------------------------------------------- palette */
@@ -818,36 +1211,36 @@
 
     if (!q) {
       groups.push({
-        label: "推荐",
+        label: T("paletteGroupSuggested"),
         items: SUGGESTED.map((id) => RIDES.find((r) => r.id === id)).filter(Boolean).map((r) => ({ code: r.code, label: r.zh, sub: r.park, go: () => openRide(r.id) }))
       });
       groups.push({
-        label: "页面",
+        label: T("paletteGroupPages"),
         items: [
-          { code: "", label: "机制总览", sub: "按支撑与导引方式分类", go: () => (location.hash = "#/mechanisms") },
-          { code: "", label: "原理实验室", sub: "六组易混结构的示意图", go: () => (location.hash = "#/lab") },
-          { code: "", label: "乐园总表", sub: "69 座乐园逐园盘点", go: () => (location.hash = "#/parks") }
+          { code: "", label: T("paletteMechTitle"), sub: T("paletteMechSub"), go: () => (location.hash = "#/mechanisms") },
+          { code: "", label: T("paletteLabTitle"), sub: T("paletteLabSub"), go: () => (location.hash = "#/lab") },
+          { code: "", label: T("paletteParksTitle"), sub: T("paletteParksSub"), go: () => (location.hash = "#/parks") }
         ]
       });
     } else {
-      const rides = RIDES.filter((r) => hit([r.zh, r.en, r.park, r.code, r.mfg || "", GROUP_LABEL[r.g]].join(" "))).slice(0, 7);
-      const mechs = LEAVES.filter((e) => hit([e.node.code, e.node.title, e.node.short, e.node.en, e.cat.title].join(" "))).slice(0, 6);
+      const rides = RIDES.filter((r) => hit([r.zh, r.en, r._zh.zh, r._zh.en, r.park, r._zh.park, r.code, r.mfg || "", GROUP_LABEL[r.g]].join(" "))).slice(0, 7);
+      const mechs = LEAVES.filter((e) => hit([e.node.code, e.node.title, e.node.short, e.node.en, e.node._zh.title, e.cat.title].join(" "))).slice(0, 6);
       const parks = PARK_TABS.filter((t) => hit(t.label + " " + t.title + " " + t.note));
-      if (rides.length) groups.push({ label: "项目", items: rides.map((r) => ({ code: r.code, label: r.zh, sub: r.park, go: () => openRide(r.id) })) });
-      if (mechs.length) groups.push({ label: "机制", items: mechs.map((e) => ({ code: e.node.code, label: e.node.title, sub: e.cat.title, go: () => (location.hash = "#/mechanisms/" + e.node.code) })) });
-      if (parks.length) groups.push({ label: "乐园", items: parks.map((t) => ({ code: "", label: t.title, sub: t.note, go: () => (location.hash = "#/parks/" + t.key) })) });
+      if (rides.length) groups.push({ label: T("navRides"), items: rides.map((r) => ({ code: r.code, label: r.zh, sub: r.park, go: () => openRide(r.id) })) });
+      if (mechs.length) groups.push({ label: T("navMechanisms"), items: mechs.map((e) => ({ code: e.node.code, label: e.node.title, sub: e.cat.title, go: () => (location.hash = "#/mechanisms/" + e.node.code) })) });
+      if (parks.length) groups.push({ label: T("navParks"), items: parks.map((t) => ({ code: "", label: t.title, sub: t.note, go: () => (location.hash = "#/parks/" + t.key) })) });
     }
 
     paletteItems = [];
     paletteIndex = 0;
     const box = $("#palette-results");
     if (!groups.length) {
-      box.innerHTML = '<div class="palette-empty">没有找到“' + esc(raw.trim()) + "”相关的内容</div>";
+      box.innerHTML = '<div class="palette-empty">' + esc(T("paletteEmpty", { q: raw.trim() })) + "</div>";
       return;
     }
     box.innerHTML = groups
       .map((g) =>
-        '<div class="palette-group">' + g.label + "</div>" +
+        '<div class="palette-group">' + esc(g.label) + "</div>" +
         g.items
           .map((it) => {
             const i = paletteItems.push(it) - 1;
@@ -934,6 +1327,19 @@
       const t = e.target;
       const modifier = e.metaKey || e.ctrlKey || e.shiftKey || e.altKey;
 
+      const langOpt = t.closest("[data-lang]");
+      if (langOpt) {
+        setLang(langOpt.dataset.lang);
+        return;
+      }
+      if (t.closest("#lang-toggle")) {
+        toggleLangMenu();
+        return;
+      }
+      if (!t.closest("#lang-picker")) {
+        toggleLangMenu(false);
+      }
+
       const play = t.closest("[data-play]");
       if (play) {
         play.closest(".player").innerHTML = embed(play.dataset.play);
@@ -1015,7 +1421,13 @@
         e.preventDefault();
         return openPalette();
       }
-      if (e.key === "Escape") return closeTop();
+      if (e.key === "Escape") {
+        if ($("#lang-menu") && !$("#lang-menu").hidden) {
+          toggleLangMenu(false);
+          return;
+        }
+        return closeTop();
+      }
       if (e.key === "Enter" && e.target.matches && e.target.matches("tr[data-ride]")) return openRide(e.target.dataset.ride);
     });
 
@@ -1085,7 +1497,8 @@
   function init() {
     $$("[data-icon]").forEach((el) => (el.outerHTML = icon(el.dataset.icon)));
     $$("[data-brand]").forEach((el) => (el.outerHTML = window.BRAND_MARK));
-    applyTheme();
+    applyCoreData(state.lang);
+    applyStaticI18n();
     renderHero();
     renderCatSelect();
     renderRides();
@@ -1094,6 +1507,12 @@
     renderTray();
     bind();
     onRoute();
+    if (state.lang !== "zh") {
+      ensureLocaleLoaded(state.lang, () => {
+        applyDatasetLocale(state.lang);
+        rerenderAll();
+      });
+    }
   }
 
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);

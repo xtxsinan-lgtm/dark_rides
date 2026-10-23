@@ -305,7 +305,7 @@ kbd {
 .header-inner {
   display: flex;
   align-items: center;
-  gap: 32px;
+  gap: 16px;
   height: 100%;
 }
 
@@ -349,9 +349,9 @@ kbd {
   position: relative;
   display: flex;
   align-items: center;
-  gap: 6px;
-  padding: 0 12px;
-  font-size: 14px;
+  gap: 5px;
+  padding: 0 9px;
+  font-size: 13.5px;
   color: var(--text-2);
   white-space: nowrap;
   transition: color 0.2s;
@@ -380,8 +380,8 @@ kbd {
 .site-nav a[aria-current="page"]::after {
   content: "";
   position: absolute;
-  left: 12px;
-  right: 12px;
+  left: 9px;
+  right: 9px;
   bottom: -1px;
   height: 1px;
   background: var(--accent);
@@ -392,20 +392,23 @@ kbd {
   align-items: center;
   gap: 6px;
   margin-left: auto;
+  flex-shrink: 0;
 }
 
 .search-trigger {
   display: flex;
   align-items: center;
-  gap: 8px;
-  min-width: 210px;
+  gap: 7px;
+  min-width: 0;
   height: 32px;
-  padding: 0 7px 0 10px;
+  padding: 0 7px 0 9px;
   border: 1px solid var(--line);
   border-radius: var(--r-2);
   background: var(--bg-raised);
   font-size: 13px;
   color: var(--text-3);
+  white-space: nowrap;
+  flex-shrink: 0;
   transition: border-color 0.2s, color 0.2s;
 }
 
@@ -428,6 +431,8 @@ kbd {
   border-radius: var(--r-2);
   font-size: 13px;
   color: var(--text-2);
+  white-space: nowrap;
+  flex-shrink: 0;
   transition: color 0.2s, border-color 0.2s, background 0.2s;
 }
 
@@ -3091,6 +3096,20 @@ input[type="range"]::-moz-range-thumb {
    Responsive
    -------------------------------------------------------------------------- */
 
+html:lang(en) .brand-sub,
+html:lang(es) .brand-sub,
+html:lang(fr) .brand-sub,
+html:lang(de) .brand-sub,
+html:lang(ru) .brand-sub {
+  display: none;
+}
+
+@media (max-width: 1320px) {
+  .brand-sub {
+    display: none;
+  }
+}
+
 @media (max-width: 1240px) {
   .nav-no {
     display: none;
@@ -3399,6 +3418,235 @@ input[type="range"]::-moz-range-thumb {
 .media-tabs a.source:hover {
   color: var(--text);
 }
+
+/* --------------------------------------------------------------------------
+   Language switcher & multi-language / RTL typography
+   -------------------------------------------------------------------------- */
+
+.lang-picker {
+  position: relative;
+}
+
+.lang-btn {
+  padding: 0 9px;
+}
+
+.lang-menu {
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  z-index: 80;
+  min-width: 156px;
+  padding: 5px;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--r-2);
+  background: var(--bg-raised);
+  box-shadow: var(--shadow);
+}
+
+.lang-menu[hidden] {
+  display: none;
+}
+
+.lang-option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+  padding: 6px 10px;
+  border-radius: var(--r-1);
+  font-size: 13px;
+  line-height: 1.4;
+  color: var(--text-2);
+  text-align: left;
+  transition: background 0.15s, color 0.15s;
+}
+
+.lang-option:hover {
+  background: var(--bg-hover);
+  color: var(--text);
+}
+
+.lang-option[aria-selected="true"] {
+  background: var(--bg-hover);
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.lang-option .lang-code {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  text-transform: uppercase;
+  color: var(--text-3);
+}
+
+.lang-option[aria-selected="true"] .lang-code {
+  color: var(--accent);
+}
+
+/* Language-specific typography adjustments */
+:root:is(:lang(en), :lang(es), :lang(fr), :lang(de), :lang(ru)) {
+  --font-serif: "Newsreader", Georgia, "Times New Roman", "Noto Serif SC", serif;
+}
+
+:root:is(:lang(en), :lang(es), :lang(fr), :lang(de), :lang(ru)) .display {
+  font-size: clamp(42px, 5.2vw, 76px);
+  line-height: 1.06;
+  font-weight: 500;
+}
+
+:root:is(:lang(en), :lang(es), :lang(fr), :lang(de), :lang(ru), :lang(ar)) :is(.page-title, .note-title, .section-title) {
+  word-break: normal;
+  overflow-wrap: break-word;
+}
+
+:root:lang(en) .chapter-mark .en {
+  display: none;
+}
+
+:root:lang(ja) {
+  --font-serif: "Hiragino Mincho ProN", "Yu Mincho", "Noto Serif JP", "Noto Serif SC", Georgia, serif;
+  --font-sans: -apple-system, BlinkMacSystemFont, "Hiragino Kaku Gothic ProN", "Yu Gothic", "Noto Sans JP", sans-serif;
+}
+
+:root:lang(ko) {
+  --font-serif: "AppleMyungjo", "Nanum Myeongjo", "Batang", "Noto Serif KR", "Noto Serif SC", Georgia, serif;
+  --font-sans: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans KR", sans-serif;
+}
+
+:root:is(:lang(ja), :lang(ko)) .display {
+  font-size: clamp(44px, 6.2vw, 88px);
+  line-height: 1.12;
+}
+
+:root:lang(ar) {
+  --font-serif: "Geeza Pro", "Amiri", "Traditional Arabic", "Noto Naskh Arabic", Georgia, serif;
+  --font-sans: "Geeza Pro", "SF Arabic", -apple-system, "Segoe UI", "Tahoma", sans-serif;
+}
+
+:root:lang(ar) .display {
+  font-size: clamp(42px, 5.6vw, 80px);
+  line-height: 1.22;
+  letter-spacing: 0;
+}
+
+:root:lang(ar) :is(.page-title, .section-title, .article-title, .note-title, .dialog-title) {
+  letter-spacing: 0;
+  line-height: 1.35;
+}
+
+/* Right-to-Left (RTL) layout rules for Arabic */
+[dir="rtl"] .header-tools {
+  margin-left: 0;
+  margin-right: auto;
+}
+
+[dir="rtl"] .brand-sub {
+  padding-left: 0;
+  padding-right: 10px;
+  border-left: 0;
+  border-right: 1px solid var(--line-strong);
+}
+
+[dir="rtl"] .search-trigger kbd,
+[dir="rtl"] .palette-item .sub,
+[dir="rtl"] .media-tabs .source,
+[dir="rtl"] .lab-buttons,
+[dir="rtl"] .tree-cat-btn .chev {
+  margin-left: 0;
+  margin-right: auto;
+}
+
+[dir="rtl"] .lang-menu {
+  right: auto;
+  left: 0;
+}
+
+[dir="rtl"] .lang-option,
+[dir="rtl"] .ride-table th,
+[dir="rtl"] .data-table th,
+[dir="rtl"] .tree-cat-btn,
+[dir="rtl"] .lab-item,
+[dir="rtl"] .video-row,
+[dir="rtl"] .palette-item {
+  text-align: right;
+}
+
+[dir="rtl"] .field > .icon {
+  left: auto;
+  right: 10px;
+}
+
+[dir="rtl"] .input {
+  padding: 0 32px 0 12px;
+}
+
+[dir="rtl"] .select {
+  padding: 0 12px 0 34px;
+  background-position: left 10px center;
+}
+
+[dir="rtl"] .contents a {
+  border-left: 0;
+  border-right: 1px solid var(--line);
+}
+
+[dir="rtl"] .contents a:first-child {
+  padding-right: 0;
+  border-right: 0;
+}
+
+[dir="rtl"] .ride-mech .code,
+[dir="rtl"] .pager .code {
+  margin-right: 0;
+  margin-left: 8px;
+}
+
+[dir="rtl"] .pager .next {
+  text-align: left;
+}
+
+[dir="rtl"] .tree-group {
+  margin: 2px 11px 8px 0;
+  padding-left: 0;
+  padding-right: 9px;
+  border-left: 0;
+  border-right: 1px solid var(--line);
+}
+
+[dir="rtl"] .tree-leaf[aria-current="page"] {
+  box-shadow: inset -2px 0 0 var(--accent);
+}
+
+[dir="rtl"] .spec-grid > div {
+  border-left: 0;
+  border-right: 1px solid var(--line);
+}
+
+[dir="rtl"] .spec-grid > div:first-child {
+  padding-right: 0;
+  border-right: 0;
+}
+
+[dir="rtl"] .title-block span {
+  border-left: 0;
+  border-right: 1px solid var(--line-strong);
+}
+
+[dir="rtl"] .title-block span:first-child {
+  border-right: 0;
+}
+
+[dir="rtl"] .dialog-close {
+  right: auto;
+  left: 14px;
+}
+
+[dir="rtl"] .lab-canvas {
+  direction: ltr;
+}
+
 
 span.code-link {
   border-bottom: 0;

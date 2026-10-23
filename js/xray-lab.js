@@ -12,6 +12,7 @@
   const lerp = (a, b, t) => a + (b - a) * t;
   const ease = (t) => t * t * (3 - 2 * t);
   const f = (n) => Math.round(n * 10) / 10;
+  const S = (k, d) => (window.LAB_SVG && window.LAB_SVG[k]) || d;
 
   function rot(x, y, deg) {
     const r = deg * D;
@@ -78,8 +79,8 @@
   /* ---------------------------------------------------------------- 0 */
   function armVsSuspended(p) {
     let s = open();
-    s += title(24, "1.1.3.1", "地面轨道 + 六轴机械臂", "环球《禁忌之旅》《怪物大暴走》");
-    s += title(444, "3.3", "顶部悬挂多自由度座舱", "方特《烈焰风云》");
+    s += title(24, "1.1.3.1", S("m0_l_name", "地面轨道 + 六轴机械臂"), S("m0_l_sub", "环球《禁忌之旅》《怪物大暴走》"));
+    s += title(444, "3.3", S("m0_r_name", "顶部悬挂多自由度座舱"), S("m0_r_sub", "方特《烈焰风云》"));
     s += divider();
 
     // Left: floor-tracked robotic arm
@@ -87,9 +88,9 @@
     s += '<path d="M24 332H396" class="bp-ink"/>';
     for (let x = 34; x < 396; x += 22) s += '<path d="M' + x + ' 332V340" class="bp-faint"/>';
     s += '<path d="M24 290H396" class="bp-dash"/>';
-    s += text(28, 284, "黑色地台（遮住下方轨道）");
+    s += text(28, 284, S("m0_floor_deck", "黑色地台（遮住下方轨道）"));
     s += '<path d="M318 72Q392 186 318 292" class="bp-screen"/>';
-    s += text(390, 80, "随车移动的球幕", "bp-label", "end");
+    s += text(390, 80, S("m0_carousel_dome", "随车移动的球幕"), "bp-label", "end");
 
     const bx = lerp(92, 252, p.t / 100);
     s += '<rect x="' + f(bx - 34) + '" y="304" width="68" height="24" rx="2" class="bp-body"/>';
@@ -112,10 +113,10 @@
     s += '<circle r="6" class="bp-joint"/></g>';
     s += '<circle r="7" class="bp-joint"/></g>';
 
-    s += callout(bx + 30, 318, bx + 64, 360, "配重底盘沿地面轨道行驶");
+    s += callout(bx + 30, 318, bx + 64, 360, S("m0_chassis_callout", "配重底盘沿地面轨道行驶"));
     const [ex, ey] = rot(0, -52, a1);
-    s += callout(sx + ex, sy + ey, 44, 170, "六轴机械臂", "start");
-    s += text(24, 388, "轨道在地面 · 座椅可伸缩、抬升、近乎平躺", "bp-label");
+    s += callout(sx + ex, sy + ey, 44, 170, S("m0_arm_callout", "六轴机械臂"), "start");
+    s += text(24, 388, S("m0_l_foot", "轨道在地面 · 座椅可伸缩、抬升、近乎平躺"), "bp-label");
 
     // Right: suspended motion cabin
     s += ceiling(444, 816, 78);
@@ -133,23 +134,23 @@
     s += rider(-22, 22) + rider(0, 22) + rider(22, 22);
     s += "</g></g>";
     s += ground(444, 816, 350);
-    s += callout(tx + 20, 109, Math.min(tx + 64, 760), 132, "回转支承");
-    s += callout(tx - 13, 160, Math.max(tx - 66, 470), 182, "液压连杆", "end");
-    s += text(812, 70, "天花板轨道", "bp-label", "end");
-    s += text(444, 388, "轨道在天花板 · 座舱重心始终在轨道正下方", "bp-label");
+    s += callout(tx + 20, 109, Math.min(tx + 64, 760), 132, S("m0_slew_callout", "回转支承"));
+    s += callout(tx - 13, 160, Math.max(tx - 66, 470), 182, S("m0_links_callout", "液压连杆"), "end");
+    s += text(812, 70, S("m0_ceil_track", "天花板轨道"), "bp-label", "end");
+    s += text(444, 388, S("m0_r_foot", "轨道在天花板 · 座舱重心始终在轨道正下方"), "bp-label");
     return s + close();
   }
 
   /* ---------------------------------------------------------------- 1 */
   function scoopVsEmv(p) {
     let s = open();
-    s += title(24, "1.1.2.1", "车载六自由度 + 旋转座舱", "环球《蜘蛛侠》《变形金刚》、方特《女娲补天》");
-    s += title(444, "1.1.2.3", "越野吉普（EMV）", "迪士尼《印第安纳琼斯》、方特《秦俑地宫》");
+    s += title(24, "1.1.2.1", S("m1_l_name", "车载六自由度 + 旋转座舱"), S("m1_l_sub", "环球《蜘蛛侠》《变形金刚》、方特《女娲补天》"));
+    s += title(444, "1.1.2.3", S("m1_r_name", "越野吉普（EMV）"), S("m1_r_sub", "迪士尼《印第安纳琼斯》、方特《秦俑地宫》"));
     s += divider();
 
     // Left: SCOOP
     s += '<path d="M48 84Q200 62 352 84" class="bp-screen"/>';
-    s += text(200, 104, "3D 屏幕 · 透视随车辆位置校正", "bp-label", "middle");
+    s += text(200, 104, S("m1_screen", "3D 屏幕 · 透视随车辆位置校正"), "bp-label", "middle");
     s += ground(24, 396, 340);
     s += '<path d="M24 332H396" class="bp-ink"/>';
     s += '<rect x="148" y="304" width="124" height="24" rx="2" class="bp-body"/>';
@@ -166,19 +167,19 @@
     s += poly([[-58, -8], [58, -8], [48, -54], [-48, -54]], "bp-move-body");
     s += rider(-24, -36) + rider(0, -36) + rider(24, -36);
     s += "</g>";
-    s += callout(244, 286, 300, 262, "六自由度平台");
-    s += callout(160, pcy - 3, 96, pcy - 22, "360° 旋转盘", "end");
+    s += callout(244, 286, 300, 262, S("m1_platform_callout", "六自由度平台"));
+    s += callout(160, pcy - 3, 96, pcy - 22, S("m1_turntable_callout", "360° 旋转盘"), "end");
     // Yaw inset
     s += '<circle cx="354" cy="176" r="26" class="bp-faint"/>';
     s += '<g transform="translate(354 176) rotate(' + f(p.y) + ')"><path d="M0 14V-16M-5 -10L0 -17L5 -10" class="bp-move"/></g>';
-    s += text(354, 218, "俯视 · 可 360° 旋转", "bp-label", "middle");
-    s += text(24, 388, "动感平台 + 旋转座舱 + 3D 屏幕", "bp-label");
+    s += text(354, 218, S("m1_yaw_inset", "俯视 · 可 360° 旋转"), "bp-label", "middle");
+    s += text(24, 388, S("m1_l_foot", "动感平台 + 旋转座舱 + 3D 屏幕"), "bp-label");
 
     // Right: EMV
     s += '<path d="M470 300V214H498V300" class="bp-ink"/><circle cx="484" cy="200" r="12" class="bp-ink"/><path d="M462 300H506" class="bp-ink"/>';
-    s += text(484, 182, "实景人像", "bp-label", "middle");
+    s += text(484, 182, S("m1_aa", "实景人像"), "bp-label", "middle");
     s += '<circle cx="704" cy="140" r="30" class="bp-ink"/><path d="M684 128q20 -14 40 4" class="bp-faint"/>';
-    s += text(704, 92, "滚石机关", "bp-label", "middle");
+    s += text(704, 92, S("m1_boulder", "滚石机关"), "bp-label", "middle");
     s += ground(444, 816, 340);
     s += '<path d="M444 332H816" class="bp-ink"/>';
     s += '<rect x="560" y="304" width="140" height="24" rx="2" class="bp-body"/>';
@@ -197,17 +198,17 @@
     s += '<path d="M40 -32L52 -52" class="bp-move"/>';
     s += rider(-44, -42) + rider(-12, -42) + rider(20, -42);
     s += "</g>";
-    s += callout(678, jcy + 10, 744, 262, "液压悬挂");
+    s += callout(678, jcy + 10, 744, 262, S("m1_hyd_callout", "液压悬挂"));
     s += '<circle cx="790" cy="190" r="22" class="bp-faint"/><path d="M790 202V174M785 180L790 173L795 180" class="bp-ink"/>';
-    s += text(790, 228, "车头始终朝前", "bp-label", "middle");
-    s += text(444, 388, "不旋转 · 不戴 3D 眼镜 · 惊险来自实景与机关", "bp-label");
+    s += text(790, 228, S("m1_fwd_inset", "车头始终朝前"), "bp-label", "middle");
+    s += text(444, 388, S("m1_r_foot", "不旋转 · 不戴 3D 眼镜 · 惊险来自实景与机关"), "bp-label");
     return s + close();
   }
 
   /* ---------------------------------------------------------------- 2 */
   function shenhua(p) {
     let s = open();
-    s += title(24, "2.2.2", "无轨动感车 + 倾斜球幕", "方特《神画》《千古风华》：不悬空，如何做出飞行的体感");
+    s += title(24, "2.2.2", S("m2_name", "无轨动感车 + 倾斜球幕"), S("m2_sub", "方特《神画》《千古风华》：不悬空，如何做出飞行的体感"));
 
     // Floor and the edge of the platform
     s += '<rect x="24" y="300" width="446" height="12" fill="url(#bp-hatch)"/><path d="M24 300H470V384" class="bp-ink"/>';
@@ -216,17 +217,17 @@
       s += '<rect x="' + x + '" y="146" width="58" height="118" class="bp-faint"/>';
       s += '<path d="M' + (x + 8) + " 236l14 -22l10 12l8 -8l12 18" + '" class="bp-faint"/>';
     });
-    s += text(150, 134, "① 名画长廊：平地无轨穿行", "bp-label", "middle");
+    s += text(150, 134, S("m2_step1", "① 名画长廊：平地无轨穿行"), "bp-label", "middle");
     // Tilted dome
     s += '<path d="M412 70C690 74 806 252 566 394" class="bp-screen"/>';
     s += '<path d="M432 88C670 92 778 252 562 378" class="bp-dash"/>';
-    s += text(806, 92, "② 倾斜球幕：向下延伸，遮住地面", "bp-label", "end");
+    s += text(806, 92, S("m2_step2", "② 倾斜球幕：向下延伸，遮住地面"), "bp-label", "end");
     // Wind and mist
     [0, 1, 2].forEach((i) => {
       const y = 318 + i * 14;
       s += '<path d="M' + (500 + i * 6) + " " + y + "q10 -5 20 0t20 0" + '" class="bp-faint"/>';
     });
-    s += text(560, 362, "迎面风与水雾", "bp-label");
+    s += text(560, 362, S("m2_wind", "迎面风与水雾"), "bp-label");
 
     const vx = lerp(76, 428, p.t / 100);
     const near = clamp((p.t - 72) / 28, 0, 1);
@@ -247,12 +248,12 @@
     s += '<rect x="-42" y="-42" width="84" height="28" rx="5" class="bp-move-body"/>';
     s += rider(-18, -50) + rider(12, -50);
     s += "</g>";
-    s += callout(vx - 34, 292, vx - 70, 336, "下层：无轨底盘", "end");
-    s += callout(vx + 30, 256, vx + 30, 214, "上层：动感平台（前倾 · 侧倾）");
+    s += callout(vx - 34, 292, vx - 70, 336, S("m2_lower_callout", "下层：无轨底盘"), "end");
+    s += callout(vx + 30, 256, vx + 30, 214, S("m2_upper_callout", "上层：动感平台（前倾 · 侧倾）"));
 
     // Rear view inset for roll
     s += '<rect x="34" y="330" width="128" height="54" class="bp-faint"/>';
-    s += text(40, 326, "后视 · 侧倾", "bp-label");
+    s += text(40, 326, S("m2_roll_inset", "后视 · 侧倾"), "bp-label");
     s += '<path d="M60 374H136" class="bp-ink"/>';
     s += '<g transform="translate(98 368) rotate(' + f(p.b) + ')"><rect x="-26" y="-6" width="52" height="6" class="bp-body"/><rect x="-22" y="-24" width="44" height="16" rx="3" class="bp-move-body"/>' + rider(-8, -29, 0.8) + rider(8, -29, 0.8) + "</g>";
     return s + close();
@@ -261,8 +262,8 @@
   /* ---------------------------------------------------------------- 3 */
   function boats(p) {
     let s = open();
-    s += title(24, "5.1.3.1", "水下导轨 + 直线电机", "上海迪士尼《加勒比海盗：沉落宝藏之战》");
-    s += title(444, "5.1.3.2", "铰接摇摆船（Rocking Boat）", "Futuroscope《百慕大任务》· Mack Rides");
+    s += title(24, "5.1.3.1", S("m3_l_name", "水下导轨 + 直线电机"), S("m3_l_sub", "上海迪士尼《加勒比海盗：沉落宝藏之战》"));
+    s += title(444, "5.1.3.2", S("m3_r_name", "铰接摇摆船（Rocking Boat）"), S("m3_r_sub", "Futuroscope《百慕大任务》· Mack Rides"));
     s += divider();
 
     const wave = (x1, x2, y, amp, phase) => {
@@ -285,13 +286,13 @@
     s += poly([[-92, -10], [92, -10], [72, 16], [-72, 16]], "bp-move-body");
     s += '<path d="M0 -10V-104" class="bp-move"/><path d="M4 -98L52 -40H4" class="bp-move"/>';
     s += "</g>";
-    s += callout(cx + 34, 322, Math.min(cx + 72, 360), 300, "直线电机台车");
-    s += callout(cx + 4, 262, Math.min(cx + 70, 356), 262, "转向立柱");
-    s += text(30, 326, "水下导轨", "bp-label");
+    s += callout(cx + 34, 322, Math.min(cx + 72, 360), 300, S("m3_lsm_callout", "直线电机台车"));
+    s += callout(cx + 4, 262, Math.min(cx + 70, 356), 262, S("m3_strut_callout", "转向立柱"));
+    s += text(30, 326, S("m3_sub_rail", "水下导轨"), "bp-label");
     s += '<ellipse cx="360" cy="112" rx="28" ry="28" class="bp-faint"/>';
     s += '<g transform="translate(360 112) rotate(' + f(p.y) + ')"><ellipse rx="8" ry="20" class="bp-move-body"/><path d="M0 -20V-26" class="bp-move"/></g>';
-    s += text(360, 156, "俯视 · 原地转向", "bp-label", "middle");
-    s += text(24, 388, "船浮在水面，动作由水下导轨精确控制", "bp-label");
+    s += text(360, 156, S("m3_spin_inset", "俯视 · 原地转向"), "bp-label", "middle");
+    s += text(24, 388, S("m3_l_foot", "船浮在水面，动作由水下导轨精确控制"), "bp-label");
 
     // Right
     const phase = (p.t / 100) * Math.PI * 4;
@@ -307,21 +308,21 @@
     s += rider(-36, -44) + rider(-8, -44) + rider(20, -44);
     s += "</g>";
     s += '<circle cx="' + f(gx) + '" cy="228" r="6" class="bp-joint"/>';
-    s += callout(gx + 30, 322, Math.min(gx + 74, 780), 300, "水下导引车");
-    s += callout(gx + 6, 230, Math.min(gx + 74, 780), 262, "铰接点");
+    s += callout(gx + 30, 322, Math.min(gx + 74, 780), 300, S("m3_bogie_callout", "水下导引车"));
+    s += callout(gx + 6, 230, Math.min(gx + 74, 780), 262, S("m3_hinge_callout", "铰接点"));
     s += '<rect x="738" y="80" width="80" height="58" class="bp-faint"/>';
-    s += text(744, 76, "后视 · 横摇", "bp-label");
+    s += text(744, 76, S("m3_roll_inset", "后视 · 横摇"), "bp-label");
     s += wave(746, 810, 120, 1.5, phase);
     s += '<g transform="translate(778 118) rotate(' + f(p.b) + ')"><path d="M-22 -10H22L16 4H-16Z" class="bp-move-body"/>' + rider(-6, -15, 0.7) + rider(8, -15, 0.7) + "</g>";
-    s += text(444, 388, "水道无侧墙，船体随水面与浪摇摆，也能倒退", "bp-label");
+    s += text(444, 388, S("m3_r_foot", "水道无侧墙，船体随水面与浪摇摆，也能倒退"), "bp-label");
     return s + close();
   }
 
   /* ---------------------------------------------------------------- 4 */
   function stageVsSphere(p) {
     let s = open();
-    s += title(24, "T3.1", "倾斜、升降的多级旋转舞台", "Efteling《骷髅之舞》");
-    s += title(444, "T2.5", "球形屏幕中的悬挂座椅环", "阿布扎比海洋世界《超球体 360°》");
+    s += title(24, "T3.1", S("m4_l_name", "倾斜、升降的多级旋转舞台"), S("m4_l_sub", "Efteling《骷髅之舞》"));
+    s += title(444, "T2.5", S("m4_r_name", "球形屏幕中的悬挂座椅环"), S("m4_r_sub", "阿布扎比海洋世界《超球体 360°》"));
     s += divider();
 
     // Left
@@ -343,9 +344,9 @@
       [-14, 0, 14].forEach((o) => { s += '<path d="M' + f(d.x + o) + " " + f(d.y - 10) + "v-8" + '" class="bp-ink"/>'; });
     });
     s += "</g>";
-    s += callout(352, dcy, 370, dcy - 60, "主转盘：旋转 · 倾斜 · 升降", "end");
-    s += callout(220, 300, 300, 304, "中央液压柱");
-    s += text(24, 388, "上方的小转盘各自旋转，整片观众席在实景里“跳舞”", "bp-label");
+    s += callout(352, dcy, 370, dcy - 60, S("m4_main_disc", "主转盘：旋转 · 倾斜 · 升降"), "end");
+    s += callout(220, 300, 300, 304, S("m4_hyd_col", "中央液压柱"));
+    s += text(24, 388, S("m4_l_foot", "上方的小转盘各自旋转，整片观众席在实景里“跳舞”"), "bp-label");
 
     // Right
     const sx = 630;
@@ -366,10 +367,10 @@
     s += "</g>";
     const bridge = lerp(560, 452, p.t / 100);
     s += '<rect x="444" y="244" width="' + f(bridge - 444) + '" height="7" class="bp-body"/>';
-    s += text(450, 238, "伸缩桥", "bp-label");
-    s += callout(sx + 44, sy + 140, 790, 372, "脚下也是屏幕", "end");
-    s += callout(sx + 70, sy + 4, 806, 186, "座椅环：旋转 · 倾斜", "end");
-    s += text(444, 388, "Intamin Dome Ride Theater", "bp-label");
+    s += text(450, 238, S("m4_bridge", "伸缩桥"), "bp-label");
+    s += callout(sx + 44, sy + 140, 790, 372, S("m4_floor_screen", "脚下也是屏幕"), "end");
+    s += callout(sx + 70, sy + 4, 806, 186, S("m4_ring_callout", "座椅环：旋转 · 倾斜"), "end");
+    s += text(444, 388, S("m4_r_foot", "Intamin Dome Ride Theater"), "bp-label");
     return s + close();
   }
 
@@ -378,10 +379,10 @@
     let s = open();
     const k = ease(clamp(p.t / 100, 0, 1));
     const cols = [
-      { code: "T1.1", name: "悬臂提升", sub: "迪士尼《翱翔》" },
-      { code: "T1.2", name: "多层前推", sub: "方特《伴你飞翔》等" },
-      { code: "T1.3", name: "钢架提升", sub: "方特《飞越极限》" },
-      { code: "T1.4", name: "平台翻转", sub: "Futuroscope《非凡之旅》" }
+      { code: "T1.1", name: S("m5_c1_name", "悬臂提升"), sub: S("m5_c1_sub", "迪士尼《翱翔》") },
+      { code: "T1.2", name: S("m5_c2_name", "多层前推"), sub: S("m5_c2_sub", "方特《伴你飞翔》等") },
+      { code: "T1.3", name: S("m5_c3_name", "钢架提升"), sub: S("m5_c3_sub", "方特《飞越极限》") },
+      { code: "T1.4", name: S("m5_c4_name", "平台翻转"), sub: S("m5_c4_sub", "Futuroscope《非凡之旅》") }
     ];
     cols.forEach((c, i) => {
       const ox = i * 210;
@@ -402,7 +403,7 @@
       s += '<path d="M24 350L' + f(x - 12) + " " + f(y) + '" class="bp-move"/>';
       s += seat(x, y);
     });
-    s += text(18, 374, "平地入座 → 悬臂举起", "bp-label");
+    s += text(18, 374, S("m5_c1_foot", "平地入座 → 悬臂举起"), "bp-label");
 
     // T1.2
     [150, 222, 294].forEach((y) => {
@@ -411,7 +412,7 @@
       s += '<path d="M290 ' + (y - 4) + "L" + f(x - 12) + " " + (y - 4) + '" class="bp-move"/>';
       s += seat(x, y - 4);
     });
-    s += text(228, 374, "分层入座 → 向前推出", "bp-label");
+    s += text(228, 374, S("m5_c2_foot", "分层入座 → 向前推出"), "bp-label");
 
     // T1.3
     const cx = 452 + k * 40;
@@ -422,7 +423,7 @@
       s += '<path d="M' + f(cx) + " " + f(cb - 168 + d + 6) + "H" + f(cx + 56) + '" class="bp-faint"/>';
       s += seat(cx + 34, cb - 168 + d);
     });
-    s += text(438, 374, "整座钢架 → 垂直提升", "bp-label");
+    s += text(438, 374, S("m5_c3_foot", "整座钢架 → 垂直提升"), "bp-label");
 
     // T1.4
     const px = 760;
@@ -432,7 +433,7 @@
     [-92, -60, -28].forEach((x) => { s += seat(x, -6); });
     s += "</g>";
     s += '<circle cx="' + px + '" cy="' + py + '" r="5" class="bp-joint"/>';
-    s += text(648, 374, "平地入座 → 平台翻转 90°", "bp-label");
+    s += text(648, 374, S("m5_c4_foot", "平地入座 → 平台翻转 90°"), "bp-label");
     return s + close();
   }
 

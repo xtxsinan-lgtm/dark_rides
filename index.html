@@ -20,33 +20,45 @@
         var q = location.search.match(/[?&]theme=(light|dark)/);
         var t = q ? q[1] : localStorage.getItem("dra-theme");
         if (t === "light") document.documentElement.setAttribute("data-theme", "light");
+        var lq = location.search.match(/[?&]lang=(zh|en|es|fr|ja|ko|de|ru|ar)/);
+        var l = lq ? lq[1] : localStorage.getItem("dra-lang");
+        if (l && l !== "zh") {
+          document.documentElement.lang = l;
+          if (l === "ar") document.documentElement.dir = "rtl";
+        }
       } catch (e) {}
     })();
   </script>
   <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
-  <a class="skip-link" href="#main">跳到正文</a>
+  <a class="skip-link" href="#main" data-i18n="skipLink">跳到正文</a>
 
   <header class="site-header">
     <div class="wrap header-inner">
-      <a class="brand" href="#/" aria-label="Dark Ride Atlas 首页">
+      <a class="brand" href="#/" aria-label="Dark Ride Atlas 首页" data-i18n-aria="brandHomeAria">
         <span data-brand></span>
         <span class="brand-name">Dark Ride Atlas</span>
-        <span class="brand-sub">黑暗乘骑图鉴</span>
+        <span class="brand-sub" data-i18n="brandSub">黑暗乘骑图鉴</span>
       </a>
-      <nav class="site-nav" aria-label="主导航">
-        <a href="#/" data-route="rides"><span class="nav-no">I</span>项目</a>
-        <a href="#/mechanisms" data-route="mechanisms"><span class="nav-no">II</span>机制</a>
-        <a href="#/lab" data-route="lab"><span class="nav-no">III</span>原理</a>
-        <a href="#/parks" data-route="parks"><span class="nav-no">IV</span>乐园</a>
-        <a href="#/notes" data-route="notes"><span class="nav-no">V</span>辨析</a>
-        <a href="#/glossary" data-route="glossary"><span class="nav-no">VI</span>视效与交互</a>
+      <nav class="site-nav" aria-label="主导航" data-i18n-aria="navAria">
+        <a href="#/" data-route="rides"><span class="nav-no">I</span><span data-i18n="navRides">项目</span></a>
+        <a href="#/mechanisms" data-route="mechanisms"><span class="nav-no">II</span><span data-i18n="navMechanisms">机制</span></a>
+        <a href="#/lab" data-route="lab"><span class="nav-no">III</span><span data-i18n="navLab">原理</span></a>
+        <a href="#/parks" data-route="parks"><span class="nav-no">IV</span><span data-i18n="navParks">乐园</span></a>
+        <a href="#/notes" data-route="notes"><span class="nav-no">V</span><span data-i18n="navNotes">辨析</span></a>
+        <a href="#/glossary" data-route="glossary"><span class="nav-no">VI</span><span data-i18n="navGlossary">视效与交互</span></a>
       </nav>
       <div class="header-tools">
-        <button class="search-trigger" type="button" data-action="open-search" aria-label="搜索">
-          <span data-icon="search"></span><span class="label">搜索</span><kbd>⌘K</kbd>
+        <button class="search-trigger" type="button" data-action="open-search" aria-label="搜索" data-i18n-aria="searchLabel">
+          <span data-icon="search"></span><span class="label" data-i18n="searchLabel">搜索</span><kbd>⌘K</kbd>
         </button>
+        <div class="lang-picker" id="lang-picker">
+          <button class="ghost-btn lang-btn" type="button" id="lang-toggle" aria-haspopup="listbox" aria-expanded="false" aria-label="选择语言" data-i18n-aria="langMenuAria">
+            <span data-icon="globe"></span><span class="label" id="lang-current">中文</span>
+          </button>
+          <div class="lang-menu" id="lang-menu" role="listbox" aria-label="选择语言" data-i18n-aria="langMenuAria" hidden></div>
+        </div>
         <button class="ghost-btn" type="button" id="theme-toggle"></button>
       </div>
     </div>
@@ -73,36 +85,36 @@
         </svg>
         <div class="wrap">
           <div class="dateline">
-            <span>第一版 · 二〇二六年秋</span>
-            <span class="dateline-mid">主题乐园黑暗乘骑工程图鉴</span>
+            <span data-i18n="datelineEdition">第一版 · 二〇二六年秋</span>
+            <span class="dateline-mid" data-i18n="datelineMid">主题乐园黑暗乘骑工程图鉴</span>
             <span>Vol. I</span>
           </div>
           <div class="cover-grid">
             <div class="cover-text">
-              <h1 class="display" id="hero-title">在<em>黑暗</em>中<br />移动的机器</h1>
-              <p class="hero-lede">
+              <h1 class="display" id="hero-title" data-i18n-html="heroTitleHtml">在<em>黑暗</em>中<br />移动的机器</h1>
+              <p class="hero-lede" data-i18n="heroLede">
                 灯一关，轨道、吊臂和液压缸就都看不见了。这本图鉴按载具靠什么支撑、沿什么导引，把世界各地主题乐园里的黑暗乘骑与剧场类设施分门别类，并附上实拍、开灯与厂商测试影像。
               </p>
-              <p class="hero-count">
+              <p class="hero-count" id="hero-count">
                 目前收录 <b id="stat-rides">0</b> 个项目，分属 <b id="stat-cats">5</b> 大门类、<b id="stat-mechs">55</b> 种机制，附 <b id="stat-videos">0</b> 段影像。
               </p>
               <div class="hero-actions">
-                <button class="btn btn-solid" type="button" data-action="scroll-index">浏览项目<span data-icon="arrowDown"></span></button>
-                <a class="btn btn-quiet" href="#/mechanisms">从机制开始<span data-icon="arrowRight"></span></a>
+                <button class="btn btn-solid" type="button" data-action="scroll-index"><span data-i18n="heroBtnBrowse">浏览项目</span><span data-icon="arrowDown"></span></button>
+                <a class="btn btn-quiet" href="#/mechanisms"><span data-i18n="heroBtnMech">从机制开始</span><span data-icon="arrowRight"></span></a>
               </div>
             </div>
-            <figure class="plate" id="feature" aria-label="你可能不知道"></figure>
+            <figure class="plate" id="feature" aria-label="你可能不知道" data-i18n-aria="plateKicker"></figure>
           </div>
         </div>
       </div>
 
       <div class="wrap">
-        <nav class="contents" aria-label="章节">
-          <a href="#/mechanisms"><span class="no">II</span><span class="t">机制</span><span class="d">五大门类，按支撑与导引方式逐级细分</span></a>
-          <a href="#/lab"><span class="no">III</span><span class="t">原理</span><span class="d">六组最容易混淆的结构，可拖动的示意图</span></a>
-          <a href="#/parks"><span class="no">IV</span><span class="t">乐园</span><span class="d">六大乐园体系、69 座乐园逐园盘点</span></a>
-          <a href="#/notes"><span class="no">V</span><span class="t">辨析</span><span class="d">看起来一样、其实不同的几组设备</span></a>
-          <a href="#/glossary"><span class="no">VI</span><span class="t">视效与交互</span><span class="d">画面怎样骗过眼睛，乘客能做什么</span></a>
+        <nav class="contents" aria-label="章节" data-i18n-aria="contentsAria">
+          <a href="#/mechanisms"><span class="no">II</span><span class="t" data-i18n="c2Title">机制</span><span class="d" data-i18n="c2Desc">五大门类，按支撑与导引方式逐级细分</span></a>
+          <a href="#/lab"><span class="no">III</span><span class="t" data-i18n="c3Title">原理</span><span class="d" data-i18n="c3Desc">六组最容易混淆的结构，可拖动的示意图</span></a>
+          <a href="#/parks"><span class="no">IV</span><span class="t" data-i18n="c4Title">乐园</span><span class="d" data-i18n="c4Desc">十一大乐园体系、69 座乐园逐园盘点</span></a>
+          <a href="#/notes"><span class="no">V</span><span class="t" data-i18n="c5Title">辨析</span><span class="d" data-i18n="c5Desc">看起来一样、其实不同的几组设备</span></a>
+          <a href="#/glossary"><span class="no">VI</span><span class="t" data-i18n="c6Title">视效与交互</span><span class="d" data-i18n="c6Desc">画面怎样骗过眼睛，乘客能做什么</span></a>
         </nav>
       </div>
 
@@ -110,25 +122,25 @@
         <header class="chapter-head">
           <span class="chapter-no">I</span>
           <div>
-            <h2 class="section-title">项目索引</h2>
-            <p class="section-note">每个项目都标注了机制编号。点开卡片看影像，或者把两三个项目放在一起对比。</p>
+            <h2 class="section-title" data-i18n="indexTitle">项目索引</h2>
+            <p class="section-note" data-i18n="indexNote">每个项目都标注了机制编号。点开卡片看影像，或者把两三个项目放在一起对比。</p>
           </div>
         </header>
         <div class="toolbar">
-          <div class="chips" id="group-chips" role="group" aria-label="按乐园筛选"></div>
+          <div class="chips" id="group-chips" role="group" aria-label="按乐园筛选" data-i18n-aria="filterGroupAria"></div>
           <div class="toolbar-row">
             <label class="field">
               <span data-icon="search"></span>
-              <input class="input" id="filter-q" type="search" placeholder="筛选项目、乐园或制造商" autocomplete="off" aria-label="筛选项目" />
+              <input class="input" id="filter-q" type="search" placeholder="筛选项目、乐园或制造商" data-i18n-placeholder="filterSearchPlaceholder" autocomplete="off" aria-label="筛选项目" data-i18n-aria="filterSearchAria" />
             </label>
-            <select class="select" id="cat-select" aria-label="按门类筛选"></select>
-            <label class="switch"><input type="checkbox" id="only-lights" />有开灯影像</label>
-            <label class="switch"><input type="checkbox" id="only-demo" />有厂商演示</label>
+            <select class="select" id="cat-select" aria-label="按门类筛选" data-i18n-aria="filterCatAria"></select>
+            <label class="switch"><input type="checkbox" id="only-lights" /><span data-i18n="filterOnlyLights">有开灯影像</span></label>
+            <label class="switch"><input type="checkbox" id="only-demo" /><span data-i18n="filterOnlyDemo">有厂商演示</span></label>
             <span class="spacer"></span>
             <span class="result-count" id="result-count" aria-live="polite"></span>
-            <div class="segmented" id="layout-switch" role="group" aria-label="显示方式">
-              <button type="button" data-layout="grid" aria-pressed="true" aria-label="卡片"><span data-icon="grid"></span></button>
-              <button type="button" data-layout="list" aria-pressed="false" aria-label="列表"><span data-icon="list"></span></button>
+            <div class="segmented" id="layout-switch" role="group" aria-label="显示方式" data-i18n-aria="layoutSwitchAria">
+              <button type="button" data-layout="grid" aria-pressed="true" aria-label="卡片" data-i18n-aria="layoutGridAria"><span data-icon="grid"></span></button>
+              <button type="button" data-layout="list" aria-pressed="false" aria-label="列表" data-i18n-aria="layoutListAria"><span data-icon="list"></span></button>
             </div>
           </div>
         </div>
@@ -140,15 +152,15 @@
     <section class="view" data-view="mechanisms" hidden>
       <header class="wrap page-head">
         <div class="page-head-title">
-          <p class="chapter-mark"><span class="chapter-no">II</span><span>机制</span><span class="en">Mechanisms</span></p>
-          <h1 class="page-title">按支撑与导引方式分类</h1>
+          <p class="chapter-mark"><span class="chapter-no">II</span><span data-i18n="navMechanisms">机制</span><span class="en">Mechanisms</span></p>
+          <h1 class="page-title" data-i18n="mechPageTitle">按支撑与导引方式分类</h1>
         </div>
-        <p class="page-lede">先看载具靠什么支撑、沿什么导引——地面轨道、无轨、天花板、垂直井道还是水——再看车上叠加了多少自由度。层级深浅不一：只在工程上真正分叉的地方才继续往下分。</p>
+        <p class="page-lede" data-i18n="mechPageLede">先看载具靠什么支撑、沿什么导引——地面轨道、无轨、天花板、垂直井道还是水——再看车上叠加了多少自由度。层级深浅不一：只在工程上真正分叉的地方才继续往下分。</p>
       </header>
       <div class="wrap mech-layout">
         <aside class="side-nav">
-          <div class="segmented" id="part-switch" role="group" aria-label="切换部分"></div>
-          <nav class="tree" id="mech-tree" aria-label="机制目录"></nav>
+          <div class="segmented" id="part-switch" role="group" aria-label="切换部分" data-i18n-aria="partSwitchAria"></div>
+          <nav class="tree" id="mech-tree" aria-label="机制目录" data-i18n-aria="mechTreeAria"></nav>
         </aside>
         <article class="article" id="mech-article"></article>
       </div>
@@ -158,13 +170,13 @@
     <section class="view" data-view="lab" hidden>
       <header class="wrap page-head">
         <div class="page-head-title">
-          <p class="chapter-mark"><span class="chapter-no">III</span><span>原理</span><span class="en">Lab</span></p>
-          <h1 class="page-title">六组最容易混淆的结构</h1>
+          <p class="chapter-mark"><span class="chapter-no">III</span><span data-i18n="navLab">原理</span><span class="en">Lab</span></p>
+          <h1 class="page-title" data-i18n="labPageTitle">六组最容易混淆的结构</h1>
         </div>
-        <p class="page-lede">示意图只表达结构关系，不按真实比例。拖动滑块观察各部件怎样运动，或者打开自动演示。</p>
+        <p class="page-lede" data-i18n="labPageLede">示意图只表达结构关系，不按真实比例。拖动滑块观察各部件怎样运动，或者打开自动演示。</p>
       </header>
       <div class="wrap lab-layout">
-        <div class="lab-list" id="lab-list" role="tablist" aria-label="实验列表"></div>
+        <div class="lab-list" id="lab-list" role="tablist" aria-label="实验列表" data-i18n-aria="labListAria"></div>
         <div class="lab-stage">
           <div class="lab-sheet">
             <div class="lab-canvas" id="lab-canvas"></div>
@@ -180,13 +192,13 @@
     <section class="view" data-view="parks" hidden>
       <header class="wrap page-head">
         <div class="page-head-title">
-          <p class="chapter-mark"><span class="chapter-no">IV</span><span>乐园</span><span class="en">Parks</span></p>
-          <h1 class="page-title">十一大乐园体系，逐园盘点</h1>
+          <p class="chapter-mark"><span class="chapter-no">IV</span><span data-i18n="navParks">乐园</span><span class="en">Parks</span></p>
+          <h1 class="page-title" data-i18n="parksPageTitle">十一大乐园体系，逐园盘点</h1>
         </div>
-        <p class="page-lede">涵盖迪士尼、环球影城、方特、长隆、华侨城、英国默林、美国六旗与雪松会、迪拜与阿布扎比、云顶天城、欧洲四大暗黑标杆及欧洲六大过山车与电影名园（Alton Towers、Parc Astérix、Gardaland、Movieland、Liseberg、PortAventura）。表中的机制编号可以点击，直接跳到对应条目。</p>
+        <p class="page-lede" data-i18n="parksPageLede">涵盖迪士尼、环球影城、方特、长隆、华侨城、英国默林、美国六旗与雪松会、迪拜与阿布扎比、云顶天城、欧洲四大暗黑标杆及欧洲六大过山车与电影名园（Alton Towers、Parc Astérix、Gardaland、Movieland、Liseberg、PortAventura）。表中的机制编号可以点击，直接跳到对应条目。</p>
       </header>
       <div class="wrap section section-tight">
-        <div class="chips park-tabs" id="park-tabs" role="tablist" aria-label="乐园体系"></div>
+        <div class="chips park-tabs" id="park-tabs" role="tablist" aria-label="乐园体系" data-i18n-aria="parkTabsAria"></div>
         <div class="park-head">
           <div>
             <h2 id="park-title"></h2>
@@ -194,11 +206,11 @@
           </div>
           <label class="field">
             <span data-icon="search"></span>
-            <input class="input" id="park-q" type="search" placeholder="在当前表格中查找" autocomplete="off" aria-label="在表格中查找" />
+            <input class="input" id="park-q" type="search" placeholder="在当前表格中查找" data-i18n-placeholder="parkSearchPlaceholder" autocomplete="off" aria-label="在表格中查找" data-i18n-aria="parkSearchAria" />
           </label>
         </div>
         <div class="table-wrap" id="park-table"></div>
-        <p class="table-note">已退役的项目在表中注明。</p>
+        <p class="table-note" data-i18n="parkTableNote">已退役的项目在表中注明。</p>
       </div>
     </section>
 
@@ -206,13 +218,13 @@
     <section class="view" data-view="notes" hidden>
       <header class="wrap page-head">
         <div class="page-head-title">
-          <p class="chapter-mark"><span class="chapter-no">V</span><span>辨析</span><span class="en">Notes</span></p>
-          <h1 class="page-title">看起来一样，其实不同</h1>
+          <p class="chapter-mark"><span class="chapter-no">V</span><span data-i18n="navNotes">辨析</span><span class="en">Notes</span></p>
+          <h1 class="page-title" data-i18n="notesPageTitle">看起来一样，其实不同</h1>
         </div>
-        <p class="page-lede">黑暗藏起了轨道与支撑结构，很多设备因此被混为一谈。这里把最常被混淆的几组放在一起对照。</p>
+        <p class="page-lede" data-i18n="notesPageLede">黑暗藏起了轨道与支撑结构，很多设备因此被混为一谈。这里把最常被混淆的几组放在一起对照。</p>
       </header>
       <div class="wrap notes-layout">
-        <nav class="notes-toc" id="notes-toc" aria-label="辨析目录"></nav>
+        <nav class="notes-toc" id="notes-toc" aria-label="辨析目录" data-i18n-aria="notesTocAria"></nav>
         <div id="notes-body"></div>
       </div>
     </section>
@@ -221,10 +233,10 @@
     <section class="view" data-view="glossary" hidden>
       <header class="wrap page-head">
         <div class="page-head-title">
-          <p class="chapter-mark"><span class="chapter-no">VI</span><span>视效与交互</span><span class="en">Techniques</span></p>
-          <h1 class="page-title">眼睛看到什么，手能做什么</h1>
+          <p class="chapter-mark"><span class="chapter-no">VI</span><span data-i18n="navGlossary">视效与交互</span><span class="en">Techniques</span></p>
+          <h1 class="page-title" data-i18n="glossaryPageTitle">眼睛看到什么，手能做什么</h1>
         </div>
-        <p class="page-lede">除了载具本身，暗黑乘骑的沉浸感还取决于画面怎样骗过眼睛，以及乘客能在多大程度上参与。</p>
+        <p class="page-lede" data-i18n="glossaryPageLede">除了载具本身，暗黑乘骑的沉浸感还取决于画面怎样骗过眼睛，以及乘客能在多大程度上参与。</p>
       </header>
       <div class="wrap glossary" id="glossary"></div>
     </section>
@@ -235,36 +247,36 @@
       <div class="footer-grid">
         <div>
           <a class="footer-brand" href="#/"><span data-brand></span><span class="brand-name">Dark Ride Atlas</span></a>
-          <p class="footer-note">一个整理主题乐园黑暗乘骑工程资料的个人项目。分类与项目信息来自公开资料，难免有疏漏，欢迎在 GitHub 上提出勘误。影像均嵌入自 YouTube，版权归原作者所有。</p>
+          <p class="footer-note" data-i18n="footerNote">一个整理主题乐园黑暗乘骑工程资料的个人项目。分类与项目信息来自公开资料，难免有疏漏，欢迎在 GitHub 上提出勘误。影像均嵌入自 YouTube，版权归原作者所有。</p>
         </div>
         <div>
-          <p class="footer-h">浏览</p>
+          <p class="footer-h" data-i18n="footerBrowse">浏览</p>
           <nav class="footer-links" aria-label="页脚导航">
-            <a href="#/">项目索引</a>
-            <a href="#/mechanisms">机制</a>
-            <a href="#/lab">原理</a>
-            <a href="#/parks">乐园</a>
-            <a href="#/notes">辨析</a>
-            <a href="#/glossary">视效与交互</a>
+            <a href="#/" data-i18n="indexTitle">项目索引</a>
+            <a href="#/mechanisms" data-i18n="navMechanisms">机制</a>
+            <a href="#/lab" data-i18n="navLab">原理</a>
+            <a href="#/parks" data-i18n="navParks">乐园</a>
+            <a href="#/notes" data-i18n="navNotes">辨析</a>
+            <a href="#/glossary" data-i18n="navGlossary">视效与交互</a>
           </nav>
         </div>
         <div>
-          <p class="footer-h">资料</p>
+          <p class="footer-h" data-i18n="footerResources">资料</p>
           <nav class="footer-links" aria-label="资料链接">
-            <a href="https://github.com/xtxsinan-lgtm/dark_rides" target="_blank" rel="noopener"><span data-icon="github"></span>GitHub 仓库</a>
-            <a href="https://github.com/xtxsinan-lgtm/dark_rides/blob/main/docs/dark_ride_mechanisms_guide.md" target="_blank" rel="noopener"><span data-icon="book"></span>完整文档</a>
-            <a href="https://github.com/xtxsinan-lgtm/dark_rides/blob/main/docs/dark_ride_engineering_distinctions.md" target="_blank" rel="noopener"><span data-icon="book"></span>工程辨析</a>
+            <a href="https://github.com/xtxsinan-lgtm/dark_rides" target="_blank" rel="noopener"><span data-icon="github"></span><span data-i18n="footerGithub">GitHub 仓库</span></a>
+            <a href="https://github.com/xtxsinan-lgtm/dark_rides/blob/main/docs/dark_ride_mechanisms_guide.md" target="_blank" rel="noopener"><span data-icon="book"></span><span data-i18n="footerFullGuide">完整文档</span></a>
+            <a href="https://github.com/xtxsinan-lgtm/dark_rides/blob/main/docs/dark_ride_engineering_distinctions.md" target="_blank" rel="noopener"><span data-icon="book"></span><span data-i18n="footerDistinctionsDoc">工程辨析</span></a>
           </nav>
         </div>
         <div>
-          <p class="footer-h">版本说明</p>
-          <p class="colophon">正文以 Noto Serif SC 与 Newsreader 排印，编号与数据使用 IBM Plex Mono。不依赖任何框架，直接用浏览器打开即可阅读。</p>
+          <p class="footer-h" data-i18n="footerColophonTitle">版本说明</p>
+          <p class="colophon" data-i18n="footerColophonText">正文以 Noto Serif SC 与 Newsreader 排印，编号与数据使用 IBM Plex Mono。不依赖任何框架，直接用浏览器打开即可阅读。</p>
         </div>
       </div>
       <p class="footer-wordmark" aria-hidden="true">Dark Ride Atlas</p>
       <div class="footer-base">
-        <span>© 2026 Dark Ride Atlas · 第一版</span>
-        <span>按 <kbd>/</kbd> 或 <kbd>⌘</kbd> <kbd>K</kbd> 搜索</span>
+        <span data-i18n="footerCopyright">© 2026 Dark Ride Atlas · 第一版</span>
+        <span data-i18n-html="footerShortcutHtml">按 <kbd>/</kbd> 或 <kbd>⌘</kbd> <kbd>K</kbd> 搜索</span>
       </div>
     </div>
   </footer>
@@ -277,26 +289,26 @@
     <div class="dialog video-dialog" id="video-dialog" role="dialog" aria-modal="true" aria-label="视频"></div>
   </div>
   <div class="backdrop" id="compare-backdrop">
-    <div class="dialog compare-dialog" id="compare-dialog" role="dialog" aria-modal="true" aria-label="项目对比"></div>
+    <div class="dialog compare-dialog" id="compare-dialog" role="dialog" aria-modal="true" aria-label="项目对比" data-i18n-aria="compareDialogTitle"></div>
   </div>
   <div class="backdrop palette-backdrop" id="palette-backdrop">
-    <div class="palette" role="dialog" aria-modal="true" aria-label="搜索">
+    <div class="palette" role="dialog" aria-modal="true" aria-label="搜索" data-i18n-aria="searchLabel">
       <div class="palette-input">
         <span data-icon="search"></span>
-        <input id="palette-input" type="text" placeholder="搜索项目、机制编号或乐园…" autocomplete="off" spellcheck="false" aria-controls="palette-results" data-autofocus />
+        <input id="palette-input" type="text" placeholder="搜索项目、机制编号或乐园…" data-i18n-placeholder="palettePlaceholder" autocomplete="off" spellcheck="false" aria-controls="palette-results" data-autofocus />
         <kbd>Esc</kbd>
       </div>
       <div class="palette-results" id="palette-results" role="listbox" aria-label="搜索结果"></div>
       <div class="palette-foot">
-        <span><kbd>↑</kbd><kbd>↓</kbd>选择</span>
-        <span><kbd>↵</kbd>打开</span>
-        <span><kbd>Esc</kbd>关闭</span>
+        <span><kbd>↑</kbd><kbd>↓</kbd><span data-i18n="paletteSelect">选择</span></span>
+        <span><kbd>↵</kbd><span data-i18n="paletteOpen">打开</span></span>
+        <span><kbd>Esc</kbd><span data-i18n="paletteClose">关闭</span></span>
       </div>
     </div>
   </div>
 
   <div class="compare-tray" id="compare-tray" aria-live="polite">
-    <span class="tray-label">对比</span>
+    <span class="tray-label" data-i18n="trayLabel">对比</span>
     <div class="tray-items" id="tray-items"></div>
     <button class="tray-go" type="button" id="tray-go">再选一个</button>
   </div>
@@ -308,6 +320,7 @@
   <script src="js/data-parks.js"></script>
   <script src="js/data-distinctions.js"></script>
   <script src="js/xray-lab.js"></script>
+  <script src="js/i18n/core.js"></script>
   <script src="js/app.js"></script>
 </body>
 </html>
