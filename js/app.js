@@ -88,8 +88,18 @@
   syncGroupLabels();
 
   // Stills: prefer a frame from inside the video (hq1–hq3) over the uploader's thumbnail, which often has text on it.
+  const parseBili = (id) => {
+    const m = String(id || "").match(/^(BV[0-9A-Za-z]+)(?:_p(\d+))?$/);
+    return m ? { bvid: m[1], page: m[2] ? Number(m[2]) : 1 } : null;
+  };
+  const isBili = (id) => Boolean(parseBili(id));
+  const refAttr = (id) => (isBili(id) ? ' referrerpolicy="no-referrer"' : "");
   const frameOf = (id) => (VIDEOS[id] && VIDEOS[id].f ? VIDEOS[id].f.slice(2) : "");
   const still = (id, size) => {
+    if (VIDEOS[id] && VIDEOS[id].pic) {
+      const p = VIDEOS[id].pic;
+      return size === "max" ? p : p + "@640w_360h_1c.jpg";
+    }
     const n = frameOf(id);
     const name = { hq: n ? "hq" + n : "hqdefault", sd: n ? "sd" + n : "sddefault", max: n ? "maxres" + n : "maxresdefault" }[size];
     return "https://i.ytimg.com/vi/" + id + "/" + name + ".jpg";
@@ -97,7 +107,11 @@
   const thumb = (id) => still(id, "hq");
   const card = (id) => still(id, "sd");
   const big = (id) => still(id, "max");
-  const ytUrl = (id) => "https://www.youtube.com/watch?v=" + id;
+  const ytUrl = (id) => {
+    const b = parseBili(id);
+    if (b) return "https://www.bilibili.com/video/" + b.bvid + "/" + (b.page > 1 ? "?p=" + b.page : "");
+    return "https://www.youtube.com/watch?v=" + id;
+  };
   const ytSearch = (q) => "https://www.youtube.com/results?search_query=" + encodeURIComponent(q);
   const biliSearch = (q) => "https://search.bilibili.com/all?keyword=" + encodeURIComponent(q);
 
@@ -197,6 +211,15 @@
   }
 
   function embed(id) {
+    const b = parseBili(id);
+    if (b) {
+      return (
+        '<iframe src="https://player.bilibili.com/player.html?bvid=' + b.bvid +
+        "&page=" + b.page +
+        '&high_quality=1&danmaku=0&autoplay=1" title="Bilibili video player" ' +
+        'scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>'
+      );
+    }
     return (
       '<iframe src="https://www.youtube-nocookie.com/embed/' + id +
       '?autoplay=1&rel=0&modestbranding=1&playsinline=1" title="' + esc(T("ytPlayerTitle")) + '" ' +
@@ -212,10 +235,11 @@
     { key: "oct", label: "华侨城", title: "中国华侨城集团", note: "襄阳奇幻谷 · 东部华侨城 · 全国九大欢乐谷 · 卡乐星球" },
     { key: "merlin", label: "默林集团", title: "英国默林娱乐集团", note: "Alton Towers · Thorpe Park · Chessington · Gardaland · Heide Park · 全球 11 座乐高乐园" },
     { key: "sixflags", label: "六旗与雪松会", title: "美国六旗与雪松会集团", note: "Six Flags · Cedar Point · 诺氏百乐坊 · 国王岛 · 加拿大奇幻乐园等" },
-    { key: "dubai", label: "迪拜与阿布扎比", title: "迪拜与阿布扎比", note: "7 座乐园" },
-    { key: "genting", label: "云顶天城", title: "云顶天城世界", note: "马来西亚 · 原二十世纪福斯主题乐园" },
-    { key: "europe", label: "欧洲四园", title: "欧洲四大暗黑乘骑乐园", note: "Phantasialand · Efteling · Europa-Park · Futuroscope" },
-    { key: "eurocoaster", label: "欧洲名园", title: "欧洲六大过山车与电影主题名园", note: "PortAventura · Movieland · Parc Astérix · Liseberg · Alton Towers · Gardaland" }
+    { key: "seaworld", label: "海洋世界集团", title: "海洋世界与布什花园集团", note: "SeaWorld（奥兰多 · 圣地亚哥 · 圣安东尼奥）· Busch Gardens（威廉斯堡 · 坦帕湾）" },
+    { key: "na-other", label: "北美其他主题乐园", title: "北美知名区域与独立主题乐园", note: "Dollywood · 银元城 · Lagoon · Knoebels · Kennywood · 圣克鲁兹海滨乐园" },
+    { key: "europe", label: "欧洲主题乐园", title: "欧洲八大知名主题乐园", note: "Phantasialand · Efteling · Europa-Park · Futuroscope · PortAventura · Movieland · Parc Astérix · Liseberg" },
+    { key: "uae", label: "阿联酋主题乐园", title: "阿联酋主题乐园（迪拜 · 阿布扎比）", note: "Motiongate · IMG 冒险世界 · 亚斯华纳兄弟 · 亚斯法拉利 · 亚斯海洋世界 · 迪拜乐高" },
+    { key: "asia-other", label: "亚洲其他知名乐园", title: "亚洲其他知名主题乐园", note: "马来西亚云顶天城 · 韩国乐天世界与爱宝乐园 · 日本西武园与富士急 · 台湾六福村 · 香港海洋公园" }
   ];
 
   const loadingLocales = {};
@@ -585,7 +609,7 @@
       if (v.lights) tags.push('<span class="thumb-tag is-lit">' + esc(T("tagLights")) + "</span>");
       if (v.demo) tags.push('<span class="thumb-tag">' + esc(T("tagDemo")) + "</span>");
       media =
-        '<div class="thumb"><img loading="lazy" decoding="async" src="' + card(vid) + '" data-fallback="' + thumb(vid) + '" alt="">' +
+        '<div class="thumb"><img loading="lazy" decoding="async"' + refAttr(vid) + ' src="' + card(vid) + '" data-fallback="' + thumb(vid) + '" alt="">' +
         (tags.length ? '<span class="thumb-tags">' + tags.join("") + "</span>" : "") +
         '<span class="thumb-play">' + icon("play") + "</span></div>";
     } else {
@@ -700,18 +724,23 @@
   }
 
   /* --------------------------------------------------------------- player */
+  function openExternalLabel(id) {
+    if (!isBili(id)) return T("openOnYt");
+    return state.lang === "zh" ? "在 B 站打开" : T("openOnYt").replace(/YouTube/i, "Bilibili");
+  }
+
   function playerHTML(id, caption) {
     const meta = VIDEOS[id] || {};
     const cap = caption ? '<span class="player-caption">' + esc(caption) + "</span>" : "";
     if (meta.noEmbed) {
       return (
-        '<div class="player"><img src="' + big(id) + '" data-fallback="' + thumb(id) + '" alt="">' +
+        '<div class="player"><img' + refAttr(id) + ' src="' + big(id) + '" data-fallback="' + thumb(id) + '" alt="">' +
         '<a class="player-start" href="' + ytUrl(id) + '" target="_blank" rel="noopener" aria-label="' + esc(T("watchOnYtAria")) + '"><span class="ring">' + icon("external") + "</span></a>" +
         '<span class="player-caption">' + esc(caption || "") + esc(T("watchOnYtNote")) + "</span></div>"
       );
     }
     return (
-      '<div class="player"><img src="' + big(id) + '" data-fallback="' + thumb(id) + '" alt="">' +
+      '<div class="player"><img' + refAttr(id) + ' src="' + big(id) + '" data-fallback="' + thumb(id) + '" alt="">' +
       '<button class="player-start" type="button" data-play="' + id + '" aria-label="' + esc(T("playVideoAria")) + '"><span class="ring">' + icon("play") + "</span></button>" + cap + "</div>"
     );
   }
@@ -790,7 +819,7 @@
       '<p class="dialog-summary">' + esc(r.text) + "</p>" +
       '<div class="dialog-actions">' +
       (first
-        ? '<a class="btn" id="ride-yt" href="' + ytUrl(r.v[first]) + '" target="_blank" rel="noopener">' + esc(T("openOnYt")) + icon("external") + "</a>"
+        ? '<a class="btn" id="ride-yt" href="' + ytUrl(r.v[first]) + '" target="_blank" rel="noopener"><span>' + esc(openExternalLabel(r.v[first])) + "</span>" + icon("external") + "</a>"
         : "") +
       '<a class="btn" href="' + biliSearch(r.bili || r._zh.zh) + '" target="_blank" rel="noopener">' + esc(T("searchBili")) + icon("external") + "</a>" +
       '<button class="btn" type="button" data-compare="' + r.id + '" aria-pressed="' + on + '">' + esc(on ? T("comparedBtn") : T("addCompareBtn")) + "</button>" +
@@ -821,8 +850,10 @@
   }
 
   function sourceLine(r, type) {
-    const meta = VIDEOS[r.v[type]] || {};
-    return meta.c ? "YouTube · " + esc(meta.c) : "YouTube";
+    const id = r.v[type];
+    const meta = VIDEOS[id] || {};
+    const plat = isBili(id) ? "Bilibili" : "YouTube";
+    return meta.c ? plat + " · " + esc(meta.c) : plat;
   }
 
   function switchRideVideo(type) {
@@ -832,7 +863,11 @@
     $("#ride-player").innerHTML = playerHTML(r.v[type], captionFor(r, type));
     $("#ride-source").innerHTML = sourceLine(r, type);
     const yt = $("#ride-yt");
-    if (yt) yt.href = ytUrl(r.v[type]);
+    if (yt) {
+      yt.href = ytUrl(r.v[type]);
+      const sp = yt.querySelector("span");
+      if (sp) sp.textContent = openExternalLabel(r.v[type]);
+    }
   }
 
   function closeRide() {
@@ -989,7 +1024,7 @@
       "<div><dt>" + esc(T("specMfg")) + "</dt><dd>" + esc(n.mfg) + "</dd></div></dl>" +
       (video
         ? '<figure class="article-video">' + playerHTML(video.id, "") +
-          "<figcaption><span>" + esc(video.caption || "") + "</span><span>" + (VIDEOS[video.id] && VIDEOS[video.id].c ? "YouTube · " + esc(VIDEOS[video.id].c) : "") + "</span></figcaption></figure>"
+          "<figcaption><span>" + esc(video.caption || "") + "</span><span>" + (VIDEOS[video.id] && VIDEOS[video.id].c ? (isBili(video.id) ? "Bilibili · " : "YouTube · ") + esc(VIDEOS[video.id].c) : "") + "</span></figcaption></figure>"
         : "") +
       '<section class="article-section"><h3 class="article-h">' + esc(T("mechParkSectionTitle")) + '</h3><dl class="park-rows">' +
       n.parks.map((p) => '<div class="park-row"><dt>' + esc(p[0]) + "</dt><dd>" + esc(p[1]) + "</dd></div>").join("") +
@@ -1118,8 +1153,10 @@
     );
   }
 
+  const PARK_ALIASES = { dubai: "uae", genting: "asia-other", eurocoaster: "europe", other: "seaworld" };
   function selectPark(key) {
-    state.park = PARKS[key] ? key : "disney";
+    const resolved = PARK_ALIASES[key] || key;
+    state.park = PARKS[resolved] ? resolved : "disney";
     const tab = PARK_TABS.find((t) => t.key === state.park) || PARK_TABS[0];
     $("#park-tabs").innerHTML = PARK_TABS.map((t) => '<a class="chip" role="tab" href="#/parks/' + t.key + '" aria-selected="' + (t.key === state.park) + '">' + esc(t.label) + "</a>").join("");
     $("#park-title").textContent = tab.title;

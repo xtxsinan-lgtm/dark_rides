@@ -14,11 +14,11 @@ window.GROUPS = [
   { key: "oct", label: "华侨城" },
   { key: "merlin", label: "默林集团" },
   { key: "sixflags", label: "六旗与雪松会" },
-  { key: "uae", label: "迪拜与阿布扎比" },
-  { key: "genting", label: "云顶天城" },
-  { key: "europe", label: "欧洲四园" },
-  { key: "eurocoaster", label: "欧洲名园" },
-  { key: "other", label: "其他" }
+  { key: "seaworld", label: "海洋世界集团" },
+  { key: "na-other", label: "北美其他主题乐园" },
+  { key: "europe", label: "欧洲主题乐园" },
+  { key: "uae", label: "阿联酋主题乐园" },
+  { key: "asia-other", label: "亚洲其他知名乐园" }
 ];
 
 window.RIDES = [
@@ -203,7 +203,7 @@ window.RIDES = [
     id: "night-at-the-museum",
     zh: "博物馆奇妙夜：午夜大混乱",
     en: "Night at the Museum: Midnight Mayhem",
-    g: "genting",
+    g: "asia-other",
     park: "云顶天城世界",
     code: "1.1.1.3",
     text: "乘坐博物馆巡逻车，在复活的恐龙骨架与展品之间穿行，用手中的发射器向 3D 屏幕射击。",
@@ -218,7 +218,8 @@ window.RIDES = [
     code: "1.1.1.3",
     mfg: "华强方特",
     text: "方特覆盖面最广的 3D 互动射击车。车辆在森林布景与屏幕之间自动转向，乘客跟着熊大熊二射击并计分。",
-    bili: "方特 熊出没历险记"
+    bili: "方特 熊出没历险记",
+    v: { pov: "BV1MUZtBqEFB" }
   },
   {
     id: "snorri-touren",
@@ -276,7 +277,7 @@ window.RIDES = [
     id: "planet-of-the-apes",
     zh: "猩球崛起：入侵",
     en: "Invasion of the Planet of the Apes",
-    g: "genting",
+    g: "asia-other",
     park: "云顶天城世界",
     code: "1.1.2.1",
     mfg: "Oceaneering",
@@ -338,7 +339,8 @@ window.RIDES = [
     code: "1.1.2.1",
     mfg: "华强方特",
     text: "未来城市遭恐龙入侵，车载动感平台载着乘客在屏幕与实景之间逃生，是方特早期的代表性动感车项目。",
-    bili: "方特 恐龙危机"
+    bili: "方特 恐龙危机",
+    v: { pov: "BV1bx4y1x7eK" }
   },
   {
     id: "fantawild-railroad",
@@ -534,7 +536,8 @@ window.RIDES = [
     year: 2023,
     code: "1.2",
     text: "没有车厢：乘客站在蜿蜒的移动步道上，手持射击器穿过一个个屏幕大厅；射击器可与手机 App 绑定，累计分数和装备。",
-    bili: "小黄人恶人大会 Villain-Con Minion Blast"
+    bili: "小黄人恶人大会 Villain-Con Minion Blast",
+    v: { pov: "Blnu761johU" }
   },
 
   /* ---------------- 2 地面无轨 ---------------- */
@@ -604,7 +607,7 @@ window.RIDES = [
     id: "ice-age",
     zh: "冰川时代：薄冰远征",
     en: "Ice Age: Expedition Thin Ice",
-    g: "genting",
+    g: "asia-other",
     park: "云顶天城世界",
     code: "2.1",
     mfg: "ETF Ride Systems",
@@ -662,7 +665,7 @@ window.RIDES = [
     id: "antarctica",
     zh: "南极洲：企鹅帝国",
     en: "Antarctica: Empire of the Penguin",
-    g: "other",
+    g: "seaworld",
     park: "奥兰多海洋世界",
     year: 2013,
     code: "2.2.1",
@@ -679,7 +682,8 @@ window.RIDES = [
     code: "2.2.2",
     mfg: "华强方特",
     text: "无轨车上装有多自由度平台。前半段穿行于名画长廊，最后驶到倾斜球幕的边缘，车身前倾、侧倾，配合航拍画面“飞”进《千里江山图》。",
-    bili: "方特 神画 千里江山图"
+    bili: "方特 神画 千里江山图",
+    v: { pov: "BV1z341127Nc" }
   },
   {
     id: "fantawild-qiangu",
@@ -848,7 +852,8 @@ window.RIDES = [
     code: "4.2",
     mfg: "华强方特",
     text: "室内垂直升降塔，四周是围合的 3D 屏幕，座舱随剧情分段悬停、冲顶和坠落。济南、芜湖等地称《雷峰塔》。",
-    bili: "方特 神州塔"
+    bili: "方特 神州塔",
+    v: { pov: "BV1iS421X7Jb" }
   },
 
   /* ---------------- 5 涉水与潜艇 ---------------- */
@@ -952,7 +957,7 @@ window.RIDES = [
     id: "moonhaven",
     zh: "森林战士：月之谷奇幻漂流",
     en: "Epic Voyage to Moonhaven",
-    g: "genting",
+    g: "asia-other",
     park: "云顶天城世界",
     year: 2022,
     code: "5.1.1.2",
@@ -1029,7 +1034,8 @@ window.RIDES = [
     code: "5.1.2.2",
     mfg: "华强方特",
     text: "大船沿导轨穿过江南街巷与水战巨幕，最后停在金山寺前，数百吨真水迎面倾泻而下。",
-    bili: "方特 决战金山寺"
+    bili: "方特 决战金山寺",
+    v: { pov: "BV1Y541147kR" }
   },
   {
     id: "vliegende-hollander",
@@ -1195,7 +1201,7 @@ window.RIDES = [
     id: "independence-day",
     zh: "独立日：绝地反击",
     en: "Independence Day: Defiance",
-    g: "genting",
+    g: "asia-other",
     park: "云顶天城世界",
     code: "T1.4",
     text: "乘客在“机库”里平层入座，平台转动、翻转后进入球幕，参与对抗外星母舰的空战。",
@@ -1258,7 +1264,8 @@ window.RIDES = [
     code: "T2.6",
     mfg: "华强方特",
     text: "观众先在一楼看实景预演，随后整座圆形看台缓缓升起、旋转，进入二楼的穹顶球幕，仰望鹊桥星河。",
-    bili: "方特 牛郎织女"
+    bili: "方特 牛郎织女",
+    v: { pov: "BV1M441197C3" }
   },
   {
     id: "danse-avec-les-robots",
@@ -1308,7 +1315,8 @@ window.RIDES = [
     code: "T3.2",
     mfg: "华强方特",
     text: "数十人的阶梯看台装着轨道轮，整座看台开进地宫深处，在轨道上前进、后退、颠簸。注意它和梦幻王国的 12 座吉普版是两种设备。",
-    bili: "方特 秦陵历险"
+    bili: "方特 秦陵历险",
+    v: { pov: "BV12T421r7kQ" }
   },
   {
     id: "hulk-epsilon",
@@ -1402,7 +1410,8 @@ window.RIDES = [
     code: "T6.2",
     mfg: "华强方特",
     text: "上千块由程控卷扬机吊起的“砖块”在空中组成长城，又在高潮时轰然“坍塌”。",
-    bili: "方特 孟姜女"
+    bili: "方特 孟姜女",
+    v: { pov: "BV1Jt421M7KE" }
   },
   {
     id: "bourne-stuntacular",
@@ -1452,7 +1461,8 @@ window.RIDES = [
     code: "3.1",
     mfg: "Mack Rides / Dynamic Attractions",
     text: "顶部悬挂式连续移动车链（Suspended Omnimover）：泡泡造型吊舱不仅穿过深海火山动雕与球幕隧道，还会直接贴窗驶入全球最大真实水族箱“鲸鲨馆”内舱，隔着亚克力巨窗近距离看真鲸鲨。",
-    bili: "珠海长隆 海底互动船"
+    bili: "珠海长隆 海底互动船",
+    v: { pov: "BV15Y411f74S" }
   },
   {
     id: "chimelong-deep-sea-shooter",
@@ -1476,7 +1486,8 @@ window.RIDES = [
     code: "T6.3",
     mfg: "Kraftwerk / Garner Holt",
     text: "千人级多自由度气动动感座椅正对 88 米宽 180° 巨型 3D 弧幕，高潮时巨型机械翠鸟沿观众头顶滑索飞掠而过，两侧山体同步弹出大量发光机械人偶。",
-    bili: "珠海长隆 5D城堡影院"
+    bili: "珠海长隆 5D城堡影院",
+    v: { pov: "BV1ETeh6BE6M" }
   },
   {
     id: "chimelong-alien-attack",
@@ -1488,7 +1499,8 @@ window.RIDES = [
     code: "T2.6",
     mfg: "Dynamic Attractions / Kraftwerk",
     text: "经过“铁甲金刚”巨型机械人偶预演厅后，180 名乘客同时登上一座单平台多自由度动感母舰，在 360° 全包围环形立体巨幕中体验太空激战。",
-    bili: "广州长隆 星际决战"
+    bili: "广州长隆 星际决战",
+    v: { pov: "BV1EpwHesEnF" }
   },
 
   /* ---------------- 华侨城集团（OCT） ---------------- */
@@ -1502,7 +1514,8 @@ window.RIDES = [
     code: "1.1.2.1",
     mfg: "华侨城文旅科技（OCT Vision）",
     text: "华侨城自研的 12 座车载六自由度（6-DOF）动感探险车，沿 220 米地面轨道穿行于火山熔岩实景与多面 3D 巨幕之间，模拟深入地心与超时空营救的俯冲与失重。",
-    bili: "襄阳奇幻谷 地心历险"
+    bili: "襄阳奇幻谷 地心历险",
+    v: { pov: "BV1Zu41167ZX" }
   },
   {
     id: "oct-hive-break",
@@ -1514,7 +1527,8 @@ window.RIDES = [
     code: "T2.3",
     mfg: "Triotech",
     text: "双支线多厅行进式暗黑体验：分“星际海盗”与“赏金猎人”两条独立动线，依次经历全息简报室、站立式太空船动感模拟舱，最终进入 3D 互动射击剧场合作击退虫族女王。",
-    bili: "襄阳奇幻谷 虫巢突围"
+    bili: "襄阳奇幻谷 虫巢突围",
+    v: { pov: "BV1G8411x7HA_p7" }
   },
   {
     id: "oct-flying-30n",
@@ -1526,7 +1540,8 @@ window.RIDES = [
     code: "T1.2",
     mfg: "华侨城文旅科技（OCT Vision）",
     text: "华侨城在全国各地欢乐谷批量列装的百座级三层水平前推悬臂式球幕飞行影院，多层悬挂座椅推入巨型球幕俯瞰北纬 30° 与三峡山河。",
-    bili: "欢乐谷 穿越北纬30度"
+    bili: "欢乐谷 穿越北纬30度",
+    v: { pov: "BV1H64y1B7wm" }
   },
   {
     id: "oct-happy-world",
@@ -1538,7 +1553,8 @@ window.RIDES = [
     code: "5.1.1.1",
     mfg: "华侨城文旅科技（OCT Vision）",
     text: "被称为“北京版小小世界”：23 座平底游船沿 290 米室内水道自由漂流，穿行于七大洲 37 个微缩文明场景与近 400 个各国民族服饰动态机械木偶之间。",
-    bili: "北京欢乐谷 欢乐世界"
+    bili: "北京欢乐谷 欢乐世界",
+    v: { pov: "BV1hT4y1m7x8" }
   },
   {
     id: "oct-north-pole",
@@ -1550,7 +1566,8 @@ window.RIDES = [
     code: "1.1.1.3",
     mfg: "Sally Dark Rides / 华侨城文旅科技",
     text: "1998 年深圳欢乐谷引进的《北极探险》是中国大陆首台进口有轨互动射击 Dark Ride（Sally 制造），后在上海、成都欢乐谷推广，并衍生出重庆《洪崖洞传说》等 3D 射击版本。",
-    bili: "欢乐谷 北极探险"
+    bili: "欢乐谷 北极探险",
+    v: { pov: "BV15g411u7aQ" }
   },
   {
     id: "oct-flash-flood",
@@ -1562,7 +1579,8 @@ window.RIDES = [
     code: "T6.5",
     mfg: "华侨城特种工程",
     text: "华侨城经典的真水与爆破灾难实景特技剧场：在小镇枪战与神庙地裂火海之后，高潮瞬间释放数百至数千吨真水山洪从山顶倾泻而下，冲毁断桥与船只。",
-    bili: "欢乐谷 山洪暴发"
+    bili: "欢乐谷 山洪暴发",
+    v: { pov: "BV1mt41117vr" }
   },
 
   /* ---------------- 英国默林娱乐集团（Merlin Entertainments） ---------------- */
@@ -1816,7 +1834,7 @@ window.RIDES = [
     id: "uncharted-portaventura",
     zh: "神秘海域：苦修之谜",
     en: "Uncharted: The Enigma of Penitence",
-    g: "eurocoaster",
+    g: "europe",
     park: "西班牙冒险港（PortAventura Park）",
     year: 2023,
     code: "1.1.4.2",
@@ -1829,7 +1847,7 @@ window.RIDES = [
     id: "street-mission",
     zh: "芝麻街：曲奇神探任务",
     en: "Street Mission",
-    g: "eurocoaster",
+    g: "europe",
     park: "西班牙冒险港（PortAventura Park）",
     year: 2019,
     code: "2.1",
@@ -1841,7 +1859,7 @@ window.RIDES = [
     id: "templo-del-fuego",
     zh: "烈焰神庙",
     en: "Templo del Fuego",
-    g: "eurocoaster",
+    g: "europe",
     park: "西班牙冒险港（PortAventura Park）",
     year: 2001,
     code: "T6.5",
@@ -1853,7 +1871,7 @@ window.RIDES = [
     id: "defi-de-cesar",
     zh: "凯撒的挑战",
     en: "Le Défi de César",
-    g: "eurocoaster",
+    g: "europe",
     park: "法国阿斯特里克斯公园（Parc Astérix）",
     year: 2008,
     code: "T5.1",
@@ -1865,7 +1883,7 @@ window.RIDES = [
     id: "pangea-movieland",
     zh: "盘古大陆：恐龙自驾吉普",
     en: "Pangea: The World of Dinosaurs",
-    g: "eurocoaster",
+    g: "europe",
     park: "意大利好莱坞电影乐园（Movieland Park）",
     year: 2018,
     code: "1.1.1.1",
@@ -1877,7 +1895,7 @@ window.RIDES = [
     id: "u571-movieland",
     zh: "U-571 潜艇极限灾难模拟器",
     en: "U-571 Submarine Simulator",
-    g: "eurocoaster",
+    g: "europe",
     park: "意大利好莱坞电影乐园（Movieland Park）",
     year: 2006,
     code: "T6.5",
@@ -1889,7 +1907,7 @@ window.RIDES = [
     id: "magma-movieland",
     zh: "岩浆号重型越野卡车劫难",
     en: "Magma 2.1",
-    g: "eurocoaster",
+    g: "europe",
     park: "意大利好莱坞电影乐园（Movieland Park）",
     year: 2002,
     code: "T6.5",
@@ -1901,12 +1919,186 @@ window.RIDES = [
     id: "underlandet",
     zh: "兔子地底秘密王国",
     en: "Underlandet",
-    g: "eurocoaster",
+    g: "europe",
     park: "瑞典里瑟本游乐园（Liseberg）",
     year: 2020,
     code: "1.1.1.1",
     mfg: "Gosetto / P&P Projects",
     text: "北欧标杆级原创童话暗黑乘骑：隐藏导槽旋转车载着乘客深入绿兔子在地底建造的胡萝卜加工厂，全线配备数十具动作细腻的机械兔子玩偶，结局整辆车直接驶入垂直提升电梯重返地面树洞车站。",
     v: { pov: "yqZzOGCR7E4" }
+  },
+
+  /* ---------------- 海洋世界与布什花园集团（United Parks & Resorts） ---------------- */
+  {
+    id: "journey-to-atlantis",
+    zh: "亚特兰蒂斯之旅",
+    en: "Journey to Atlantis",
+    g: "seaworld",
+    park: "奥兰多海洋世界（SeaWorld Orlando）",
+    year: 1998,
+    code: "5.1.2.3",
+    mfg: "Mack Rides",
+    text: "全球水路过山车（Water Coaster）的开山鼻祖：前半程作为慢速室内水道船深入沉没的亚特兰蒂斯神庙，在海妖的美人鱼幻象突变后，游船经历两段急流俯冲并切换至过山车导轨高速滑行。",
+    v: { pov: "TcOM5aPe9hQ" }
+  },
+  {
+    id: "darkoaster",
+    zh: "达卡斯：狼人诅咒",
+    en: "DarKoaster",
+    g: "seaworld",
+    park: "威廉斯堡布什花园（Busch Gardens Williamsburg）",
+    year: 2023,
+    code: "1.1.4.3",
+    mfg: "Intamin",
+    text: "建于传奇车载动感暗黑乘骑《达卡斯堡的诅咒》（Curse of DarKastle）原址古堡内，是北美首台全室内全黑跨骑式雪地摩托过山车：在暴风雪与狼人幽影环伺的密室中连续经历 4 次 LSM 直线电机加速。",
+    v: { pov: "s5YSVUHvToU" }
+  },
+  {
+    id: "escape-from-pompeii",
+    zh: "庞贝末日",
+    en: "Escape from Pompeii",
+    g: "seaworld",
+    park: "威廉斯堡布什花园（Busch Gardens Williamsburg）",
+    year: 1996,
+    code: "5.1.1.2",
+    mfg: "Intamin",
+    text: "以维苏威火山爆发为背景的重型真火特效暗黑激流船：游船升入庞贝古城废墟内部，两侧石柱与雕像随地震轰鸣倾倒，头顶木梁与水面燃起熊熊真火，最后推开城门从高空俯冲入水。",
+    v: { pov: "yxEHQJfLkeE" }
+  },
+  {
+    id: "cobras-curse",
+    zh: "眼镜蛇的诅咒",
+    en: "Cobra's Curse",
+    g: "seaworld",
+    park: "坦帕湾布什花园（Busch Gardens Tampa Bay）",
+    year: 2016,
+    code: "1.1.4.2",
+    mfg: "Mack Rides",
+    text: "结合垂直电梯提升、室内暗黑叙事与多模式旋转车厢的复合过山车：列车由垂直升降机抬升后，在室内外与 24 米高的古埃及蛇王雕像擦肩对视，随后按前向、后退与自由旋转三阶段滑行。",
+    v: { pov: "nK_Tw3nFO5A" }
+  },
+
+  /* ---------------- 北美其他主题乐园（Dollywood / Silver Dollar City / Lagoon / Knoebels） ---------------- */
+  {
+    id: "fire-in-the-hole",
+    zh: "火烧城洞",
+    en: "Fire in the Hole",
+    g: "na-other",
+    park: "美国银元城（Silver Dollar City）",
+    year: 2024,
+    code: "1.1.4.3",
+    mfg: "Rocky Mountain Construction (RMC)",
+    text: "传承 1972 年初代经典的五层全室内叙事暗黑过山车：配备车载高保真音响，带领乘客穿过被秃山帮纵火的 19 世纪矿业小镇、燃烧旅馆与坍塌木桥，在失控矿车迎面撞来的瞬间俯冲入水。",
+    v: { pov: "X1vGI73qwnM" }
+  },
+  {
+    id: "flooded-mine",
+    zh: "洪水泛滥的矿井",
+    en: "The Flooded Mine",
+    g: "na-other",
+    park: "美国银元城（Silver Dollar City）",
+    year: 1968,
+    code: "5.1.1.1",
+    mfg: "Herschend 自研",
+    text: "美式主题乐园黄金时代的活化石级室内水道暗黑乘骑：游客乘坐平底矿工铁船漂流进被地下水淹没的监狱矿井，手持激光手枪向越狱囚犯与炸药桶靶标射击，结尾经历逼真的矿井坍塌视错觉。",
+    v: { pov: "5LONSLfjExU" }
+  },
+  {
+    id: "blazing-fury",
+    zh: "烈焰追击",
+    en: "Blazing Fury",
+    g: "na-other",
+    park: "美国多莉山（Dollywood）",
+    year: 1978,
+    code: "1.1.4.3",
+    mfg: "Herschend 自研",
+    text: "多莉山开业至今的镇园室内暗黑过山车（与银元城初代《火烧城洞》同源）：前半程以慢速有轨暗黑乘骑方式穿越十余幕救火机械人偶场景，后半程在全黑中完成三段陡坡下坠与水花飞溅。",
+    v: { pov: "L8d6BHAK6To" }
+  },
+  {
+    id: "mystery-mine",
+    zh: "神秘矿井",
+    en: "Mystery Mine",
+    g: "na-other",
+    park: "美国多莉山（Dollywood）",
+    year: 2007,
+    code: "1.1.4.3",
+    mfg: "Gerstlauer",
+    text: "将美式哥特矿难暗黑乘骑与欧式垂直过山车融为一体的代表作：矿车两度深入阴森幽暗的废弃煤矿内部，在机械乌鸦啼叫、瓦斯爆炸真火与坠落矿井架之间完成两段 90° 垂直链条提升与翻转。",
+    v: { pov: "Qo1BYMuHyqQ" }
+  },
+  {
+    id: "primordial",
+    zh: "原始森林",
+    en: "Primordial",
+    g: "na-other",
+    park: "美国犹他泻湖乐园（Lagoon）",
+    year: 2023,
+    code: "1.1.4.2",
+    mfg: "ART Engineering / Triotech",
+    text: "历时八年建成的巨型假山室内互动 3D 射击过山车：旋转车厢在巨型机械猫头鹰、巨龙雕像与数块巨幕间驻停射击，尾声通过分叉道岔随机切入“垂直自由落体跌落轨”或“倾斜侧滑轨”双结局。",
+    v: { pov: "LRbZG_EQ97A" }
+  },
+  {
+    id: "knoebels-haunted-mansion",
+    zh: "诺贝尔斯幽灵庄园",
+    en: "Haunted Mansion (Knoebels)",
+    g: "na-other",
+    park: "美国诺贝尔斯乐园（Knoebels Amusement Resort）",
+    year: 1973,
+    code: "1.1.1.1",
+    mfg: "Pretzel / Knoebels",
+    text: "连续十余年被全美暗黑乘骑协会评为榜首的殿堂级传统鬼屋列车：在伸手不见五指的双层宅邸内密集排布气动贴脸机关、紫外线黑光骷髅、失控迎面卡车喇叭与伪装下坡，纯粹依靠声光时机制造惊吓。",
+    v: { pov: "HuHxQTAClZQ" }
+  },
+
+  /* ---------------- 亚洲其他知名乐园（韩国乐天世界 / 日本西武园 / 台湾六福村等） ---------------- */
+  {
+    id: "lotte-pharaoh",
+    zh: "法老的愤怒",
+    en: "Pharaoh's Fury",
+    g: "asia-other",
+    park: "韩国首尔乐天世界（Lotte World Adventure）",
+    year: 2005,
+    code: "1.1.2.3",
+    mfg: "Intamin",
+    text: "耗资逾 500 亿韩元在室内乐园四层顶部兴建的旗舰级越野吉普探险：采用与迪士尼《印第安纳琼斯》同门类的 Intamin 12 座多自由度液压动感越野车，在古埃及神庙崩塌、滚石与火海中剧烈颠簸俯冲。",
+    v: { pov: "qNKejhgNyw8" }
+  },
+  {
+    id: "lotte-sindbad",
+    zh: "辛巴达的冒险",
+    en: "The Adventures of Sindbad",
+    g: "asia-other",
+    park: "韩国首尔乐天世界（Lotte World Adventure）",
+    year: 1989,
+    code: "5.1.1.2",
+    mfg: "Intamin",
+    text: "韩国最具代表性的大型全室内地下暗黑激流水道乘骑：游船从乐天世界地下一层出发，经历两段俯冲跌落，穿行于巨型三头恶龙、食人族与金银财宝洞穴等数十具机械人偶场景之间。",
+    v: { pov: "ug5a-Kn3IZE" }
+  },
+  {
+    id: "seibuen-godzilla",
+    zh: "哥斯拉 The Ride：大怪兽顶上决战",
+    en: "Godzilla the Ride: Giant Monsters Ultimate Battle",
+    g: "asia-other",
+    park: "日本西武园游园地（Seibuen Amusement Park）",
+    year: 2021,
+    code: "T1.2",
+    mfg: "Brogent 智崴 × 白组（山崎贵导演）",
+    text: "将昭和复古夕阳馆电影院伪装为入口的殿堂级球幕飞行影院：由奥斯卡得主《哥斯拉-1.0》导演山崎贵团队操刀CG，智崴高动态悬空座椅配合贴面气浪水雾，让乘客以第一视角置身哥斯拉与基多拉的城市肉搏战。",
+    v: { pov: "s7kM0mrGqRQ" }
+  },
+  {
+    id: "leofoo-sultan",
+    zh: "苏丹王大冒险",
+    en: "Sultan's Adventure",
+    g: "asia-other",
+    park: "中国台湾六福村主题游乐园（Leofoo Village）",
+    year: 2000,
+    code: "1.1.2.3",
+    mfg: "Intamin / Sally Dark Rides",
+    text: "耗资 12 亿新台币打造的亚洲罕见 Intamin 越野吉普暗黑乘骑：12 座探险吉普车深入阿拉伯皇宫地下宝藏洞穴，在失灵熄火、旋转断桥、喷火木乃伊与巨型守护魔兽的突袭中高速逃生。",
+    v: { pov: "PlepdTdVBNc" }
   }
 ];

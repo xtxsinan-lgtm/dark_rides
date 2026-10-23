@@ -506,9 +506,8 @@ kbd {
 
 .chips {
   display: flex;
-  gap: 2px;
-  overflow-x: auto;
-  scrollbar-width: none;
+  flex-wrap: wrap;
+  gap: 4px 2px;
 }
 
 .chips::-webkit-scrollbar {

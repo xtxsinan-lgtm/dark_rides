@@ -375,8 +375,8 @@ window.PARK_MATRIX_DATA = {
     ]
   },
 
-  dubai: {
-    title: "3.4 迪拜与阿布扎比各大 Dark Ride 标杆乐园（7 园）全项目盘点表",
+  uae: {
+    title: "阿联酋主题乐园（迪拜 · 阿布扎比 7 园）全项目盘点表",
     headers: ["乐园名称", "行进式 Dark Ride（含跨界水道 / 潜艇 / 慢速叙事过山车）", "暗黑剧场、飞行影院与动感模拟器项目"],
     rows: [
       {
@@ -453,54 +453,71 @@ window.PARK_MATRIX_DATA = {
     ]
   },
 
-  genting: {
-    title: "3.5 马来西亚吉隆坡云顶天城世界（Genting SkyWorlds）Dark Ride 与暗黑剧场全项目盘点表",
-    headers: ["项目名称（中英文）", "所属主题区（原二十世纪福斯 IP）", "硬件机制编号与核心工程特征"],
+  "asia-other": {
+    title: "亚洲其他知名主题乐园（马来西亚云顶 · 韩国乐天/爱宝 · 日本西武园/富士急 · 台湾六福村等）全项目盘点表",
+    headers: ["乐园名称（国家 / 地区）", "行进式 Dark Ride（含 6-DOF 动感车 / EMV 越野吉普 / 无轨车 / 暗黑水道）", "暗黑剧场、球幕飞行影院与特种实景剧场"],
     rows: [
       {
-        col1: "<strong>《猩球崛起：入侵》<br>Invasion of the Planet of the Apes</strong>",
-        col2: ["自由之路 (Liberty Lane)"],
-        col3: ["<code>1.1.2.1</code> <strong>车载 6-DOF 动感平台 + 3D 巨幕与实景 (Oceaneering)</strong>：云顶镇园之宝。采用与环球《变形金刚》同级的 Oceaneering 6-DOF SCOOP 动感车，结合高精度巨型凯撒（Caesar）仿生机械人偶、崩塌金门大桥实景与 3D 巨幕。"]
+        col1: "<strong>马来西亚云顶天城世界<br>1. Genting SkyWorlds</strong><br>（原二十世纪福斯主题乐园）",
+        col2: [
+          "<strong>Invasion of the Planet of the Apes (猩球崛起：入侵)</strong>（<code>1.1.2.1</code> <strong>Oceaneering 6-DOF SCOOP 动感车 + 3D 巨幕与实景</strong>：结合巨型凯撒仿生机械人偶与崩塌金门大桥实景）",
+          "<strong>Ice Age: Expedition Thin Ice (冰川时代：薄冰远征)</strong>（<code>2.1</code> <strong>ETF Multi Mover 无轨多路径分道系统</strong>：浮冰小车在冰洞中自由旋转穿行，躲避松鼠奎特与冰封霸王龙机械人偶）",
+          "<strong>Epic Voyage to Moonhaven (森林战士：月之谷奇幻漂流)</strong>（<code>5.1.1.2</code> <strong>ABC Rides 室内暗黑发光森林 + 俯冲漂流船</strong>）",
+          "<strong>Night at the Museum: Midnight Mayhem (博物馆奇妙夜：午夜大混乱)</strong>（<code>1.1.1.3</code> <strong>Simworx / Alterface 有轨旋转巡逻车 + 3D 虚拟手电筒射击</strong>）",
+          "<strong>Terraform Tower Challenge (地球改造塔挑战)</strong>（<code>4.2</code> 底部封闭暗黑声光演艺 + S&S 冲顶弹射塔） & <strong>Bigweld's Zeppelins</strong>（<code>3.1</code> 顶部悬挂飞艇）"
+        ],
+        col3: [
+          "<strong>Independence Day: Defiance (独立日：绝地反击)</strong>（<code>T1.4</code> <strong>Brogent 智崴水平入座旋转/翻转切入式球幕飞行影院</strong>：太空母舰机库平层入座后整座平台旋转下翻地板，瞬间切入球幕体验太空激战）"
+        ]
       },
       {
-        col1: "<strong>《冰川时代：薄冰远征》<br>Ice Age: Expedition Thin Ice</strong>",
-        col2: ["冰川时代 (Ice Age)"],
-        col3: ["<code>2.1</code> <strong>平层无轨多路径分道系统 (ETF Ride Systems Multi Mover)</strong>：乘坐无轨浮冰造型小车在冰洞中自由旋转穿行、交叉走位，躲避松鼠奎特、猛犸象与冰封霸王龙机械人偶。"]
+        col1: "<strong>韩国首尔乐天世界 & 龙仁爱宝乐园<br>2. Lotte World Adventure & Everland</strong>",
+        col2: [
+          "<strong>乐天世界《Pharaoh's Fury (法老的愤怒)》</strong>（<code>1.1.2.3</code> <strong>Intamin 12 座多自由度液压越野吉普 EMV</strong>：耗资逾 500 亿韩元在室内四层兴建古埃及地下神庙崩塌、滚石与火海机关，对标迪士尼《印第安纳琼斯》）",
+          "<strong>乐天世界《The Adventures of Sindbad (辛巴达的冒险)》</strong>（<code>5.1.1.2</code> <strong>Intamin 地下暗黑双坡俯冲激流船</strong>，穿行三头恶龙与宝藏洞穴机械人偶）",
+          "<strong>乐天世界《Fantasy Dream (梦幻之旅)》</strong>（<code>1.1.1.1</code> 地下童话糖果世界有轨列车）、<strong>《Dragon Wild Shooting》</strong>（<code>1.1.1.3</code> 有轨射击）、<strong>《Aeronauts Balloon Ride》</strong>（<code>3.1</code> 绕室内穹顶高空环行的悬吊热气球）",
+          "<strong>爱宝乐园《Shooting Ghost (射击幽灵屋)》</strong>（<code>1.1.1.3</code> 有轨旋转 + 360° 环幕幽灵激光射击） & <strong>《Flash Pang Pang》</strong>"
+        ],
+        col3: [
+          "<strong>乐天世界《Fly Venture (飞越韩国)》</strong>（<code>T1.2</code> Brogent 巨型球幕飞行影院）",
+          "<strong>乐天世界《Wild Tour (荒野丛林：怒火四驱 / 狂野之翼 / 狂野激流)》</strong>（<code>T2.3 / T2.4</code> 三联大型多自由度动感模拟器剧场群） & <strong>《Desperados》</strong>（<code>T6.7</code> 骑马 3D 互动射击剧场）",
+          "<strong>爱宝乐园《Space Tour》</strong>（<code>T2.4</code> 4D 动感平台剧场） & <strong>釜山乐天世界</strong>"
+        ]
       },
       {
-        col1: "<strong>《森林战士：月之谷奇幻漂流》<br>Epic Voyage to Moonhaven</strong>",
-        col2: ["森林战士 (Epic)"],
-        col3: ["<code>5.1.1.2</code> <strong>室内暗黑机械人偶 + 室内外俯冲漂流船 (ABC Rides)</strong>：乘坐巨型树叶造型游船，穿行于室内发光巨型蘑菇森林与几十个精灵/鼻涕虫机械人偶之间，含室内外俯冲溅水坡道。"]
+        col1: "<strong>日本西武园游园地 & 富士急乐园 & 豪斯登堡<br>3. Seibuen, Fuji-Q Highland & Huis Ten Bosch</strong>",
+        col2: [
+          "<strong>富士急乐园《火影忍者×博人传 3D 射击乘骑：科学忍具道场》</strong>（<code>1.1.1.3</code> ETF 有轨旋转 3D 忍术射击车）",
+          "<strong>富士急乐园《托马斯宝藏大冒险 (Thomas' Treasure Hunt)》</strong>（<code>1.1.1.1</code> 室内有轨童话探险车）",
+          "<strong>志摩西班牙村《Chocobino / 堂吉诃德奇幻之旅》</strong>（<code>3.1</code> 顶部悬挂单轨奇幻飞船 Dark Ride）"
+        ],
+        col3: [
+          "<strong>西武园游园地《Godzilla the Ride (哥斯拉 The Ride：大怪兽顶上决战 / 2025 新篇)》</strong>（<code>T1.2</code> <strong>Brogent 半球幕悬空飞行影院 × 《哥斯拉-1.0》导演山崎贵执导</strong>，公认全球叙事压迫感最强的怪兽飞行影院）",
+          "<strong>富士急乐园《富士飞行社 (Fuji Airways)》</strong>（<code>T1.2</code> Brogent 富士山四季实拍球幕飞行影院，配久石让交响配乐） & <strong>《战栗迷宫：慈急综合病院》</strong>（<code>T6.6</code> 全球最长 900 米废弃医院步入式惊悚馆）",
+          "<strong>长崎豪斯登堡《Horizon Adventure (洪水地平线)》</strong>（<code>T6.5</code> 室内 800 吨真水山洪倾泻模拟 17 世纪荷兰洪灾实景剧场） & <strong>《Air Cruise the Ride》</strong>（<code>T1.2</code> 8K LED 球幕飞行影院）"
+        ]
       },
       {
-        col1: "<strong>《博物馆奇妙夜：午夜大混乱》<br>Night at the Museum: Midnight Mayhem</strong>",
-        col2: ["中央公园 (Central Park)"],
-        col3: ["<code>1.1.1.3</code> <strong>有轨受控旋转底盘 + 3D 虚拟射击系统 (Simworx / Alterface)</strong>：乘坐有轨高速旋转保安巡逻车，手持虚拟手电筒发射器向 3D 屏幕上复活的恐龙骨架与法老展品射击。"]
-      },
-      {
-        col1: "<strong>《独立日：绝地反击》<br>Independence Day: Defiance</strong>",
-        col2: ["中央公园 (Central Park)"],
-        col3: ["<code>T1.4</code> <strong>水平入座旋转/翻转切入式球幕飞行影院 (Brogent 智崴)</strong>：游客在太空母舰机库平层入座，启动后整座平台旋转并下翻地板，将游客瞬间切入巨型球幕中体验外星母舰太空狗斗。"]
-      },
-      {
-        col1: "<strong>《地球改造塔挑战》<br>Terraform Tower Challenge</strong>",
-        col2: ["仙女座基地 (Andromeda Base)"],
-        col3: ["<code>4.2</code> <strong>垂直井道底部室内暗黑演艺 + 冲顶弹射升降系统 (S&S)</strong>：底部封闭太空舱内设暗黑声光与外星能量爆发演艺段，随后突然垂直高速弹射冲出塔顶俯瞰云顶高原再坠回暗室。"]
-      },
-      {
-        col1: "<strong>《机器人历险记：大焊先生飞艇》<br>Bigweld's Zeppelins</strong>",
-        col2: ["机器人城 (Robots Rivet Town)"],
-        col3: ["<code>3.1</code> <strong>半开放式顶部悬挂升降旋转飞艇 (Zamperla)</strong>：悬挂在顶部轨道下方的蒸汽朋克飞艇座舱，乘客可控制高度升降旋转游览机器人城。"]
+        col1: "<strong>中国台湾六福村 & 香港海洋公园 & 越南珍珠乐园<br>4. Leofoo Village, Ocean Park HK & VinWonders</strong>",
+        col2: [
+          "<strong>台湾六福村《苏丹王大冒险 (Sultan's Adventure)》</strong>（<code>1.1.2.3</code> <strong>Intamin 12 座多自由度越野吉普 EMV</strong>：耗资 12 亿新台币打造阿拉伯皇宫地下洞穴，经历熄火失灵、旋转断桥、喷火木乃伊与巨型守护魔兽突袭）",
+          "<strong>台湾九族文化村《西班牙海岸：水战船 / 无敌舰队》</strong>（<code>5.1.1.3</code> 含室内暗黑海战段与倒退转盘变轨的水上过山车）",
+          "<strong>越南富国岛 VinWonders《Wrath of Zeus (宙斯之怒)》</strong>（<code>1.1.4.3</code> Vekoma 室内外古希腊冥界暗黑特效弹射过山车）"
+        ],
+        col3: [
+          "<strong>台湾义大世界《飞越台湾》</strong> & <strong>越南芽庄 VinWonders《Flying Cinema》</strong>（<code>T1.2</code> 悬空球幕飞行影院）",
+          "<strong>香港海洋公园《探索号 R》</strong>（互动 AI 深海模拟潜艇舱） & <strong>《狂野龙卷风 / 幻彩旋转马》</strong>"
+        ]
       }
     ]
   },
 
   europe: {
-    title: "3.6 欧洲四大暗黑乘骑标杆乐园（Phantasialand / Efteling / Europa-Park / Futuroscope）全项目盘点表",
-    headers: ["乐园名称", "行进式 Dark Ride（含跨界水道 / 慢速叙事过山车）", "暗黑剧场、飞行影院、疯屋与原地动感设备"],
+    title: "欧洲知名主题乐园（Phantasialand / Efteling / Europa-Park / Futuroscope / PortAventura / Movieland / Parc Astérix / Liseberg）全项目盘点表",
+    headers: ["乐园名称", "行进式 Dark Ride（含无轨车 / 受控悬挂 / 变轨水道 / 多维暗黑过山车）", "暗黑剧场、飞行影院、疯屋（Madhouse）与实景灾难特技秀"],
     rows: [
       {
-        col1: "<strong>德国 Phantasialand<br>（幻多奇乐园）</strong>",
+        col1: "<strong>德国 Phantasialand<br>1. 幻多奇乐园</strong>",
         col2: [
           "<strong>Maus au Chocolat</strong>（<code>1.1.1.3</code> ETF 有轨旋转 3D 奶油射击）",
           "<strong>Geister Rikscha</strong>（<code>1.1.1.2</code> 欧洲最长全地下中式神话 Omnimover）",
@@ -518,7 +535,7 @@ window.PARK_MATRIX_DATA = {
         ]
       },
       {
-        col1: "<strong>荷兰 Efteling<br>（艾夫特琳）</strong>",
+        col1: "<strong>荷兰 Efteling<br>2. 艾夫特琳童话乐园</strong>",
         col2: [
           "<strong>Symbolica</strong>（<code>2.1</code> ETF 无轨多车共舞 + 排队自主选 3 条路线分支）",
           "<strong>Droomvlucht</strong>（<code>3.2</code> 顶部悬挂变速 + 精灵沼泽高速螺旋俯冲）",
@@ -535,7 +552,7 @@ window.PARK_MATRIX_DATA = {
         ]
       },
       {
-        col1: "<strong>德国 Europa-Park<br>（欧洲公园）</strong>",
+        col1: "<strong>德国 Europa-Park<br>3. 欧洲公园</strong>",
         col2: [
           "<strong>Arthur</strong>（<code>3.4</code> Mack 悬挂受控动力慢速旋转看戏 + 加速冲刺全球首发旗舰）",
           "<strong>Piraten in Batavia</strong>（<code>5.1.1.1</code> Mack 顶级印尼水乡水槽暗黑船）",
@@ -553,7 +570,7 @@ window.PARK_MATRIX_DATA = {
         ]
       },
       {
-        col1: "<strong>法国 Futuroscope<br>（未来影视城）</strong>",
+        col1: "<strong>法国 Futuroscope<br>4. 未来影视城</strong>",
         col2: [
           "<strong>Mission Bermudes</strong>（<code>5.1.3.2</code> 2025 年首套 Mack Rocking Boat：船体与水下导引车铰接，在无侧墙的水道与人造浪中摇摆、倒退）",
           "<strong>La Machine à voyager dans le temps (疯狂兔子时光机)</strong>（<code>1.1.1.1</code> ETF 有轨旋转震动马桶列车 + 3D 巨幕与实景搞笑交互）"
@@ -565,6 +582,51 @@ window.PARK_MATRIX_DATA = {
           "<strong>Arthur, l'Aventure 4D</strong>（<code>T2.2</code> 900㎡ IMAX 球幕 + 多层 25 座 6-DOF 液压瓢虫模拟器）",
           "<strong>La Vienne Dynamique & Dynamic!</strong>（<code>T2.4</code>） & <strong>Sébastien Loeb Racing Xperience</strong>（<code>T2.1</code> VR 6-DOF）",
           "<strong>Étincelle</strong>（<code>T6.7</code>）、<strong>Eclipse</strong>（<code>T6.3</code>）、<strong>Les Yeux Grands Fermés</strong>（<code>T6.6</code> 100% 全黑盲人体验馆）"
+        ]
+      },
+      {
+        col1: "<strong>西班牙冒险港世界<br>5. PortAventura World（含主园 & 法拉利乐园）</strong>",
+        col2: [
+          "<strong>Uncharted: The Enigma of Penitence (神秘海域：苦修之谜，2023)</strong>（<code>1.1.4.2</code> <strong>Intamin 欧洲首台全封闭五次弹射多维受控旋转暗黑过山车 + Sally 高仿真机械人偶</strong>：集成 5 次 LSM 弹射、车载 360° 旋转、高速变轨、倒退段与<strong>垂直自由落体侧滑跌落轨 Lateral Drop Track</strong>）",
+          "<strong>Street Mission (芝麻街：曲奇神探任务，2019)</strong>（<code>2.1 + 1.1.1.3</code> <strong>Sally Dark Rides + ETF Multi Mover 埋线导引车</strong>：6 座侦探出租车穿过曲奇怪电动木偶与 8 块 3D 弧幕/360° 深海隧道幕射击寻宝）"
+        ],
+        col3: [
+          "<strong>Templo del Fuego (烈焰神庙，2001)</strong>（<code>T6.5</code> <strong>Thinkwell + Technifex 极限真火灾难实景特技剧场</strong>：地下玛雅神庙穹顶与水面瞬间被真实烈焰吞噬，高潮时<strong>游客站立的整块石质观演平台突然气动下沉倾斜</strong>，伴随水墙冲灭烈火）",
+          "<strong>Ferrari Land《Flying Dreams (飞跃法拉利梦想)》</strong>（<code>T1.2</code> Brogent i-Ride 球幕飞行影院） & <strong>《Racing Legends》</strong>（<code>T2.3</code> 敞篷 F1 赛车 6-DOF 球幕模拟器）",
+          "<strong>Dino Escape 4D (原 Sea Odyssey)</strong>（<code>T2.4 / T6.7</code> 双厅 80 座大型液压潜水器模拟客舱） & <strong>El Secreto de los Mayas</strong>（<code>T6.6</code> 镜面迷宫）"
+        ]
+      },
+      {
+        col1: "<strong>意大利好莱坞电影乐园<br>6. Movieland Park (Canevaworld)</strong>",
+        col2: [
+          "<strong>Pangea: The World of Dinosaurs (盘古大陆：恐龙世界，2018)</strong>（<code>1.1.1.1</code> <strong>全球首创由游客真正手握方向盘与油门自驾真吉普车的恐龙 Dark Ride</strong>：在宽幅隐藏导槽与车载雷达保护下亲自操控铃木真吉普转向与加减速穿越机械霸王龙丛林）"
+        ],
+        col3: [
+          "<strong>U-571 Submarine Simulator (U-571 潜艇极限灾难模拟器，2006)</strong>（<code>T6.5 + T2.4</code> <strong>步入式真水灌舱灾难模拟器</strong>：钻入 1:1 二战鱼雷潜艇狭长舱室对坐，深水炸弹引爆时整座液压潜艇剧烈摇晃，<strong>舱顶破裂管线向乘客直接倾泻数吨高压冷水</strong>）",
+          "<strong>Magma 2.1 (岩浆号重型越野卡车劫难)</strong>（<code>T3.2 + T6.5</code> 真人特技车手驾驶重型 <strong>MAN 敞篷军卡</strong>高速冲入地热发电厂灾难大厅，亲历桥面坍塌、烈焰喷射与山洪瀑布从车顶砸下）",
+          "<strong>Disaster – The Blockbuster Tour (2024 新)</strong>（<code>T3.2 + T6.5</code> 双节铰接观光车穿越多座电影摄影棚亲历龙卷风与金刚袭击） & <strong>Android 3D</strong>（<code>T4.1 / T2.4</code>）"
+        ]
+      },
+      {
+        col1: "<strong>法国阿斯特里克斯公园<br>7. Parc Astérix（高卢英雄乐园）</strong>",
+        col2: [
+          "<strong>Épidemaïs Croisière (高卢游船)</strong>（<code>5.1.1.1 / 5.1.2.1</code> Intamin 16 座导槽漂流船，沿岸布置阿斯特里克斯漫画动态雕像与喷水机关）",
+          "<strong>Menhir Express (巨石快车)</strong> & <strong>La Revanche des Pirates – Grand Splatch (2024 翻新)</strong>（<code>5.1.1.2</code> 含室内暗黑隧道与海盗机械人偶水面爆破机关的激流船）",
+          "<em>历史经典</em>：<strong>Transdemonium (2003–2017)</strong>（<code>1.1.1.1</code> WGH 古堡地牢多区段变速倾斜弯道中世纪惊悚有轨车）"
+        ],
+        col3: [
+          "<strong>Le Défi de César (凯撒的挑战，2008)</strong>（<code>T5.1</code> <strong>Mack Rides 80 座旗舰级多厅疯屋 Madhouse</strong>：4 段式爆笑预演厅含人脸识别贴入罗马士兵漫画、晃动甲板直面三面环幕与水雾冲击的罗马战舰厅，最后进入 360° 翻转的高卢间谍船主厅）",
+          "<strong>Attention Menhir! (小心巨石！4D 剧场，2019)</strong>（<code>T6.7</code> CL Corporation 300 座高动态气动升降 4D 影院 + 佩珀尔幻象预演厅）"
+        ]
+      },
+      {
+        col1: "<strong>瑞典里瑟本游乐园<br>8. Liseberg（哥德堡）</strong>",
+        col2: [
+          "<strong>Underlandet (兔子地底秘密王国，2020)</strong>（<code>1.1.1.1 / 2.1</code> <strong>Gosetto 隐藏导槽旋转车 + P&P Projects 机械木偶</strong>：深入绿兔子在地底建造的胡萝卜加工厂，<strong>结局整辆乘骑车直接驶入伪装成矿井升降机的垂直提升电梯</strong>重返地面树洞车站）",
+          "<em>历史经典</em>：<strong>Sagoslottet (童话城堡，1968–2017)</strong>（<code>3.1</code> Mack 顶部悬挂单轨皇家金色飞船）"
+        ],
+        col3: [
+          "<strong>Spökhotellet Gasten (加斯顿幽灵旅馆，1998)</strong>（<code>T6.6</code> 北欧最负盛名的步入式哥特惊悚剧场，融合真人幽灵船员、倾斜摇晃甲板地板与暗门机关）"
         ]
       }
     ]
@@ -869,66 +931,108 @@ window.PARK_MATRIX_DATA = {
     ]
   },
 
-  eurocoaster: {
-    title: "3.11 欧洲六大过山车与电影主题标杆乐园（Alton Towers / Parc Astérix / Gardaland / Movieland / Liseberg / PortAventura）全项目盘点表",
-    headers: ["乐园名称", "行进式 Dark Ride（含五次弹射多维过山车 / 游客真吉普自驾 / 地下水道）", "暗黑剧场、极限真火与潜艇灌舱灾难秀、疯屋（Madhouse）"],
+  seaworld: {
+    title: "海洋世界与布什花园集团（United Parks & Resorts：SeaWorld & Busch Gardens）全项目盘点表",
+    headers: ["乐园名称", "行进式 Dark Ride（含无轨动感车 / 水路过山车 / 全室内跨骑发射过山车）", "暗黑剧场、飞行影院、动感模拟器与历史神作"],
     rows: [
       {
-        col1: "<strong>西班牙冒险港世界<br>1. PortAventura World（含 PortAventura Park 主园 & Ferrari Land 法拉利乐园）</strong>",
+        col1: "<strong>奥兰多海洋世界<br>1. SeaWorld Orlando</strong>",
         col2: [
-          "<strong>Uncharted: The Enigma of Penitence (神秘海域：苦修之谜，2023)</strong>（<code>1.1.4.2</code> <strong>Intamin 欧洲首台全封闭五次弹射多维受控旋转暗黑过山车 + Sally 内森·德雷克高仿真机械人偶</strong>：4800㎡ 全黑场馆内集成 5 次 LSM 弹射、车载 360° 旋转对位、高速盲滑变轨、倒退段与<strong>垂直自由落体侧滑跌落轨 Lateral Drop Track</strong>）",
-          "<strong>Street Mission (芝麻街：曲奇神探任务，2019)</strong>（<code>2.1 + 1.1.1.3</code> <strong>Sally Dark Rides + ETF Multi Mover 埋线导引车</strong>：6 座侦探出租车穿过曲奇怪电动木偶与 8 块 3D 弧幕/360° 深海隧道幕射击寻宝）"
+          "<strong>Antarctica: Empire of the Penguin (南极洲：企鹅帝国，2013)</strong>（<code>2.2.1</code> <strong>Oceaneering 无轨 AGV + 车载 2-DOF 动感平台</strong>：乘客可在排队时自选温和或剧烈摇摆模式，无轨冰车穿过冰川声光洞穴后，直接驶入饲养有百余只真帝企鹅与王企鹅的零下极地生态馆）",
+          "<strong>Journey to Atlantis (亚特兰蒂斯之旅，1998)</strong>（<code>5.1.2.3</code> <strong>Mack Rides 全球首台水路过山车 Water Coaster</strong>：前半程作为慢速室内水道船深入沉没的亚特兰蒂斯黄金城与海妖密室，随后经历两段高空激流俯冲并切换至过山车钢轨高速滑行）",
+          "<strong>Infinity Falls (无尽瀑布)</strong>（<code>5.1.1.2</code> Intamin 热带雨林激流皮筏，配备巨型垂直升降电梯塔）"
         ],
         col3: [
-          "<strong>Templo del Fuego (烈焰神庙，2001)</strong>（<code>T6.5</code> <strong>Thinkwell + Technifex 全球火力最狂暴的极限真火灾难实景特技剧场</strong>：两厅考古学家预演后，整座地下玛雅神庙穹顶、石柱与水面瞬间被排山倒海的真实烈焰吞噬，高潮时<strong>游客站立的整块石质观演平台突然触发气动机构瞬间下沉倾斜</strong>，伴随水墙冲灭烈火）",
-          "<strong>Ferrari Land《Flying Dreams (飞跃法拉利梦想)》</strong>（<code>T1.2</code> <strong>Brogent i-Ride</strong> 顶置悬挂球幕飞行影院）",
-          "<strong>Ferrari Land《Racing Legends (赛车传奇)》</strong>（<code>T2.3</code> <strong>Brogent</strong> 多台敞篷 F1 赛车 6-DOF 动感平台共同面向巨型半球幕）",
-          "<strong>Dino Escape 4D (原 Sea Odyssey 深海奥德赛)</strong>（<code>T2.4 / T6.7</code> Thinkwell + Thomson 双厅 80 座大型军工级液压潜水器模拟客舱） & <strong>El Secreto de los Mayas</strong>（<code>T6.6</code> 镜面荧光迷宫）"
+          "<strong>Expedition Odyssey (北极远征，2025 新)</strong>（<code>T1.4</code> <strong>Mack Rides 新一代悬空球幕飞行影院</strong>：建于原《狂野北极》场馆内，带领游客飞越北极冰盖并潜入冰海深处，散场衔接白鲸与海象真动物极地展区）",
+          "<strong>TurtleTrek (海龟奇旅)</strong>（<code>T6.4</code> 360° 全景 3D 球形穹顶剧场）",
+          "<em>历史经典</em>：<strong>Wild Arctic (狂野北极，1995–2024)</strong>（<code>T2.1</code> Reflectone / SimEx 大型封闭式极地喷气直升机 6-DOF 液压动感模拟客舱）"
         ]
       },
       {
-        col1: "<strong>意大利好莱坞电影乐园<br>2. Movieland Park (Canevaworld)</strong><br><em>全球特种改装载具与实景灾难工程的“狂人实验室”</em>",
+        col1: "<strong>圣迭戈海洋世界 & 圣安东尼奥海洋世界<br>2. SeaWorld San Diego & San Antonio</strong>",
         col2: [
-          "<strong>Pangea: The World of Dinosaurs (盘古大陆：恐龙世界，2018)</strong>（<code>1.1.1.1</code> <strong>全球首创由游客真正手握方向盘与油门自驾真吉普车的恐龙 Dark Ride</strong>：打破轨道车方向盘纯摆设惯例，在宽幅隐藏导槽与车载雷达保护下亲自操控铃木真吉普转向与加减速穿越机械霸王龙丛林，系统实时对驾驶打分）"
+          "<strong>圣迭戈《Journey to Atlantis》</strong>（<code>5.1.2.3</code> Mack 水路过山车，配备室外垂直电梯提升塔与海底声光暗黑段）",
+          "<strong>圣迭戈《Arctic Rescue (北极救援，2023)》</strong>（<code>1.1.4.3</code> Intamin 跨骑式雪地摩托过山车：以原《狂野北极》模拟馆作为室内极地科考站暗黑发射起点，经历 3 次 LSM 加速）",
+          "<strong>圣迭戈《Submarine Quest》</strong>（<code>1.1.1.3</code> 互动科考潜艇车） & <strong>圣安东尼奥《Journey to Atlantis》</strong>（<code>5.1.2.3</code> Mack 旋转转盘倒退水上过山车）"
         ],
         col3: [
-          "<strong>U-571 Submarine Simulator (U-571 潜艇极限灾难模拟器，2006)</strong>（<code>T6.5 + T2.4</code> <strong>全球最硬核的步入式真水灌舱灾难模拟器</strong>：经历空袭轰炸机库预演后钻入 1:1 二战鱼雷潜艇狭长舱室对坐；深水炸弹引爆时整座液压潜艇剧烈倾斜摇晃，<strong>舱顶破裂管线直接向乘客头顶倾泻数吨真实高压冷水</strong>）",
-          "<strong>Magma 2.1 (岩浆号重型越野卡车劫难)</strong>（<code>T3.2 + T6.5</code> 真人特技车手驾驶重型 <strong>MAN 敞篷军用越野卡车</strong>高速冲入地热发电厂灾难大厅，在车上亲历桥面坍塌下沉、烈焰喷射与数吨山洪瀑布从车顶砸下）",
-          "<strong>Disaster – The Blockbuster Tour (2024 新)</strong>（<code>T3.2 + T6.5</code> 双节铰接观光车驶入多座电影摄影棚亲历龙卷风、巨型金刚袭击与山洪特效）",
-          "<strong>Android 3D – The Final Battle</strong>（<code>T4.1 / T2.4</code> 270° 环幕 + 大型多自由度动感平台） & <strong>Space Mission Orbit</strong>（<code>T2.4</code> 3G 离心封闭航天舱） & <strong>Holmes Hotel</strong>（<code>T6.6</code>）"
+          "<strong>圣迭戈《Jewels of the Sea: The Jellyfish Experience (2025)》</strong>（沉浸式水母数字穹幕与活体水母光影展馆）",
+          "<em>历史经典</em>：<strong>圣迭戈《Wild Arctic》</strong>（<code>T2.1</code> 极地直升机液压动感模拟舱）"
         ]
       },
       {
-        col1: "<strong>法国阿斯特里克斯公园<br>3. Parc Astérix（高卢英雄乐园）</strong>",
+        col1: "<strong>威廉斯堡布什花园<br>3. Busch Gardens Williamsburg</strong>",
         col2: [
-          "<strong>Épidemaïs Croisière (高卢游船)</strong>（<code>5.1.1.1 / 5.1.2.1</code> Intamin 16 座导槽漂流船，沿岸布置阿斯特里克斯漫画动态雕像与喷水机关）",
-          "<strong>Menhir Express (巨石快车)</strong> & <strong>La Revanche des Pirates – Grand Splatch (2024 翻新)</strong>（<code>5.1.1.2</code> 含室内暗黑隧道与海盗机械人偶水面爆破机关的激流船）",
-          "<em>历史经典</em>：<strong>Transdemonium (2003–2017)</strong>（<code>1.1.1.1</code> WGH 古堡地牢多区段变速倾斜弯道中世纪惊悚有轨车）"
+          "<strong>DarKoaster (达卡斯：狼人诅咒，2023)</strong>（<code>1.1.4.3</code> <strong>Intamin 北美首台全室内全黑跨骑式雪地摩托过山车</strong>：直接建于原《达卡斯堡的诅咒》古堡建筑内，在暴风雪与狼人幽影环伺的暗室中连续经历 4 次 LSM 直线电机弹射）",
+          "<strong>Escape from Pompeii (庞贝末日，1996)</strong>（<code>5.1.1.2</code> <strong>Intamin 重型真火特效暗黑激流船</strong>：游船升入庞贝古迹室内展厅，经历石柱雕像倾倒、屋顶横梁坍塌与水面熊熊真火包围，最后冲破城门高空入水）",
+          "<strong>Verbolten (禁林狂飙，2012)</strong>（<code>1.1.4.3</code> <strong>Zierer 多段发射过山车</strong>：冲入全封闭德国黑森林特效大棚，经历风暴闪电/狼人/女巫三种随机声光结局与 <strong>5.5 米垂直自由落体跌落轨 Drop Track</strong>）",
+          "<strong>Loch Ness Monster (尼斯湖水怪，2024 焕新版)</strong>（<code>1.1.4.3</code> Arrow 经典双环过山车，螺旋洞穴隧道内增设尼斯湖水怪声光巨幕暗黑段）",
+          "<em>历史神作</em>：<strong>Curse of DarKastle (达卡斯堡的诅咒，2005–2017)</strong>（<code>1.1.2.1</code> <strong>Oceaneering 车载 6-DOF 黄金雪橇动感车</strong> + 3D 巨幕与冰雪冷风实景，曾被公认为环球《蜘蛛侠》之外最强的第一代 SCOOP 动感暗黑乘骑）"
         ],
         col3: [
-          "<strong>Le Défi de César (凯撒的挑战，2008)</strong>（<code>T5.1</code> <strong>Mack Rides 80 座旗舰级多厅疯屋 Madhouse</strong>：拥有极长且爆笑的 4 段式预演厅——含实时抓取游客人脸贴入罗马士兵漫画、站在晃动甲板上直面三面环幕与水雾冲击的罗马战舰厅，最后进入 360° 翻转的高卢间谍船主厅）",
-          "<strong>Attention Menhir! (小心巨石！4D 剧场，2019)</strong>（<code>T6.7</code> CL Corporation 300 座高动态气动升降 4D 影院 + 佩珀尔幻象百夫长预演厅）"
+          "<strong>Battle for Eire / Europe in the Air / Corkscrew Hill / Questor</strong>（<code>T2.1 / T2.4</code> 爱尔兰园区历代大型液压动感模拟器剧场，曾先后演绎地底水晶探险、奇幻巨人与 VR 守护战）"
         ]
       },
       {
-        col1: "<strong>瑞典里瑟本游乐园<br>4. Liseberg（哥德堡）</strong>",
+        col1: "<strong>坦帕湾布什花园<br>4. Busch Gardens Tampa Bay</strong>",
         col2: [
-          "<strong>Underlandet (兔子地底秘密王国，2020)</strong>（<code>1.1.1.1 / 2.1</code> <strong>Gosetto 隐藏导槽旋转车 + P&P Projects 机械木偶</strong>：深入绿兔子在地底建造的胡萝卜加工厂，<strong>结局整辆乘骑车直接驶入伪装成矿井升降机的垂直提升电梯</strong>重返地面树洞车站）",
-          "<em>历史经典</em>：<strong>Sagoslottet (童话城堡，1968–2017)</strong>（<code>3.1</code> Mack 顶部悬挂单轨皇家金色飞船，从城堡外墙半空滑入内部童话微缩场景）"
+          "<strong>Cobra's Curse (眼镜蛇的诅咒，2016)</strong>（<code>1.1.4.2</code> <strong>Mack Rides 垂直电梯提升 + 室内暗黑叙事 + 自旋过山车</strong>：垂直升降机将列车抬升至 21 米高空，与巨型古埃及蛇王雕像毒牙贴脸对视，随后依次经历前向、倒退与自由旋转三段滑行）",
+          "<strong>Stanley Falls Flume & Congo River Rapids</strong>（<code>5.1.1.2</code> 丛林原木激流船与洞穴漂流）"
         ],
         col3: [
-          "<strong>Spökhotellet Gasten (加斯顿幽灵旅馆，1998)</strong>（<code>T6.6</code> 北欧最负盛名的步入式哥特惊悚剧场，融合带台词剧情的真人幽灵船员、倾斜摇晃甲板地板与暗门机关）"
+          "<em>历史经典</em>：<strong>Akbar's Adventure Tours (阿克巴历险记)</strong>（<code>T2.1</code> 埃及集市骆驼飞毯液压动感模拟器）"
+        ]
+      }
+    ]
+  },
+
+  "na-other": {
+    title: "北美其他知名主题乐园（Dollywood / Silver Dollar City / Lagoon / Knoebels / Kennywood 等）全项目盘点表",
+    headers: ["乐园名称", "行进式 Dark Ride（含全室内火灾叙事过山车 / 矿井水道打靶 / 双结局射击过山车）", "暗黑剧场、视错觉怪屋与美式黄金时代遗产"],
+    rows: [
+      {
+        col1: "<strong>美国密苏里州银元城<br>1. Silver Dollar City（Herschend 赫申集团）</strong>",
+        col2: [
+          "<strong>Fire in the Hole (火烧城洞，1972 初代 / 2024 RMC 全新五层室内换代版)</strong>（<code>1.1.4.3</code> <strong>RMC 全室内叙事暗黑过山车</strong>：配备车载环绕音响，穿越被秃山帮纵火的 19 世纪矿业小镇、无裤镇长求救窗、燃烧木桥与迎面失控火车，最后冲入水池）",
+          "<strong>The Flooded Mine (洪水泛滥的矿井，1968)</strong>（<code>5.1.1.1 + 1.1.1.3</code> <strong>美式主题乐园黄金时代活化石级室内水道</strong>：乘坐平底矿工铁船漂流进被地下水淹没的监狱矿井，手持激光手枪向数十具越狱囚犯机械人偶与炸药桶靶标射击，结尾经历逼真的矿井坍塌视错觉）",
+          "<strong>Mystic River Falls (神秘河瀑布，2020)</strong>（<code>5.1.1.2</code> RES / Barr 4.5 层高旋转垂直电梯提升塔 + 高空激流皮筏）"
+        ],
+        col3: [
+          "<strong>Grandfather's Mansion (祖父的怪屋)</strong>（步入式重力倾斜视错觉迷宫与怪屋 Funhouse）",
+          "<strong>Marvel Cave (漫威真溶洞探险，1894)</strong>（整座银元城主题乐园正下方天然发育的巨型地下石灰岩真溶洞，含地下缆车返程）"
         ]
       },
       {
-        col1: "<strong>英国奥尔顿塔 & 意大利加达云霄乐园<br>5 & 6. Alton Towers & Gardaland</strong><br><em>（同属默林集团，详见 3.9 默林集团专表）</em>",
+        col1: "<strong>美国田纳西州多莉山<br>2. Dollywood（Herschend 赫申集团）</strong>",
         col2: [
-          "<strong>Alton Towers</strong>：<strong>The Curse at Alton Manor</strong>（<code>1.1.1.2</code> Mack 哥特鬼屋）、<strong>Nemesis Sub-Terra</strong>（<code>4.2</code> ABC 地底自由落体暗黑塔）、<strong>Gangsta Granny</strong>（<code>1.1.1.1</code>）、<strong>TH13TEEN</strong>（<code>1.1.4.3</code> 地下古墓垂直跌落轨过山车）",
-          "<strong>Gardaland</strong>：<strong>Jumanji – The Adventure</strong>（<code>1.1.2.1</code> Oceaneering 6-DOF 越野吉普动感车 + 6.5 米石像巨怪）、<strong>I Corsari / Animal Treasure Island</strong>（<code>5.1.1.1</code> Intamin 地下双层巨型海盗水道船）"
+          "<strong>Blazing Fury (烈焰追击，1978)</strong>（<code>1.1.4.3</code> <strong>Herschend 自研镇园室内暗黑叙事过山车</strong>：与初代《火烧城洞》同源，前半程以慢速有轨暗黑乘骑方式穿越十余幕 1880 年代小镇火灾机械人偶场景，后半程在黑暗中完成三段陡坡下坠与水花飞溅）",
+          "<strong>Mystery Mine (神秘矿井，2007)</strong>（<code>1.1.4.3</code> <strong>Gerstlauer 矿难暗黑段 + 垂直提升翻转过山车</strong>：矿车两度深入阴森幽暗的废弃煤矿内部，在机械乌鸦啼叫、矿井架坠落与瓦斯爆炸真火冲击波之间完成两段 90° 垂直链条提升）",
+          "<strong>Daredevil Falls (敢死队瀑布)</strong>（<code>5.1.1.2</code> 穿越废弃伐木场暗黑隧道与机械黑熊场景的高速激流船）"
         ],
         col3: [
-          "<strong>Alton Towers</strong>：<strong>Hex – The Legend of the Towers</strong>（<code>T5.1</code> 真实 19 世纪古堡遗址 + Vekoma 疯屋）",
-          "<strong>Gardaland</strong>：<strong>Magic House</strong>（<code>T5.1</code> 精灵古树正下方的 Vekoma 地下疯屋）、<strong>Jumanji – The Labyrinth</strong>（<code>T6.6</code>）、<strong>Time Voyagers</strong>（<code>T6.7</code>）"
+          "<strong>Dreamsong Theater / Heartsong Theater</strong>（多感官自然与音乐主题特效剧场）"
+        ]
+      },
+      {
+        col1: "<strong>美国犹他州泻湖乐园<br>3. Lagoon Amusement Park</strong>",
+        col2: [
+          "<strong>Primordial (原始森林，2023)</strong>（<code>1.1.4.2 + 1.1.1.3</code> <strong>ART Engineering + Triotech 巨型假山室内互动 3D 射击过山车</strong>：历时八年耗资逾 5000 万美元建成，旋转车厢在巨型机械猫头鹰、恶龙雕像与多块 3D 巨幕间驻停射击，尾声通过分叉道岔随机切入<strong>“垂直自由落体跌落轨 Drop Track”或“倾斜侧滑轨 Slide Track”双结局</strong>）",
+          "<strong>Dracula's Castle (德古拉城堡，1974)</strong> & <strong>Terroride (恐怖之旅，1967)</strong>（<code>1.1.1.1</code> 保存完好的美式经典有轨鬼屋，后者由 Knoebels 团队与 Sally 翻新）"
+        ],
+        col3: [
+          "<strong>Pioneer Village 历史街区与暗黑惊悚馆（Frightmares）</strong>"
+        ]
+      },
+      {
+        col1: "<strong>美国诺贝尔斯乐园 / 肯尼伍德 / 圣克鲁兹海滩等传奇独立乐园<br>4. Knoebels, Kennywood, Santa Cruz Beach Boardwalk & Waldameer</strong>",
+        col2: [
+          "<strong>Knoebels《Haunted Mansion (幽灵庄园，1973)》</strong>（<code>1.1.1.1</code> <strong>Pretzel / Knoebels 打造，连续十余年蝉联全美最佳传统鬼屋列车</strong>：双层宅邸内密集排布气动贴脸机关、紫外线黑光骷髅与迎面卡车喇叭惊吓）",
+          "<strong>Knoebels《Black Diamond (黑钻矿山车，2011)》</strong>（<code>1.1.4.3</code> 迁移自新泽西 1960 年 Golden Nugget 的三层室内暗黑矿井叙事滑车）",
+          "<strong>Kennywood《Old Mill (老磨坊，1901)》</strong>（<code>5.1.1.1</code> <strong>北美现存最古老的百年室内暗黑水道船</strong>，自 1901 年起持续运营至今） & <strong>《Ghostwood Estate》</strong>（<code>2.1 + 1.1.1.3</code> ETF 无轨激光捉鬼车） & <strong>《Exterminator》</strong>（<code>1.1.4.3</code> 室内下水道暗黑自旋过山车）",
+          "<strong>Santa Cruz《Cave Train (地下穴居人小火车，1961)》</strong> & <strong>《Haunted Castle (2010 Sally 翻新)》</strong>（<code>1.1.1.1</code>） · <strong>Waldameer《Whacky Shack (1970，Bill Tracy 双层邪典有轨鬼屋)》</strong>"
+        ],
+        col3: [
+          "<strong>Kennywood《Noah's Ark (诺亚方舟，1936)》</strong>（<code>T6.6</code> <strong>全球仅存的传统步入式摇摆方舟 Funhouse</strong>：整艘全尺寸巨型木制方舟搁浅在山顶并持续左右摇晃，游客从鲸鱼张开的大嘴步入摇晃的舱室与机关通道）"
         ]
       }
     ]
