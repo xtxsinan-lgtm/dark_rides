@@ -6,7 +6,7 @@
 > - **在线交互网站 (GitHub Pages)**：[https://xtxsinan-lgtm.github.io/dark_rides/](https://xtxsinan-lgtm.github.io/dark_rides/)
 > - **核心辨析涵盖**：方特《神画》《千古风华》无轨多自由度车如何实现《千里江山图》球幕飞行影院效果、顶部悬挂动感座舱 vs. KUKA 轨道工业机械臂、6-DOF SCOOP 车 vs. 迪士尼 EMV 越野车 vs. 方特《秦俑地宫》、无轨车 vs. 水下电磁船、球幕飞行影院四大机械构型。
 
-本文档将全球暗黑游乐项目拆解为 **第一部分：行进式 Dark Ride 的 5 大物理门类（采用 2~4 层可变深度逻辑树，共 29 个底层机制亚种）**、**第二部分：暗黑剧场与动感平台的 6 大硬件类别（21 个亚种）**、**第三部分：全球六大乐园体系（迪士尼、环球、中国方特、迪拜与阿布扎比、吉隆坡云顶 SkyWorlds、欧洲四大标杆乐园）全项目分类总表** 以及 **第四部分：视觉与交互机制矩阵**。
+本文档将全球暗黑游乐项目拆解为 **第一部分：行进式 Dark Ride 的 5 大物理门类（采用 2~4 层可变深度逻辑树，共 29 个底层机制亚种）**、**第二部分：暗黑剧场与动感平台的 6 大硬件类别（21 个亚种）**、**第三部分：全球十一大乐园体系（迪士尼、环球、中国方特、中国长隆、中国华侨城、英国默林、美国六旗与雪松会、迪拜与阿布扎比、吉隆坡云顶 SkyWorlds、欧洲四大暗黑标杆、欧洲六大过山车与电影名园）全项目分类总表** 以及 **第四部分：视觉与交互机制矩阵**。
 
 > [!IMPORTANT]
 > **第一部分“真·行进式 Dark Ride”的严格准入边界与分类逻辑**
@@ -83,7 +83,7 @@
       - ┃　┃　┣━━ 🔹 [`5.1.2.2` 自动导引巨型游船 + 尾声数百吨真水山洪漫灌（决战金山寺）](#m-5-1-2-2)
       - ┃　┃　┗━━ 🔹 [`5.1.2.3` 室内浓雾暗黑港口船 + 水上过山车跨界系统（飞翔的荷兰人）](#m-5-1-2-3)
     - ┃　┗━━ ⚙️ **[【三级分类 5.1.3】水下高自由度主动控制动感船（Active Multi-DOF Boats）](#m-5-1-3)**
-      - ┃　┃　┣━━ 🔹 [`5.1.3.1` 水下直线电机（LSM）全向自转横移巨船（上海加勒比海盗）](#m-5-1-3-1)
+      - ┃　┃　┣━━ 🔹 [`5.1.3.1` 水下导轨/直线电机全向自转横移与动感巨船（上海加勒比海盗 / 方特致远致远）](#m-5-1-3-1)
       - ┃　┃　┗━━ 🔹 [`5.1.3.2` 水下导轨 + 万向球铰主动俯仰横滚快艇（2025 Mack Rocking Boat）](#m-5-1-3-2)
   - ┗━━ 🎯 **[【二级终极机制 5.2】真实水下潜艇系统（Submerged Underwater Submarines）](#m-5-2)**
 
@@ -95,13 +95,18 @@
 - **🏚️ [【剧场类别 T5】疯屋视错觉滚筒剧场（Madhouse / Haunted Swing）](#cat-t5)**（[`T5.1` 双轴分离视错觉滚筒剧场](#t5-1)）
 - **✨ [【剧场类别 T6】全息幻象、千块空间魔砖矩阵与多感官特效剧场](#cat-t6)**（[`T6.1` 佩珀尔全息幻象](#t6-1) · [`T6.2` 程控空间矩阵动雕](#t6-2) · [`T6.3` 巨幕+实景机械模型](#t6-3) · [`T6.4` 无轨AGV道具车特技秀](#t6-4) · [`T6.5` 真水山洪灾难秀](#t6-5) · [`T6.6` 全黑感官剥夺馆](#t6-6) · [`T6.7` 标准4D与360°环幕](#t6-7)）
 
-### 🌍 [第三部分：全球六大乐园体系（69 座主题乐园）全项目分类总览表](#part-3)
+### 🌍 [第三部分：全球十一大乐园体系（120+ 座主题乐园）全项目分类总览表](#part-3)
 - **[3.1 全球迪士尼（6 大度假区 12 座乐园）全项目盘点表](#p3-1)**
 - **[3.2 全球环球影城（5 大度假区 7 大主题园，含 2025 Epic Universe）全项目盘点表](#p3-2)**
 - **[3.3 中国方特（全国 38 座乐园）Dark Ride 与暗黑剧场全景归类表](#p3-3)**
 - **[3.4 迪拜与阿布扎比各大标杆乐园（7 园）全项目盘点表](#p3-4)**
 - **[3.5 马来西亚吉隆坡云顶天城世界（Genting SkyWorlds）全项目盘点表](#p3-5)**
 - **[3.6 欧洲四大暗黑乘骑标杆乐园（Phantasialand / Efteling / Europa-Park / Futuroscope）全项目盘点表](#p3-6)**
+- **[3.7 中国长隆集团（珠海宇宙飞船 / 珠海海洋王国 / 广州欢乐世界 / 清远森林王国）全项目盘点表](#p3-7)**
+- **[3.8 中国华侨城集团（襄阳奇幻谷 / 东部华侨城 / 全国九大欢乐谷 / 卡乐星球）全项目盘点表](#p3-8)**
+- **[3.9 英国默林娱乐集团（Alton Towers / Thorpe / Chessington / Gardaland / Heide / 全球 11 座乐高乐园）全项目盘点表](#p3-9)**
+- **[3.10 美国六旗与雪松会合并集团（Six Flags & Cedar Fair / Cedar Point 集团）全项目盘点表](#p3-10)**
+- **[3.11 欧洲六大过山车与电影主题标杆名园（Alton Towers / Astérix / Gardaland / Movieland / Liseberg / PortAventura）全项目盘点表](#p3-11)**
 
 ### 👁️ [第四部分：视觉演艺（7大技术）与玩家交互机制（8大技术）速查索引表](#part-4)
 
@@ -641,11 +646,10 @@ flowchart TD
 <a id="m-5-1-2-2"></a>
 
 ##### ┃　┃　┣━━ 🔹 【四级终极机制 5.1.2.2】自动导引巨型游船 + 尾声数百吨真水山洪漫灌（Guided Mega-Boat + Practical Flood）
-* **机制特征**：搭载数十至上百人的大型平底游船沿水下导轨自动航行穿过室内实景水乡与多块巨幕，最终停靠在大型实景舞台前，触发数百吨真水滔天巨浪迎面扑来的水利奇观。
+* **机制特征**：搭载数十至上百人的大型平底游船沿水下导轨单向自动航行穿过室内实景水乡与多块巨幕，最终停靠在大型实景舞台前，触发数百吨真水滔天巨浪迎面扑来的水利奇观（注：船体本身不做 360° 全向自转或横向对轰走位，以此与 `5.1.3.1` 《致远 致远》相区分）。
 * **各乐园项目穷举**：
   * **【中国方特】**：
     * **《决战金山寺》**（芜湖、济南、宁波、太原、荆州、绵阳、淮安、邯郸、鹰潭等东方神画 / 国色春秋 —— 乘船穿过江南烟雨街巷实景 + 巨幕水战 + 尾声金山寺真水巨浪）
-    * **《致远 致远》**（宁波、淮安、赣州、济宁方特东方欲晓 —— 乘坐大型自动导引游船穿过清末船政局实景，驶入甲午海战巨幕与战舰沉没真水烈火爆破场景）
     * **《马六甲勇士》**（南宁方特东盟神画 —— 乘船跟随郑和船队穿越马六甲海峡狂风巨浪与海盗激战）
     * **《水漫金山》**（芜湖、厦门、株洲、郑州、泰安等初代梦幻王国/欢乐世界 —— 百人级有轨游船平台驶入实景金山寺观看白娘子真水漫灌）。
 
@@ -668,11 +672,13 @@ flowchart TD
 
 <a id="m-5-1-3-1"></a>
 
-##### ┃　┃　┣━━ 🔹 【四级终极机制 5.1.3.1】水下直线电机（LSM）电磁导引全向自转横移巨船（Magnetically Guided Omnidirectional Boat）
-* **机制特征**：水下深处铺设刚性变轨导轨网络与直线电机（LSM），计算机通过水下旋转立柱控制 30 人巨船在水面完成 **360° 原地自转、螃蟹步横向平移、急停倒退、水下变轨逆向高速冲坡**。
+##### ┃　┃　┣━━ 🔹 【四级终极机制 5.1.3.1】水下导轨/直线电机（LSM）全向自转横移与动感巨船（Underwater Track-Guided Omnidirectional / Rotational Boat）
+* **机制特征**：水下深处铺设刚性变轨导轨网络与直线电机（LSM）或水下伺服动感回转底盘，通过水下旋转立柱控制 24~30 人大型战船在水面完成 **360° 原地偏航自转（Yaw）、横向侧舷对轰走位、急停倒退、加减速冲锋与船体起伏摇摆**，在多块巨型球幕/环幕与真火实景战舰之间自由切换受众朝向。
 * **各乐园项目穷举**：
   * **【迪士尼】**：
-    * **《加勒比海盗——沉落宝藏之战 (Pirates of the Caribbean: Battle for the Sunken Treasure)》**（**上海迪士尼乐园全球独占** —— 迄今全球水上 Dark Ride 工程天花板）。
+    * **《加勒比海盗——沉落宝藏之战 (Pirates of the Caribbean: Battle for the Sunken Treasure)》**（**上海迪士尼乐园全球独占** —— WDI / Intamin 水下电磁导引多自由度可控巨船，迄今全球水上 Dark Ride 工程天花板）
+  * **【中国方特】**：
+    * **《致远 致远》**（宁波、淮安、赣州方特东方欲晓、太原方特东方神画 —— **对标上海迪士尼《加勒比海盗》水下轨道全向旋转/动感船机制的国产巅峰之作**！与单向行驶、最后停在舞台前看真水漫灌的《决战金山寺》（`5.1.2.2`）截然不同，《致远 致远》采用每船 4 排约 24~28 人的水下导轨多自由度旋转动感船：船只驶入大洋海战多座巨型半球幕/环幕与燃烧的 1:1 实景战舰残骸阵后，水下回转底盘带着整艘船完成 **90° 侧舷横移转向与敌舰排炮对轰、360° 偏航旋转切换球幕视角、受炮击震动摇摆与倒退变向**，并在尾声高潮正面加速冲向“吉野号”）。
 
 <a id="m-5-1-3-2"></a>
 
@@ -1036,9 +1042,9 @@ flowchart TD
 
 <a id="part-3"></a>
 
-## 🌍 第三部分：全球六大乐园体系（迪士尼、环球、中国方特、迪拜/阿布扎比、云顶 SkyWorlds、欧洲四大标杆）全项目分类总览表
+## 🌍 第三部分：全球十一大乐园体系（迪士尼、环球、中国方特、长隆、华侨城、默林、六旗与雪松会、迪拜/阿布扎比、云顶 SkyWorlds、欧洲四大标杆、欧洲六大过山车与电影名园）全项目分类总览表
 
-为了方便您按乐园品牌与具体园区横向对比、快速检索，以下将 **全球迪士尼（12 园）、全球环球影城（8 园）、中国方特（38 园）、迪拜与阿布扎比（7 园）、吉隆坡云顶天城世界（SkyWorlds）** 以及 **欧洲四大暗黑标杆乐园（Phantasialand、Efteling、Europa-Park、Futuroscope）** 的所有 Dark Ride 与暗黑剧场项目按园区与机制编号全量汇总：
+为了方便您按乐园品牌与具体园区横向对比、快速检索，以下将 **全球迪士尼（12 园）、全球环球影城（7 园）、中国方特（38 园）、迪拜与阿布扎比（7 园）、吉隆坡云顶天城世界（SkyWorlds）、欧洲四大暗黑标杆乐园（Phantasialand、Efteling、Europa-Park、Futuroscope）、中国长隆集团（4 园）、中国华侨城集团（15+ 园）、英国默林娱乐集团（16 园）、美国六旗与雪松会合并集团（16+ 园）** 以及 **欧洲六大过山车与电影名园（Alton Towers、Parc Astérix、Gardaland、Movieland、Liseberg、PortAventura）** 的所有 Dark Ride 与暗黑剧场项目按园区与机制编号全量汇总：
 
 ---
 
@@ -1093,7 +1099,8 @@ flowchart TD
 | **门类三：顶部悬挂（3.3 悬挂动感舱）** | **3.3 顶部悬挂 240° 抓举式多自由度动感座舱** | **《烈焰风云》/《火焰山》/《穿越火焰山》**(全国十余座梦幻王国/东方神画/国色春秋/恐龙王国) |
 | **门类四：垂直井道（4.2 四面巨幕升降）** | **4.2 垂直井道四面围合 3D 巨幕暗黑升降系统** | **《神州塔》**(太原/绵阳/宁波/荆州/厦门)、**《雷峰塔》**(芜湖/济南东方神画) |
 | **门类五：涉水系统（5.1.1 漂流与激流）** | **5.1.1.1 / 5.1.1.2 室内机械人偶漂流船 & 室内暗黑墓穴激流船** | **室内慢速漂流 (5.1.1.1)**：《缤纷华夏》/《七彩王国》/《七彩之旅》、《成语童话》(邯郸)、《森林时光》、《河谷探秘》(自贡)、《探险日记》(安阳)、《熊熊漂流》(安阳 VR 漂流)<br>**室内暗黑段+高空激流 (5.1.1.2)**：《逃出恐龙岛》、《神秘河谷》、《飞跃河谷》、《勇闯恐龙谷》、《仙岛探秘》、《津门大峡谷》、《昆仑探秘》 |
-| **门类五：涉水系统（5.1.2.2 巨船+真水）** | **5.1.2.2 自动导引巨船 + 尾声数百吨真水漫灌** | **《决战金山寺》**、**《致远 致远》**(东方欲晓)、**《马六甲勇士》**(南宁)、**《水漫金山》** |
+| **门类五：涉水系统（5.1.2.2 巨船+真水）** | **5.1.2.2 单向导引巨船 + 尾声数百吨真水漫灌** | **《决战金山寺》**、**《马六甲勇士》**(南宁)、**《水漫金山》** |
+| **门类五：涉水系统（5.1.3.1 水下全向旋转动感巨船）** | **5.1.3.1 水下导轨 360° 全向旋转/动感船 + 多巨幕海战（对标上海加勒比海盗）** | **《致远 致远》**(宁波/淮安/赣州方特东方欲晓、太原方特东方神画 —— 24~28 座水下轨道 360° 偏航旋转动感船，在大洋海战多块球幕与燃烧实景战舰间横向转船对轰、倒退变向并冲向吉野号) |
 | **第二部分：球幕飞行影院** | **T1.2 / T1.3 水平前推悬臂式 & 巨型钢架垂直拉升式** | **T1.2 前推悬臂**：《伴你飞翔》、《飞翔》、《飞越恐龙岛》、《山海》(资阳)<br>**T1.3 垂直拉升钢架**：《飞越极限》 |
 | **第二部分：动感球幕/环幕与升降穹顶** | **T2.3 / T2.4 / T2.6 动感球幕/环幕 & 升降旋转穹顶** | **T2.6 升降旋转穹顶**：《牛郎织女》/《天河之恋》、《西游传说》/《大闹天宫》<br>**T2.3/T2.4 动感球幕/环幕平台**：《疯狂成语》(邯郸)、《寻找鱼尾狮》(南宁/台州/宜春/淮安) /《动感无限》(孝感)、《重返地球》(宁波/临海动感环幕)、《龙宫奇遇》(徐州)、《星际航班》/《太空飞梭》 |
 | **第二部分：行走与旋转看台** | **T3.2 有轨行走看台车 & T3.3 360°旋转看台剧场** | **T3.2 行走看台车（45~80座）**：**《秦陵历险（一期欢乐世界版）》**、**《龙王传说》**(郑州 45座)、**《哪吒闹海（株洲/绵阳 45座看台版）》**、**《大闹水晶宫（天津缆车看台版）》**<br>**T3.3 旋转看台**：《岁月如歌》、《万世春秋》(资阳)、《熊出没之重返侏罗纪》/《重返侏罗纪》、《熊出没奇遇记》(安阳)、《马尼拉马尼拉》(南宁)、《周易》(安阳双面旋转八卦魔球) |
@@ -1144,6 +1151,85 @@ flowchart TD
 | **荷兰 Efteling<br>（艾夫特琳）** | • **Symbolica**（2.1 ETF 无轨多车共舞 + 排队自主选 3 条路线分支）<br>• **Droomvlucht**（3.2 顶部悬挂变速 + 精灵沼泽高速螺旋俯冲）<br>• **Fata Morgana**（5.1.2.1 Intamin 水下钢缆牵引阿拉伯一千零一夜游船）<br>• **Carnaval Festival**（1.1.1.2 Mack 连续移动 Omnimover 木偶世界游历）<br>• **De Vliegende Hollander**（5.1.2.3 **前半程室内 17 世纪港口与真实浓雾暗黑船 + 后半程水上过山车**） | • **Danse Macabre 骷髅之舞**（T3.1 2024 新，Intamin 18 米倾斜升降高速旋转主转盘 + 6 子转盘哥特修道院剧场）<br>• **Villa Volta**（T5.1 Vekoma 全球首座现代主题化疯屋滚筒剧场）<br>• **Fabula (原 PandaVision)**（T6.7 4D 特效影院 + 树枝坠落机关）<br>• **De Indische Waterlelies**（T6.3 室内自动机械人偶音乐剧场）<br>• *退役经典*：**Spookslot**（T6.3 玻璃幕墙机械幽灵交响剧场） |
 | **德国 Europa-Park<br>（欧洲公园）** | • **Arthur**（3.4 **Mack 悬挂受控动力慢速旋转看戏 + 加速冲刺全球首发旗舰**）<br>• **Piraten in Batavia**（5.1.1.1 Mack 顶级印尼水乡水槽暗黑船）<br>• **Snorri Touren**（1.1.1.4 Mack 有轨旋转车 + 两座弧幕液压动感跳台桥）<br>• **Abenteuer Atlantis**（1.1.1.3 Mack Omnimover + 摇杆自转 + 激光打靶）<br>• **Castello dei Medici (原 Geisterschloss)**（1.1.1.2 Mack 双层 Omnimover 鬼屋）<br>• **Madame Freudenreich Curiosités**（1.1.1.2 Mack Omnimover 阿尔萨斯老奶奶恐龙馆）<br>• **Schlittenfahrt Schneeflöckchen** & **Piccolo Mondo**（1.1.1.1 室内有轨童话车）<br>• **Elfenfahrt** & **Marionetten-Bootsfahrt**（5.1.1.1 含室内暗黑段游船）<br>• **Poseidon** & **Atlantica SuperSplash**（5.1.2.3 含室内古希腊神庙暗黑水道段水上过山车） | • **Voletarium 飞越欧洲**（T1.2 Brogent i-Ride 欧洲最大双球幕飞行影院）<br>• **Fluch der Kassandra**（T5.1 Mack 古希腊沉船疯屋滚筒剧场）<br>• **Magic Cinema 4D**（T6.7 大型 4D 特效影院）<br>• **Historama / 旋转博物馆剧场**（T3.3 旋转看台多媒体剧场） |
 | **法国 Futuroscope<br>（未来影视城）** | • **Mission Bermudes**（5.1.3.2 **2025 全球首发 Mack Rocking Boat** 水下导轨万向摇摆动感快艇 + 暗黑漩涡 + 倒退变轨 + 急流俯冲）<br>• **La Machine à voyager dans le temps (疯狂兔子时光机)**（1.1.1.1 ETF 有轨旋转震动马桶列车 + 3D 巨幕与实景搞笑交互） | • **Chasseurs de Tornades 龙卷风猎人**（T3.1 Dynamic 120 座中央倾斜升降高速旋转舞台 + 360° 环形 LED 巨幕 + 真越野车上台特技）<br>• **L'Extraordinaire Voyage 非凡之旅**（T1.4 Dynamic 84 座平地入座 **90° 整体翻转竖立式**飞行影院）<br>• **Danse avec les Robots 与机器人共舞**（T2.7 **10 台 7 米高原地固定基座 KUKA 工业机械臂电音舞池**）<br>• **Arthur, l'Aventure 4D**（T2.2 900㎡ IMAX 全天域球幕 + 多层 25 座 6-DOF 液压瓢虫模拟器）<br>• **La Vienne Dynamique** & **Dynamic!**（T2.4 矩阵式大行程液压动感座椅剧场）<br>• **Sébastien Loeb Racing Xperience**（T2.1 6-DOF 桶椅 + VR 头显）<br>• **Étincelle**（T6.7）、**Eclipse**（T6.3）、**Les Yeux Grands Fermés**（T6.6 100% 全黑感官剥夺盲人体验馆） |
+
+---
+
+<a id="p3-7"></a>
+
+### 🐋 【乐园总表 3.7】中国长隆集团（珠海宇宙飞船 / 珠海海洋王国 / 广州欢乐世界 / 清远森林王国）全项目盘点表
+
+[⬆️ 返回全景目录](#toc)
+
+| 度假区与乐园名称 | 行进式 Dark Ride（含真水下潜艇/悬挂单轨/水上过山车） | 暗黑剧场、巨型动感模拟器与全息演艺项目 |
+| :--- | :--- | :--- |
+| **珠海横琴长隆国际海洋度假区<br>1. 长隆宇宙飞船<br>Chimelong Spaceship（2023 开业）** | • **《深海潜艇 (Deep Sea Submarine)》**（5.2 **Mack Rides 全球最大规模真水下导轨半潜艇**，8 艘 24 座潜艇潜入游弋数万条真实鲨鱼与鳐鱼的巨型海水池，结合水下防水 LED 巨幕与深海火山实景）<br>• **《海洋单轨车 (Ocean Monorail / 探索漫游)》**（3.1 **Mack Rides 顶部悬挂式单轨电动游览车**，穿行于飞船二层高空海洋奇观、暗黑光影隧道与星际展区）<br>• **《酷比之旅 (Kubi's Journey)》**（1.1.1.1 地面有轨互动科普 Dark Ride，贯穿环保教育黑光布景） | • **《百慕大历险 (Bermuda Storm)》**（T2.3 **Brogent 智崴全球最大 304 座单甲板 6-DOF 液压动感仿真船平台** + 1680㎡ 75° 弧形球幕 + 真实水雾风暴，斩获 TEA Thea 杰出成就奖）<br>• **《宇宙世界 / 星际站台 (Space World & Interstellar Platform)》**（T3.2 + T6.7 多厅步入式大型动感升降平台与 360° 环形苍穹幕太空转场剧场）<br>• **《深海游乐区室内跳楼机 / 魔幻光影秀》**（4.2 / T6.3 室内深海主题垂直升降塔与机械动雕大秀） |
+| **珠海横琴长隆国际海洋度假区<br>2. 长隆海洋王国<br>Chimelong Ocean Kingdom** | • **《海底互动船 (Deep Sea Odyssey)》**（3.1 **Mack Rides 顶部悬挂单轨深海潜航吊舱**，15 幕场景中既包含熔岩火山与发光水母机械人偶暗黑隧道，更直接贴着全球最大鲸鲨馆亚克力巨窗穿行观鲨）<br>• **《冰山过山车 (Polar Explorer)》**（5.1.2.3 **Mack Rides 室内暗黑水道 + 水上过山车跨界代表作**，前半段漂流穿过北极熊村庄与冰封溶洞机械人偶暗黑段，后半段提升至 23 米冰山顶两次俯冲落水）<br>• **《企鹅过山车 / 极地探险》**（极地展区半室内游览） | • **《5D 城堡影院：卡卡大冒险 (5D Castle Theater)》**（T6.3 + T6.7 **Kraftwerk 1000+ 座 4-DOF 动感座椅 + 88 米宽 18 米高 180° 3D 弧形巨幕** + Garner Holt 过顶滑索机械飞鸟与两侧弹出式机械人偶） |
+| **广州番禺长隆旅游度假区<br>3. 广州长隆欢乐世界<br>Chimelong Paradise** | • **《飞马家庭过山车 / 森林神庙前导段》**（园内以室外极限过山车为主，暗黑体验集中于右列三大室内剧场） | • **《星际决战 (Interstellar Showdown，原银河历险)》**（T3.3 + T2.3 **大型 360° 环形立体穹顶幕 + 多块动感旋转/升降飞行平台剧场**，模拟太空战舰升空与外星舰队激战）<br>• **《森林神庙 (Forest Temple)》**（T6.1 + T6.3 多厅步入式沉浸暗黑剧场，融合佩珀尔全息幻象、真实火焰爆破、摇晃吊桥与神庙大型机械守护兽）<br>• **《四维影院 (4D Theater)》**（T6.7 大型 4D 多感官特效剧场） |
+| **清远长隆国际森林度假区<br>4. 清远长隆森林王国（2025 试运营）** | • **《蒸汽火车穿越大非洲 / 森林探险》**（以真实野生动物种群与自然生境互动为核心，室内暗黑骑乘非园区主轴） | • **《森林剧场 / 虫虫微缩剧场》**（T6.3 / T6.7 森林生态主题多媒体机械木偶与 4D 特效剧场） |
+
+---
+
+<a id="p3-8"></a>
+
+### 🎢 【乐园总表 3.8】中国华侨城集团（襄阳奇幻谷 / 深圳东部华侨城 / 全国九大欢乐谷 / 卡乐星球）全项目盘点表
+
+[⬆️ 返回全景目录](#toc)
+
+| 乐园名称 | 行进式 Dark Ride（含 6-DOF 动感车/无轨车/射击车/暗黑水道） | 暗黑剧场、球幕飞行影院、疯屋与实景灾难秀 |
+| :--- | :--- | :--- |
+| **襄阳华侨城奇幻谷<br>Fabland Xiangyang（2022 开业）<br>（华侨城集团 Dark Ride 密度最高旗舰园）** | • **《地心历险 (Journey to the Center of the Earth)》**（1.1.2.1 **车载 6-DOF 动感平台 + 3D 巨幕与熔岩实景**，驾驶钻地装甲车深入地核遭遇巨兽）<br>• **《虫巢突围 (Insect Hive Breakout)》**（1.1.1.3 有轨旋转装甲车 + 车载重机枪 3D 屏幕与实景外星巨虫射击）<br>• **《星际历险 (Interstellar Adventure)》**（2.1 平层无轨 AGV 星际探险车穿行太空舱与弧幕）<br>• **《深海探秘 (Deep Sea Mystery)》**（5.2 / 3.1 仿潜艇海底巨幕与机械海洋生物暗黑游览）<br>• **《方舟大冒险 (Ark Adventure)》**（5.1.1.2 含史前巨兽室内暗黑河道段与 26 米高空巨浪俯冲激流船） | • **《奇境：穿越北纬 30 度》**（T1.2 多层前推悬臂式球幕飞行影院）<br>• **《超时空营救》**（T2.3 / T2.4 大型球幕/巨幕多自由度动感模拟器剧场）<br>• **《觉醒战神 (Awakening God of War)》**（T6.5 + T6.3 巨型蒸汽朋克机械战神模型 + 真火水爆破实景特技剧场） |
+| **深圳东部华侨城<br>OCT East（大侠谷）** | • **《地心四千里 (4000 Miles to the Center of the Earth)》**（1.1.2.1 中国早期标杆级 6-DOF 车载动感平台 + 多幕 3D 投影地心探险）<br>• **《深海探奇 (Deep Sea Adventure)》**（T2.5 / 3.1 悬空步道与 360° 球幕深海奇观体验馆） | • **《咆哮山谷 (Roaring Mountain)》**（T6.5 1500 座半室内山洪暴发灾难特技剧场，数百吨真水从假山倾泻冲毁矿山小镇并伴随煤气罐真火爆炸）<br>• **《海菲德天幕 / 四维影院》**（T6.7） |
+| **深圳欢乐谷 & 北京欢乐谷<br>Happy Valley Shenzhen & Beijing** | • **深圳欢乐谷**：**《炫彩伴侣 / 追梦伴侣》**（1.1.1.1 有轨童话暗黑车）、**《北极探险》**（1.1.1.3 互动射击）、**《寻梦河》**（5.1.1.1 船游）、**《矿山车》**（含暗黑矿洞段）<br>• **北京欢乐谷**：**《奇幻海洋 / 潜艇总动员》**（1.1.1.1 / 3.1 甜品王国室内海洋有轨巡游）、**《蚁国奇兵》**（1.1.1.1）、**《特洛伊木马 / 夺宝奇兵》**（室内暗黑段） | • **北京欢乐谷**：**《奇境：穿越北纬 30 度》**（T1.2 球幕飞行影院）、**《魔幻剧场》**（T6.7 4D 剧场）、*历史经典*《老北京》（T3.2 行走看台车）<br>• **深圳欢乐谷**：**《山洪暴发》**（T6.5 真水灾难剧场）、**《魔幻城堡 / 四维影院》**（T6.7）、**《地道战》**（实景爆破演艺） |
+| **上海 / 成都 / 武汉欢乐谷<br>Happy Valley Shanghai, Chengdu & Wuhan** | • **上海欢乐谷**：**《奇境：穿越北纬 30 度》**（T1.2，见右列）、**《丛林射水 / 激光战车》**（1.1.1.3 有轨射击）、**《峡谷漂流》**（含室内暗黑溶洞段）<br>• **成都欢乐谷**：**《幽灵古堡》**（1.1.1.1 / 1.1.1.3 有轨鬼屋与射击）、**《加勒比风暴》**（涉水暗黑段）<br>• **武汉欢乐谷**：**《极速穿越》**（1.1.2.1 车载 6-DOF 动感 3D 暗黑车）、**《奇境：飞越长江》**（见右列） | • **上海欢乐谷**：**《奇境：穿越北纬 30 度（原飞越美利坚）》**（T1.2 球幕飞行影院）、**《老上海 / 暴风眼》**（T5.1 / T6.5 灾难与视错觉体验馆）、**《四维影院》**（T6.7）<br>• **成都欢乐谷**：**《飞越西部》**（T1.2 球幕飞行影院）、**《抓壮丁》**（实景影视特技剧场）、**《四维影院》**（T6.7）<br>• **武汉欢乐谷**：**《飞越长江》**（T1.2 球幕飞行影院）、**《打码头》**（实景爆破剧场） |
+| **天津 / 重庆 / 南京 / 西安欢乐谷<br>& 卡乐星球（柳州/常德）<br>& 深圳世界之窗** | • **天津欢乐谷**：**《深海漩涡 / 怒海争锋》**（1.1.2.1 车载 6-DOF 动感海盗 3D 暗黑车）、**《峡谷漂流》**（5.1.1.2 全室内维京海盗暗黑激流漂流）<br>• **南京欢乐谷**：**《星际战舰》**（1.1.2.1 / 1.1.1.3 科幻有轨动感/互动暗黑车）<br>• **华侨城卡乐星球（柳州/常德）**：**《神话 / 勇闯魔王谷》**（1.1.2.1 车载 6-DOF 动感平台 + 3D 巨幕暗黑车）<br>• **深圳世界之窗**：**《重返侏罗纪》**（5.1.1.2）、**《极速富士山》**（T2.3） | • **重庆欢乐谷**：**《飞越重庆》**（T1.2 球幕飞行影院）、**《山城风云》**（T6.5 实景水火剧场）<br>• **南京欢乐谷**：**《奇境：穿越北纬 30 度》**（T1.2 球幕飞行影院）<br>• **柳州/常德卡乐星球**：**《飞越紫禁城 / 翱翔神州》**（T1.2 球幕飞行影院）、**《卡乐幽灵船》**（T6.6 步入式鬼屋）、**《360° 环球影院》**（T6.7）<br>• **深圳世界之窗**：**《飞跃美利坚》**（T1.2 中国首座大型球幕飞行影院之一） |
+
+---
+
+<a id="p3-9"></a>
+
+### 🇬🇧 【乐园总表 3.9】英国默林娱乐集团（Merlin Entertainments：英国三园 / 意大利 Gardaland / 德国 Heide Park / 全球 11 座乐高乐园）全项目盘点表
+
+[⬆️ 返回全景目录](#toc)
+
+| 乐园名称 | 行进式 Dark Ride（含 6-DOF 吉普/无轨/真潜艇/水道/鬼屋） | 暗黑剧场、飞行影院、疯屋与步入式惊悚馆 |
+| :--- | :--- | :--- |
+| **英国奥尔顿塔<br>Alton Towers Resort<br>（英国头号主题乐园）** | • **The Curse at Alton Manor (奥尔顿庄园的诅咒，2023)**（1.1.1.2 **Mack Rides 高容量有轨鬼屋系统**，原 *The Haunted House / Duel* 移除激光枪回归硬核哥特恐怖：巨型恶魔蜘蛛跨轨爬行、佩珀尔幻象与镜面迷廊）<br>• **Nemesis Sub-Terra (复仇女神：地心惊魂)**（4.2 **ABC Rides 垂直升降自由落体惊悚暗黑塔**，深入地下洞穴观看异形巨卵孵化后瞬间失重坠落，结合底部扫腿鞭与顶置喷水）<br>• **Gangsta Granny: The Ride (流氓奶奶)**（1.1.1.1 Garmendale 有轨 360° 受控旋转皇室马车 + 3D 投影雾幕与实景伦敦塔盗宝）<br>• **In the Night Garden Magical Boat Ride**（5.1.1.1 奇幻花园水道船）<br>• *历史经典*：**Charlie and the Chocolate Factory**（5.1.1.1 巧克力河游船 + T4.1 全景玻璃电梯模拟器）、**Toyland Tours**（5.1.1.1） | • **Hex – The Legend of the Towers (古塔魔咒)**（T5.1 **Vekoma Madhouse 疯屋全球叙事天花板**：以真实的 19 世纪奥尔顿塔古堡拱顶大厅为前厅，走入八角形橡木金库滚筒观看巨型带电古树枝干翻转）<br>• **Alton Towers Dungeon (奥尔顿塔地牢)**（5.1.1.1 含黑死病暗黑河道游船 + T6.6 真人演员互动惊悚剧场） |
+| **英国索普公园 & 切辛顿冒险世界<br>Thorpe Park & Chessington World of Adventures** | • **Chessington — Tomb Blaster (古墓爆破手)**（3.1 + 1.1.1.3 **Mack Rides 顶部悬挂式单轨列车 + 车载激光枪射击**，穿行于古埃及墓穴巨型眼镜蛇与木乃伊实景）<br>• **Chessington — The Gruffalo River Ride Adventure (咕噜牛漂流)**（5.1.1.1 **Mack Rides 室内圆形自转皮筏水道船**，原 *Professor Burp's Bubbleworks* 汽水工厂改建）<br>• **Thorpe Park — 历史经典**：**X:\\ No Way Out**（1.1.4.3 Vekoma 室内全黑倒退暗黑过山车）、**Wicked Witches Haunt**（1.1.1.2 Mack Omnimover 鬼屋） | • **Thorpe Park — Ghost Train (幽灵列车，原 Derren Brown's Ghost Train)**（T4.1 + T3.2 **Intamin / Simworx 悬空仿真维多利亚地铁车厢**，通过钢索吊挂在大厅中央并结合可平移转换轨道、外部投影环境与随车真人演员惊悚演艺）<br>• **Chessington — Room on the Broom: A Magical Journey**（T6.1 / T6.6 步入式佩珀尔全息幻象与动态机关女巫魔法迷宫）<br>• **Thorpe Park — Black Mirror Labyrinth**（T6.6 镜面感官迷宫） |
+| **意大利加达云霄乐园<br>Gardaland Resort<br>（默林欧洲大陆旗舰）** | • **Jumanji – The Adventure (勇敢者游戏：丛林历险，2022)**（1.1.2.1 **欧洲首套 Oceaneering 多自由度旋转越野吉普动感暗黑车**，12 幕场景穿越立体投影丛林、坠落断桥与破水而出的巨型机械河马与石巨人，前身为 *Ramses / La Valle dei Re*）<br>• **I Corsari / Animal Treasure Island (海盗 / 2025 动物金银岛)**（5.1.1.1 **Intamin 耗资巨万建造的全地下双层巨型海盗水道船**，深入加达湖水位以下的巨型水下洞穴与整艘沉没大帆船实景） | • **Magic House (魔法屋)**（T5.1 **Vekoma 全地下疯屋滚筒剧场**，从巨型树桩电梯下潜至地底巫师实验室）<br>• **Time Voyagers**（T6.7 大型 4D 多感官特效影院）<br>• **Jumanji – The Labyrinth**（步入式丛林机关镜面迷宫） |
+| **德国海德公园<br>Heide Park Resort** | • **Dämonen Gruft (恶魔地穴，2024 新开)**（1.1.1.1 **Preston & Barbieri 地面有轨受控旋转暗黑车**，深入古堡地底墓穴直面恶魔机械怪兽，填补德国北部硬核惊悚 Dark Ride 空白）<br>• **Ghostbusters 5D – Die ultimative Geisterjagd (捉鬼敢死队 5D)**（1.1.1.3 **Triotech 有轨 8 座捉鬼敞篷车 + 3D 质子激光枪互动射击**，原 *Spencer's TV Studio* 场馆改建） | • *历史经典*：**Hallo Spencer Studio**（T6.3 机械木偶剧场） |
+| **全球 11 座乐高乐园<br>LEGOLAND Parks Worldwide<br>（比隆/温莎/德国/加州/佛州/纽约/日本/迪拜/韩国/马来/上海 2025）** | • **LEGO Factory Adventure Ride (乐高工厂大冒险 — 纽约/温莎/上海 2025)**（2.1 **ETF Mystic Mover 无轨车 + Holovis 面部/全身动作捕捉**：将乘客实时扫描变成屏幕上的专属乐高小人偶，在积木流水线间无轨旋转跳跃）<br>• **Deep Sea Adventure / Submarine Adventure (深海潜艇大冒险 — 温莎/加州/迪拜/日本/马来)**（5.2 **Mack Rides 真实水下导轨半潜艇**，潜入养有数千条真实鲨鱼、鳐鱼与乐高宝藏的水族馆）<br>• **LEGO NINJAGO The Ride (乐高幻影忍者 — 全球 11 园标配)**（1.1.1.3 **Triotech 有轨 4D 战车 + Leap Motion 红外手势识别**，免持枪直接挥手隔空发射火球冰霜击退大蛇）<br>• **Lost Kingdom Adventure / Laser Raiders (失落王国探险 — 全系标配)**（1.1.1.3 Sally / Bertazzon 古埃及神庙有轨激光枪打靶吉普车）<br>• **The Dragon (飞龙过山车 — 全系标配)**（1.1.4.3 **Zierer/Vekoma/Mack 前半程中世纪城堡乐高积木喷火巨龙与厨师机械人偶慢速 Dark Ride 段 + 后半程过山车**）<br>• **Pirate Falls / Viking River Splash**（5.1.1.2 含乐高海盗暗黑段的激流船） | • **THE LEGO MOVIE Masters of Flight (乐高大电影：飞行大师 — 佛州/加州/温莎)**（T1.4 **Brogent 智崴 m-Ride 180° 水平旋转推出式球幕飞行影院**，坐在双层沙发上旋转 180° 悬空切入巨型球幕）<br>• **Haunted House Monster Party (鬼屋怪兽派对 — 温莎/纽约)**（T5.1 **Vekoma 乐高吸血鬼主题疯屋滚筒剧场**）<br>• **LEGO Studios 4D**（T6.7 全球乐高乐园标配 4D 风雪泡泡特效影院） |
+
+---
+
+<a id="p3-10"></a>
+
+### 🦸 【乐园总表 3.10】美国六旗与雪松会合并集团（Six Flags & Cedar Fair / Cedar Point 集团）全项目盘点表
+
+[⬆️ 返回全景目录](#toc)
+
+| 乐园群名称 | 行进式 Dark Ride（含 6-DOF 射击车/百年矿山车/暗黑激流船/叙事过山车） | 暗黑剧场、疯屋与历史传奇 Dark Ride |
+| :--- | :--- | :--- |
+| **六旗乐园群（7 大乐园联合标配）<br>Six Flags Magic Mountain, Great Adventure, Over Texas, Fiesta Texas, Over Georgia, Great America, St. Louis, Mexico** | • **Justice League: Battle for Metropolis (正义联盟：大都会之战 — 7 座六旗乐园镇园 Dark Ride)**（1.1.2.1 + 1.1.1.3 **Oceaneering 6 座 6-DOF 车载动感平台 + Sally Dark Rides 实景机械人偶（小丑/哈莉·奎茵/莱克斯·卢瑟）+ 3D 巨幕实时激光枪射击 + 真火爆炸与模拟 360° 桶滚翻转**，两度斩获 Golden Ticket 全球最佳新项目）<br>• **The Dark Knight Coaster (黑暗骑士室内过山车 — Great Adventure / Great America / Mexico)**（1.1.4.3 Mack Rides 全室内哥谭市地铁站小丑涂鸦与机械人偶惊吓暗黑野生鼠过山车）<br>• **Skull Mountain (骷髅山 — Great Adventure)**（1.1.4.3 Intamin 全封闭室内暗黑家庭过山车） | • **Houdini's Great Escape (胡迪尼大逃亡 — Six Flags Great Adventure & New England)**（T5.1 **Vekoma 经典魔术师胡迪尼庄园疯屋滚筒剧场**） |
+| **六旗南方双雄<br>Six Flags Over Georgia & Six Flags Over Texas** | • **Monster Mansion (怪兽庄园 — Six Flags Over Georgia)**（5.1.1.1 **1981 年开业、Goddard Group 翻新的美国东南部传奇室内水道船**，搭载 107 具色彩鲜艳的机械怪兽玩偶，从欢快野餐突然驶入阴森恐怖的恶魔沼泽）<br>• **Pirates of Speelunker Cave (洞穴海盗 — Six Flags Over Texas，2022 焕新)**（5.1.1.1 **Sally Dark Rides 全面重制的 1964 年元老级水道船**，融合水下环绕投影巨幕、海怪触手与全套高精细机械海盗人偶） | • *历史传奇*：**Speelunker's Cave (1964–1991)** & **Yosemite Sam and the Gold River Adventure (1992–2021)**（5.1.1.1 德州六旗同一水道系统的三代演进） |
+| **诺氏百乐坊（加州）<br>Knott's Berry Farm<br>（雪松会/六旗集团 Dark Ride 皇冠明珠）** | • **Calico Mine Ride (卡利科矿山火车 — 1960 年开业)**（1.1.1.1 **Bud Hurlbut 打造的主题乐园史上开山鼻祖级沉浸式 Dark Ride**！真实窄轨蒸汽矿山火车钻入三层楼高的巨型假山内部，穿过热气腾腾的地下沸腾泥浆池、钟乳石溶洞、数十个采矿机械工人与炸药爆破塌方隧道，直接启发了华特·迪士尼）<br>• **Timber Mountain Log Ride (伐木山原木激流船 — 1969 年开业)**（5.1.1.2 **Arrow Development 打造的全球首座全主题化室内机械人偶激流原木船**，约翰·韦恩受邀首航，24000 平方英尺假山内布满 19 世纪伐木工人机械人偶与蒸汽锯木厂）<br>• **Knott's Bear-y Tales: Return to the Fair (2021)**（1.1.1.3 **Triotech 4D 有轨旋转互动车**，手持果酱发射器射击偷馅饼的郊狼，前身为 *Voyage to the Iron Reef* 与 Rolly Crump 1975 年原版 *Bear-y Tales*）<br>• **Calico River Rapids**（含 Garner Holt 巨型大脚怪 Bigfoot 机械人偶暗黑段） | • *历史传奇*：**Kingdom of the Dinosaurs (恐龙王国，1987–2004)**（1.1.1.1 盘踞在现今 Bear-y Tales 二层建筑内的史前恐龙机械人偶有轨 Dark Ride）、**Haunted Shack**（倾斜重力视错觉屋） |
+| **雪松点主园（俄亥俄州）<br>Cedar Point<br>（世界过山车之都的暗黑记忆）** | *(现存园区专注极限室外过山车；但历史上曾拥有多座极具开创性的经典 Dark Ride)* | • *历史传奇*：**Disaster Transport (灾难运输，1985–2012)**（1.1.4.3 **Intamin 室内太空基地暗黑雪橇过山车 Bobsled Coaster**，排队区配有大型宇航局控制室机械人偶与俄亥俄州太空逃亡特效）、**Pirate Ride (1966–1996)**（1.1.1.1 Pretzel 海盗鬼屋有轨车）、**Earthquake (1965–1984)**（1.1.1.1 旧金山大地震倾斜坍塌有轨 Dark Ride）、**Paddlewheel Excursions / Snake River Expedition**（5.1.2.1 水道探险船） |
+| **加拿大奇幻乐园 / 国王岛 / 国王领地 / 卡罗温兹 / 加州大美洲<br>Canada's Wonderland, Kings Island, Kings Dominion, Carowinds & California's Great America** | • **Wonder Mountain's Guardian (奇幻山守护者 — Canada's Wonderland)**（1.1.4.3 + 1.1.1.3 **ART Engineering 过山车 + Triotech 150 米长无缝 3D 互动射击长幕 + 结尾巨龙巢穴垂直自由落体掉轨 Drop Track**，从山顶俯冲钻入假山内部化身射击 Dark Ride）<br>• **Boo Blasters on Boo Hill (幽灵山射击屋 — Kings Island, Kings Dominion, Carowinds, Canada's Wonderland 四园标配)**（1.1.1.3 **Sally Dark Rides 打造的经典鬼屋激光打靶有轨车**，其中 Kings Island 版本前身为 1992 年传奇歌剧魅影机械人偶大作 *Phantom Theater*，计划于 2026 年迎回 *Phantom Theater: Opening Nightmare*！）<br>• **Adventure Express (冒险快车 — Kings Island)**（1.1.4.3 Arrow 矿山车，结尾驶入全封闭暗黑古庙提升坡道，两侧巨型石神机械守卫伴随鼓点挥舞双臂威胁乘客） | • **Mass Effect: New Earth (质量效应：新地球 — California's Great America)**（T6.1 + T6.7 **800 座 4D 液压动感座椅 + 全球最大 3D LED 屏幕之一 + 舞台真人指挥官演员实时与全息巨兽同台互动**）<br>• **Plants vs. Zombies Garden Warfare: 3Z Arena (植物大战僵尸 — Carowinds)**（T6.7 Triotech 68 座双屏 3D 互动对战射击剧场） |
+
+---
+
+<a id="p3-11"></a>
+
+### 🌋 【乐园总表 3.11】欧洲六大过山车与电影主题标杆名园（英国 Alton Towers / 法国 Parc Astérix / 意大利 Gardaland / 意大利 Movieland / 瑞典 Liseberg / 西班牙 PortAventura）全项目盘点表
+
+[⬆️ 返回全景目录](#toc)
+
+| 乐园名称 | 行进式 Dark Ride（含受控旋转弹射/无轨/自驾吉普/地下水道） | 暗黑剧场、真火/潜艇实景灾难模拟器与疯屋 |
+| :--- | :--- | :--- |
+| **西班牙冒险港世界<br>PortAventura World<br>（含 PortAventura Park & Ferrari Land）** | • **Uncharted: The Enigma of Penitence (神秘海域：苦修之谜，2023)**（1.1.4.2 **Intamin 全封闭室内多维受控旋转弹射暗黑过山车 Multidimension Coaster**：车体搭载车载伺服旋转轴，全程结合 5 次 LSM 弹射、阿兹特克黄金城巨幕、**高速侧向滑轨换道 Sideways Slide**、自由落体掉轨与倒退行驶）<br>• **Street Mission (芝麻街侦探任务，2019)**（2.1 + 1.1.1.3 **Sally Dark Rides + ETF Ride Systems 欧洲首座芝麻街暗黑乘骑**，乘坐无轨/混合寻迹出租车穿梭于实景机械木偶与 3D 巨幕间用线索枪射击破案） | • **Templo del Fuego (火焰神庙 — PortAventura)**（T6.5 **全球真火实景灾难剧场绝对巅峰**：Thinkwell 主创打造，游客走入玛雅水神庙深处，当宝藏被触动，整座石窟穹顶、石柱、阶梯乃至脚下整片湖面瞬间化作真实冲天火海，看台地板在烈焰贴脸时突然下沉震动！）<br>• **Flying Dreams (飞越法拉利 — Ferrari Land)**（T1.2 Brogent 智崴 i-Ride 多层前推悬臂式球幕飞行影院）<br>• **Racing Legends (赛车传奇 — Ferrari Land)**（T2.3 Brogent 球幕动感模拟器）<br>• *历史经典*：**Sea Odyssey (海底奥德赛)**（T2.4 Thinkwell 大型液压动感潜艇剧场，现改为 *Dino Escape 4D*） |
+| **意大利好莱坞电影乐园<br>Movieland Park (Canevaworld)<br>（以脑洞大开的硬核实景载具享誉欧洲）** | • **Pangea: The World of Dinosaurs (盘古大陆：恐龙世界)**（1.1.1.1 **全球罕见的“乘客真自驾”导轨吉普车**：没有自动驾驶固定速度，**由游客亲自手握方向盘、踩油门与刹车**，驾驶搭载安全防撞雷达与底部防脱轨导向销的电动越野吉普穿越侏罗纪雨林机械恐龙区与摇晃吊桥！）<br>• **Fantasmik**（1.1.1.1 针对儿童的室内有轨幽灵庄园） | • **U-571 Submarine Simulator (U-571 二战潜艇真水灌舱模拟器)**（T6.5 + T2.4 **全球最硬核、最湿身的步入式实景灾难模拟器**：游客从潜艇甲板钻入狭窄逼真的二战鱼雷舱，深水炸弹轰炸下整座潜艇舱体剧烈倾斜摇晃，**头顶法兰盘管线直接爆裂喷射出成吨真实高压冷水灌满舱室**，必须穿雨衣入场！）<br>• **Magma 2.1 (熔岩大灾难)** & **Disaster – The Blockbuster Tour**（T6.5 + T3.2 乘坐由真人特技司机狂飙驾驶的 **重型 MAN 军用越野卡车 / 片场有轨电车**，直接冲进地热发电厂地震坍塌、真火爆炸与数百吨山洪暴发冲刷车体的极限片场）<br>• **Android 3D – The Final Battle**（T4.1 / T2.4 270° 环幕立体动感平台剧场） & **Holmes Hotel**（T6.6 惊悚步入式鬼店） |
+| **瑞典里瑟本游乐园<br>Liseberg（哥德堡）** | • **Underlandet (兔子地下秘密王国，2020)**（2.1 / 1.1.1.1 **Gosetto + P&P Projects 打造的北欧旗舰级家庭 Dark Ride**，前半段采用顶部悬吊隐形提升机将车厢拉入地底，随后切换为地板埋线自动导引车穿行于里瑟本绿兔子的地下胡萝卜工厂与数十个精致机械人偶之间）<br>• *历史经典*：**Sagoslottet (童话城堡，1968–2017)**（3.1 顶部悬挂式童话飞船 Dark Ride） | • **Spökhotellet Gasten (幽灵旅馆 Gasten)**（T6.6 1998 年开业的高水准常设步入式真人演员惊悚暗黑剧场） |
+| **法国阿斯特里克斯公园<br>Parc Astérix（巴黎高卢漫画主题园）** | • **Épidemaïs Croisière (腓尼基商人游船)**（5.1.1.1 Intamin 环绕高卢漫画角色场景的叙事漂流船）<br>• **Menhir Express** & **Romus et Rapidus**（5.1.1.2 含高卢巨石暗黑隧道段的原木激流船与漂流）<br>• *历史经典*：**Transdemonium (2003–2017)**（1.1.1.1 WGH Transportation 打造的全室内中世纪古堡幽灵有轨惊悚 Dark Ride） | • **Le Défi de César (凯撒的挑战)**（T5.1 **Mack Rides 欧洲顶级多厅疯屋滚筒剧场**！入座前先经过 3 个脑洞大开的预演厅：地面投影映射把每位游客的脸拍下来贴在罗马士兵身体上接受检阅、两侧墙壁喷水模仿温泉浴场，最后进入双排背靠背海盗战船滚筒席位经历风暴天旋地转）<br>• **Attention Menhir! (当心巨石！)**（T6.7 CL Corporation 打造的 300 座高动态 4D 多感官特效剧场） |
+| **英国奥尔顿塔 & 意大利加达云霄乐园<br>Alton Towers & Gardaland<br>（同属欧洲过山车名园与默林集团双料标杆）** | • **Alton Towers**：**The Curse at Alton Manor**（1.1.1.2 Mack 哥特鬼屋）、**Nemesis Sub-Terra**（4.2 地下异形卵垂直升降暗黑塔）、**Gangsta Granny: The Ride**（1.1.1.1 有轨旋转皇室盗宝车）<br>• **Gardaland**：**Jumanji – The Adventure**（1.1.2.1 Oceaneering 6-DOF 旋转越野吉普动感车）、**I Corsari / Animal Treasure Island**（5.1.1.1 Intamin 地下双层巨型海盗水道船） | • **Alton Towers**：**Hex – The Legend of the Towers**（T5.1 Vekoma 古堡疯屋传奇）<br>• **Gardaland**：**Magic House**（T5.1 Vekoma 全地下树桩疯屋）、**Time Voyagers**（T6.7 4D 影院）<br>*(完整清单详见上方 [3.9 英国默林娱乐集团总表](#p3-9))* |
 
 ---
 
@@ -1202,12 +1288,14 @@ flowchart TD
 
 | 机制编号 | 项目名称与所属乐园 | 核心硬件制造商 (Manufacturer) | 4K POV / 实拍视频直达链接 |
 | :--- | :--- | :--- | :--- |
-| **1.1.1.2** | **The Haunted Mansion (幽灵公馆)** — 迪士尼 | WDI / Arrow Development (Omnimover) | [🎬 4K 60fps 全程 POV (YouTube)](https://www.youtube.com/watch?v=i1GV8qXavSg) |
-| **1.1.1.3** | **Maus au Chocolat (巧克力大冒险)** — 德国 Phantasialand | ETF Ride Systems + Alterface / 3DBA | [🎬 3D 奶油射击全程 POV (YouTube)](https://www.youtube.com/watch?v=gWK2apK--no) |
+| **1.1.1.1** | **Calico Mine Ride (1960 鼻祖矿山车)** / **Pangea (真自驾恐龙吉普)** — 诺氏百乐坊 / 意大利 Movieland | Bud Hurlbut / Movieland (三层假山窄轨矿车 & 乘客亲握方向盘踩油门自驾吉普) | [🎬 Calico 4K 60fps POV (YouTube)](https://www.youtube.com/watch?v=czP688BIYTg) · [🎬 Pangea 自驾吉普 POV](https://www.youtube.com/watch?v=2l4b3EPMsv4) |
+| **1.1.1.2** | **The Haunted Mansion (幽灵公馆)** / **The Curse at Alton Manor** — 迪士尼 / 英国 Alton Towers | WDI / Mack Rides (Omnimover 连续车链 & 高容量哥特鬼屋) | [🎬 幽灵公馆 4K POV (YouTube)](https://www.youtube.com/watch?v=i1GV8qXavSg) · [🎬 Alton Manor 4K POV](https://www.youtube.com/watch?v=_JaC2rT7KOU) |
+| **1.1.1.3** | **Maus au Chocolat (巧克力大冒险)** / **LEGO NINJAGO The Ride** — Phantasialand / 乐高乐园 | ETF + Alterface / Triotech (3D 奶油拉绳射击 & Leap Motion 隔空手势射火球) | [🎬 巧克力射击 POV (YouTube)](https://www.youtube.com/watch?v=gWK2apK--no) · [🎬 幻影忍者 4K POV](https://www.youtube.com/watch?v=CUog0A6T6lU) |
 | **1.1.1.3** | **Mario Kart: Bowser's Challenge (马力欧卡丁车)** — 环球影城 | MTS Systems (双轨有轨旋转车) + 任天堂 AR | [🎬 AR 实景叠加视角 POV (YouTube)](https://www.youtube.com/watch?v=yA1c8OklLUI) |
 | **1.1.2.1** | **The Amazing Adventures of Spider-Man (蜘蛛侠)** — 奥兰多环球 | Oceaneering International (SCOOP 6-DOF) | [🎬 4K 全程 POV (YouTube)](https://www.youtube.com/watch?v=_w2NV0f84k0) · [💡 开灯版 Lights-On](https://www.youtube.com/watch?v=cQzoWJAL49g) |
 | **1.1.2.1** | **Transformers: The Ride 3D (变形金刚：火种源之战)** — 环球影城 | Oceaneering International (EVO-6 + 垂直升降电梯) | [🎬 4K 双层升降全程 POV (YouTube)](https://www.youtube.com/watch?v=FZmecspp71Y) |
 | **1.1.2.1** | **Jurassic World Adventure (侏罗纪世界大冒险)** — 北京环球影城 | Oceaneering International (免3D眼镜纯实景+巨幕版) | [🎬 北京独占版全程 POV (YouTube)](https://www.youtube.com/watch?v=XeKD2Ah0YD4) · [📺 B站实拍搜索](https://search.bilibili.com/all?keyword=%E5%8C%97%E4%BA%AC%E7%8E%AF%E7%90%83%E5%BD%B1%E5%9F%8E+%E4%BE%8F%E7%BD%97%E7%BA%AA%E4%B8%96%E7%95%8C%E5%A4%A7%E5%86%92%E9%99%A9+POV) |
+| **1.1.2.1** | **Justice League: Battle for Metropolis** / **Jumanji – The Adventure** — 六旗集团 / 意大利 Gardaland | Oceaneering + Sally Dark Rides (6-DOF 动感射击战车 & 旋转越野吉普) | [🎬 正义联盟 4K 60fps POV (YouTube)](https://www.youtube.com/watch?v=mxceTGn1PP8) · [🎬 Jumanji 4K POV](https://www.youtube.com/watch?v=2fZoMQ1UkEw) |
 | **1.1.2.1** | **Invasion of the Planet of the Apes (猩球崛起)** — 吉隆坡云顶 SkyWorlds | Oceaneering International (EVO-6 6-DOF) | [🎬 全程 POV (YouTube)](https://www.youtube.com/watch?v=d47lpsFLY9c) |
 | **1.1.2.1** | **《女娲补天》/《恐龙危机》** — 中国方特 | 华强方特智能技术 (6-DOF 车载动感平台) | [🎬 方特女娲补天全程 POV (YouTube)](https://www.youtube.com/watch?v=IyErOd9nFuA) · [📺 B站实拍搜索](https://search.bilibili.com/all?keyword=%E6%96%B9%E7%89%B9+%E5%A5%B3%E5%A8%B2%E8%A1%A5%E5%A4%A9+POV) |
 | **1.1.2.2** | **Harry Potter and the Battle at the Ministry (魔法部之战)** — 2025 奥兰多 Epic Universe | Simtec Systems (14座车载剪刀叉垂直升降 + 6-DOF) | [🎬 2025 Epic Universe 4K 全程 POV (YouTube)](https://www.youtube.com/watch?v=AfFMtDC4-AE) |
@@ -1219,7 +1307,7 @@ flowchart TD
 | **1.1.3.2** | **Batman: Knight Flight (蝙蝠侠：暗夜飞行)** — 阿布扎比华纳兄弟世界 | Dynamic Attractions (Robotic Arm + 高速导轨底盘) | [🎬 4K 60fps 全程 POV (YouTube)](https://www.youtube.com/watch?v=aZPwWSRKcdg) |
 | **1.1.4.1** | **Radiator Springs Racers (水箱温泉镇赛车手)** — 加州迪士尼冒险乐园 | WDI / Dynamic Structures (Test Track 供电槽轨系统) | [🎬 4K 室内暗黑段+双车并排飙车 POV (YouTube)](https://www.youtube.com/watch?v=NkJRM55tujM) |
 | **1.1.4.2** | **Harry Potter and the Escape from Gringotts (逃出古灵阁)** — 奥兰多环球 | Intamin (倾斜跌落轨 Tilt Track + 360° 气缸旋转底盘) | [🎬 全程 POV (YouTube)](https://www.youtube.com/watch?v=N8FSuOjoy8w) |
-| **1.1.4.2** | **Mission Ferrari (法拉利使命)** — 阿布扎比法拉利世界 | Dynamic Attractions (SFX Coaster: 侧向滑轨+倾斜跌落) | [🎬 全球唯一 SFX Coaster 完整 POV (YouTube)](https://www.youtube.com/watch?v=GkwmE1DrZ5E) |
+| **1.1.4.2** | **Mission Ferrari (法拉利使命)** / **Uncharted (神秘海域)** — 阿布扎比法拉利 / 西班牙冒险港 | Dynamic SFX Coaster / Intamin Multidimension (侧向滑轨+受控旋转弹射) | [🎬 Mission Ferrari POV (YouTube)](https://www.youtube.com/watch?v=GkwmE1DrZ5E) · [🎬 Uncharted POV](https://www.youtube.com/watch?v=rX2WtHd4uBk) · [💡 开灯版](https://www.youtube.com/watch?v=5Q_Nr4z8Ewg) |
 | **1.1.4.3** | **Guardians of the Galaxy: Cosmic Rewind (银河护卫队)** — 奥兰多 EPCOT | Vekoma (Omnicoaster 受控旋转叙事过山车) | [🎬 4K 全程 POV (YouTube)](https://www.youtube.com/watch?v=2j6kNHS_Npg) |
 
 ---
@@ -1230,6 +1318,7 @@ flowchart TD
 | :--- | :--- | :--- | :--- |
 | **2.1** | **Mystic Manor (迷离大宅)** — 香港迪士尼乐园 | WDI / Oceaneering (LPS 射频无轨电磁车) | [🎬 4K 全程 POV (YouTube)](https://www.youtube.com/watch?v=VcI9p9AqCEk) |
 | **2.1** | **Symbolica: Palace of Fantasy (幻想宫殿)** — 荷兰 Efteling | ETF Ride Systems (Multi Mover 无轨三路线分支) | [🎬 4K 全程 POV (YouTube)](https://www.youtube.com/watch?v=Q-AkAWo2fOI) · [🔧 ETF 裸车技术演示](https://www.youtube.com/watch?v=dzSVhAota8w) |
+| **2.1** | **LEGO Factory Adventure** / **Street Mission** / **Underlandet** — 乐高 / 冒险港 / Liseberg | ETF Ride Systems + Holovis / Sally / Gosetto | [🎬 乐高工厂 4K POV](https://www.youtube.com/watch?v=vCIi8RL_6FM) · [🎬 芝麻街 POV](https://www.youtube.com/watch?v=JCM9boqyatQ) · [🎬 Underlandet POV](https://www.youtube.com/watch?v=yqZzOGCR7E4) |
 | **2.2.1** | **Star Wars: Rise of the Resistance (星战：抵抗组织崛起)** — 迪士尼 | WDI / Roush / Intamin (无轨 AGV + 电磁自由落体升降机) | [🎬 4K 完整长流程 POV (YouTube)](https://www.youtube.com/watch?v=YxCErBfzcNY) |
 | **2.2.2** | **《神画》/《千古风华》/《石窟奇遇》** — 中国方特 | 华强方特智能技术 (无轨 AGV + 车载多自由度平台 + 倾斜内凹球幕) | [🎬 荆州方特《千古风华》POV (YouTube)](https://www.youtube.com/watch?v=PptiYHy7W1c) · [📺 B站《神画》千里江山图飞跃段实拍](https://search.bilibili.com/all?keyword=%E6%96%B9%E7%89%B9+%E7%A5%9E%E7%94%BB+POV) |
 | **2.2.3** | **Enchanted Tale of Beauty and the Beast (美女与野兽)** — 东京迪士尼 | WDI / Panasonic (无轨 AGV + 6-DOF 华尔兹摇摆茶杯底盘) | [🎬 4K 60fps 全程 POV (YouTube)](https://www.youtube.com/watch?v=5rMc3FOsqBs) |
@@ -1254,15 +1343,16 @@ flowchart TD
 | 机制编号 | 项目名称与所属乐园 | 核心硬件制造商 (Manufacturer) | 4K POV / 实拍视频直达链接 |
 | :--- | :--- | :--- | :--- |
 | **5.1.1.3** | **Anna and Elsa's Frozen Journey (冰雪奇缘)** — 东京迪士尼海洋 | Intamin / WDI (水下旋转变轨转盘正倒向切换漂流船) | [🎬 2024 Fantasy Springs 4K POV (YouTube)](https://www.youtube.com/watch?v=52Ry4SULpL4) |
-| **5.1.2.2** | **《决战金山寺》/《水漫金山》** — 中国方特 | 华强方特智能技术 (水下导轨巨船 + 尾声数百吨真水漫灌) | [📺 B站方特《决战金山寺》水漫金山实拍](https://search.bilibili.com/all?keyword=%E6%96%B9%E7%89%B9+%E5%86%B3%E6%88%98%E9%87%91%E5%B1%B1%E5%AF%BA+POV) |
+| **5.1.2.2** | **《决战金山寺》/《水漫金山》** — 中国方特 | 华强方特智能技术 (水下导轨巨船 + 尾声数百吨真水漫灌) | [🎬 决战金山寺实拍 POV (YouTube)](https://www.youtube.com/watch?v=x07X2sT6e3Y) · [📺 B站搜索](https://search.bilibili.com/all?keyword=%E6%96%B9%E7%89%B9+%E5%86%B3%E6%88%98%E9%87%91%E5%B1%B1%E5%AF%BA+POV) |
 | **5.1.2.3** | **De Vliegende Hollander (飞翔的荷兰人)** — 荷兰 Efteling | Kumbak / Intamin (前半程 17 世纪港口真浓雾暗黑船 + 水上过山车) | [🎬 5K 超清全程 POV (YouTube)](https://www.youtube.com/watch?v=YSrKKqWIKLY) |
-| **5.1.3.1** | **Pirates of the Caribbean: Battle for the Sunken Treasure (加勒比海盗)** — 上海迪士尼 | WDI / Intamin (水下 магнит/直线电机导轨 + 360° 旋转变速巨船) | [🎬 4K 60fps 全程 POV (YouTube)](https://www.youtube.com/watch?v=BP4JFCTlZ1U) · [💡 水下轨道原理拆解](https://www.youtube.com/watch?v=lpX8YHcepW8) |
+| **5.1.3.1** | **Pirates of the Caribbean: Battle for the Sunken Treasure (加勒比海盗)** — 上海迪士尼 | WDI / Intamin (水下直线电机导轨 + 360° 旋转变速巨船) | [🎬 4K 60fps 全程 POV (YouTube)](https://www.youtube.com/watch?v=BP4JFCTlZ1U) · [💡 水下轨道原理拆解](https://www.youtube.com/watch?v=lpX8YHcepW8) |
+| **5.1.3.1** | **《致远 致远》** — 宁波/淮安/赣州方特东方欲晓、太原方特 | 华强方特智能技术 (水下导轨 360° 偏航旋转动感船 + 多球幕海战) | [🎬 宁波方特《致远 致远》实拍 POV (YouTube)](https://www.youtube.com/watch?v=7COdxBpqd2o) · [📺 B站搜索](https://search.bilibili.com/all?keyword=%E6%96%B9%E7%89%B9+%E8%87%B4%E8%BF%9C%E8%87%B4%E8%BF%9C+POV) |
 | **5.1.3.2** | **Mission Bermudes (百慕大使命)** — 法国 Futuroscope (2025 全球首发) | Mack Rides (Rocking Boat 水下导轨 + 万向支撑臂俯仰翻滚快艇) | [🎬 2025 实景全程 POV (YouTube)](https://www.youtube.com/watch?v=yRLKS3Xc-7s) · [🔧 Mack 官方结构演示](https://www.youtube.com/watch?v=d6srd2tchaA) |
-| **5.2** | **《深海潜艇》(Deep Sea Submarine)** — 珠海长隆宇宙飞船 | Mack Rides (真实水下导轨半潜艇穿行真鲨鱼池 + 水下 LED 幕) | [🎬 全程实拍 POV (YouTube)](https://www.youtube.com/watch?v=TNy27xuP-iY) |
+| **5.2** | **《深海潜艇》(Deep Sea Submarine)** — 珠海长隆宇宙飞船 | Mack Rides (真实水下导轨半潜艇穿行真鲨鱼池 + 水下 LED 幕) | [🎬 真鲨鱼池潜艇实拍 POV (YouTube)](https://www.youtube.com/watch?v=9hzpz_G3_PA) |
 
 ---
 
-#### 第二部分：球幕飞行影院（T1）、动感球体（T2）与旋转倾斜巨型看台（T3）
+#### 第二部分：球幕飞行影院（T1）、动感球体（T2）、旋转看台（T3）、疯屋（T5）与灾难特技剧场（T6）
 
 | 机制编号 | 项目名称与所属乐园 | 核心硬件制造商 (Manufacturer) | 4K POV / 实拍视频直达链接 |
 | :--- | :--- | :--- | :--- |
@@ -1270,9 +1360,12 @@ flowchart TD
 | **T1.2** | **Voletarium (飞越欧洲)** / **方特《伴你飞翔》** — 德国 Europa-Park / 方特 | Brogent 智崴 i-Ride / 华强方特 (多层垂直楼层水平前推悬臂式) | [🎬 Voletarium 4K POV (YouTube)](https://www.youtube.com/watch?v=TaPpq_qVYRc) · [📺 B站方特《伴你飞翔》机械结构解析](https://search.bilibili.com/all?keyword=%E6%96%B9%E7%89%B9+%E4%BC%B4%E4%BD%A0%E9%A3%9E%E7%BF%94+%E6%9C%BA%E6%A2%B0%E5%8E%9F%E7%90%86) |
 | **T1.3** | **Avatar Flight of Passage (阿凡达：翱翔)** — 奥兰多动物王国 | WDI / Dynamic (多层垂直墙壁下落围栏 + 摩托骑跨独立动感座舱) | [🎬 4K 60fps 全程 POV (YouTube)](https://www.youtube.com/watch?v=8Kq4_z4A6g0) |
 | **T1.4** | **L'Extraordinaire Voyage (非凡之旅)** — 法国 Futuroscope | Dynamic Attractions (84座平地入座 **90° 整体翻转竖立式**) | [🎬 90° 巨型甲板竖立翻转实拍 (YouTube)](https://www.youtube.com/watch?v=_Bi4Tg1TuWw) · [🔧 制造商结构拆解](https://www.youtube.com/watch?v=Zs-fO9--u8w) |
+| **T2.3** | **《百慕大历险》(Bermuda Storm)** — 珠海长隆宇宙飞船 | Brogent 智崴 (304 座全球最大单甲板 6-DOF 液压动感仿真船平台) | [🎬 304人动感船风暴实拍 POV (YouTube)](https://www.youtube.com/watch?v=lH9qdotgrjY) · [🔧 Technifex 特效实拍](https://www.youtube.com/watch?v=CwpS2m0n6O8) |
 | **T2.5** | **Hypersphere 360° (超球体 360°)** — 阿布扎比海洋世界 | Intamin (Dome Ride Theater 360° 全封闭 LED 球体内部悬挂旋转环) | [🎬 全球首台 360° 全球体剧场 4K POV (YouTube)](https://www.youtube.com/watch?v=nAg2c4-RzlI) |
 | **T2.7** | **Danse avec les Robots (与机器人共舞)** — 法国 Futuroscope | KUKA Robotics (原地固定基座 7 米高 6 轴工业机械臂群) | [🎬 机械臂电音甩动实拍 (YouTube)](https://www.youtube.com/watch?v=fA36K7u_4n0) |
 | **T3.1** | **Danse Macabre (骷髅之舞)** — 荷兰 Efteling (2024 新) | Intamin (Dynamic Motion Stage 18米倾斜升降主转盘 + 6 子转盘) | [🎬 2024 全程 POV (YouTube)](https://www.youtube.com/watch?v=f9mz7TZbTaM) · [🔧 Intamin 裸盘测试](https://www.youtube.com/watch?v=i3u04ZhalaU) |
 | **T3.1** | **Chasseurs de Tornades (龙卷风猎人)** — 法国 Futuroscope | Dynamic Attractions (120座中央倾斜升降旋转看台 + 360° LED 环幕) | [🎬 旋转看台+真车冲入舞台实拍 (YouTube)](https://www.youtube.com/watch?v=j5WSWaQQeIQ) |
 | **T3.2** | **《秦陵历险(一期看台版)》/《哪吒闹海(45座看台版)》** — 方特欢乐世界 | 华强方特智能技术 (45~80 座有轨车载多自由度巨型行走看台车) | [📺 B站芜湖方特一期《秦陵历险》大看台车实拍](https://search.bilibili.com/all?keyword=%E8%8A%9C%E6%B9%96%E6%96%B9%E7%89%B9+%E7%A7%A6%E9%99%B5%E5%8E%86%E9%99%A9) |
+| **T5.1** | **Hex – The Legend of the Towers** / **Le Défi de César** — 英国 Alton Towers / 法国 Parc Astérix | Vekoma / Mack Rides (双轴分离视错觉疯屋滚筒剧场) | [🎬 Alton Towers Hex 4K POV (YouTube)](https://www.youtube.com/watch?v=Ien6Q5GwTCQ) · [💡 Hex 幕后机械揭秘](https://www.youtube.com/watch?v=mBKdD-GcpNY) · [🎬 凯撒的挑战 4K POV](https://www.youtube.com/watch?v=UM7zDT5D_Gs) |
+| **T6.5** | **Templo del Fuego (火焰神庙)** / **U-571 潜艇模拟器** — 西班牙冒险港 / 意大利 Movieland | Thinkwell / Movieland (真火吞噬玛雅神庙下沉看台 & 二战潜艇高压真水灌舱) | [🎬 火焰神庙 4K 全程 (YouTube)](https://www.youtube.com/watch?v=3hYihHjfc60) · [🎬 U-571 潜艇灌水 4K POV](https://www.youtube.com/watch?v=SrOW16nwX18) |
 

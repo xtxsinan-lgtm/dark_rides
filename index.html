@@ -1,352 +1,310 @@
 <!DOCTYPE html>
-<html lang="zh-CN" data-theme="dark">
+<html lang="zh-CN">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dark Ride Atlas | 全球主题乐园黑暗乘骑与剧场硬件机制百科全书</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dark Ride Atlas · 黑暗乘骑图鉴</title>
+  <meta name="description" content="一本关于主题乐园黑暗乘骑（Dark Ride）工程的图鉴：按载具的支撑与导引方式分类，收录迪士尼、环球影城、方特、迪拜与阿布扎比、云顶天城与欧洲名园的项目，并附实拍、开灯与厂商测试影像。" />
+  <meta name="theme-color" content="#0e0e0d" />
+  <meta property="og:title" content="Dark Ride Atlas · 黑暗乘骑图鉴" />
+  <meta property="og:description" content="按支撑与导引方式分类的黑暗乘骑工程图鉴，附实拍、开灯与厂商测试影像。" />
+  <meta property="og:type" content="website" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230e0e0d'/%3E%3Cg fill='none' stroke='%23e9a23b' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='M9 25V15a7 7 0 0 1 14 0v10'/%3E%3Cpath d='M6 25h20'/%3E%3C/g%3E%3Ccircle cx='16' cy='20.5' r='2.2' fill='%23e9a23b'/%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://i.ytimg.com" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Noto+Serif+SC:wght@500;600;700&display=swap" />
+  <script>
+    (function () {
+      try {
+        var q = location.search.match(/[?&]theme=(light|dark)/);
+        var t = q ? q[1] : localStorage.getItem("dra-theme");
+        if (t === "light") document.documentElement.setAttribute("data-theme", "light");
+      } catch (e) {}
+    })();
+  </script>
   <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
-  <!-- Sticky Header & Navigation -->
-  <header class="site-header">
-    <div class="header-top">
-      <div class="brand">
-        <div class="brand-logo">DR</div>
-        <div class="brand-text">
-          <h1>
-            Dark Ride Atlas
-            <span class="brand-badge">Engineering & POV Encyclopedia</span>
-          </h1>
-          <p>全球主题乐园行进式 Dark Ride（5大物理门类）与暗黑剧场（T1~T6）底层工程拓扑、全园穷举与开灯实拍视频库</p>
-        </div>
-      </div>
+  <a class="skip-link" href="#main">跳到正文</a>
 
-      <div class="header-actions">
-        <div class="global-search-box">
-          <span class="search-icon">🔍</span>
-          <input
-            id="global-search-input"
-            type="text"
-            placeholder="搜索项目、乐园、KUKA、无轨、EMV..."
-            autocomplete="off"
-          />
-          <span class="kbd-hint">⌘K</span>
-        </div>
-        <button id="theme-toggle-btn" class="icon-btn" onclick="toggleTheme()">
-          ☀️ 浅色模式
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="#/" aria-label="Dark Ride Atlas 首页">
+        <span data-brand></span>
+        <span class="brand-name">Dark Ride Atlas</span>
+        <span class="brand-sub">黑暗乘骑图鉴</span>
+      </a>
+      <nav class="site-nav" aria-label="主导航">
+        <a href="#/" data-route="rides"><span class="nav-no">I</span>项目</a>
+        <a href="#/mechanisms" data-route="mechanisms"><span class="nav-no">II</span>机制</a>
+        <a href="#/lab" data-route="lab"><span class="nav-no">III</span>原理</a>
+        <a href="#/parks" data-route="parks"><span class="nav-no">IV</span>乐园</a>
+        <a href="#/notes" data-route="notes"><span class="nav-no">V</span>辨析</a>
+        <a href="#/glossary" data-route="glossary"><span class="nav-no">VI</span>视效与交互</a>
+      </nav>
+      <div class="header-tools">
+        <button class="search-trigger" type="button" data-action="open-search" aria-label="搜索">
+          <span data-icon="search"></span><span class="label">搜索</span><kbd>⌘K</kbd>
         </button>
-        <a
-          class="icon-btn"
-          href="https://github.com/xtxsinan-lgtm/dark_rides"
-          target="_blank"
-          rel="noopener"
-        >
-          📦 GitHub Repo
-        </a>
+        <button class="ghost-btn" type="button" id="theme-toggle"></button>
       </div>
     </div>
-
-    <nav class="nav-bar">
-      <button class="nav-tab active" data-view="explorer" onclick="switchView('explorer')">
-        🌐 全球标杆项目与视频库 <span class="nav-count">41组代表作</span>
-      </button>
-      <button class="nav-tab" data-view="tree" onclick="switchView('tree')">
-        🌳 硬件机制全景树 <span class="nav-count">5大门类 + T1~T6</span>
-      </button>
-      <button class="nav-tab" data-view="lab" onclick="switchView('lab')">
-        🔬 交互式机械透视实验室 <span class="nav-count">6组 X-Ray 动画</span>
-      </button>
-      <button class="nav-tab" data-view="parks" onclick="switchView('parks')">
-        🏰 全球六大乐园全项目总表 <span class="nav-count">69座乐园穷举</span>
-      </button>
-      <button class="nav-tab" data-view="distinctions" onclick="switchView('distinctions')">
-        ⚖️ 六大核心工程辨析专篇 <span class="nav-count">19种易混机制</span>
-      </button>
-      <button class="nav-tab" data-view="visual" onclick="switchView('visual')">
-        👁️ 视觉与玩家交互矩阵 <span class="nav-count">15种技术</span>
-      </button>
-    </nav>
   </header>
 
-  <!-- Hero Quick Stats -->
-  <section class="hero-stats">
-    <div class="stat-card" onclick="switchView('tree'); setTreePart('part1');">
-      <div class="stat-info">
-        <div class="stat-label">第一部分：行进式 Dark Ride</div>
-        <div class="stat-val" style="color:var(--accent-blue);">5 大物理门类</div>
-        <div class="stat-sub">2~4 级可变深度嵌套 · 29 个底层亚种</div>
-      </div>
-      <span style="font-size:22px;">🎢</span>
-    </div>
-    <div class="stat-card" onclick="switchView('tree'); setTreePart('part2');">
-      <div class="stat-info">
-        <div class="stat-label">第二部分：广义暗黑剧场</div>
-        <div class="stat-val" style="color:var(--accent-purple);">T1 ~ T6 六大类</div>
-        <div class="stat-sub">飞行影院4流派 / 动感球体 / 行走看台 / 疯屋</div>
-      </div>
-      <span style="font-size:22px;">🎭</span>
-    </div>
-    <div class="stat-card" onclick="switchView('parks');">
-      <div class="stat-info">
-        <div class="stat-label">第三部分：全球六大乐园体系</div>
-        <div class="stat-val" style="color:var(--accent-emerald);">69 座主题乐园</div>
-        <div class="stat-sub">迪士尼12 · 环球7 · 方特38 · 迪拜7 · 云顶 · 欧洲4</div>
-      </div>
-      <span style="font-size:22px;">🌍</span>
-    </div>
-    <div class="stat-card" onclick="switchView('explorer'); setExplorerFilter('video', 'mfgdemo');">
-      <div class="stat-info">
-        <div class="stat-label">第五部分：实测视频直达库</div>
-        <div class="stat-val" style="color:var(--accent-amber);">45+ 实拍/开灯</div>
-        <div class="stat-sub">站内播放 4K POV · Lights-On · 工厂裸机测试</div>
-      </div>
-      <span style="font-size:22px;">💡</span>
-    </div>
-  </section>
-
-  <!-- Main Views Container -->
-  <main class="main-container">
-    <!-- ==================== VIEW 1: GLOBAL RIDE & VIDEO EXPLORER ==================== -->
-    <section id="view-explorer" class="view-section active">
-      <div class="filter-panel">
-        <div class="filter-row">
-          <span class="filter-label">🏰 乐园体系：</span>
-          <div class="pill-group">
-            <button class="filter-pill active" data-filter-type="park" data-val="all" onclick="setExplorerFilter('park','all')">全部体系</button>
-            <button class="filter-pill" data-filter-type="park" data-val="disney" onclick="setExplorerFilter('park','disney')">全球迪士尼 (12园)</button>
-            <button class="filter-pill" data-filter-type="park" data-val="universal" onclick="setExplorerFilter('park','universal')">全球环球影城 (含Epic Universe)</button>
-            <button class="filter-pill" data-filter-type="park" data-val="fantawild" onclick="setExplorerFilter('park','fantawild')">中国方特 (38园)</button>
-            <button class="filter-pill" data-filter-type="park" data-val="dubai" onclick="setExplorerFilter('park','dubai')">迪拜与阿布扎比 (7园)</button>
-            <button class="filter-pill" data-filter-type="park" data-val="genting" onclick="setExplorerFilter('park','genting')">吉隆坡云顶 SkyWorlds</button>
-            <button class="filter-pill" data-filter-type="park" data-val="europe" onclick="setExplorerFilter('park','europe')">欧洲四大标杆名园</button>
+  <main id="main">
+    <!-- 项目 -->
+    <section class="view" data-view="rides" aria-labelledby="hero-title">
+      <div class="cover" id="cover">
+        <svg class="cover-track" viewBox="0 0 1440 640" preserveAspectRatio="xMidYMax meet" aria-hidden="true">
+          <defs>
+            <path id="track-path" d="M-80 600 C 220 600 300 520 470 520 S 720 600 900 585 S 1180 505 1540 560" />
+          </defs>
+          <use class="ties" href="#track-path" />
+          <path class="rail" d="M-80 593 C 220 593 300 513 470 513 S 720 593 900 578 S 1180 498 1540 553" />
+          <path class="rail" d="M-80 607 C 220 607 300 527 470 527 S 720 607 900 592 S 1180 512 1540 567" />
+          <g class="car">
+            <path d="M-30 -10 h60 l-5 -26 h-50 z" />
+            <path d="M-17 -36 v-12 h34 v12" />
+            <circle cx="-17" cy="-4" r="4.5" />
+            <circle cx="17" cy="-4" r="4.5" />
+            <animateMotion dur="48s" repeatCount="indefinite" rotate="auto"><mpath href="#track-path" /></animateMotion>
+          </g>
+        </svg>
+        <div class="wrap">
+          <div class="dateline">
+            <span>第一版 · 二〇二六年秋</span>
+            <span class="dateline-mid">主题乐园黑暗乘骑工程图鉴</span>
+            <span>Vol. I</span>
           </div>
-        </div>
-
-        <div class="filter-row">
-          <span class="filter-label">⚙️ 硬件门类：</span>
-          <div class="pill-group">
-            <button class="filter-pill active" data-filter-type="cat" data-val="all" onclick="setExplorerFilter('cat','all')">全部机制</button>
-            <button class="filter-pill" data-filter-type="cat" data-val="c1" onclick="setExplorerFilter('cat','c1')">门类一：地面水平有轨 (1.1~1.2)</button>
-            <button class="filter-pill" data-filter-type="cat" data-val="c2" onclick="setExplorerFilter('cat','c2')">门类二：地面无轨 AGV (2.1~2.3)</button>
-            <button class="filter-pill" data-filter-type="cat" data-val="c3" onclick="setExplorerFilter('cat','c3')">门类三：顶部悬挂轨道 (3.1~3.4)</button>
-            <button class="filter-pill" data-filter-type="cat" data-val="c4" onclick="setExplorerFilter('cat','c4')">门类四：垂直井道升降 (4.1~4.2)</button>
-            <button class="filter-pill" data-filter-type="cat" data-val="c5" onclick="setExplorerFilter('cat','c5')">门类五：涉水船与潜艇 (5.1~5.2)</button>
-            <button class="filter-pill" data-filter-type="cat" data-val="t1" onclick="setExplorerFilter('cat','t1')">T1 球幕飞行影院</button>
-            <button class="filter-pill" data-filter-type="cat" data-val="t2" onclick="setExplorerFilter('cat','t2')">T2 动感模拟舱/球体/原地臂</button>
-            <button class="filter-pill" data-filter-type="cat" data-val="t3" onclick="setExplorerFilter('cat','t3')">T3 旋转/行走看台</button>
-            <button class="filter-pill" data-filter-type="cat" data-val="t4" onclick="setExplorerFilter('cat','t4')">T4 360°环幕大巴</button>
-            <button class="filter-pill" data-filter-type="cat" data-val="t5" onclick="setExplorerFilter('cat','t5')">T5 疯屋滚筒</button>
-            <button class="filter-pill" data-filter-type="cat" data-val="t6" onclick="setExplorerFilter('cat','t6')">T6 全息/空间矩阵</button>
-          </div>
-        </div>
-
-        <div class="filter-row">
-          <span class="filter-label">🎬 视频特征：</span>
-          <div class="pill-group">
-            <button class="filter-pill active" data-filter-type="video" data-val="all" onclick="setExplorerFilter('video','all')">全部视频 (4K POV)</button>
-            <button class="filter-pill" data-filter-type="video" data-val="lightson" onclick="setExplorerFilter('video','lightson')">💡 含清场开灯揭秘 (Lights-On)</button>
-            <button class="filter-pill" data-filter-type="video" data-val="mfgdemo" onclick="setExplorerFilter('video','mfgdemo')">🔧 含硬件制造商工厂裸车测试</button>
-          </div>
-
-          <span class="filter-label" style="margin-left:12px;">🏭 制造商：</span>
-          <select id="mfg-filter-select" class="filter-select" onchange="setExplorerFilter('mfg', this.value)">
-            <option value="all">全部核心制造商 (All Manufacturers)</option>
-            <option value="Oceaneering">Oceaneering (奥申尼林 6-DOF / 无轨)</option>
-            <option value="KUKA">KUKA Robotics (库卡 6轴工业机械臂)</option>
-            <option value="ETF">ETF Ride Systems (荷兰无轨/有轨系统)</option>
-            <option value="Mack">Mack Rides (德国马克 Rocking Boat / 悬挂动力 / 潜艇)</option>
-            <option value="Intamin">Intamin (瑞士因塔敏 水下LSM / 旋转舞台 / 360球体)</option>
-            <option value="Dynamic">Dynamic Attractions (飞行影院 / SFX / 机器人轨)</option>
-            <option value="Simtec">Simtec Systems (魔法部飞天电梯 / 模拟器)</option>
-            <option value="Vekoma">Vekoma (Omnicoaster / 疯屋 Madhouse / 飞行)</option>
-            <option value="Brogent">Brogent 智崴 (i-Ride / m-Ride 飞行影院)</option>
-            <option value="华强方特">华强方特智能技术 (无轨球幕 / 6-DOF / 看台车)</option>
-            <option value="WDI">WDI 华特迪士尼幻想工程 (EMV / Omnimover)</option>
-          </select>
-        </div>
-
-        <div class="filter-summary-bar">
-          <div>
-            当前展示 <strong id="explorer-result-count" style="color:var(--accent-blue);">0</strong> 组全球标杆项目（点击卡片上的 <strong>▶ 站内看 4K POV / 💡 开灯揭秘 / 🔧 裸车测试</strong> 可直接在网页弹窗内播放，或点击 <strong>⚖️ 对比</strong> 进行横向参数 PK）
-          </div>
-          <button class="icon-btn" onclick="resetExplorerFilters()">↺ 重置筛选</button>
-        </div>
-      </div>
-
-      <div id="rides-grid-container" class="rides-grid"></div>
-    </section>
-
-    <!-- ==================== VIEW 2: VARIABLE-DEPTH MECHANISM LOGIC TREE ==================== -->
-    <section id="view-tree" class="view-section">
-      <div class="tree-layout">
-        <aside class="tree-sidebar">
-          <div class="tree-part-switch">
-            <button class="tree-part-btn active" data-part="part1" onclick="setTreePart('part1')">
-              第一部分：行进式 (1~5)
-            </button>
-            <button class="tree-part-btn" data-part="part2" onclick="setTreePart('part2')">
-              第二部分：暗黑剧场 (T1~T6)
-            </button>
-          </div>
-          <div id="tree-sidebar-list"></div>
-        </aside>
-
-        <div id="tree-detail-pane" class="tree-detail-pane"></div>
-      </div>
-    </section>
-
-    <!-- ==================== VIEW 3: INTERACTIVE SVG X-RAY & 6-DOF LAB ==================== -->
-    <section id="view-lab" class="view-section">
-      <div class="lab-container">
-        <div class="lab-card">
-          <h2 style="font-size:20px; font-weight:800; margin-bottom:6px;">
-            🔬 底层机械拓扑 X-Ray 透视对比实验室（含 6-DOF 与飞行影院四大入场结构动态模拟）
-          </h2>
-          <p style="color:var(--text-secondary); font-size:13px; margin-bottom:14px;">
-            切换下方 6 组工程透视图，拖动右侧姿态与行程滑块（或开启自动正弦演示），直观对比最易混淆的轨道位置、万向节/机械臂连杆与前庭欺骗原理：
-          </p>
-
-          <div class="lab-tabs">
-            <button class="lab-tab-btn active" onclick="selectLabMode(0)">① KUKA 地面轨道机械臂 vs 顶部悬挂动感舱</button>
-            <button class="lab-tab-btn" onclick="selectLabMode(1)">② 车载 6-DOF (SCOOP) vs 12座越野吉普 (EMV)</button>
-            <button class="lab-tab-btn" onclick="selectLabMode(2)">③ 方特《神画》无轨多自由度 + 倾斜球幕飞跃</button>
-            <button class="lab-tab-btn" onclick="selectLabMode(3)">④ 上海加勒比水下LSM船 vs Mack 万向摇摆快艇</button>
-            <button class="lab-tab-btn" onclick="selectLabMode(4)">⑤ 18米倾斜旋转舞台 vs 360° 全封闭 LED 球体</button>
-            <button class="lab-tab-btn" onclick="selectLabMode(5)">⑥ 球幕飞行影院四大机械入场流派 (T1.1~T1.4)</button>
-          </div>
-
-          <div class="xray-stage">
-            <div id="xray-svg-canvas" class="svg-blueprint-wrap"></div>
-
-            <div class="xray-controls">
-              <div>
-                <div style="font-weight:800; font-size:14px; margin-bottom:10px; color:var(--accent-blue);">
-                  🎛️ 实时运动学自由度 (DOF) 控制台
-                </div>
-
-                <div class="slider-group" style="margin-bottom:10px;">
-                  <div class="slider-header">
-                    <span>前后俯仰 (Pitch / 机械臂J2)</span>
-                    <strong id="lab-val-pitch" style="color:var(--accent-blue);">14°</strong>
-                  </div>
-                  <input id="lab-input-pitch" type="range" min="-25" max="25" value="14" oninput="updateLabSlider('pitch', this.value)" />
-                </div>
-
-                <div class="slider-group" style="margin-bottom:10px;">
-                  <div class="slider-header">
-                    <span>左右横滚 (Roll / 机械臂J3)</span>
-                    <strong id="lab-val-roll" style="color:var(--accent-emerald);">-10°</strong>
-                  </div>
-                  <input id="lab-input-roll" type="range" min="-25" max="25" value="-10" oninput="updateLabSlider('roll', this.value)" />
-                </div>
-
-                <div class="slider-group" style="margin-bottom:10px;">
-                  <div class="slider-header">
-                    <span>水平偏航旋转 (Yaw 360°)</span>
-                    <strong id="lab-val-yaw" style="color:var(--accent-purple);">22°</strong>
-                  </div>
-                  <input id="lab-input-yaw" type="range" min="-60" max="60" value="22" oninput="updateLabSlider('yaw', this.value)" />
-                </div>
-
-                <div class="slider-group">
-                  <div class="slider-header">
-                    <span>轨道位移 / 升降 / 飞行影院入球行程</span>
-                    <strong id="lab-val-heave" style="color:var(--accent-amber);">55%</strong>
-                  </div>
-                  <input id="lab-input-heave" type="range" min="0" max="100" value="55" oninput="updateLabSlider('heave', this.value)" />
-                </div>
+          <div class="cover-grid">
+            <div class="cover-text">
+              <h1 class="display" id="hero-title">在<em>黑暗</em>中<br />移动的机器</h1>
+              <p class="hero-lede">
+                灯一关，轨道、吊臂和液压缸就都看不见了。这本图鉴按载具靠什么支撑、沿什么导引，把世界各地主题乐园里的黑暗乘骑与剧场类设施分门别类，并附上实拍、开灯与厂商测试影像。
+              </p>
+              <p class="hero-count">
+                目前收录 <b id="stat-rides">0</b> 个项目，分属 <b id="stat-cats">5</b> 大门类、<b id="stat-mechs">55</b> 种机制，附 <b id="stat-videos">0</b> 段影像。
+              </p>
+              <div class="hero-actions">
+                <button class="btn btn-solid" type="button" data-action="scroll-index">浏览项目<span data-icon="arrowDown"></span></button>
+                <a class="btn btn-quiet" href="#/mechanisms">从机制开始<span data-icon="arrowRight"></span></a>
               </div>
+            </div>
+            <figure class="plate" id="feature" aria-label="你可能不知道"></figure>
+          </div>
+        </div>
+      </div>
 
-              <button id="lab-autoplay-btn" class="btn-action btn-play-pov" style="width:100%; justify-content:center; padding:9px;" onclick="toggleLabAutoPlay()">
-                ▶ 开启 6-DOF 自动正弦演示
-              </button>
+      <div class="wrap">
+        <nav class="contents" aria-label="章节">
+          <a href="#/mechanisms"><span class="no">II</span><span class="t">机制</span><span class="d">五大门类，按支撑与导引方式逐级细分</span></a>
+          <a href="#/lab"><span class="no">III</span><span class="t">原理</span><span class="d">六组最容易混淆的结构，可拖动的示意图</span></a>
+          <a href="#/parks"><span class="no">IV</span><span class="t">乐园</span><span class="d">六大乐园体系、69 座乐园逐园盘点</span></a>
+          <a href="#/notes"><span class="no">V</span><span class="t">辨析</span><span class="d">看起来一样、其实不同的几组设备</span></a>
+          <a href="#/glossary"><span class="no">VI</span><span class="t">视效与交互</span><span class="d">画面怎样骗过眼睛，乘客能做什么</span></a>
+        </nav>
+      </div>
 
-              <div id="xray-mode-info" style="padding-top:10px; border-top:1px solid var(--border-color);"></div>
+      <div class="wrap section" id="index">
+        <header class="chapter-head">
+          <span class="chapter-no">I</span>
+          <div>
+            <h2 class="section-title">项目索引</h2>
+            <p class="section-note">每个项目都标注了机制编号。点开卡片看影像，或者把两三个项目放在一起对比。</p>
+          </div>
+        </header>
+        <div class="toolbar">
+          <div class="chips" id="group-chips" role="group" aria-label="按乐园筛选"></div>
+          <div class="toolbar-row">
+            <label class="field">
+              <span data-icon="search"></span>
+              <input class="input" id="filter-q" type="search" placeholder="筛选项目、乐园或制造商" autocomplete="off" aria-label="筛选项目" />
+            </label>
+            <select class="select" id="cat-select" aria-label="按门类筛选"></select>
+            <label class="switch"><input type="checkbox" id="only-lights" />有开灯影像</label>
+            <label class="switch"><input type="checkbox" id="only-demo" />有厂商演示</label>
+            <span class="spacer"></span>
+            <span class="result-count" id="result-count" aria-live="polite"></span>
+            <div class="segmented" id="layout-switch" role="group" aria-label="显示方式">
+              <button type="button" data-layout="grid" aria-pressed="true" aria-label="卡片"><span data-icon="grid"></span></button>
+              <button type="button" data-layout="list" aria-pressed="false" aria-label="列表"><span data-icon="list"></span></button>
             </div>
           </div>
         </div>
+        <div id="ride-results" class="ride-grid"></div>
       </div>
     </section>
 
-    <!-- ==================== VIEW 4: EXHAUSTIVE GLOBAL PARK MATRICES (PART 3) ==================== -->
-    <section id="view-parks" class="view-section">
-      <div class="park-matrix-nav">
-        <button class="lab-tab-btn park-matrix-btn active" data-parkkey="disney" onclick="selectParkMatrix('disney')">
-          🏰 3.1 全球迪士尼 (6大度假区 12座乐园)
-        </button>
-        <button class="lab-tab-btn park-matrix-btn" data-parkkey="universal" onclick="selectParkMatrix('universal')">
-          🌍 3.2 全球环球影城 (7座乐园含 Epic Universe)
-        </button>
-        <button class="lab-tab-btn park-matrix-btn" data-parkkey="fantawild" onclick="selectParkMatrix('fantawild')">
-          🐉 3.3 中国方特 (全国 38 座乐园全归类)
-        </button>
-        <button class="lab-tab-btn park-matrix-btn" data-parkkey="dubai" onclick="selectParkMatrix('dubai')">
-          🏙️ 3.4 迪拜与阿布扎比 (7大标杆乐园)
-        </button>
-        <button class="lab-tab-btn park-matrix-btn" data-parkkey="genting" onclick="selectParkMatrix('genting')">
-          ⛰️ 3.5 吉隆坡云顶天城世界 (Genting SkyWorlds)
-        </button>
-        <button class="lab-tab-btn park-matrix-btn" data-parkkey="europe" onclick="selectParkMatrix('europe')">
-          🛡️ 3.6 欧洲四大标杆 (Phantasialand/Efteling/Europa/Futuroscope)
-        </button>
+    <!-- 机制 -->
+    <section class="view" data-view="mechanisms" hidden>
+      <header class="wrap page-head">
+        <div class="page-head-title">
+          <p class="chapter-mark"><span class="chapter-no">II</span><span>机制</span><span class="en">Mechanisms</span></p>
+          <h1 class="page-title">按支撑与导引方式分类</h1>
+        </div>
+        <p class="page-lede">先看载具靠什么支撑、沿什么导引——地面轨道、无轨、天花板、垂直井道还是水——再看车上叠加了多少自由度。层级深浅不一：只在工程上真正分叉的地方才继续往下分。</p>
+      </header>
+      <div class="wrap mech-layout">
+        <aside class="side-nav">
+          <div class="segmented" id="part-switch" role="group" aria-label="切换部分"></div>
+          <nav class="tree" id="mech-tree" aria-label="机制目录"></nav>
+        </aside>
+        <article class="article" id="mech-article"></article>
       </div>
-
-      <div id="park-matrix-content"></div>
     </section>
 
-    <!-- ==================== VIEW 5: 6 CORE ENGINEERING DISTINCTIONS ==================== -->
-    <section id="view-distinctions" class="view-section">
-      <div id="distinctions-container"></div>
+    <!-- 原理 -->
+    <section class="view" data-view="lab" hidden>
+      <header class="wrap page-head">
+        <div class="page-head-title">
+          <p class="chapter-mark"><span class="chapter-no">III</span><span>原理</span><span class="en">Lab</span></p>
+          <h1 class="page-title">六组最容易混淆的结构</h1>
+        </div>
+        <p class="page-lede">示意图只表达结构关系，不按真实比例。拖动滑块观察各部件怎样运动，或者打开自动演示。</p>
+      </header>
+      <div class="wrap lab-layout">
+        <div class="lab-list" id="lab-list" role="tablist" aria-label="实验列表"></div>
+        <div class="lab-stage">
+          <div class="lab-sheet">
+            <div class="lab-canvas" id="lab-canvas"></div>
+            <div class="title-block" id="lab-tb" aria-hidden="true"></div>
+          </div>
+          <div class="lab-controls" id="lab-controls"></div>
+          <div class="lab-notes" id="lab-notes"></div>
+        </div>
+      </div>
     </section>
 
-    <!-- ==================== VIEW 6: VISUAL & PLAYER INTERACTION MATRIX ==================== -->
-    <section id="view-visual" class="view-section">
-      <div style="margin-bottom:16px;">
-        <h2 style="font-size:20px; font-weight:800; color:var(--accent-blue);">
-          👁️ 第四部分：视觉演艺（7大技术）与玩家交互机制（8大技术）全景速查矩阵
-        </h2>
-        <p style="color:var(--text-secondary); font-size:13px;">
-          除了物理载具与导引底盘外，Dark Ride 的沉浸感还取决于“视觉如何欺骗眼睛”以及“乘客如何干预叙事”：
-        </p>
+    <!-- 乐园 -->
+    <section class="view" data-view="parks" hidden>
+      <header class="wrap page-head">
+        <div class="page-head-title">
+          <p class="chapter-mark"><span class="chapter-no">IV</span><span>乐园</span><span class="en">Parks</span></p>
+          <h1 class="page-title">十一大乐园体系，逐园盘点</h1>
+        </div>
+        <p class="page-lede">涵盖迪士尼、环球影城、方特、长隆、华侨城、英国默林、美国六旗与雪松会、迪拜与阿布扎比、云顶天城、欧洲四大暗黑标杆及欧洲六大过山车与电影名园（Alton Towers、Parc Astérix、Gardaland、Movieland、Liseberg、PortAventura）。表中的机制编号可以点击，直接跳到对应条目。</p>
+      </header>
+      <div class="wrap section section-tight">
+        <div class="chips park-tabs" id="park-tabs" role="tablist" aria-label="乐园体系"></div>
+        <div class="park-head">
+          <div>
+            <h2 id="park-title"></h2>
+            <p id="park-note"></p>
+          </div>
+          <label class="field">
+            <span data-icon="search"></span>
+            <input class="input" id="park-q" type="search" placeholder="在当前表格中查找" autocomplete="off" aria-label="在表格中查找" />
+          </label>
+        </div>
+        <div class="table-wrap" id="park-table"></div>
+        <p class="table-note">已退役的项目在表中注明。</p>
       </div>
-      <div id="visual-matrix-container"></div>
+    </section>
+
+    <!-- 辨析 -->
+    <section class="view" data-view="notes" hidden>
+      <header class="wrap page-head">
+        <div class="page-head-title">
+          <p class="chapter-mark"><span class="chapter-no">V</span><span>辨析</span><span class="en">Notes</span></p>
+          <h1 class="page-title">看起来一样，其实不同</h1>
+        </div>
+        <p class="page-lede">黑暗藏起了轨道与支撑结构，很多设备因此被混为一谈。这里把最常被混淆的几组放在一起对照。</p>
+      </header>
+      <div class="wrap notes-layout">
+        <nav class="notes-toc" id="notes-toc" aria-label="辨析目录"></nav>
+        <div id="notes-body"></div>
+      </div>
+    </section>
+
+    <!-- 视效与交互 -->
+    <section class="view" data-view="glossary" hidden>
+      <header class="wrap page-head">
+        <div class="page-head-title">
+          <p class="chapter-mark"><span class="chapter-no">VI</span><span>视效与交互</span><span class="en">Techniques</span></p>
+          <h1 class="page-title">眼睛看到什么，手能做什么</h1>
+        </div>
+        <p class="page-lede">除了载具本身，暗黑乘骑的沉浸感还取决于画面怎样骗过眼睛，以及乘客能在多大程度上参与。</p>
+      </header>
+      <div class="wrap glossary" id="glossary"></div>
     </section>
   </main>
 
-  <!-- Sticky Side-by-Side Comparison Dock -->
-  <div id="compare-dock" class="compare-dock">
-    <span style="font-weight:700; font-size:12.5px; color:var(--accent-blue);">⚖️ 硬件参数对比栏 (最多3项)：</span>
-    <div id="compare-chips-list" class="compare-chips"></div>
-    <button class="btn-action btn-play-pov" onclick="openCompareModal()">立即横向 PK</button>
-  </div>
-
-  <!-- In-App Cinema Video Player Modal -->
-  <div id="video-modal-backdrop" class="modal-backdrop" onclick="if(event.target===this) closeVideoModal()">
-    <div class="video-modal">
-      <div class="video-modal-header">
-        <div id="video-modal-title" style="font-weight:800; font-size:16px;"></div>
-        <button class="icon-btn" onclick="closeVideoModal()">✕ 关闭播放器 (Esc)</button>
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-grid">
+        <div>
+          <a class="footer-brand" href="#/"><span data-brand></span><span class="brand-name">Dark Ride Atlas</span></a>
+          <p class="footer-note">一个整理主题乐园黑暗乘骑工程资料的个人项目。分类与项目信息来自公开资料，难免有疏漏，欢迎在 GitHub 上提出勘误。影像均嵌入自 YouTube，版权归原作者所有。</p>
+        </div>
+        <div>
+          <p class="footer-h">浏览</p>
+          <nav class="footer-links" aria-label="页脚导航">
+            <a href="#/">项目索引</a>
+            <a href="#/mechanisms">机制</a>
+            <a href="#/lab">原理</a>
+            <a href="#/parks">乐园</a>
+            <a href="#/notes">辨析</a>
+            <a href="#/glossary">视效与交互</a>
+          </nav>
+        </div>
+        <div>
+          <p class="footer-h">资料</p>
+          <nav class="footer-links" aria-label="资料链接">
+            <a href="https://github.com/xtxsinan-lgtm/dark_rides" target="_blank" rel="noopener"><span data-icon="github"></span>GitHub 仓库</a>
+            <a href="https://github.com/xtxsinan-lgtm/dark_rides/blob/main/docs/dark_ride_mechanisms_guide.md" target="_blank" rel="noopener"><span data-icon="book"></span>完整文档</a>
+            <a href="https://github.com/xtxsinan-lgtm/dark_rides/blob/main/docs/dark_ride_engineering_distinctions.md" target="_blank" rel="noopener"><span data-icon="book"></span>工程辨析</a>
+          </nav>
+        </div>
+        <div>
+          <p class="footer-h">版本说明</p>
+          <p class="colophon">正文以 Noto Serif SC 与 Newsreader 排印，编号与数据使用 IBM Plex Mono。不依赖任何框架，直接用浏览器打开即可阅读。</p>
+        </div>
       </div>
-      <div id="video-modal-tabs" class="video-source-tabs"></div>
-      <div id="video-modal-iframe-wrap" class="video-iframe-container"></div>
-      <div id="video-modal-footer" class="video-modal-footer"></div>
+      <p class="footer-wordmark" aria-hidden="true">Dark Ride Atlas</p>
+      <div class="footer-base">
+        <span>© 2026 Dark Ride Atlas · 第一版</span>
+        <span>按 <kbd>/</kbd> 或 <kbd>⌘</kbd> <kbd>K</kbd> 搜索</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Dialogs -->
+  <div class="backdrop" id="ride-backdrop">
+    <div class="dialog" id="ride-dialog" role="dialog" aria-modal="true" aria-labelledby="ride-dialog-title"></div>
+  </div>
+  <div class="backdrop" id="video-backdrop">
+    <div class="dialog video-dialog" id="video-dialog" role="dialog" aria-modal="true" aria-label="视频"></div>
+  </div>
+  <div class="backdrop" id="compare-backdrop">
+    <div class="dialog compare-dialog" id="compare-dialog" role="dialog" aria-modal="true" aria-label="项目对比"></div>
+  </div>
+  <div class="backdrop palette-backdrop" id="palette-backdrop">
+    <div class="palette" role="dialog" aria-modal="true" aria-label="搜索">
+      <div class="palette-input">
+        <span data-icon="search"></span>
+        <input id="palette-input" type="text" placeholder="搜索项目、机制编号或乐园…" autocomplete="off" spellcheck="false" aria-controls="palette-results" data-autofocus />
+        <kbd>Esc</kbd>
+      </div>
+      <div class="palette-results" id="palette-results" role="listbox" aria-label="搜索结果"></div>
+      <div class="palette-foot">
+        <span><kbd>↑</kbd><kbd>↓</kbd>选择</span>
+        <span><kbd>↵</kbd>打开</span>
+        <span><kbd>Esc</kbd>关闭</span>
+      </div>
     </div>
   </div>
 
-  <!-- Side-by-Side Comparison Modal -->
-  <div id="compare-modal-backdrop" class="modal-backdrop" onclick="if(event.target===this) closeCompareModal()">
-    <div class="video-modal" style="max-width:1180px;">
-      <div class="video-modal-header">
-        <div style="font-weight:800; font-size:16px; color:var(--accent-blue);">⚖️ Dark Ride 硬件机制与工程参数横向对比</div>
-        <button class="icon-btn" onclick="closeCompareModal()">✕ 关闭对比</button>
-      </div>
-      <div id="compare-modal-body" style="padding:20px;"></div>
-    </div>
+  <div class="compare-tray" id="compare-tray" aria-live="polite">
+    <span class="tray-label">对比</span>
+    <div class="tray-items" id="tray-items"></div>
+    <button class="tray-go" type="button" id="tray-go">再选一个</button>
   </div>
 
-  <!-- Data & Application Scripts -->
-  <script src="js/data-rides.js"></script>
+  <script src="js/icons.js"></script>
+  <script src="js/data-videos.js"></script>
   <script src="js/data-mechanisms.js"></script>
+  <script src="js/data-rides.js"></script>
   <script src="js/data-parks.js"></script>
   <script src="js/data-distinctions.js"></script>
   <script src="js/xray-lab.js"></script>

@@ -1,370 +1,596 @@
-// Complete Part 1 (5 Physical Dark Ride Categories) + Part 2 (6 Dark Theater Categories) + Part 4 (Visual & Interaction Matrix)
-window.MECHANISM_TREE_DATA = {
-  part1: [
+/*
+  Mechanism taxonomy.
+  Branch nodes: { code, title, children }
+  Leaf nodes:   { code, short, title, en, support, dof, mfg, text, demo?, demoNote?, parks: [[label, items]] }
+  Depth varies (2–4 levels) on purpose: deeper only where the engineering actually branches.
+*/
+window.MECH = {
+  parts: [
     {
-      id: "c1",
-      title: "门类一：地面水平有轨系统 (Floor-Tracked Systems)",
-      subtitle: "4级可变深度嵌套 · 含 1.1 有座舱导轨车 (0~6 DOF / 机械臂 / 跨界) 与 1.2 无座舱连续传送带",
-      groups: [
+      id: "ride",
+      label: "行进式",
+      title: "行进式 Dark Ride",
+      note: "载具带着乘客在不同场景之间真实移动。按载具的支撑与导引方式分为五大门类。",
+      cats: [
         {
-          groupTitle: "1.1.1 固定或单轴水平旋转座舱 (0~1 DOF：无车载俯仰横滚)",
-          nodes: [
+          key: "c1",
+          num: "I",
+          title: "地面水平有轨",
+          en: "Floor-tracked",
+          desc: "以地面导轨与导电母线支撑、导引载具。按是否有座舱分为两支；有座舱的一支，再按车上机构的自由度由低到高细分。",
+          children: [
             {
-              code: "1.1.1.1",
-              name: "间歇发车传统地面有轨小车（含手动/受控自转）",
-              support: "地面导电槽轨 / 工字钢轨 (Busbar Track)",
-              dof: "0~1 DOF（沿轨平移 + 车载电机或方向盘 Yaw 自转）",
-              mfg: "WDI / ETF Ride Systems / Mack Rides / 华强方特",
-              principle: "分批或单车发车，通过地面导电轨取电；座舱朝向固定或仅能绕垂直轴水平旋转（如兔子罗杰方向盘自转、疯狂兔子马桶旋转震动）。",
-              demoYtId: "",
-              parks: [
-                { label: "迪士尼", items: "《白雪公主》《匹诺曹》《蟾蜍先生》《爱丽丝梦游仙境》《小熊维尼》《兔子罗杰卡通转转车》《怪兽电力公司：大营救》" },
-                { label: "环球影城", items: "奥兰多冒险岛《苏斯博士帽子里的猫 (The Cat in the Hat)》" },
-                { label: "中国方特", items: "安阳方特《怪奇公馆》、熊出没乐园《玩具屋大冒险》" },
-                { label: "迪拜与阿布扎比", items: "Motiongate《蓝精灵工作室之旅》《怪物史瑞克童话之旅》、IMG《失落谷：恐龙禁区 (70只机械恐龙)》" },
-                { label: "欧洲四大标杆", items: "法国 Futuroscope《疯狂兔子时光机 (La Machine à voyager dans le temps)》、Europa-Park《白雪公主雪橇》《Piccolo Mondo》" }
+              code: "1.1",
+              title: "有座舱地面导轨车",
+              children: [
+                {
+                  code: "1.1.1",
+                  title: "固定或单轴旋转座舱（0–1 自由度）",
+                  children: [
+                    {
+                      code: "1.1.1.1",
+                      short: "传统有轨小车",
+                      title: "间歇发车的传统地面有轨小车",
+                      en: "Conventional tracked car",
+                      support: "地面导轨与导电母线",
+                      dof: "沿轨平移；部分车型可水平自转",
+                      mfg: "WDI、ETF、Mack Rides、华强方特等",
+                      text: "车辆分批发车，沿地面导轨行驶。座舱朝向固定，或可由电机、乘客转动的方向盘带动水平旋转。结构简单，是最古老也最常见的暗黑乘骑形式。",
+                      parks: [
+                        ["迪士尼", "《白雪公主》《匹诺曹》《蟾蜍先生狂野之旅》《爱丽丝梦游仙境》《小熊维尼历险记》《兔子罗杰卡通转转车》《怪兽电力公司：大营救》"],
+                        ["环球影城", "奥兰多冒险岛《帽子里的猫》"],
+                        ["方特", "安阳《怪奇公馆》、熊出没乐园《玩具屋大冒险》"],
+                        ["默林集团", "Alton Towers《Gangsta Granny: The Ride》；Heide Park《Dämonen Gruft》（2024）"],
+                        ["六旗与雪松会", "诺氏百乐坊《Calico Mine Ride》（1960 假山暗黑火车鼻祖）；雪松点历史名作《Pirate Ride》《Earthquake》"],
+                        ["欧洲名园", "意大利 Movieland《Pangea》（游客手握方向盘自驾真吉普）；瑞典 Liseberg《Underlandet》（含终点垂直升降电梯）"],
+                        ["迪拜与阿布扎比", "Motiongate《蓝精灵工作室之旅》《史瑞克童话之旅》；IMG《失落谷：恐龙禁区》"],
+                        ["欧洲四园", "Futuroscope《疯狂兔子时光机》；Europa-Park《白雪公主雪橇之旅》《Piccolo Mondo》"]
+                      ]
+                    },
+                    {
+                      code: "1.1.1.2",
+                      short: "Omnimover 连续车链",
+                      title: "连续匀速移动的全向车链（Omnimover）",
+                      en: "Omnimover",
+                      support: "首尾相连的连续车链",
+                      dof: "约 0.6 m/s 连续平移 + 轨道强制水平转向",
+                      mfg: "WDI、Arrow、Mack Rides、Schwarzkopf",
+                      text: "上百节车厢首尾相连、永不停车，吞吐量很高。轨道上的凸轮或伺服机构强制车厢转向，高靠背遮住相邻车辆，像摄影机一样替乘客决定看什么。",
+                      parks: [
+                        ["迪士尼", "《幽灵公馆》/《幻影庄园》《小美人鱼：海底之旅》《地球太空船》《海底总动员：尼莫与朋友们》《幻想之旅》"],
+                        ["环球影城", "好莱坞《爱宠大机密：脱离皮带》；日本与史诗宇宙《耀西的冒险》"],
+                        ["默林集团", "Alton Towers《奥尔顿庄园的诅咒》（Mack 分区变速连续发车系统）；Thorpe Park 历史名作《Wicked Witches Haunt》"],
+                        ["欧洲四园", "Phantasialand《幽灵人力车》；Efteling《狂欢节》；Europa-Park《美第奇城堡》《弗洛伊登赖希夫人的奇珍馆》"]
+                      ]
+                    },
+                    {
+                      code: "1.1.1.3",
+                      short: "旋转车 + 射击互动",
+                      title: "有轨旋转底盘 + 射击与互动系统",
+                      en: "Interactive tracked ride",
+                      support: "地面单轨或双轨",
+                      dof: "沿轨平移 + 手动或程序控制的快速水平旋转",
+                      mfg: "WDI、ETF、Mack、Triotech、Alterface、Sally、华强方特、华侨城文旅科技",
+                      text: "车厢可手动或自动快速转向，配合激光枪、弹簧发射器、手电筒、手势识别或 AR 护目镜等交互方式，射击实景靶点或 3D 屏幕里的目标。",
+                      parks: [
+                        ["迪士尼", "《巴斯光年》系列、香港《蚁人与黄蜂女：击战特攻！》、《玩具总动员疯狂游戏屋》、东京《怪兽电力公司“迷藏巡游车”》、《蜘蛛侠大冒险》"],
+                        ["环球影城", "《马力欧卡丁车：库巴的挑战》、奥兰多《黑衣人：外星人攻击》"],
+                        ["方特", "《熊出没历险记》《神枪手》《百发百中》《宇宙小勇士》、自贡《丛林卫士》、青岛《小鸡不好惹之大反击》"],
+                        ["长隆与华侨城", "长隆宇宙飞船《深海奇遇》；深圳/上海/成都欢乐谷《北极探险》（Sally）、重庆欢乐谷《洪崖洞传说》、武汉欢乐谷《魔幻奇兵》"],
+                        ["默林集团", "全球乐高乐园《乐高幻影忍者》（Triotech 隔空手势发射）与《失落王国历险记》（Sally）；Chessington《古墓神枪手》；Heide Park《捉鬼敢死队 5D》"],
+                        ["六旗与雪松会", "国王岛/国王领地/卡罗温兹/加拿大奇幻乐园《嘘嘘山幽灵猎手 (Boo Blasters)》；诺氏百乐坊《诺氏小熊传说》；德州嘉年华六旗《深海海盗》"],
+                        ["迪拜与阿布扎比", "华纳兄弟世界《乐一通大混乱》、法拉利世界《本诺的大赛》、迪拜乐高乐园《幻影忍者》"],
+                        ["云顶天城", "《博物馆奇妙夜：午夜大混乱》"],
+                        ["欧洲四园", "Phantasialand《巧克力大冒险》、Europa-Park《亚特兰蒂斯历险》"]
+                      ]
+                    },
+                    {
+                      code: "1.1.1.4",
+                      short: "普通车 + 局部动感轨段",
+                      title: "普通有轨车 + 局部动感轨段",
+                      en: "Passive car on a motion bridge",
+                      support: "地面导轨，个别轨段架在液压平台上",
+                      dof: "车辆本身仅可旋转；动感来自房间里的轨段平台",
+                      mfg: "Mack Rides",
+                      text: "车辆本身没有动感机构，但个别房间的一段轨道架在液压平台上。车开上去锁定后，平台带着轨道和车辆一起颠簸——用较低的成本换来局部的动感体验。",
+                      parks: [["欧洲四园", "Europa-Park《斯诺里之旅》"]]
+                    }
+                  ]
+                },
+                {
+                  code: "1.1.2",
+                  title: "车载多自由度动感平台（3–6 自由度）",
+                  children: [
+                    {
+                      code: "1.1.2.1",
+                      short: "车载六自由度 + 3D 屏幕",
+                      title: "车载六自由度平台 + 360° 旋转 + 3D 屏幕",
+                      en: "Motion-base vehicle with 3D media",
+                      support: "地面隐藏导轨",
+                      dof: "六自由度运动平台 + 360° 水平旋转",
+                      mfg: "Oceaneering、华强方特",
+                      text: "每辆车背着一套六自由度运动平台和可旋转的座舱，在多块 3D 屏幕与实景之间穿行。屏幕画面按车辆位置实时校正透视，配合平台的俯仰与旋转，制造坠落、飞驰等体感。",
+                      demo: "CySHvb_4fHk",
+                      demoNote: "Oceaneering EVO-6 展会演示",
+                      parks: [
+                        ["环球影城", "奥兰多《蜘蛛侠惊魂历险记》；《变形金刚：火种源之战》（好莱坞、奥兰多、新加坡、北京）；北京《侏罗纪世界大冒险》"],
+                        ["迪士尼", "东京迪士尼海洋《小飞侠梦幻岛历险记》"],
+                        ["方特", "《女娲补天》《恐龙危机》《魔法城堡》《哪吒闹海》（东方神画动感车版）《突围》《铁道游击》《封神》《拉玛传奇》《丝路奇遇》《地心历险》《古蜀历险》《勇者之城》"],
+                        ["华侨城", "东部华侨城《地心四千哩》；襄阳奇幻谷《超时空营救（地心历险）》；成都欢乐谷《熊猫侠》；天津欢乐谷《3D 圣诞历险记》；卡乐星球《时光飞车》《疯狂魔术师》"],
+                        ["默林集团", "意大利 Gardaland《勇敢者游戏：丛林历险 (Jumanji – The Adventure)》（Oceaneering 6-DOF 越野车）"],
+                        ["六旗与雪松会", "7 座六旗乐园《正义联盟：大都会之战 (Justice League: Battle for Metropolis)》（Oceaneering 6-DOF + Sally 互动射击）"],
+                        ["迪拜与阿布扎比", "华纳兄弟世界《正义联盟：战争世界攻击》；IMG《复仇者联盟：奥创之战》"],
+                        ["云顶天城", "《猩球崛起：入侵》"]
+                      ]
+                    },
+                    {
+                      code: "1.1.2.2",
+                      short: "车载升降 + 动感座舱",
+                      title: "车载大行程升降机构 + 多自由度座舱",
+                      en: "Elevating motion-base vehicle",
+                      support: "地面导轨",
+                      dof: "沿轨平移 + 数米垂直升降 + 座舱多自由度",
+                      mfg: "Simtec Systems",
+                      text: "在地面底盘与动感座舱之间加入一套大行程升降机构，车厢可以在行驶中真实地升起、落下，用来模拟魔法部的“飞天电梯”。",
+                      parks: [["环球影城", "史诗宇宙《哈利·波特与魔法部之战》"]]
+                    },
+                    {
+                      code: "1.1.2.3",
+                      short: "越野吉普（EMV）",
+                      title: "车载多自由度越野吉普（EMV 路线）",
+                      en: "Enhanced Motion Vehicle",
+                      support: "地面导轨",
+                      dof: "车身俯仰、侧倾、升降；不做 360° 旋转",
+                      mfg: "WDI、华强方特",
+                      text: "以迪士尼 EMV 为代表：12 座敞篷越野车的悬挂由液压控制，模拟崎岖路面的颠簸、急刹和下坠。乘客不戴 3D 眼镜，车头始终朝前，惊险来自实景与机关。",
+                      parks: [
+                        ["迪士尼", "加州与东京《印第安纳琼斯冒险旅程》；动物王国《恐龙》"],
+                        ["方特", "青岛《秦俑地宫》；芜湖、厦门、株洲梦幻王国的 12 座吉普版《秦陵历险》（与一期看台版是不同设备）"]
+                      ]
+                    }
+                  ]
+                },
+                {
+                  code: "1.1.3",
+                  title: "车载多轴工业机械臂",
+                  children: [
+                    {
+                      code: "1.1.3.1",
+                      short: "地面轨道 + 六轴机械臂",
+                      title: "地面轨道 + 六轴串联工业机械臂",
+                      en: "Floor-tracked robotic arm",
+                      support: "地面导轨上的配重底盘",
+                      dof: "底盘平移 + 机械臂六轴运动（大幅升降、近乎平躺）",
+                      mfg: "KUKA、Dynamic Structures",
+                      text: "底盘沿地面轨道匀速行驶，上方的六轴机械臂从椅背后方举着一排座椅，可以伸缩、抬升、近乎平躺。轨道被黑色地台遮住，所以常被误认为是悬挂在天花板上的系统。",
+                      demo: "2_SEJHxlmWw",
+                      demoNote: "KUKA RoboCoaster 展会演示",
+                      parks: [["环球影城", "《哈利·波特与禁忌之旅》（奥兰多、好莱坞、日本、北京）；史诗宇宙《科学怪人：怪物大暴走》"]]
+                    },
+                    {
+                      code: "1.1.3.2",
+                      short: "高速底盘 + 机械悬臂",
+                      title: "高速底盘 + 多自由度机械悬臂",
+                      en: "High-speed robotic vehicle",
+                      support: "地面高速导轨",
+                      dof: "底盘快速加减速 + 座舱大角度俯仰、侧倾",
+                      mfg: "Dynamic Attractions",
+                      text: "把机械臂式座舱装在能快速冲刺的底盘上，突破了机械臂底盘只能慢速匀行的限制。",
+                      parks: [["迪拜与阿布扎比", "华纳兄弟世界《蝙蝠侠：暗夜飞行》"]]
+                    }
+                  ]
+                },
+                {
+                  code: "1.1.4",
+                  title: "慢速叙事 + 高速段的跨界系统",
+                  children: [
+                    {
+                      code: "1.1.4.1",
+                      short: "慢速叙事 + 槽轨竞速",
+                      title: "室内慢速叙事 + 室外高速槽轨车",
+                      en: "Slot-car hybrid",
+                      support: "地面槽轨与供电母线",
+                      dof: "从步行速度到高速竞速",
+                      mfg: "WDI",
+                      text: "地面开槽导向并供电。前半段在室内慢速看机械人偶，后半段驶出室外加速，甚至两车并排竞速。",
+                      parks: [["迪士尼", "加州冒险乐园《汽车总动员：水箱温泉镇赛车手》；东京迪士尼海洋《地心探险之旅》；EPCOT《测试赛道》"]]
+                    },
+                    {
+                      code: "1.1.4.2",
+                      short: "动感底盘叙事过山车",
+                      title: "车载旋转/俯仰底盘 + 特种轨段的叙事过山车",
+                      en: "Story coaster with motion base",
+                      support: "过山车钢轨 + 可倾斜、可横移的特种轨段",
+                      dof: "车厢受控旋转或俯仰 + 轨段倾斜、横移",
+                      mfg: "Intamin、Vekoma、Dynamic Attractions",
+                      text: "在过山车轨道上加入车载旋转或俯仰机构，配合可倾斜、可横移的特种轨段和多块屏幕，大半程用来讲故事，而不只是追求速度。",
+                      parks: [
+                        ["环球影城", "奥兰多《哈利·波特与逃离古灵阁》"],
+                        ["迪士尼", "EPCOT《银河护卫队：宇宙倒带》"],
+                        ["欧洲名园", "西班牙冒险港 PortAventura《神秘海域：苦修之谜 (Uncharted: The Enigma of Penitence)》（Intamin 五次弹射受控旋转 + 侧向滑轨与跌落轨）"],
+                        ["华侨城", "常德卡乐星球《圣诞奇兵》（车载动感 + 垂直电梯提升 + 变轨滑台）"],
+                        ["迪拜与阿布扎比", "法拉利世界《法拉利使命》"]
+                      ]
+                    },
+                    {
+                      code: "1.1.4.3",
+                      short: "半程暗黑 + 半程过山车",
+                      title: "半程慢速暗黑乘骑 + 半程过山车",
+                      en: "Half dark ride, half coaster",
+                      support: "同一条轨道上的慢速段与发射或下坡段",
+                      dof: "慢速巡游 → 高速过山车",
+                      mfg: "Premier Rides、Vekoma、Intamin、ART Engineering、华强方特",
+                      text: "前半段是完整的慢速暗黑乘骑，经过多个布景房间；之后换轨、发射或下坡，进入过山车段。这里只收录有独立暗黑叙事段的项目。",
+                      parks: [
+                        ["环球影城", "《木乃伊复仇记》（奥兰多、好莱坞、新加坡）"],
+                        ["迪士尼", "《七个小矮人矿山车》（神奇王国、上海）"],
+                        ["方特", "东方神画《惊魂之旅》/《灵魂之旅》"],
+                        ["默林集团", "全球 11 座乐高乐园《飞龙过山车 (The Dragon)》；Alton Towers《TH13TEEN》（地下古墓垂直自由落体跌落轨）；Thorpe Park《X》"],
+                        ["六旗与雪松会", "加拿大奇幻乐园《奇幻山守护者 (Wonder Mountain's Guardian)》（山体内部 150 米 3D 互动射击过山车 + 结尾 9 米垂直自由落体跌落轨）；六旗《黑暗骑士过山车》《骷髅山》；国王岛《冒险快车》《恐惧飞行》；雪松点历史传奇《灾难运输号》"],
+                        ["华侨城", "襄阳奇幻谷《雪山飞车》（含室内冰洞变轨倒退段）；上海欢乐谷《矿山历险》；天津欢乐谷《火山探险》"]
+                      ]
+                    }
+                  ]
+                }
               ]
             },
-            {
-              code: "1.1.1.2",
-              name: "连续匀速移动全向车链 (Omnimover / Endless Transit)",
-              support: "地面闭合连续移动车链导轨",
-              dof: "1 DOF（0.6 m/s 永不停车平移 + 轨道凸轮/伺服强制 Yaw 转角）",
-              mfg: "WDI / Arrow / Mack Rides / Schwarzkopf / Oceaneering",
-              principle: "上百节车厢首尾相连永不停车（吞吐量高达 2400~3200 人/小时），高靠背桶形车壳配合强制水平转头，像电影摄影机一样精确框定游客视野并遮挡邻车。",
-              demoYtId: "i1GV8qXavSg",
-              parks: [
-                { label: "迪士尼", items: "《幽灵公馆 (Haunted Mansion)》《幻影庄园》《小美人鱼》《Spaceship Earth》《海底总动员：尼莫与朋友们 (贴真水族馆玻璃)》" },
-                { label: "环球影城", items: "好莱坞《爱宠大机密 (面部捕捉映射虚拟小狗)》、日本/Epic Universe《耀西的冒险》" },
-                { label: "欧洲四大标杆", items: "德国 Phantasialand《幽灵人力车 (Geister Rikscha — 欧洲最长全地下中式神话 Omnimover)》、荷兰 Efteling《狂欢节 (Carnaval Festival)》、德国 Europa-Park《美第奇城堡》《老奶奶恐龙馆 (Madame Freudenreich)》" }
-              ]
-            },
-            {
-              code: "1.1.1.3",
-              name: "有轨旋转底盘 + 射击交互系统 (Interactive Blaster / AR Ride)",
-              support: "地面单轨或双轨并排竞速导轨",
-              dof: "1 DOF（有轨平移 + 摇杆手动 360° 或程序高速甩转 Whip-around）",
-              mfg: "ETF / MTS / Mack / Triotech / Alterface / 华强方特",
-              principle: "有轨旋转底盘搭载红外激光枪、拉绳弹簧 3D 彩球炮、手电筒、徒手深度摄像头或 AR 头显，支持实景打靶、3D 屏幕射击或双车 PVP 互射对方排气管令对方失控自转。",
-              demoYtId: "gWK2apK--no",
-              parks: [
-                { label: "迪士尼", items: "《巴斯光年星际营救》《蚁人与黄蜂女》《玩具总动员疯狂游戏屋》《怪兽电力公司迷藏巡游车(手电筒)》《蜘蛛侠 WEB SLINGERS(徒手射网)》" },
-                { label: "环球影城", items: "《马力欧卡丁车：库巴的挑战(双轨+AR头显)》、奥兰多《黑衣人：外星人攻击(双轨PVP互射狂转)》" },
-                { label: "中国方特 (38园)", items: "《熊出没历险记》(20+园)、《神枪手》(东方欲晓)、《百发百中》(台州/邯郸)、《宇宙小勇士》、《丛林卫士》(自贡)、《小鸡不好惹之大反击》(青岛)" },
-                { label: "迪拜 & 云顶 SkyWorlds", items: "吉隆坡云顶《博物馆奇妙夜：午夜大混乱》、阿布扎比华纳《乐一通 Ani-Mayhem》、法拉利世界《Benno's Great Race》、迪拜乐高《幻影忍者》" },
-                { label: "欧洲四大标杆", items: "德国 Phantasialand《Maus au Chocolat (奶油打老鼠)》、德国 Europa-Park《亚特兰蒂斯历险》" }
-              ]
-            },
-            {
-              code: "1.1.1.4",
-              name: "普通有轨车 + 局部轨道段液压动感跳台桥 (Track Motion Bridge)",
-              support: "地面导轨 + 房间地板下 6-DOF 液压动感桥",
-              dof: "车体 1-DOF 旋转 + 局部铁轨桥面 6-DOF 颠簸",
-              mfg: "Mack Rides",
-              principle: "小车本身不装昂贵的 6-DOF 液压缸，但中途某几个穹顶房间的铁轨架设在地面液压平台上；车开上桥面锁止后，桥面带着铁轨和小车一起上下弹跳。",
-              demoYtId: "",
-              parks: [
-                { label: "欧洲四大标杆", items: "德国 Europa-Park《斯诺里章鱼之旅 (Snorri Touren — 含两座弧幕液压动感跳台桥)》" }
-              ]
-            }
-          ]
-        },
-        {
-          groupTitle: "1.1.2 车载多自由度动感平台系统 (3~6 DOF：每辆车自带俯仰/横滚/升降伺服机构)",
-          nodes: [
-            {
-              code: "1.1.2.1",
-              name: "车载 6-DOF 动感平台 + 360° 自转 + 3D/巨幕系统 (SCOOP / MR Ride)",
-              support: "地面隐藏供电槽轨 + 车载 6-DOF 斯图尔特平台",
-              dof: "6-DOF (Pitch/Roll/Heave/Surge/Sway) + Yaw 360° 连续回转",
-              mfg: "Oceaneering International / 华强方特 / Dynamic",
-              principle: "每辆 8~16 座车底盘背负一套 6 自由度平台与 360° 回转盘，配合 Squinching 动态视点透视矫正 3D 巨幕与实景火水特效，靠原地高速自转+仰角+风流制造高空坠楼与飞驰体感。",
-              demoYtId: "CySHvb_4fHk",
-              parks: [
-                { label: "环球影城", items: "奥兰多《蜘蛛侠》(鼻祖)、全球《变形金刚：火种源之战》(好莱坞/奥兰多含双层垂直电梯)、北京环球独占《侏罗纪世界大冒险》(免3D眼镜纯实景+巨幕版)" },
-                { label: "迪士尼", items: "东京迪士尼海洋 2024《小飞侠梦幻岛历险记 (Peter Pan's Never Land Adventure)》" },
-                { label: "中国方特 (38园)", items: "《女娲补天》《恐龙危机》《魔法城堡》《哪吒闹海(东方神画8~16座车版)》《大闹水晶宫(芜湖东方神画)》《突围》《铁道游击》《封神》(安阳)《拉玛传奇》(南宁)《丝路奇遇》《地心历险》(自贡双层)《古蜀历险》(资阳)《勇者之城》(台州)" },
-                { label: "迪拜 & 云顶 SkyWorlds", items: "吉隆坡云顶《猩球崛起：入侵 (Invasion of the Planet of the Apes)》、阿布扎比华纳《正义联盟》、迪拜 IMG《复仇者联盟：奥创之战》" }
-              ]
-            },
-            {
-              code: "1.1.2.2",
-              name: "车载大行程垂直升降剪刀叉 + 6-DOF 多向飞天电梯车",
-              support: "地面重型导轨 + 车载数米垂直剪刀叉升降立柱",
-              dof: "地面平移 + 数米垂直真实举升急降 + 6-DOF 座舱俯仰翻滚",
-              mfg: "Simtec Systems",
-              principle: "在地面导轨底盘与 6-DOF 座舱之间增设一套数米行程的重型剪刀叉垂直升降机构，使 14 座车厢在沿轨横移时能真实升起数米高再急速失重下坠。",
-              demoYtId: "AfFMtDC4-AE",
-              parks: [
-                { label: "环球影城", items: "2025 奥兰多 Epic Universe《哈利·波特与魔法部之战 (Harry Potter and the Battle at the Ministry)》" }
-              ]
-            },
-            {
-              code: "1.1.2.3",
-              name: "车载多自由度越野探险吉普系统 (Disney EMV 纯实景古墓路线)",
-              support: "地面槽轨 + 车载 3000psi 高压液压/伺服悬架",
-              dof: "轨道变速 + 大行程 Pitch 俯仰 / Roll 横滚 / Heave 颠簸（无 360° 陀螺自转）",
-              mfg: "WDI / MTS Systems / 华强方特",
-              principle: "采用 12 座（3排×4人）敞篷考古越野吉普车，不戴 3D 眼镜、不做 360° 自转，靠车头探照灯照亮幽暗实景古墓/丛林，模拟断桥下陷、巨石滚落倒车与崎岖路面猛烈颠簸。",
-              demoYtId: "7RJLNQRBRYI",
-              parks: [
-                { label: "迪士尼", items: "加州迪士尼 & 东京迪士尼海洋《印第安纳琼斯冒险旅程 (Indiana Jones Adventure)》、奥兰多动物王国《恐龙 (DINOSAUR)》" },
-                { label: "中国方特", items: "青岛方特梦幻王国《秦俑地宫》、芜湖/厦门/株洲方特梦幻王国二期版《秦陵历险》（12座 3×4 考古探险吉普穿过实体兵马俑军阵与机关，对标印第安纳琼斯；区别于一期欢乐世界 T3.2 大看台车版）" }
-              ]
-            }
-          ]
-        },
-        {
-          groupTitle: "1.1.3 车载多轴工业机械臂系统 (Tracked 6-Axis Robotic Arm)",
-          nodes: [
-            {
-              code: "1.1.3.1",
-              name: "地面连续导电轨 + 6 轴串联工业机械臂 (KUKA RoboCoaster G2)",
-              support: "地面连续导电导轨 + 重型地面配重底盘（非顶部悬挂！）",
-              dof: "底盘匀速平移 + J1~J6 六轴串联机械臂三维 X/Y/Z 伸缩与 ±110° 仰躺翻转",
-              mfg: "KUKA Robotics + Dynamic Attractions",
-              principle: "地面配重底盘沿地面导轨连续滑行，上方 6 轴 KUKA 工业机械臂从椅背上方抓持 4 人悬空长椅，实现数米高低伸缩与近乎平躺的翻转，配合随车同步旋转的半球幕转盘（Carousel of Domes）或巨型怪兽人偶。",
-              demoYtId: "2_SEJHxlmWw",
-              parks: [
-                { label: "环球影城 (全球独占)", items: "奥兰多/好莱坞/日本/北京《哈利·波特与禁忌之旅 (Forbidden Journey)》、2025 奥兰多 Epic Universe《科学怪人：怪物大暴走 (Monsters Unchained — 第二代高角速度 KUKA 机械臂)》" }
-              ]
-            },
-            {
-              code: "1.1.3.2",
-              name: "高速导轨底盘 + 多自由度机器人悬臂 (Robotic Motion Vehicle)",
-              support: "过山车级地面高速钢轨 + 车载多自由度机器人悬臂",
-              dof: "底盘高速冲刺甩尾 + 机械悬臂大角度抬升俯仰旋转",
-              mfg: "Dynamic Attractions",
-              principle: "将过山车级高速加减速底盘与高刚性多轴机器人旋转俯仰悬臂结合，突破了传统 KUKA 机械臂底盘只能匀速慢行的局限。",
-              demoYtId: "aZPwWSRKcdg",
-              parks: [
-                { label: "迪拜与阿布扎比", items: "阿布扎比华纳兄弟世界《蝙蝠侠：暗夜飞行 (Batman: Knight Flight — 全球唯一投运)》" }
-              ]
-            }
-          ]
-        },
-        {
-          groupTitle: "1.1.4 地面慢速 Dark Ride 叙事 + 高速槽轨/过山车跨界系统",
-          nodes: [
-            {
-              code: "1.1.4.1",
-              name: "室内慢速机械人偶叙事 + 室外百公里高速槽轨测试车 (Slot Car)",
-              support: "地面深槽导向轨 + 三相高压供电母线",
-              dof: "室内 5 km/h 慢速叙事 → 室外 105 km/h 高速倾角飙车",
-              mfg: "WDI / Dynamic Structures",
-              principle: "放大版四驱导轨车，每辆 6 座敞篷车内置 250 马力电机，前半程在室内慢速观赏完整机械人偶剧情，后半程瞬间爆发百公里加速双车并排竞速。",
-              demoYtId: "NkJRM55tujM",
-              parks: [
-                { label: "迪士尼 (全球独占)", items: "加州冒险乐园《汽车总动员：水箱温泉镇赛车手》、东京迪士尼海洋《地心探险之旅》、奥兰多 EPCOT《测试赛道 (Test Track)》" }
-              ]
-            },
-            {
-              code: "1.1.4.2",
-              name: "车载旋转/俯仰底盘 + 倾斜跌落/侧滑轨巨幕叙事过山车 (SFX / Omnicoaster)",
-              support: "钢管轨道 + 车载 360° 伺服旋转/液压俯仰底盘 + 特种变轨机关",
-              dof: "车载 360° 强制运镜 + 跷跷板倾斜释放轨 (Tilt Track) + 侧向滑轨 (Sideways Slide)",
-              mfg: "Intamin / Vekoma / Dynamic Attractions",
-              principle: "在钢管轨道上搭载车载旋转俯仰底盘，配合跷跷板倾斜轨、螃蟹步侧向滑轨与多块 3D 巨幕，大半程用于演绎完整剧情。",
-              demoYtId: "GkwmE1DrZ5E",
-              parks: [
-                { label: "环球影城", items: "奥兰多《哈利·波特与逃出古灵阁 (Escape from Gringotts)》" },
-                { label: "迪士尼", items: "奥兰多 EPCOT《银河护卫队：宇宙倒带 (Guardians of the Galaxy: Cosmic Rewind)》" },
-                { label: "迪拜与阿布扎比", items: "阿布扎比法拉利世界《法拉利使命 (Mission Ferrari — 全球唯一 Dynamic SFX Coaster)》" }
-              ]
-            },
-            {
-              code: "1.1.4.3",
-              name: "半程慢速古墓/地狱实景 Dark Ride + 半程弹射过山车",
-              support: "室内有轨慢速巡游段 + 变轨倒退/LIM 弹射钢轨",
-              dof: "前半程慢速观赏实景机械人偶 → 后半程高速过山车",
-              mfg: "Premier Rides / Vekoma / 华强方特",
-              principle: "仅收录真正具备独立慢速多房间 Dark Ride 叙事巡游段的跨界作品（纯室内高速过山车已剔除）。",
-              demoYtId: "N8FSuOjoy8w",
-              parks: [
-                { label: "环球影城", items: "奥兰多/好莱坞/新加坡《木乃伊复仇 (Revenge of the Mummy)》" },
-                { label: "迪士尼", items: "奥兰多/上海《七个小矮人矿山车（矿洞内七矮人慢速音乐暗黑段）》" },
-                { label: "中国方特", items: "芜湖/宁波/济南方特东方神画《惊魂之旅》/《灵魂之旅》（十八层地狱实景叙事过山车）" },
-                { label: "全球乐高乐园", items: "《飞龙过山车 (The Dragon — 前半程室内乐高城堡机械火龙慢速 Dark Ride)》" }
-              ]
-            }
-          ]
-        },
-        {
-          groupTitle: "1.2 无座舱地面连续移动履带系统 (Moving Walkway)",
-          nodes: [
             {
               code: "1.2",
-              name: "无座舱地面连续移动传送带步道射击系统",
-              support: "地面蜿蜒闭合连续移动传送带步道",
-              dof: "站立匀速平移 (0.5 m/s)，无座舱束缚",
-              mfg: "Mack Rides / Universal Creative",
-              principle: "拆除了 Omnimover 的车厢与座椅，游客全程站立在蜿蜒穿过多个实景与巨幕大厅的移动步道上，手持 NFC 手机互联脉冲枪射击升级。",
-              demoYtId: "",
-              parks: [
-                { label: "环球影城", items: "奥兰多环球影城《小黄人恶人大会 (Villain-Con Minion Blast)》" }
-              ]
+              short: "无座舱移动步道",
+              title: "无座舱的连续移动步道",
+              en: "Moving walkway",
+              support: "地面连续移动步道",
+              dof: "站立匀速平移",
+              mfg: "—",
+              text: "去掉车厢与座椅，乘客站在蜿蜒的移动步道上穿过各个场景，双手空出来专心互动射击。",
+              parks: [["环球影城", "奥兰多《小黄人恶人大会》"]]
             }
           ]
-        }
-      ]
-    },
-    {
-      id: "c2",
-      title: "门类二：地面无轨自由导引系统 (Trackless AGV / LPS)",
-      subtitle: "2~3级可变深度嵌套 · 车载电池供电 + RFID/激光雷达/光学寻迹",
-      groups: [
+        },
         {
-          groupTitle: "2.1 ~ 2.3 按车载上装自由度与跨界能力递进",
-          nodes: [
+          key: "c2",
+          num: "II",
+          title: "地面无轨",
+          en: "Trackless",
+          desc: "没有物理轨道，车载电池供电，依靠地面信标、磁钉或激光等方式定位导航。按车上机构的复杂程度递进。",
+          children: [
             {
               code: "2.1",
-              name: "平层无轨阵列与多路径分道系统 (2D Planar Trackless AGV)",
-              support: "平地自由走行（地板 RFID 矩阵 / 埋地磁钉 / 光学信标 / 激光雷达）",
-              dof: "平面 X/Y 全向走位 + Yaw 360° 原地自转（无车载俯仰液压缸）",
-              mfg: "WDI / Oceaneering / ETF Ride Systems (Multi Mover)",
-              principle: "多车在大厅内交叉编队群舞、真随机分道或由游客在排队区自主选择 3 条不同路线分支，彻底打破有轨车单线顺序叙事的束缚。",
-              demoYtId: "dzSVhAota8w",
+              short: "平层无轨车",
+              title: "平层无轨车：多车编队与分路线",
+              en: "Planar trackless",
+              support: "平整地面 + 定位导航",
+              dof: "平面自由移动 + 原地旋转",
+              mfg: "WDI、Oceaneering、ETF Ride Systems",
+              text: "车辆在平面上自由走位：多车编队共舞、分头进入不同房间，甚至让乘客自选路线，打破了有轨车只能按顺序讲故事的限制。",
+              demo: "dzSVhAota8w",
+              demoNote: "ETF Multi Mover 系统介绍",
               parks: [
-                { label: "迪士尼", items: "香港《迷离大宅 (Mystic Manor)》、东京《小熊维尼猎蜜记 (鼻祖)》《水逗船》、巴黎/奥兰多《料理鼠王》、奥兰多/加州《米奇与米妮的逃亡铁路 (无轨解钩分道)》" },
-                { label: "中国方特", items: "南宁方特《相约下龙湾》、安阳方特《殷商往事》" },
-                { label: "迪拜 & 云顶 SkyWorlds", items: "吉隆坡云顶《冰川时代：薄冰远征》、迪拜 Motiongate《捉鬼敢死队》《精灵旅社》、阿布扎比华纳《史酷比神秘博物馆》" },
-                { label: "欧洲四大标杆", items: "荷兰 Efteling《幻想宫殿 (Symbolica — 排队自主选 3 条路线分支)》" }
+                ["迪士尼", "香港《迷离大宅》；东京《小熊维尼猎蜜记》《水逗船》；巴黎与 EPCOT《料理鼠王》；《米奇与米妮的逃亡铁路》"],
+                ["方特", "南宁《相约下龙湾》、安阳《殷商往事》"],
+                ["默林集团", "纽约与韩国乐高乐园《乐高工厂奇幻之旅 (LEGO Factory Adventure)》（ETF 无轨车 + 实时把乘客扫描成乐高小人仔）"],
+                ["欧洲名园", "西班牙冒险港 PortAventura《芝麻街：曲奇神探任务 (Street Mission)》（ETF 埋线导引 + Sally 互动射击）"],
+                ["迪拜与阿布扎比", "Motiongate《精灵旅社》；华纳兄弟世界《史酷比神秘博物馆》"],
+                ["云顶天城", "《冰川时代：薄冰远征》"],
+                ["欧洲四园", "Efteling《幻想宫殿》"]
               ]
             },
             {
-              code: "2.2.1",
-              name: "无轨底盘 + 车载多自由度动感平台（纯实景/局部巨幕耦合）",
-              support: "无轨 AGV 全向底盘 + 车载 3~6 DOF 液压/电动摇摆平台",
-              dof: "平面 X/Y 全向走位 + Yaw 360° + Pitch 俯仰 / Roll 横滚 / Heave 起伏",
-              mfg: "WDI / Panasonic / Oceaneering",
-              principle: "在无轨底盘上方叠加多自由度俯仰横滚机构，既能无轨编队走位，又能随华尔兹音乐起伏跳舞或模拟冰面横向打滑甩尾。",
-              demoYtId: "5rMc3FOsqBs",
-              parks: [
-                { label: "迪士尼", items: "东京迪士尼《美女与野兽“魔法奇缘”》、上海迪士尼《疯狂动物城：热力追踪》" },
-                { label: "全球其他代表", items: "奥兰多海洋世界《南极洲：企鹅帝国 (可选温和/颠簸两档)》" }
-              ]
-            },
-            {
-              code: "2.2.2",
-              name: "无轨底盘 + 车载多自由度平台 + 内凹倾斜球幕/360°环幕飞行系统",
-              support: "无轨 AGV 底盘 + 车载多自由度俯仰横滚平台 + 内凹倾斜球幕悬崖停靠台",
-              dof: "无轨全向走位 + 球幕悬崖边缘大角度前倾俯冲(Pitch)与侧倾盘旋(Roll)",
-              mfg: "华强方特智能技术",
-              principle: "前几幕在平地无轨穿行画卷长廊，高潮段驶入内凹倾斜球幕深坑边缘剥夺下视野，配合车体大角度俯仰侧倾与 3D 航拍光流（Vection），在地面无轨车上完美复现球幕飞行影院凌空飞越《千里江山图》的体感！",
-              demoYtId: "PptiYHy7W1c",
-              parks: [
-                { label: "中国方特 (独创旗舰)", items: "太原/绵阳/鹰潭《神画》、宁波/荆州/邯郸《千古风华》、资阳《石窟奇遇》、荆州《火烧赤壁》(无轨+360°环幕+旋转台)、芜湖/厦门/济南/嘉峪关《魅力戏曲》/《梨园游记》" }
+              code: "2.2",
+              title: "无轨底盘 + 车载动感平台",
+              children: [
+                {
+                  code: "2.2.1",
+                  short: "无轨 + 动感平台",
+                  title: "无轨底盘 + 车载动感平台",
+                  en: "Trackless motion-base vehicle",
+                  support: "无轨底盘",
+                  dof: "平面移动 + 俯仰、侧倾、起伏",
+                  mfg: "WDI、Oceaneering",
+                  text: "在无轨底盘上再叠加一套动感机构，车辆既能自由走位，又能随音乐起伏，或模拟打滑、甩尾。",
+                  demo: "Fm_bQf6zYKU",
+                  demoNote: "Oceaneering Revolution 无轨系统介绍",
+                  parks: [
+                    ["迪士尼", "东京《美女与野兽“魔法奇缘”》；上海《疯狂动物城：热力追踪》"],
+                    ["其他", "奥兰多海洋世界《南极洲：企鹅帝国》"]
+                  ]
+                },
+                {
+                  code: "2.2.2",
+                  short: "无轨动感 + 倾斜球幕",
+                  title: "无轨动感车 + 倾斜球幕或环幕",
+                  en: "Trackless motion-base with tilted dome",
+                  support: "无轨底盘 + 球幕边缘的停靠位",
+                  dof: "平面移动 + 大角度前倾、侧倾",
+                  mfg: "华强方特",
+                  text: "无轨动感车驶到倾斜球幕的边缘停下，球幕向下延伸、遮住地面，车身随航拍画面前倾、侧倾，再配合风与水雾——不必悬空，也能做出飞行影院般的体感。",
+                  parks: [["方特", "《神画》（太原、绵阳、鹰潭）、《千古风华》（宁波、荆州、邯郸）、资阳《石窟奇遇》、荆州《火烧赤壁》、《魅力戏曲》/《梨园游记》"]]
+                }
               ]
             },
             {
               code: "2.3",
-              name: "无轨底盘 + 垂直自由落体电梯跨界复合系统",
-              support: "多层楼面无轨 AGV + Intamin 垂直自由落体升降机轿厢",
-              dof: "平面无轨双车分道 + 整车驶入垂直跳楼机失重坠落",
-              mfg: "WDI / Roush / Intamin",
-              principle: "无轨车不仅在平地自由穿行，还能直接开进逃生舱垂直自由落体升降机内，连车带人一起从高空失重坠落到下一层楼面继续无轨行驶。",
-              demoYtId: "YxCErBfzcNY",
-              parks: [
-                { label: "迪士尼", items: "奥兰多好莱坞影城 & 加州迪士尼《星球大战：抵抗组织崛起 (Star Wars: Rise of the Resistance)》" }
-              ]
+              short: "无轨 + 自由落体",
+              title: "无轨车 + 垂直自由落体",
+              en: "Trackless with vertical drop",
+              support: "多层楼面 + 升降井道",
+              dof: "平面移动 + 整车垂直下落",
+              mfg: "WDI",
+              text: "无轨车不仅在平地行驶，还能整车驶入升降机，连人带车从高处下落，再在另一层继续前进。",
+              parks: [["迪士尼", "好莱坞影城与加州迪士尼乐园《星球大战：抵抗组织崛起》"]]
             }
           ]
-        }
-      ]
-    },
-    {
-      id: "c3",
-      title: "门类三：空中顶部悬挂轨道系统 (Overhead Suspended)",
-      subtitle: "2级嵌套 · 轨道架设于天花板上方，车厢垂挂于轨道下方",
-      groups: [
+        },
         {
-          groupTitle: "3.1 ~ 3.4 按悬挂座舱调速与主动自由度递进",
-          nodes: [
+          key: "c3",
+          num: "III",
+          title: "顶部悬挂",
+          en: "Overhead suspended",
+          desc: "轨道架在天花板上，车厢吊在轨道下方，地面完全空出来留给布景。按吊舱的速度与自由度递进。",
+          children: [
             {
               code: "3.1",
-              name: "传统恒速/数控变速单轨悬挂系统（含干式伪水下潜艇）",
-              support: "天花板单根工字钢或方管导轨",
-              dof: "空中悬挂平移（转弯靠离心力微摆）",
-              mfg: "WDI / Mack Rides / Zamperla",
-              principle: "座舱垂挂于头顶单轨下方飞越脚下微缩布景；东京《海底两万里》更利用双层舷窗玻璃夹水打气泡，在完全干燥的悬挂轨道上伪装出潜入深海的错觉。",
-              demoYtId: "",
+              short: "单轨悬挂",
+              title: "恒速或变速的单轨悬挂",
+              en: "Overhead monorail",
+              support: "天花板单轨",
+              dof: "沿轨平移，转弯时自然摆动",
+              mfg: "WDI、Mack Rides、Zamperla",
+              text: "吊舱挂在头顶的轨道下，从微缩布景上方飞过。东京《海底两万里》更进一步：潜艇挂在干燥的场馆里，舷窗夹层注水、打气泡，伪装成深海。",
               parks: [
-                { label: "迪士尼", items: "全球 5 园《小飞侠天空奇遇 (Peter Pan's Flight)》、东京迪士尼海洋《海底两万里 (干式伪水下悬挂潜艇)》" },
-                { label: "环球 & 云顶 SkyWorlds", items: "奥兰多《E.T. 外星人历险记》、新加坡《芝麻街太空追逐》、云顶《机器人历险记：大焊先生飞艇》" }
+                ["迪士尼", "《小飞侠天空奇遇》（多个园区）；东京迪士尼海洋《海底两万里》"],
+                ["环球影城", "奥兰多《E.T. 外星人历险记》；新加坡《芝麻街意大利面太空追逐》"],
+                ["长隆", "珠海长隆海洋王国《海底互动船》（顶部悬挂车链直接穿入真实鲸鲨水族箱）；长隆宇宙飞船《海洋单轨车》"],
+                ["默林集团", "Chessington《古墓神枪手 (Tomb Blaster)》（顶部单轨悬挂 5 节编组列车）"],
+                ["欧洲名园", "瑞典 Liseberg 历史经典《童话城堡 (Sagoslottet)》"],
+                ["云顶天城", "《机器人历险记：大焊先生飞艇》"]
               ]
             },
             {
               code: "3.2",
-              name: "变速重力螺旋俯冲摆动悬挂系统 (Spiral Swinging Cabin)",
-              support: "顶部变速悬挂轨 + 螺旋高塔重力俯冲段",
-              dof: "慢速巡游 + 高速螺旋盘旋俯冲（座舱离心外甩 45°）",
-              mfg: "Translift / Vekoma / Kumbak",
-              principle: "吊舱在慢速观赏仙女森林后解锁离合器，沿 13 米高暗黑沼泽巨树螺旋轨道高速俯冲盘旋而下。",
-              demoYtId: "sBY_ZLb6bJM",
-              parks: [
-                { label: "欧洲四大标杆", items: "荷兰 Efteling《梦境飞行 (Droomvlucht)》" }
-              ]
+              short: "螺旋下降吊舱",
+              title: "变速、螺旋下降的悬挂吊舱",
+              en: "Spiral swinging cabin",
+              support: "顶部变速轨道 + 螺旋段",
+              dof: "慢速巡游 + 螺旋盘旋下降",
+              mfg: "—",
+              text: "吊舱先慢速飘过场景，最后沿螺旋轨道盘旋而下，离心力让吊舱向外摆出。",
+              parks: [["欧洲四园", "Efteling《梦境飞行》"]]
             },
             {
               code: "3.3",
-              name: "顶部悬挂多自由度抓举式动感座舱系统 (Suspended Multi-DOF Cabin)",
-              support: "天花板重型工字钢轨道 + 顶部万向回转支承与液压俯仰连杆",
-              dof: "空中平移 + Yaw 360° 旋转 + ±45°~240° 抓举式仰俯翻滚（无 KUKA 大小臂）",
-              mfg: "华强方特智能技术 / SetPoint",
-              principle: "轨道在天花板上方，走行小车通过回转盘与液压俯仰缸向下吊挂座舱，重心始终在轨道正下方，模拟被铁扇公主芭蕉扇吹飞在空中翻滚。",
-              demoYtId: "",
-              parks: [
-                { label: "中国方特", items: "全国十余座方特《烈焰风云》/《火焰山》/《穿越火焰山》" }
-              ]
+              short: "悬挂多自由度座舱",
+              title: "顶部悬挂的多自由度座舱",
+              en: "Suspended motion cabin",
+              support: "天花板重型轨道 + 回转支承与液压连杆",
+              dof: "沿轨平移 + 水平旋转 + 大幅前后翻仰",
+              mfg: "华强方特",
+              text: "座舱吊在天花板轨道下，通过回转支承和液压连杆做大幅度的翻仰与旋转，重心始终在轨道正下方。它没有机械臂那样的大小臂，与《禁忌之旅》是两种结构。",
+              parks: [["方特", "《烈焰风云》/《火焰山》/《穿越火焰山》（十余个园区）"]]
             },
             {
               code: "3.4",
-              name: "悬挂式车载电机慢速旋转看戏 + 高速飞行跨界系统 (Inverted Powered / Flyer)",
-              support: "天花板双管过山车钢轨 + 车载牵引电机 + 伺服旋转吊柱",
-              dof: "0.5 m/s 室内慢速悬停转头看戏 → 40 km/h 高速冲刺（或 90° 趴姿翻转飞行）",
-              mfg: "Mack Rides / Vekoma",
-              principle: "兼具悬挂式 Dark Ride 的慢速精准运镜与悬挂过山车的高速飞翔体感。",
-              demoYtId: "QyIBU2Dhfvc",
+              short: "悬挂动力 + 高速飞行",
+              title: "自带动力的悬挂车辆：慢速看景 + 高速飞行",
+              en: "Inverted powered ride",
+              support: "天花板过山车轨道 + 车载驱动",
+              dof: "大范围调速 + 吊舱受控旋转（或翻转为趴姿）",
+              mfg: "Mack Rides、Vekoma",
+              text: "车辆自带驱动，可以在室内以很慢的速度转向看布景，也能随时加速飞行。F.L.Y. 则在暗黑段之后把座椅翻成趴姿再弹射。",
               parks: [
-                { label: "欧洲四大标杆", items: "德国 Europa-Park《Arthur (亚瑟王国)》、德国 Phantasialand《F.L.Y. (前段地下直立悬挂 Dark Ride + 90°翻转飞行弹射)》" },
-                { label: "迪拜与阿布扎比", items: "迪拜 Motiongate《驯龙高手：飞龙滑翔机 (Dragon Gliders)》" }
+                ["欧洲四园", "Europa-Park《亚瑟》；Phantasialand《F.L.Y.》"],
+                ["迪拜与阿布扎比", "Motiongate《驯龙高手：飞龙滑翔机》"]
               ]
             }
           ]
-        }
-      ]
-    },
-    {
-      id: "c4",
-      title: "门类四：垂直井道升降导轨系统 (Vertical Shaft Dark Rides)",
-      subtitle: "2级嵌套 · 以垂直电梯井道 (Z轴) 为核心导引维度",
-      groups: [
+        },
         {
-          groupTitle: "4.1 ~ 4.2 垂直井道与水平走廊跨界 / 多层叙事升降",
-          nodes: [
+          key: "c4",
+          num: "IV",
+          title: "垂直井道",
+          en: "Vertical shaft",
+          desc: "以垂直电梯井道为主要导引方向，在多层高度上分幕讲故事，并加入受控的升降与下落。",
+          children: [
             {
               code: "4.1",
-              name: "垂直电梯井道 + 水平地面 AGV 走廊三维跨界系统",
-              support: "1号垂直爬升井道 (Z) → 五度空间水平无轨走廊 (X/Y) → 2号垂直落体井道 (Z)",
-              dof: "垂直爬升 + 轿厢脱离井道水平自动行驶 + 超重力垂直下拉失重",
-              mfg: "WDI / Otis / Eaton-Kenway",
-              principle: "电梯轿厢升至五度空间楼层后直接脱离垂直升降平台，变成一辆水平 AGV 小车向前穿过星际走廊，随后无缝锁入第二条垂直自由落体井道高速坠落！",
-              demoYtId: "6nXRJsNuuoY",
-              parks: [
-                { label: "迪士尼", items: "奥兰多好莱坞影城《暮光之城：惊魂古塔 (The Twilight Zone Tower of Terror 原版)》" }
-              ]
+              short: "井道 + 水平走廊",
+              title: "垂直井道 + 水平走廊的三维路线",
+              en: "Shaft with horizontal corridor",
+              support: "两条垂直井道 + 一段水平走廊",
+              dof: "垂直升降 + 水平行驶 + 下落",
+              mfg: "WDI",
+              text: "电梯厢先沿井道上升，在“第五维度”楼层离开井道、水平驶过一段走廊，再进入另一条井道完成下落。",
+              parks: [["迪士尼", "好莱坞影城《暮光之城：惊魂古塔》（奥兰多原版）"]]
             },
             {
               code: "4.2",
-              name: "纯垂直井道多层开门实景 / 四面立体巨幕叙事升降系统",
-              support: "40~50 米高室内垂直升降井道导轨",
-              dof: "分段悬停看戏 + 高速垂直弹射与失重下拉 (Z轴)",
-              mfg: "华强方特 / Intamin / Otis / S&S",
-              principle: "在垂直井道内分段悬停于不同楼层高度，开启闸门呈现机械人偶全息幻象，或被 40 米高四面围合 3D 巨幕包裹演绎神话斗法。",
-              demoYtId: "",
+              short: "多层开门 / 环绕屏幕",
+              title: "单井道的多层开门或环绕屏幕叙事升降",
+              en: "Story drop tower",
+              support: "单条垂直井道",
+              dof: "分段悬停 + 快速升降",
+              mfg: "WDI、华强方特、S&S",
+              text: "座舱在同一条井道里升降，停在不同高度时打开闸门展示布景，或被四面屏幕包围，随剧情多次上升、下落。",
               parks: [
-                { label: "中国方特", items: "太原/绵阳/宁波/荆州/厦门《神州塔》、芜湖/济南《雷峰塔》（四面围合 3D 巨幕垂直升降塔）" },
-                { label: "迪士尼 & 云顶 SkyWorlds", items: "加州/东京/巴黎《银河护卫队：使命突围 / 惊魂古塔》、吉隆坡云顶《地球改造塔挑战 (Terraform Tower)》" }
+                ["迪士尼", "加州《银河护卫队：使命突围》；东京与巴黎《惊魂古塔》"],
+                ["方特", "《神州塔》《雷峰塔》"],
+                ["华侨城", "柳州卡乐星球《圣地古塔》；常德卡乐星球《大闹天宫》；黄石卡乐星球《天地浩劫》（360° 环形巨幕井道升降塔）"],
+                ["默林集团", "Alton Towers《复仇女神：地底惊魂 (Nemesis Sub-Terra)》（ABC Rides 地底异形巨卵孵化自由落体塔）；比隆乐高乐园《幽灵鬼屋 (Ghost)》"],
+                ["云顶天城", "《地球改造塔挑战》"]
+              ]
+            }
+          ]
+        },
+        {
+          key: "c5",
+          num: "V",
+          title: "涉水与潜艇",
+          en: "Water & submarine",
+          desc: "以真实水体为载体。先按乘客在水面还是水下分为两支；水面船再按水下的牵引与主动控制能力细分。",
+          children: [
+            {
+              code: "5.1",
+              title: "水面浮航船",
+              children: [
+                {
+                  code: "5.1.1",
+                  title: "水泵推流、顺水漂流",
+                  children: [
+                    {
+                      code: "5.1.1.1",
+                      short: "叙事水道船",
+                      title: "平缓或微跌落的室内叙事水道船",
+                      en: "Narrative flume boat",
+                      support: "混凝土水道 + 水泵推流",
+                      dof: "顺水漂流，可含 1–2 段下坡",
+                      mfg: "WDI、Mack Rides、Intamin、华强方特",
+                      text: "平底船顺着水流前进，船底没有抓钩。吞吐量大，两岸可以密集地布置人偶与布景。",
+                      parks: [
+                        ["迪士尼", "《小小世界》《加勒比海盗》（经典版）《阿凡达：纳美河之旅》《辛巴达传奇之旅》《乐佩公主天灯盛会》"],
+                        ["环球影城", "北京《功夫熊猫：神龙大侠之旅》"],
+                        ["方特", "《缤纷华夏》/《七彩王国》、邯郸《成语童话》、《森林时光》、自贡《河谷探秘》"],
+                        ["华侨城", "北京欢乐谷《欢乐世界》（近 400 个各国动态机械木偶水道船）；黄石卡乐星球《郑和下西洋》"],
+                        ["默林集团", "意大利 Gardaland《海盗传奇 / 动物金银岛 (I Corsari)》（欧洲最大地下双层海盗水道船）；Chessington《咕噜牛河漂流历险记》；Alton Towers《花园宝宝魔幻游船》"],
+                        ["六旗与雪松会", "Six Flags Over Georgia《怪兽庄园 (Monster Mansion)》（107 具全尺寸机械玩偶）；Six Flags Over Texas《洞穴海盗历险记 (Pirates of Speelunker Cave)》"],
+                        ["欧洲四园", "Europa-Park《巴达维亚海盗》《精灵船》"],
+                        ["欧洲名园", "法国 Parc Astérix《伊皮德迈斯高卢游船》"]
+                      ]
+                    },
+                    {
+                      code: "5.1.1.2",
+                      short: "暗黑段 + 激流俯冲",
+                      title: "室内暗黑段 + 高处俯冲的激流船",
+                      en: "Dark flume / rapids",
+                      support: "室内水道 + 提升段 + 俯冲滑道",
+                      dof: "慢速漂流 + 高速俯冲溅水",
+                      mfg: "Intamin、Mack、Hafema、ABC Rides、Arrow、华强方特",
+                      text: "大半程在室内暗处经历人偶、坍塌、火焰等场景，最后被提升到高处俯冲落水。",
+                      parks: [
+                        ["迪士尼", "《蒂安娜的湾流冒险》/《飞溅山》"],
+                        ["环球影城", "《侏罗纪公园》/《侏罗纪世界》激流船、冒险岛《达德利激流勇进》"],
+                        ["方特", "《逃出恐龙岛》《神秘河谷》《飞跃河谷》《勇闯恐龙谷》《仙岛探秘》《津门大峡谷》《昆仑探秘》"],
+                        ["华侨城", "北京欢乐谷《奥德赛之旅》；襄阳奇幻谷《方舟大冒险》；上海欢乐谷《峡谷漂流》；天津欢乐谷《室内激流勇进》"],
+                        ["六旗与雪松会", "诺氏百乐坊《伐木山激流原木船 (Timber Mountain Log Ride)》（1969 全球首座全主题化原木激流船）与《卡利科河峡谷漂流》"],
+                        ["默林集团", "乐高乐园《海盗瀑布》《奇马王国的远征》"],
+                        ["迪拜与阿布扎比", "华纳兄弟世界《摩登原始人》"],
+                        ["云顶天城", "《森林战士：月之谷奇幻漂流》"],
+                        ["欧洲四园", "Phantasialand《河流探险》"],
+                        ["欧洲名园", "法国 Parc Astérix《巨石快车》《海盗复仇记》"]
+                      ]
+                    },
+                    {
+                      code: "5.1.1.3",
+                      short: "水下换轨 + 倒退",
+                      title: "水道漂流 + 水下换轨倒退",
+                      en: "Switch-track flume",
+                      support: "水道 + 水下转盘或换轨机构",
+                      dof: "正向漂流与倒退交替",
+                      mfg: "Intamin、WDI、Mack Rides",
+                      text: "船驶入水下的转盘或换轨机构，切换成倒退方向滑下一段，再转回正向。",
+                      parks: [
+                        ["迪士尼", "东京《安娜与艾莎的冰雪之旅》；EPCOT、香港、巴黎《魔雪奇幻之旅》"],
+                        ["长隆", "珠海长隆海洋王国《超级激流》（海象山室内旋转提升 + 倒退跌落 + 正向冲浪）"],
+                        ["欧洲四园", "Phantasialand《恰帕斯》"]
+                      ]
+                    }
+                  ]
+                },
+                {
+                  code: "5.1.2",
+                  title: "水下钢缆或导轨牵引",
+                  children: [
+                    {
+                      code: "5.1.2.1",
+                      short: "水下牵引游船",
+                      title: "水下钢缆或导轨牵引的平稳游船",
+                      en: "Tow boat",
+                      support: "水下闭合钢缆或导轨",
+                      dof: "受控定速航行",
+                      mfg: "Intamin 等",
+                      text: "水面平静，船底连着水下的钢缆或导轨，船速与间距被精确控制，便于按时序触发岸边的大型机关与火焰。",
+                      parks: [
+                        ["环球影城", "日本《大白鲨》"],
+                        ["欧洲四园", "Efteling《海市蜃楼》"],
+                        ["六旗与雪松会", "雪松点《明轮船探险 / 蛇河远征队 (Snake River Expedition)》"]
+                      ]
+                    },
+                    {
+                      code: "5.1.2.2",
+                      short: "导引大船 + 真水",
+                      title: "导引大船 + 真水倾泻",
+                      en: "Guided boat with practical flood",
+                      support: "水下导轨",
+                      dof: "沿水下导轨单向定速/变速航行（无全向自转底盘）",
+                      mfg: "华强方特",
+                      text: "载客较多的大船沿水下导轨穿过室内布景与巨幕，最后停在实景舞台前（或转入站立观演台），上百吨真水迎面倾泻。",
+                      parks: [["方特", "《决战金山寺》《水漫金山》、南宁《马六甲勇士》"]]
+                    },
+                    {
+                      code: "5.1.2.3",
+                      short: "暗黑船 + 水上过山车",
+                      title: "室内暗黑船 + 水上过山车",
+                      en: "Dark boat + water coaster",
+                      support: "水道 + 过山车提升与俯冲轨",
+                      dof: "慢速暗黑段 → 过山车段",
+                      mfg: "Kumbak、Mack Rides",
+                      text: "船底同时有浮箱和过山车轮。前半段在室内水道慢行讲故事，后半段锁入轨道提升，再冲下水面。",
+                      parks: [
+                        ["长隆", "珠海长隆海洋王国《冰山过山车》（前半段穿过漫长室内冰洞与机械北极熊村庄，后半段攀上冰山顶俯冲落水）"],
+                        ["欧洲四园", "Efteling《飞翔的荷兰人》；Europa-Park《波塞冬》"]
+                      ]
+                    }
+                  ]
+                },
+                {
+                  code: "5.1.3",
+                  title: "水下主动控制的动感船",
+                  children: [
+                    {
+                      code: "5.1.3.1",
+                      short: "水下导轨全向旋转船",
+                      title: "水下刚性导轨与全向旋转/直线电机驱动的动感船",
+                      en: "Underwater-guided omnidirectional / rotational boat",
+                      support: "水下刚性导轨 + 直线电机或伺服回转支承底盘",
+                      dof: "360° 原地旋转、侧向迎敌横移、倒退、无级变速与摇摆",
+                      mfg: "WDI、华强方特",
+                      text: "船体浮在水面，船底通过水下立柱连接在水下隐藏钢轨的行走底盘上。底盘内置 360° 全向回转支承与驱动电机，使大船能像无轨车一样在巨幕和实景战舰之间原地调头、90° 侧转对轰、倒退与急速冲锋。上海迪士尼《加勒比海盗》与华强方特《致远 致远》均采用这一机制。",
+                      demo: "lpX8YHcepW8",
+                      demoNote: "第三方原理解析",
+                      parks: [
+                        ["迪士尼", "上海《加勒比海盗：沉落宝藏之战》（WDI 水下直线电机导引全向船）"],
+                        ["方特", "《致远 致远》（宁波、淮安、赣州方特东方欲晓及太原方特 —— 水下导轨全向旋转变速战船，穿行阿姆斯特朗船厂实景并在黄海海战巨幕穹顶与战舰残骸间侧转对轰、旋转突围与全速冲锋）"]
+                      ]
+                    },
+                    {
+                      code: "5.1.3.2",
+                      short: "铰接摇摆船",
+                      title: "水下导引车 + 铰接摇摆船（Rocking Boat）",
+                      en: "Rocking boat",
+                      support: "水下导引车，船体与其铰接",
+                      dof: "导引行驶 + 船体在水面与浪中摇摆 + 倒退",
+                      mfg: "Mack Rides",
+                      text: "船底下方是一辆水下导引车，船体与它铰接；水道没有侧墙，船在水面和人造浪里自由摇晃，也能倒退行驶。",
+                      demo: "d6srd2tchaA",
+                      demoNote: "Mack Rides 官方发布",
+                      parks: [["欧洲四园", "Futuroscope《百慕大任务》（2025 年首套）"]]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              code: "5.2",
+              short: "真水下潜艇",
+              title: "真正潜入水下的潜艇",
+              en: "Submarine",
+              support: "水体中的导轨",
+              dof: "液面以下潜航",
+              mfg: "WDI、Mack Rides",
+              text: "乘客坐在液面以下的密闭舱里，透过舷窗直接看水中的布景、真实鱼群或水下屏幕。",
+              parks: [
+                ["迪士尼", "加州《海底总动员潜艇之旅》"],
+                ["长隆", "珠海长隆宇宙飞船《深海潜艇》（Mack Rides 真水下潜艇穿行真实鲨鱼池 + 水下防水 LED 巨幕）"],
+                ["默林集团", "温莎、德国、加州、日本、迪拜乐高乐园《Submarine Adventure / Deep Sea Adventure》（Mack Rides 真水下潜艇）"]
               ]
             }
           ]
@@ -372,384 +598,475 @@ window.MECHANISM_TREE_DATA = {
       ]
     },
     {
-      id: "c5",
-      title: "门类五：涉水船载与水下潜艇系统 (Water & Submarine)",
-      subtitle: "4级可变深度嵌套 · 含 5.1 水面浮航船 (自由漂流 / 水下牵引 / 主动多自由度) 与 5.2 真水下潜艇",
-      groups: [
+      id: "theater",
+      label: "剧场类",
+      title: "暗黑剧场与动感平台",
+      note: "乘客不随载具穿过多个房间，而是在原地或同一空间里，由平台、看台或整个房间的运动制造体验。",
+      cats: [
         {
-          groupTitle: "5.1.1 水泵推流自由漂流水槽船 (Free-Floating Flume Boats)",
-          nodes: [
-            {
-              code: "5.1.1.1",
-              name: "全平缓或微跌落室内叙事水槽船 (Standard Narrative Flume)",
-              support: "混凝土水渠 + 大流量水泵推流（无水下机械抓钩）",
-              dof: "顺水自由漂流（含 1~2 次暗黑微跌落）",
-              mfg: "WDI / Mack Rides / Intamin / 华强方特",
-              principle: "结构极其可靠、每小时吞吐量最高的水上暗黑乘骑，两岸密集排布上百个实景机械人偶与光影造景。",
-              demoYtId: "",
-              parks: [
-                { label: "迪士尼", items: "《小小世界》《加勒比海盗(经典版)》《阿凡达：纳美河之旅》《辛巴达传奇之旅》《乐佩公主天灯盛会》" },
-                { label: "环球影城", items: "北京环球独占《功夫熊猫：神龙大侠之旅》" },
-                { label: "中国方特", items: "《缤纷华夏》/《七彩王国》(20+园)、邯郸《成语童话》、《森林时光》、《河谷探秘》" },
-                { label: "欧洲四大标杆", items: "德国 Europa-Park《巴达维亚海盗 (Piraten in Batavia)》《精灵船》" }
-              ]
-            },
-            {
-              code: "5.1.1.2",
-              name: "室内暗黑实景历险 + 高空陡坡激流俯冲船 (Dark Log Flume / Rapids)",
-              support: "室内暗黑水道 + 链条斜坡或垂直电梯提升 + 高空俯冲滑道",
-              dof: "室内慢速漂流 + 15~26 米高空高速俯冲溅水",
-              mfg: "Intamin / Mack / Hopkins / ABC Rides / Hafema / 华强方特",
-              principle: "前半程至大半程为全封闭室内暗黑场景（机械恐龙、古墓坍塌、真火），结尾提升至高空陡坡俯冲。",
-              demoYtId: "",
-              parks: [
-                { label: "迪士尼 & 环球", items: "迪士尼《蒂安娜的湾流冒险 / 飞溅山》、环球《侏罗纪公园/世界激流船》《达德利激流勇进》" },
-                { label: "中国方特", items: "《逃出恐龙岛》《神秘河谷》《飞跃河谷》《勇闯恐龙谷》《仙岛探秘》《津门大峡谷》《昆仑探秘》" },
-                { label: "迪拜 & 云顶 & 欧洲", items: "吉隆坡云顶《森林战士：月之谷奇幻漂流》、阿布扎比华纳《摩登原始人》、德国 Phantasialand《River Quest (双垂直电梯提升激流船)》" }
-              ]
-            },
-            {
-              code: "5.1.1.3",
-              name: "水槽漂流 + 水下变轨台向后倒退俯冲船 (Switch-Track Flume)",
-              support: "水道 + 水下旋转/平移变轨转盘",
-              dof: "正向漂流 → 水下变轨切换船尾朝前倒退滑落 → 恢复正向",
-              mfg: "Intamin / WDI",
-              principle: "在剧情高潮处游船驶入水下活动转轨台，瞬间切换至倒退滑道向后俯冲跌落。",
-              demoYtId: "52Ry4SULpL4",
-              parks: [
-                { label: "迪士尼", items: "东京海洋《安娜与艾莎的冰雪之旅 (2024)》、奥兰多/香港/巴黎《魔雪奇幻之旅 (Frozen Ever After)》" },
-                { label: "欧洲四大标杆", items: "德国 Phantasialand《Chiapas (亡灵节暗黑段 + 双水下变轨倒退 + 53°最陡俯冲)》" }
-              ]
-            }
-          ]
-        },
-        {
-          groupTitle: "5.1.2 水下钢缆/刚性导轨牵引船 (Underwater Tow & Guided Boats)",
-          nodes: [
-            {
-              code: "5.1.2.1",
-              name: "水下闭合钢缆/刚性导轨平层牵引船 (Tow Boat)",
-              support: "平静人工湖水底铺设闭合牵引钢缆或导轨",
-              dof: "受控定速航行（精准触发沿岸大型机械与真火爆炸）",
-              mfg: "Intamin / Universal Creative",
-              principle: "水底导轨或钢缆精准控制船速与船距，确保 1.5 吨级液压大白鲨或沿岸百余个机械人偶按毫秒级时序触发。",
-              demoYtId: "",
-              parks: [
-                { label: "环球影城", items: "日本 USJ《大白鲨 (Jaws)》" },
-                { label: "欧洲四大标杆", items: "荷兰 Efteling《一千零一夜海市蜃楼 (Fata Morgana)》" }
-              ]
-            },
-            {
-              code: "5.1.2.2",
-              name: "自动导引巨型游船 + 尾声数百吨真水山洪漫灌",
-              support: "水下导轨牵引百人级巨船 + 舞台顶部巨型蓄水瞬时倾泻水闸",
-              dof: "自动导引航行 + 停靠承接真水巨浪冲击",
-              mfg: "华强方特智能技术",
-              principle: "大型游船沿水下导轨穿过室内江南烟雨街巷与多块巨幕，最终停靠在金山寺舞台前，触发数百吨真水滔天巨浪迎面扑来。",
-              demoYtId: "",
-              parks: [
-                { label: "中国方特", items: "《决战金山寺》《水漫金山》《致远 致远》(东方欲晓)《马六甲勇士》(南宁)" }
-              ]
-            },
-            {
-              code: "5.1.2.3",
-              name: "室内浓雾暗黑港口船 + 水上过山车跨界系统 (Water Coaster Hybrid)",
-              support: "室内暗黑水道牵引轨 + 过山车倾斜提升与俯冲钢轨",
-              dof: "前半程慢速浓雾暗黑船 → 后半程高速水上过山车",
-              mfg: "Kumbak / Mack Rides",
-              principle: "船底同时装有浮箱与过山车钢轮；前半程在室内港口与浓雾汪洋中慢速完成暗黑叙事，后半程锁入钢轨冲顶落水。",
-              demoYtId: "YSrKKqWIKLY",
-              parks: [
-                { label: "欧洲 & 全球标杆", items: "荷兰 Efteling《飞翔的荷兰人 (De Vliegende Hollander)》、德国 Europa-Park《波塞冬》、珠海长隆《冰山过山车》" }
-              ]
-            }
-          ]
-        },
-        {
-          groupTitle: "5.1.3 水下高自由度主动控制动感船 (Active Multi-DOF Boats)",
-          nodes: [
-            {
-              code: "5.1.3.1",
-              name: "水下直线电机(LSM)电磁导引全向自转横移巨船",
-              support: "水底刚性变轨导轨网络 + 水下直线电机滑块 + 旋转立柱",
-              dof: "水面 360° 原地自转 + 螃蟹步横移 + 急停倒退 + 逆向冲坡",
-              mfg: "WDI / Intamin",
-              principle: "船浮在水面，但水下深处的直线电机与旋转立柱抓持船底，赋予 30 人巨船宛如无轨车般的全向自转、横移、倒退与高速冲刺能力。",
-              demoYtId: "lpX8YHcepW8",
-              parks: [
-                { label: "迪士尼 (上海独占)", items: "上海迪士尼乐园《加勒比海盗——沉落宝藏之战》" }
-              ]
-            },
-            {
-              code: "5.1.3.2",
-              name: "水下导轨 + 万向球铰主动俯仰横滚快艇 (Mack Rocking Boat)",
-              support: "水底导轨 + 水下万向球铰支撑臂 + 车载主动俯仰横滚机构",
-              dof: "正倒向变速 + 船体主动大角度 Pitch 俯仰翘头 + Roll 左右剧烈横滚",
-              mfg: "Mack Rides (2025 全球首发)",
-              principle: "2025 全球首创：水下支撑臂通过万向节主动驱动水面快艇在暗黑漩涡中做出剧烈的左右摇摆倾斜、翘头俯仰与倒退变轨，结尾高空冲浪俯冲。",
-              demoYtId: "d6srd2tchaA",
-              parks: [
-                { label: "欧洲四大标杆", items: "法国 Futuroscope《百慕大任务 (Mission Bermudes — 2025 全球首台投运)》" }
-              ]
-            }
-          ]
-        },
-        {
-          groupTitle: "5.2 真实水下潜艇系统 (Submerged Underwater Submarines)",
-          nodes: [
-            {
-              code: "5.2",
-              name: "真实水下导轨潜艇系统（潜入液面以下真鱼群水体）",
-              support: "数千吨真实海水池底部导轨 + 全密闭水下耐压客舱",
-              dof: "真实液面以下潜航（透过圆形舷窗直视真鲨鱼与水下 LED 幕）",
-              mfg: "Mack Rides / WDI",
-              principle: "与 5.1 水面船并列：游客真正走下螺旋梯进入水下密闭潜艇客舱，潜入养有数千条真鲨鱼与鳐鱼的水体液面以下，配合气泡帷幕与水下防水 LED 巨幕。",
-              demoYtId: "TNy27xuP-iY",
-              parks: [
-                { label: "迪士尼 / 迪拜 / 长隆", items: "珠海长隆宇宙飞船《深海潜艇》、迪拜及全球乐高乐园《Submarine Adventure》、加州迪士尼《海底总动员潜艇之旅》" }
-              ]
-            }
-          ]
-        }
-      ]
-    }
-  ],
-  part2: [
-    {
-      id: "t1",
-      title: "类别 T1：悬挂式球幕飞行影院 (Flying Theaters — 四大机械流派)",
-      subtitle: "将数百名游客送入巨型球幕球心的 4 种重型机械工程流派",
-      groups: [
-        {
-          groupTitle: "T1.1 ~ T1.4 四大机械送入构型",
-          nodes: [
+          key: "t1",
+          num: "T1",
+          title: "球幕飞行影院",
+          en: "Flying theater",
+          desc: "把乘客悬空送到巨型球幕前。体验相似，送入球幕的机械结构却有四种做法。",
+          children: [
             {
               code: "T1.1",
-              name: "顶置钢缆悬臂垂直提拉式 (Disney Soarin' 型)",
-              support: "地面单层入座 → 顶部巨型悬臂桁架通过钢缆将 3 排吊篮向上翻转提拉升空",
-              dof: "垂直提拉升空 + 吊篮微俯仰",
-              mfg: "Dynamic Structures / WDI",
-              principle: "无需爬楼梯，单层平地 3 排入座，启动后像提线木偶一样将 3 排座椅从地面拉起拼成上中下三层悬在球幕前。",
-              demoYtId: "m5tYn38g7LU",
-              parks: [
-                { label: "全球迪士尼", items: "上海/加州/奥兰多/东京《翱翔·飞越地平线 / 飞越加州 / Fantastic Flight》" }
-              ]
+              short: "平地入座、悬臂提升",
+              title: "平地入座、悬臂整体提升",
+              en: "Cantilever lift",
+              support: "平地座椅 + 悬臂机构",
+              dof: "整排提升 + 座椅轻微俯仰",
+              mfg: "WDI",
+              text: "乘客在平地上分三排坐好，悬臂把座椅整体举起、推入球幕，拼成上中下三层。不用爬楼，但结构庞大。",
+              parks: [["迪士尼", "《翱翔·飞越地平线》（加州、EPCOT、上海、东京）"]]
             },
             {
               code: "T1.2",
-              name: "多层楼板水平前推悬臂式 (Brogent i-Ride / 方特伴你飞翔型)",
-              support: "1/2/3 层楼板分层入座 → 液压平行四连杆悬臂将座椅水平向前推出 3~4 米",
-              dof: "水平前推伸入球幕 + 座椅独立 6-DOF 俯仰/横滚/升降",
-              mfg: "Brogent 智崴 / 华强方特 / Dynamic",
-              principle: "目前全球普及率最高的模块化飞行影院构型（奥兰多《阿凡达：翱翔》则为三层楼板前壁降下 + 摩托跨骑式呼吸动感座舱变体）。",
-              demoYtId: "8Kq4_z4A6g0",
+              short: "多层楼板、向前推出",
+              title: "多层楼板、座椅向前推出",
+              en: "Multi-tier push-out",
+              support: "多层楼板 + 前推机构",
+              dof: "水平推出 + 座椅多自由度",
+              mfg: "Brogent、华强方特、华侨城文旅科技等",
+              text: "乘客分层就座，开始后前方护栏收起，座椅被向前推入球幕。模块化程度高，是目前最常见的做法；《阿凡达：翱翔》是摩托跨坐式的变体。",
+              demo: "5IVhQ8cZKM0",
+              demoNote: "Brogent i-Ride 介绍",
               parks: [
-                { label: "迪士尼", items: "奥兰多动物王国《阿凡达：翱翔 (Avatar Flight of Passage)》" },
-                { label: "中国方特 (25+园)", items: "《伴你飞翔》《飞翔》《飞越恐龙岛》(青岛)《山海》(资阳)" },
-                { label: "欧洲 & 迪拜", items: "德国 Europa-Park《Voletarium (飞越欧洲)》、阿布扎比华纳《绿灯侠》、法拉利世界《飞越意大利》" }
+                ["迪士尼", "动物王国《阿凡达：翱翔》"],
+                ["方特", "《伴你飞翔》《飞翔》、青岛《飞越恐龙岛》、资阳《山海》"],
+                ["华侨城", "北京/上海/南京欢乐谷《奇境：穿越北纬30度》、武汉欢乐谷《飞越长江》、成都欢乐谷《飞越西部》、重庆欢乐谷《飞越重庆》、襄阳奇幻谷《飞越奇幻谷》《星际历险》"],
+                ["默林集团", "温莎乐高乐园《Flight of the Sky Lion》（英国首座 i-Ride 飞行影院）"],
+                ["欧洲名园", "西班牙冒险港 Ferrari Land《飞跃法拉利梦想 (Flying Dreams)》（Brogent i-Ride）"],
+                ["迪拜与阿布扎比", "华纳兄弟世界《绿灯侠：银河奥德赛》、法拉利世界《飞越意大利》"],
+                ["欧洲四园", "Europa-Park《飞越欧洲》"],
+                ["其他", "富士急乐园《富士飞行社》"]
               ]
             },
             {
               code: "T1.3",
-              name: "巨型多层钢架整体垂直拉升式 (方特飞越极限型)",
-              support: "底层多层钢铁立体笼架 → 重型配重与钢缆卷扬将百人笼架整体垂直拉升十余米",
-              dof: "百人钢架整体垂直拉升 + 前推入球幕",
-              mfg: "华强方特智能技术",
-              principle: "极具重工业震撼感的初代巨型立体笼架拉升结构。",
-              demoYtId: "",
-              parks: [
-                { label: "中国方特", items: "芜湖/泰安/株洲/沈阳/郑州/天津/嘉峪关/大同/汕头《飞越极限》" }
-              ]
+              short: "整座钢架提升",
+              title: "多层钢架整体垂直提升",
+              en: "Vertical cage lift",
+              support: "多层钢架 + 卷扬与配重",
+              dof: "整体垂直提升并前移",
+              mfg: "华强方特",
+              text: "上百名乘客坐进一座多层钢架，整座钢架被垂直提升十余米、推向球幕。过程很有工业感，但设备自重大。",
+              parks: [["方特", "《飞越极限》（初代欢乐世界、梦幻王国）"]]
             },
             {
               code: "T1.4",
-              name: "水平入座 90° 整体翻转竖立式 / 180° 旋转切入式",
-              support: "单层平地入座 → 90 吨巨型地板向上 90° 垂直翻起竖立（或 180° 旋转切入）",
-              dof: "90° 整体甲板竖立翻转 + 6-DOF 悬空摆动",
-              mfg: "Dynamic Attractions / Brogent 智崴",
-              principle: "免去多层爬楼，上下客最快，且甲板 90° 翻转竖立瞬间带来极强的真实失重感！",
-              demoYtId: "Zs-fO9--u8w",
+              short: "平地入座、整体翻转",
+              title: "平地入座、平台整体翻转或 180° 旋转切入",
+              en: "Tilting / revolving deck",
+              support: "整块座椅平台 + 翻转或水平回转机构",
+              dof: "平台翻转约 90° 或水平旋转 180° + 座椅摆动",
+              mfg: "Dynamic Attractions、Brogent",
+              text: "乘客在同一平面或三层大沙发快速入座，随后整块平台向上翻转 90° 或水平旋转 180°，直接把座椅送入球幕中心。上下客最快，翻转切入的瞬间本身也很有戏剧感。",
+              demo: "Zs-fO9--u8w",
+              demoNote: "Dynamic Attractions 飞行影院介绍",
               parks: [
-                { label: "云顶 & 欧洲 & 乐高", items: "法国 Futuroscope《非凡之旅 (L'Extraordinaire Voyage)》、吉隆坡云顶 SkyWorlds《独立日：绝地反击》、乐高乐园《Masters of Flight》" }
+                ["欧洲四园", "Futuroscope《非凡之旅》"],
+                ["云顶天城", "《独立日：绝地反击》"],
+                ["默林集团", "加州、佛州、比隆乐高乐园《乐高大电影：飞行大师 (Masters of Flight)》（Brogent m-Ride 180° 水平旋转推出）"]
               ]
             }
           ]
-        }
-      ]
-    },
-    {
-      id: "t2",
-      title: "类别 T2：动感模拟器、全封闭球体与原地机械臂 (Simulators & Stationary)",
-      subtitle: "含密闭太空舱、矩阵动感底座、360° 全封闭 LED 球体、升降旋转穹顶与原地机械臂",
-      groups: [
+        },
         {
-          groupTitle: "T2.1 ~ T2.7 七种固定基座动感剧场构型",
-          nodes: [
+          key: "t2",
+          num: "T2",
+          title: "动感模拟器与原地设备",
+          en: "Simulators & stationary rides",
+          desc: "平台在原地运动，配合屏幕或球幕；也包括固定在原地的机械臂与室内暗黑 Flat Ride。",
+          children: [
             {
               code: "T2.1",
-              name: "密闭式独立太空舱 6-DOF 模拟器 (Enclosed Stewart Pod)",
-              support: "地面 6 自由度液压并联支腿（或旋转离心机臂）支撑全密闭机舱",
-              dof: "6-DOF 俯仰/横滚/升降/平移（Mission: SPACE 含 2.5G 离心超重）",
-              mfg: "WDI / Simtec / Moog",
-              principle: "将 6~45 名游客关进全密闭飞船机舱内，舱内前窗投影与舱体液压作动器绝对刚性同步。",
-              demoYtId: "",
+              short: "密闭模拟舱",
+              title: "密闭式六自由度模拟舱",
+              en: "Enclosed simulator",
+              support: "六自由度液压平台（或离心臂）",
+              dof: "六自由度",
+              mfg: "WDI、Simtec、Moog",
+              text: "乘客坐在密闭舱内，舱内画面与舱体动作严格同步。《太空任务》甚至把舱体装在离心机臂末端，制造持续的超重感。",
               parks: [
-                { label: "迪士尼", items: "《星际旅行 (Star Tours)》《千年隼：走私者逃亡》《太空任务 (Mission: SPACE)》、香港《铁甲奇侠飞行之旅》、东京《海底巡游艇》" },
-                { label: "欧洲四大标杆", items: "法国 Futuroscope《勒布拉力赛 VR 6-DOF》、德国 Phantasialand 历史《Galaxy》" }
+                ["迪士尼", "《星际旅行：冒险继续》《千年隼：走私者逃亡》、EPCOT《太空任务》、香港《铁甲奇侠飞行之旅》"],
+                ["欧洲四园", "Futuroscope 的 VR 赛车模拟器；Phantasialand 已退役的《Galaxy》"]
               ]
             },
             {
-              code: "T2.2 / T2.3 / T2.4",
-              name: "多排矩阵式动感底座 / 多层球幕顶升飞车剧场",
-              support: "剧场地面矩阵排布多台 4~30 座液压动感底座正对巨幕/球幕",
-              dof: "3~6 DOF 原地液压俯仰颠簸",
-              mfg: "Simworx / Intamin / Brogent / 华强方特",
-              principle: "包括环球《辛普森一家》球幕顶升飞车舱、《小黄人闹翻天》矩阵底座、方特《寻找鱼尾狮》《疯狂成语》《重返地球》及长隆 300 人同乘《百慕大历险》。",
-              demoYtId: "",
+              code: "T2.2",
+              short: "多层球幕模拟车",
+              title: "球幕前分层排列的模拟车",
+              en: "Multi-pod dome simulator",
+              support: "多台举升式模拟车 + 巨型球幕",
+              dof: "每台模拟车独立运动",
+              mfg: "—",
+              text: "巨型半球幕前分层排列多台模拟车，开场时被举起、送到画面前。",
               parks: [
-                { label: "环球 / 方特 / 迪拜 / 欧洲", items: "环球《辛普森一家》《小黄人》《功夫熊猫》《吉米法伦》、方特《寻找鱼尾狮》《疯狂成语》《重返地球》《星际航班》、迪拜《饥饿游戏》、Futuroscope《Arthur 4D》《La Vienne Dynamique》" }
+                ["环球影城", "《辛普森一家》（奥兰多、好莱坞，前身《回到未来》）"],
+                ["欧洲四园", "Futuroscope《亚瑟 4D 大冒险》"]
+              ]
+            },
+            {
+              code: "T2.3",
+              short: "单甲板动感球幕",
+              title: "单块甲板或多车舱的动感球幕平台",
+              en: "Single-deck motion platform",
+              support: "整块动感甲板 + 球幕",
+              dof: "甲板整体多自由度",
+              mfg: "Brogent、华强方特、华侨城文旅科技",
+              text: "几十到三百名乘客坐在同一块大甲板（或并排大型飞船模拟舱）上，甲板整体运动，正对球幕。",
+              parks: [
+                ["长隆", "珠海长隆宇宙飞船《百慕大历险》（Brogent 单艘动感轮船甲板同时搭载 304 人，吉尼斯世界纪录）与《宇宙世界》"],
+                ["华侨城", "襄阳奇幻谷《虫巢突围》（Triotech 站立式动感模拟舱 + 3D 射击）与《非常任务 / 深海探秘》"],
+                ["方特", "《寻找鱼尾狮》/《动感无限》、徐州《龙宫奇遇》"],
+                ["欧洲名园", "西班牙冒险港 Ferrari Land《赛车传奇 (Racing Legends)》（Brogent F1 球幕动感模拟器）"],
+                ["迪拜与阿布扎比", "Motiongate《饥饿游戏：施惠国空中之旅》"]
+              ]
+            },
+            {
+              code: "T2.4",
+              short: "成排动感座椅",
+              title: "成排动感座椅 + 环幕或巨幕",
+              en: "Motion-seat theater",
+              support: "成排的动感座椅",
+              dof: "座椅多自由度",
+              mfg: "Simworx、Triotech、华强方特等",
+              text: "观众席由多排动感座椅组成，面对环幕或巨幕。",
+              parks: [
+                ["环球影城", "《小黄人闹翻天》、梦工场剧场《功夫熊猫》、奥兰多《吉米·法伦纽约飞车》"],
+                ["方特", "邯郸《疯狂成语》、《重返地球》《星际航班》"],
+                ["华侨城", "深圳欢乐谷《飓风要塞》《XD 暴风追击》（Triotech）、天津欢乐谷《XD 动感影院》"],
+                ["欧洲名园", "意大利 Movieland《安卓 3D：终局之战 (Android 3D)》；西班牙冒险港《深海奥德赛 / 恐龙逃生 4D》"],
+                ["迪拜与阿布扎比", "Motiongate《功夫熊猫：势不可挡》"],
+                ["欧洲四园", "Futuroscope《La Vienne Dynamique》"]
               ]
             },
             {
               code: "T2.5",
-              name: "360° 全封闭 LED 球体内部悬挂旋转环 (Hypersphere 360°)",
-              support: "直径 17 米 360° 全封闭空心 LED 球体 + 中心悬挂旋转倾斜圆环",
-              dof: "Yaw 360° 旋转 + ±30° 倾斜 + 升降（脚下无地板遮挡）",
-              mfg: "Intamin / Attraktion!",
-              principle: "游客走过伸缩桥进入空心 LED 球体中心，桥撤回后连脚底深渊都是微间距 LED 球幕！",
-              demoYtId: "nAg2c4-RzlI",
-              parks: [
-                { label: "迪拜与阿布扎比", items: "阿布扎比海洋世界《超球体 360° (Hypersphere 360° — 全球首台)》" }
-              ]
+              short: "球形屏幕剧场",
+              title: "完整球形屏幕中的悬挂座椅环",
+              en: "Full-sphere dome ride",
+              support: "完整球形屏幕 + 中心悬挂座椅环",
+              dof: "旋转 + 倾斜 + 升降",
+              mfg: "Intamin",
+              text: "乘客从伸缩桥走进一个完整的球形屏幕，桥撤走后，脚下也是画面；座椅环在球心旋转、倾斜。",
+              demo: "-hREiloLWdc",
+              demoNote: "Intamin 官方介绍",
+              parks: [["迪拜与阿布扎比", "阿布扎比海洋世界《超球体 360°》"]]
             },
             {
               code: "T2.6",
-              name: "超大型升降旋转平台 + 顶置 360° 穹顶球幕影院",
-              support: "一楼大厅直径十余米液压升降旋转大平台 → 垂直升入二楼半球穹顶中心",
-              dof: "百人平台垂直举升十余米 + 360° 旋转倾斜",
-              mfg: "华强方特智能技术",
-              principle: "方特独创构型：一楼实景预演后，整座百人圆盘缓缓垂直升起十余米并旋转倾斜，将整个观众席塞进二楼 360° 穹顶球幕中心。",
-              demoYtId: "",
+              short: "升降旋转穹顶",
+              title: "升降旋转看台 + 穹顶球幕或 360° 环幕",
+              en: "Elevating dome theater",
+              support: "大型升降旋转平台 + 二楼穹顶或 360° 环幕",
+              dof: "整座看台升降、旋转、全向倾斜",
+              mfg: "华强方特、Dynamic Attractions、华侨城文旅科技",
+              text: "观众先在一楼看实景预演，随后整座圆形看台或百人级飞船母舰升起、旋转倾斜，进入二楼穹顶球幕或 360° 环幕中心。",
               parks: [
-                { label: "中国方特", items: "《牛郎织女》/《天河之恋》(东方神画/国色春秋)、《西游传说》/《大闹天宫(升降球幕版)》" }
+                ["方特", "《牛郎织女》/《天河之恋》、《西游传说》/《大闹天宫》"],
+                ["长隆", "广州长隆欢乐世界《星际决战》（Dynamic Attractions 180 座动感母舰平台 + 360° 环形穹幕）"],
+                ["华侨城", "柳州/常德卡乐星球《神话》、黄石华侨城《女娲补天》（86 座全向倾斜顶升圆盘穹顶剧场）"]
               ]
             },
             {
               code: "T2.7",
-              name: "原地固定基座工业机械臂阵与室内暗黑 Flat Ride",
-              support: "地脚螺栓固定于暗黑场馆地面（无路线空间位移，故不归入第一部分）",
-              dof: "原地 6 轴 360° 倒立翻转 / 翻滚吊篮",
-              mfg: "KUKA Robotics / Huss / Intamin",
-              principle: "虽采用工业机械臂或暗黑包装，但底座固定在原地不发生穿房路线位移，属于特种动感设备。",
-              demoYtId: "fA36K7u_4n0",
+              short: "原地机械臂与 Flat Ride",
+              title: "原地固定的机械臂与室内暗黑 Flat Ride",
+              en: "Stationary robots & indoor flat rides",
+              support: "固定在地面的基座",
+              dof: "原地多轴翻转",
+              mfg: "KUKA、Huss、Intamin、Zamperla",
+              text: "设备不沿路线移动，只在原地翻转、摆动，因此不算行进式暗黑乘骑，但常被包装在暗黑场景里。",
               parks: [
-                { label: "欧洲 & 乐高 & 迪拜", items: "法国 Futuroscope《与机器人共舞 (10台原地KUKA机械臂)》、德国 Phantasialand《Talocan》《Mystery Castle》、迪拜 IMG《Thor Thunder Spin》、乐高《Power Builder》" }
+                ["欧洲四园", "Futuroscope《与机器人共舞》；Phantasialand《Talocan》《Mystery Castle》"],
+                ["六旗与雪松会", "国王岛历史神作《古墓丽影：地穴巨兽 (Tomb Raider: The Ride)》（Huss 77 座巨型翻滚机械臂封装于古神庙火山冰洞内）"],
+                ["长隆", "珠海长隆宇宙飞船室内暗黑机械游乐集群（《魔幻光轮》《海洋升降塔》等）"],
+                ["默林集团", "乐高乐园《骑士锦标赛 (Power Builder)》（原地 KUKA 机械臂）"],
+                ["迪拜与阿布扎比", "IMG《Thor Thunder Spin》"]
               ]
             }
           ]
-        }
-      ]
-    },
-    {
-      id: "t3",
-      title: "类别 T3 ~ T6：旋转/行走看台、360°环幕隧道、疯屋滚筒与全息矩阵剧场",
-      subtitle: "涵盖车动vs剧场动跨界看台、疯屋视错觉滚筒与佩珀尔幻象/空间魔砖矩阵",
-      groups: [
+        },
         {
-          groupTitle: "T3 旋转/行走看台 · T4 环幕大巴 · T5 疯屋滚筒 · T6 全息与空间矩阵",
-          nodes: [
+          key: "t3",
+          num: "T3",
+          title: "运动的看台与舞台",
+          en: "Moving auditoriums",
+          desc: "运动的是观众席本身：倾斜旋转的舞台、沿轨道前进的看台，或绕中心旋转的观众席。",
+          children: [
             {
               code: "T3.1",
-              name: "多级行星交错倾斜升降旋转舞台 (Dynamic Motion Stage)",
-              support: "16~18 米中央巨型液压倾斜升降高速旋转主转盘（嵌套 6 个自转子转盘）",
-              dof: "高速旋转 (27 km/h) + 大倾角倾斜 + 垂直升降 + 行星交错自转",
-              mfg: "Intamin / Dynamic Attractions",
-              principle: "将百人级剧场看台本身变成一台巨型多自由度陀螺仪，配合哥特修道院实景或 360° LED 环幕+真车冲上舞台。",
-              demoYtId: "i3u04ZhalaU",
-              parks: [
-                { label: "欧洲四大标杆", items: "荷兰 Efteling《骷髅之舞 (Danse Macabre 2024)》、法国 Futuroscope《龙卷风猎人 (Chasseurs de Tornades)》" }
-              ]
+              short: "倾斜旋转舞台",
+              title: "可倾斜、升降的多级旋转舞台",
+              en: "Dynamic motion stage",
+              support: "中央大转盘 + 子转盘",
+              dof: "旋转 + 倾斜 + 升降",
+              mfg: "Intamin、Dynamic Attractions",
+              text: "观众坐在直径十几米的大转盘上，转盘能旋转、倾斜、升降，上面还可以嵌套各自转动的小转盘。",
+              demo: "i3u04ZhalaU",
+              demoNote: "Intamin Dynamic Motion Stage",
+              parks: [["欧洲四园", "Efteling《骷髅之舞》；Futuroscope《龙卷风猎人》"]]
             },
             {
               code: "T3.2",
-              name: "有轨行走式大型阶梯看台车 (Traveling Auditorium — 45~80座)",
-              support: "地面重型导轨或顶置缆车轨支撑整座 45~80 人阶梯看台",
-              dof: "整座剧场看台沿轨道开进实景地宫/水晶宫前进、急退、颠簸俯仰",
-              mfg: "华强方特智能技术 / WDI",
-              principle: "看似坐在剧场看台上，实则整座看台装有轨道轮，真正开进多幕实景地宫或海底水晶宫中行进互动。",
-              demoYtId: "",
+              short: "有轨行走看台",
+              title: "沿轨道前进的大型看台",
+              en: "Traveling auditorium",
+              support: "地面或顶部轨道上的整座看台",
+              dof: "整座看台前进、后退、颠簸",
+              mfg: "华强方特、WDI",
+              text: "看似坐在剧场里，其实整座看台装着轨道轮，会开进多个实景场景。",
               parks: [
-                { label: "中国方特 & 迪士尼", items: "方特欢乐世界一期版《秦陵历险》、郑州方特《龙王传说(45座)》、株洲/绵阳《哪吒闹海(45座看台版)》、天津《大闹水晶宫(缆车看台版)》；奥兰多 EPCOT 历史《宇宙能量馆》" }
+                ["方特", "一期欢乐世界《秦陵历险》、郑州《龙王传说》、株洲与绵阳 45 座《哪吒闹海》、天津《大闹水晶宫》"],
+                ["迪士尼", "EPCOT 已退役的《宇宙能量馆》"]
               ]
             },
             {
               code: "T3.3",
-              name: "同心圆 360° 旋转看台与双面魔球旋转剧场",
-              support: "中央 100~3000 座巨型 360° 旋转观众席转盘",
-              dof: "绕中心轴 360° 定角或连续跟转运镜",
-              mfg: "华强方特 / WDI / Puy du Fou / Simworx",
-              principle: "观众席在中心旋转，四周被多个独立时代实景舞台、机械魔球阵列与环幕 360° 包围。",
-              demoYtId: "",
+              short: "旋转观众席",
+              title: "绕中心旋转的观众席",
+              en: "Revolving theater",
+              support: "中央旋转平台",
+              dof: "绕中心轴旋转",
+              mfg: "华强方特、WDI",
+              text: "观众席在中心旋转，四周是多个独立舞台或屏幕，每演完一幕就转向下一幕。",
               parks: [
-                { label: "方特 / 迪士尼 / 迪拜 / 欧洲", items: "方特《岁月如歌》《万世春秋》《重返侏罗纪》《马尼拉马尼拉》《周易(双面旋转八卦魔球)》；迪士尼《进步旋转木马》；迪拜 IMG《绿巨人 3D》；法国 Puy du Fou" }
+                ["迪士尼", "神奇王国《进步旋转木马》"],
+                ["方特", "《岁月如歌》、资阳《万世春秋》、《熊出没之重返侏罗纪》、南宁《马尼拉马尼拉》、安阳《周易》"],
+                ["华侨城", "深圳欢乐谷《迷你大作战》（中央旋转转盘 + 徒手手势感应 3D 射击）"],
+                ["迪拜与阿布扎比", "IMG《绿巨人：艾普西隆基地》"],
+                ["其他", "法国狂人国的大型旋转观众席"]
               ]
-            },
+            }
+          ]
+        },
+        {
+          key: "t4",
+          num: "T4",
+          title: "环幕隧道",
+          en: "Immersive tunnel",
+          desc: "大型游览车停进环幕隧道，靠车下平台与环绕画面制造“还在高速行驶”的错觉。",
+          children: [
             {
               code: "T4.1",
-              name: "360° 环幕隧道车载动感桥剧场 (Immersive Tunnel)",
-              support: "72~120 座大巴开进环幕隧道停在原地 + 车底整座钢铁桥梁液压抛颠",
-              dof: "车辆停驻原地 + 桥面 6-DOF 液压抛起横甩",
-              mfg: "Oceaneering / Dynamic / Simworx",
-              principle: "利用 360° 环幕中 120 km/h 后退的峡谷画面与桥面液压颠簸，让停在原地的整车游客误以为大巴仍在狂奔。",
-              demoYtId: "",
+              short: "游览车 + 环幕隧道",
+              title: "游览车驶入 360° 环幕隧道或悬空转场车厢",
+              en: "Tram in an immersive tunnel",
+              support: "隧道式环幕 + 车下动感平台（或横向转场地铁车厢）",
+              dof: "车辆原地颠簸或密室间秘密转场",
+              mfg: "Simworx、Intamin、华侨城文旅科技",
+              text: "几十人的游览车或地铁车厢驶入两侧与头顶都是屏幕的隧道（或多厅转场站台）后停在动感桥上，颠簸来自车下的平台，速度感来自环幕画面与真人特技。",
               parks: [
-                { label: "环球影城 & 迪拜", items: "奥兰多/好莱坞《金刚：骷髅岛 / 金刚 360 3D》《速度与激情：超动力》、迪拜《Don: The Chase》" }
+                ["环球影城", "好莱坞影棚之旅《金刚 360 3-D》《速度与激情：超动力》；奥兰多《金刚：骷髅岛》《速度与激情：超动力》"],
+                ["默林集团", "英国 Thorpe Park《幽灵列车 (Ghost Train)》（Intamin/Simworx 悬空维多利亚车厢 + 内部伦敦地铁横向平移转场轨 + 真人特技与幻象）"],
+                ["华侨城", "柳州/常德卡乐星球《疯狂巴士》、黄石华侨城《恐龙危机》（48~90 座观光大巴驶入 360° 柱面环幕隧道动感桥）"]
               ]
-            },
+            }
+          ]
+        },
+        {
+          key: "t5",
+          num: "T5",
+          title: "疯屋",
+          en: "Madhouse",
+          desc: "座椅几乎不动，房间在转。眼睛与前庭的感受冲突，大脑选择相信眼睛。",
+          children: [
             {
               code: "T5.1",
-              name: "疯屋视错觉双轴滚筒剧场 (Madhouse / Haunted Swing)",
-              support: "中央吊篮长椅 (±30° 微摆) + 外部整间装饰房屋滚筒 (360° 独立翻转)",
-              dof: "双轴分离旋转欺骗前庭与视觉产生 360° 倒立错觉",
-              mfg: "Vekoma / Mack Rides",
-              principle: "长椅其实只轻轻晃动 15°~30°，但包裹游客的整座雕梁画栋的房间滚筒围绕游客 360° 翻转，让人产生身体被倒挂在天花板上的强烈视错觉！",
-              demoYtId: "",
+              short: "房间翻转的疯屋",
+              title: "座椅微动、房间整体翻转",
+              en: "Madhouse",
+              support: "中央长椅 + 可整体翻转的房间",
+              dof: "长椅小幅摆动；房间 360° 翻转",
+              mfg: "Vekoma、Mack Rides",
+              text: "乘客坐在房间中央的长椅上，长椅只轻微摆动，包裹在外的整间屋子连同家具一起翻转，让人以为自己倒了过来。",
+              demo: "WZ9ygsK9yek",
+              demoNote: "第三方原理讲解（英文）",
               parks: [
-                { label: "欧洲三大名园 & 华侨城", items: "荷兰 Efteling《Villa Volta (现代疯屋鼻祖)》、德国 Phantasialand《封神宫 (Feng Ju Palace 中式神话疯屋)》、德国 Europa-Park《卡珊德拉的诅咒》、北京欢乐谷《特洛伊木马》" }
+                ["欧洲四园", "Efteling《受诅咒的庄园》；Phantasialand《封神宫》；Europa-Park《卡珊德拉的诅咒》"],
+                ["默林集团", "英国 Alton Towers《古塔魔咒 (Hex – The Legend of the Towers)》（真实 19 世纪古堡遗址预演厅 + Vekoma 疯屋）；意大利 Gardaland《魔法屋 (Magic House)》；温莎乐高乐园《怪兽派对鬼屋 (Haunted House Monster Party)》"],
+                ["欧洲名园", "法国 Parc Astérix《凯撒的挑战 (Le Défi de César)》（Mack Rides 80 座疯屋 + 四段式幽默交互预演厅）"],
+                ["六旗与雪松会", "Six Flags Great Adventure 与 New England《胡迪尼大逃亡 (Houdini's Great Escape)》（美国仅存的两座 Vekoma 疯屋）"],
+                ["华侨城", "北京欢乐谷《特洛伊木马》"]
+              ]
+            }
+          ]
+        },
+        {
+          key: "t6",
+          num: "T6",
+          title: "特效与幻象剧场",
+          en: "Effects & illusion theaters",
+          desc: "以特效与舞台机械为主：幻象、程控动雕、机械布景、真水真火与 4D 影院。",
+          children: [
+            {
+              code: "T6.1",
+              short: "佩珀尔幻象",
+              title: "佩珀尔幻象与真人同台",
+              en: "Pepper's ghost theater",
+              support: "倾斜半透膜 + 暗场投影",
+              dof: "—",
+              mfg: "华强方特等",
+              text: "利用倾斜的半透膜把投影叠在真实舞台上，真人演员与幻象同台，可以瞬间消失、穿墙或化蝶。",
+              parks: [
+                ["方特", "《聊斋》《梁祝》/《千古蝶恋》、南宁《骠国乐》、《屈原》、邯郸《黄粱一梦》、自贡《青铜祭》等"],
+                ["长隆与华侨城", "广州长隆《森林神庙 / 梦回兰若》；北京欢乐谷《魔幻剧场》"],
+                ["默林集团", "Chessington《女巫扫帚排排坐 (Room on the Broom)》"],
+                ["六旗与雪松会", "诺氏百乐坊历史传奇《神秘木屋 (Mystery Lodge)》；加州大美洲《质量效应：新地球》"]
               ]
             },
             {
-              code: "T6.1 ~ T6.7",
-              name: "佩珀尔全息幻象 / 千块空间魔砖矩阵 / 无轨道具车特技剧场",
-              support: "45° 隐形全息反射膜 / 上千台高速伺服卷扬机矩阵 / 高速 AGV 实景道具车",
-              dof: "虚实演员同台化蝶消失 + 千块空中魔砖魔球变幻坍塌",
-              mfg: "华强方特智能技术 / Universal Creative / Kraftwerk",
-              principle: "涵盖方特独步全球的传统文化全息幻象剧场群与空间矩阵动雕剧场，以及环球无轨道具车特技秀。",
-              demoYtId: "",
+              code: "T6.2",
+              short: "程控空间矩阵",
+              title: "程控卷扬机驱动的空间矩阵",
+              en: "Kinetic matrix",
+              support: "上千台程控卷扬机",
+              dof: "—",
+              mfg: "华强方特",
+              text: "天花板上排列着上千台程控卷扬机，吊起的“砖块”或“球体”在空中拼出立体造型，配合投影与真人表演。",
+              parks: [["方特", "《孟姜女》/《长城绝恋》、《飞翔之歌》、南宁《千岛之歌》、《楚乐》"]]
+            },
+            {
+              code: "T6.3",
+              short: "巨幕 + 机械布景",
+              title: "巨幕与大型机械布景结合",
+              en: "Screen with large animatronics",
+              support: "影院 + 可动布景",
+              dof: "—",
+              mfg: "Kraftwerk、Garner Holt、华强方特等",
+              text: "在影院里加入会动的大型实物布景，比如开合的巨树、飞过头顶的机械鸟，让屏幕内外连成一体。",
               parks: [
-                { label: "中国方特 & 环球 & 欧洲", items: "T6.1 全息幻象：方特《聊斋》《梁祝》《骠国乐》《屈原》《黄粱一梦》《青铜祭》；T6.2 空间矩阵：方特《孟姜女》《千岛之歌》《飞翔之歌》《楚乐》；T6.4 环球《杰森·伯恩特技秀》；T6.6 法国 Futuroscope《紧闭双眼(全黑盲人体验馆)》" }
+                ["长隆", "珠海长隆海洋王国《5D 城堡影院》（千人动感座椅 + 88 米巨幕 + 过顶滑索机械飞鸟）；长隆宇宙飞船《珊瑚秘境》《海洋狂想曲》"],
+                ["方特", "《熊出没剧场》、东方欲晓《圆明园》、资阳《寻找李白》"],
+                ["欧洲四园", "Efteling《印度睡莲》；Futuroscope《Eclipse》"]
+              ]
+            },
+            {
+              code: "T6.4",
+              short: "LED 巨幕 + 无轨布景车",
+              title: "LED 巨幕 + 无轨布景车 + 真人特技",
+              en: "Automated stage with LED wall",
+              support: "LED 巨幕 + 无轨布景平台",
+              dof: "—",
+              mfg: "—",
+              text: "载着整段布景的无轨平台与巨幕画面同步移动，真人特技穿插其中。",
+              parks: [["环球影城", "奥兰多《杰森·伯恩特技秀》"]]
+            },
+            {
+              code: "T6.5",
+              short: "真水真火灾难秀",
+              title: "真水与爆破的灾难场景",
+              en: "Practical disaster show",
+              support: "大型水闸、燃气与机械布景",
+              dof: "—",
+              mfg: "Technifex、Thinkwell、Movieland、华侨城等",
+              text: "上百吨真水、真火与坍塌布景在观众面前上演。",
+              parks: [
+                ["环球影城", "已退役的《地震》《浴火赤子情》《波塞冬之怒》；北京与新加坡《灯光，摄像，开拍！》"],
+                ["欧洲名园", "西班牙冒险港 PortAventura《烈焰神庙 (Templo del Fuego)》（玛雅神庙真火吞噬 + 站立石台气动下沉 + 水墙扑火）；意大利 Movieland《U-571 潜艇极限灾难模拟器》（深水炸弹摇晃 + 数吨真水高压灌舱）与《岩浆号重型越野卡车劫难 (Magma 2.1)》《Disaster》"],
+                ["华侨城与长隆", "东部华侨城《咆哮山谷》、深圳欢乐谷《山洪暴发》、北京欢乐谷《玛雅天灾》；长隆宇宙飞船《亚马逊风雨洪泛秀》"]
+              ]
+            },
+            {
+              code: "T6.6",
+              short: "全黑与步入式惊悚馆",
+              title: "全黑感官剥夺与步入式实景机关体验",
+              en: "Sensory deprivation & walkthrough dark experience",
+              support: "完全黑暗或镜面迷宫空间 + 声音、气味、触觉与真人演艺",
+              dof: "—",
+              mfg: "—",
+              text: "关掉视觉或利用镜面、频闪与机械机关，靠声音、触感、温度、气味与贴脸演艺讲故事。",
+              parks: [
+                ["欧洲四园", "Futuroscope《Les Yeux Grands Fermés》"],
+                ["迪士尼", "已退役的《ExtraTERRORestrial Alien Encounter》"],
+                ["默林集团", "Thorpe Park《黑镜迷宫 (Black Mirror Labyrinth)》；Gardaland《勇敢者游戏：幻象迷宫》；全球《Dungeon 地牢》系列"],
+                ["欧洲名园", "瑞典 Liseberg《加斯顿幽灵旅馆 (Spökhotellet Gasten)》；意大利 Movieland《福尔摩斯鬼店 (Holmes Hotel)》"]
+              ]
+            },
+            {
+              code: "T6.7",
+              short: "4D 与环幕影院",
+              title: "4D 特效影院与环幕、巨幕影院",
+              en: "4D & giant screen",
+              support: "影院 + 座椅特效",
+              dof: "座椅震动、喷水、喷气等",
+              mfg: "SimEx-Iwerks、Kraftwerk、CL Corporation、Triotech",
+              text: "标准的 3D/4D 特效影院，以及环幕和超大银幕影院。",
+              parks: [
+                ["迪士尼与环球", "迪士尼《米奇幻想曲》；环球《史瑞克 4D》"],
+                ["方特与长隆与华侨城", "方特《海螺湾》《九州神韵》；广州长隆与各欢乐谷《四维影院》"],
+                ["默林与六旗与欧洲名园", "全球乐高乐园《乐高 4D 影院》、Gardaland《Time Voyagers》、Parc Astérix《小心巨石！(Attention Menhir!)》、卡罗温兹《植物大战僵尸 3Z 竞技场》"]
               ]
             }
           ]
         }
       ]
     }
-  ],
-  visualAndInteraction: [
-    { type: "视觉演艺", name: "1. 纯实景 + A-1000 仿生机械人偶", desc: "零屏幕或隐形背景幕，纯靠数十自由度高帧率电动/液压硅胶仿生人偶与建筑级实景。", examples: "迪士尼《阿凡达：纳美河》《美女与野兽》《冰雪奇缘》；环球《Monsters Unchained》；Efteling《Symbolica》" },
-    { type: "视觉演艺", name: "2. 动态视点透视矫正 3D (Squinching)", desc: "根据移动车辆实时坐标逆向扭曲 3D 投影，使屏幕内虚拟空间与窗外真实砖墙严丝合缝。", examples: "环球《蜘蛛侠》《变形金刚》；吉隆坡 SkyWorlds《猩球崛起》；方特《女娲补天》《恐龙危机》" },
-    { type: "视觉演艺", name: "3. 无轨多自由度车 + 内凹倾斜球幕悬崖停靠", desc: "无轨动感车驶入内凹倾斜球幕深坑边缘遮蔽地面参照，结合前倾俯仰与 3D 航拍光流模拟飞翔。", examples: "中国方特《神画》《千古风华》（《千里江山图》段）、《石窟奇遇》" },
-    { type: "视觉演艺", name: "4. 随车旋转移动球幕转盘 (Carousel of Domes)", desc: "多个独立半球幕安装在巨型旋转木马转盘上，与 KUKA 机械臂小车同步旋转移动包裹视线。", examples: "环球《哈利·波特与禁忌之旅》" },
-    { type: "视觉演艺", name: "5. 2.5D 裸眼全屋激光投影映射", desc: "免 3D 眼镜，用数十台激光投影机将整个纯白立体物理布景变成瞬间变幻的卡通画布。", examples: "迪士尼《米奇与米妮的逃亡铁路》" },
-    { type: "视觉演艺", name: "6. 佩珀尔全息幻象 (Pepper's Ghost)", desc: "利用 45° 隐形玻璃或半透膜，将暗室发光体或高流明投影叠加到真实场景或真人演员旁。", examples: "方特《聊斋》《梁祝》《屈原》；迪士尼《幽灵公馆》《迷离大宅》《海底总动员》" },
-    { type: "视觉演艺", name: "7. 真水体真鱼群 + 水下防水 LED 巨幕", desc: "前景为数千吨真海水与数万条真鲨鱼，远景深海火山口内嵌入水下超高清防水 LED 巨幕。", examples: "珠海长隆宇宙飞船《深海潜艇》；迪拜及全球乐高乐园《Submarine Adventure》" },
-    { type: "玩家交互", name: "1. 红外/激光固定靶点射击", desc: "射击实景人偶身上的光电二极管靶点，触发物理机械动作并计分。", examples: "迪士尼《巴斯光年》；Europa-Park《亚特兰蒂斯》；方特《宇宙小勇士》" },
-    { type: "玩家交互", name: "2. 3D 屏幕虚拟弹道射击", desc: "拉绳或扣扳机向 3D 屏幕发射可见抛物线彩球、奶油球或手电筒光波。", examples: "迪士尼《玩具总动员》；Phantasialand《Maus au Chocolat》；云顶《博物馆奇妙夜》；方特《熊出没历险》" },
-    { type: "玩家交互", name: "3. 手电筒捉迷藏触发（无计分压力）", desc: "用手电筒光束照射怪兽安全帽唤醒隐藏机械人偶，专注探索乐趣。", examples: "东京迪士尼《怪兽电力公司“迷藏巡游车”》" },
-    { type: "玩家交互", name: "4. 双轨双车 PVP 互射对抗", desc: "两车并排竞速，射击对方车顶红色排气管可令对方整辆车失控 360° 狂转无法瞄准。", examples: "奥兰多环球影城《黑衣人：外星人攻击》" },
-    { type: "玩家交互", name: "5. 徒手手势捕捉与面部实时映射", desc: "免持枪，红外深度摄像头识别徒手吐丝手势射网，或把乘客表情实时映射成虚拟小狗。", examples: "迪士尼《蜘蛛侠 WEB SLINGERS》；乐高《幻影忍者》；好莱坞环球《爱宠大机密》" },
-    { type: "玩家交互", name: "6. AR 头显 + 物理实景叠加射击", desc: "佩戴双目波导 AR 头显，在真实立体赛道与布景上叠加虚拟库巴与龟壳弹道。", examples: "环球影城《马力欧卡丁车：库巴的挑战》" },
-    { type: "玩家交互", name: "7. NFC 手机互联 RPG 养成射击", desc: "脉冲枪贴合手机 App NFC，支持跨次游玩累积经验值、升级武器插件与收集藏品。", examples: "奥兰多环球影城《小黄人恶人大会》" },
-    { type: "玩家交互", name: "8. 职业分工驾驶 / 排队自主选线分支", desc: "6 人分任飞行员/炮手/工程师并影响走廊战损；或排队自主选择 3 条截然不同的路线分支。", examples: "迪士尼《千年隼：走私者逃亡》；荷兰 Efteling《Symbolica》；奥兰多海洋世界《企鹅帝国》" }
   ]
 };
+
+/* Visual & interaction techniques (glossary). */
+window.TECHNIQUES = {
+  visual: [
+    { name: "纯实景与高精度机械人偶", desc: "不依赖屏幕，靠建筑尺度的实景与动作细腻的电动人偶讲故事。", ex: "迪士尼《阿凡达：纳美河之旅》《美女与野兽“魔法奇缘”》；环球《怪物大暴走》；Efteling《幻想宫殿》" },
+    { name: "按车辆位置校正的 3D 画面", desc: "根据车辆的实时位置调整 3D 画面的透视，让屏幕与旁边的实景接得上。", ex: "环球《蜘蛛侠》《变形金刚》；云顶《猩球崛起》；方特《女娲补天》" },
+    { name: "倾斜球幕与车身前倾", desc: "无轨动感车停在倾斜球幕边缘，下方视野被画面填满，车身随画面前倾、侧倾。", ex: "方特《神画》《千古风华》《石窟奇遇》" },
+    { name: "随车移动的球幕", desc: "几块半球幕装在旋转结构上，与机械臂车辆同步移动，始终包住乘客的视野。", ex: "环球《哈利·波特与禁忌之旅》" },
+    { name: "实景投影映射", desc: "不戴眼镜，用多台投影机把立体布景本身变成可以变化的画面。", ex: "迪士尼《米奇与米妮的逃亡铁路》" },
+    { name: "佩珀尔幻象", desc: "倾斜的玻璃或半透膜把暗处的影像反射进真实空间。", ex: "迪士尼《幽灵公馆》《迷离大宅》；方特《聊斋》《梁祝》" },
+    { name: "真实水体与水下屏幕", desc: "真实的鱼群与水体在前，水下屏幕在后，虚实叠在一起。", ex: "珠海长隆《深海潜艇》；乐高乐园潜艇" }
+  ],
+  interaction: [
+    { name: "激光打靶", desc: "射击实景上的感光靶点，命中后触发机关并计分。", ex: "迪士尼《巴斯光年》；Europa-Park《亚特兰蒂斯历险》；方特《宇宙小勇士》" },
+    { name: "3D 屏幕弹道射击", desc: "向 3D 屏幕投掷能看见弹道的虚拟“炮弹”。", ex: "迪士尼《玩具总动员疯狂游戏屋》；Phantasialand《巧克力大冒险》；云顶《博物馆奇妙夜》；方特《熊出没历险记》" },
+    { name: "手电筒探索", desc: "用手电筒照亮藏起来的角色与机关，不计分。", ex: "东京迪士尼乐园《怪兽电力公司“迷藏巡游车”》" },
+    { name: "车对车对抗", desc: "两车并排前进，射中对方的目标会让对方车辆失控打转。", ex: "奥兰多环球《黑衣人：外星人攻击》" },
+    { name: "手势识别与人脸映射", desc: "摄像头识别手势来“射网”，或把乘客的脸做成角色。", ex: "迪士尼《蜘蛛侠大冒险》；乐高乐园《幻影忍者》；环球《爱宠大机密》" },
+    { name: "AR 护目镜", desc: "在真实布景上叠加虚拟角色与道具，看向哪里就能打向哪里。", ex: "环球《马力欧卡丁车：库巴的挑战》" },
+    { name: "手机联动与成长", desc: "射击器与手机 App 绑定，跨次游玩累积分数与装备。", ex: "奥兰多环球《小黄人恶人大会》" },
+    { name: "分工驾驶与自选路线", desc: "多人分担驾驶与射击，或在排队时自选路线。", ex: "迪士尼《千年隼：走私者逃亡》；Efteling《幻想宫殿》；奥兰多海洋世界《南极洲：企鹅帝国》" }
+  ]
+};
+
+/* "Did you know" notes for the home page. Each points at a mechanism and a verified video. */
+window.FACTS = [
+  {
+    text: "《哈利·波特与禁忌之旅》的机械臂并不挂在天花板上——它们装在地面轨道车上，轨道被黑色地台挡住了。",
+    code: "1.1.3.1",
+    video: "OGY6P6UkH4Q",
+    caption: "开灯实拍"
+  },
+  {
+    text: "方特《千古风华》里“飞进千里江山图”的感觉，来自无轨车上的动感平台，加上一块向下延伸、遮住地面的倾斜球幕。",
+    code: "2.2.2",
+    video: "PptiYHy7W1c",
+    caption: "荆州方特"
+  },
+  {
+    text: "上海《加勒比海盗》的船看似漂在水上，其实由水下导轨与直线电机驱动，所以能原地转向、横移和倒退。",
+    code: "5.1.3.1",
+    video: "lpX8YHcepW8",
+    caption: "原理解析"
+  },
+  {
+    text: "疯屋里真正翻转的不是座椅，而是整个房间。座椅只轻轻摆动，大脑却以为自己倒了过来。",
+    code: "T5.1",
+    video: "BP88eRuN6KI",
+    caption: "Efteling《受诅咒的庄园》"
+  },
+  {
+    text: "迪士尼《印第安纳琼斯》不旋转、不用 3D 眼镜，所有刺激都来自越野车的液压悬挂和实景——方特《秦俑地宫》走的是同一条路线。",
+    code: "1.1.2.3",
+    video: "kGaMdu4s7fk",
+    caption: "开灯拆解"
+  },
+  {
+    text: "奥兰多的惊魂古塔里，电梯厢会离开井道，水平开过一段走廊，再进入另一条井道下落。",
+    code: "4.1",
+    video: "6nXRJsNuuoY",
+    caption: "好莱坞影城"
+  }
+];
