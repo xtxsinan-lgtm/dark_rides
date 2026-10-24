@@ -122,6 +122,8 @@ const uiPatches = {
     navRides: "Atracciones",
     heroBtnBrowse: "Explorar atracciones",
     notesPageTitle: "Iguales a oscuras, distintas por dentro",
+    c5Desc:
+      "12 pares de sistemas que parecen idénticos a oscuras pero difieren en su ingeniería",
     themeLightLabel: "Luces encendidas",
     themeDarkLabel: "Luces apagadas",
     themeLightTitle: "Luces encendidas (tema claro)",
@@ -131,6 +133,8 @@ const uiPatches = {
   fr: {
     brandSub: "Atlas des dark rides",
     navRides: "Attractions",
+    c5Desc:
+      "12 paires de systèmes semblables dans le noir, d’architecture mécanique différente",
     themeLightLabel: "Lumières allumées",
     themeDarkLabel: "Lumières éteintes",
     themeLightTitle: "Lumières allumées (thème clair)",
@@ -138,6 +142,8 @@ const uiPatches = {
     ...lab12.fr,
   },
   de: {
+    c5Desc:
+      "12 Vergleichspaare: äußerlich ähnliche Anlagen mit grundverschiedener Mechanik",
     heroLede:
       "Sobald die Werkbeleuchtung erlischt, verschwinden Schienen, Schwenkarme und Hydraulikzylinder in der Schwärze. Dieser Atlas ordnet Themenfahrten und mechanische Theater weltweit danach, wovon Fahrzeuge getragen und wohin sie geführt werden — mit POV-Aufnahmen, Werklicht-Material und Hersteller-Tests.",
     themeDarkTitle: "Showlicht (dunkles Design)",
@@ -145,12 +151,14 @@ const uiPatches = {
     ...lab12.de,
   },
   ru: {
+    c5Desc: "12 пар систем, которые кажутся одинаковыми, но устроены по-разному",
     themeDarkLabel: "Тёмная тема",
     themeLightLabel: "Светлая тема",
     crumbsAria: "Хлебные крошки",
     ...lab12.ru,
   },
   ar: {
+    c5Desc: "12 زوجاً من الأنظمة: متشابهة في الظلام لكنها مختلفة هندسياً",
     brandSub: "أطلس الركوب المظلم",
     navRides: "الجاذبات",
     heroBtnBrowse: "تصفّح الجاذبات",
@@ -168,6 +176,7 @@ const uiPatches = {
     ...lab12.ja,
   },
   ko: {
+    c5Desc: "어둠 속에서는 같아 보이지만 구조가 다른 12쌍의 설비 대조",
     ...lab12.ko,
   },
 };
