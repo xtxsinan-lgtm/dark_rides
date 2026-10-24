@@ -112,9 +112,9 @@
       <div class="wrap">
         <nav class="contents" aria-label="章节" data-i18n-aria="contentsAria">
           <a href="#/mechanisms"><span class="no">II</span><span class="t" data-i18n="c2Title">机制</span><span class="d" data-i18n="c2Desc">五大门类，按支撑与导引方式逐级细分</span></a>
-          <a href="#/lab"><span class="no">III</span><span class="t" data-i18n="c3Title">原理</span><span class="d" data-i18n="c3Desc">六组最容易混淆的结构，可拖动的示意图</span></a>
+          <a href="#/lab"><span class="no">III</span><span class="t" data-i18n="c3Title">原理</span><span class="d" data-i18n="c3Desc">十二组易混对比与 55 种机制全图谱</span></a>
           <a href="#/parks"><span class="no">IV</span><span class="t" data-i18n="c4Title">乐园</span><span class="d" data-i18n="c4Desc">十二大乐园体系、85+ 座乐园逐园盘点</span></a>
-          <a href="#/notes"><span class="no">V</span><span class="t" data-i18n="c5Title">辨析</span><span class="d" data-i18n="c5Desc">看起来一样、其实不同的几组设备</span></a>
+          <a href="#/notes"><span class="no">V</span><span class="t" data-i18n="c5Title">辨析</span><span class="d" data-i18n="c5Desc">十二组看起来相似、工程截然不同的设备</span></a>
           <a href="#/glossary"><span class="no">VI</span><span class="t" data-i18n="c6Title">视效与交互</span><span class="d" data-i18n="c6Desc">画面怎样骗过眼睛，乘客能做什么</span></a>
         </nav>
       </div>
@@ -172,12 +172,18 @@
       <header class="wrap page-head">
         <div class="page-head-title">
           <p class="chapter-mark"><span class="chapter-no">III</span><span data-i18n="navLab">原理</span><span class="en">Lab</span></p>
-          <h1 class="page-title" data-i18n="labPageTitle">六组最容易混淆的结构</h1>
+          <h1 class="page-title" data-i18n="labPageTitle">十二组对比实验与五十五种机制全图谱</h1>
         </div>
-        <p class="page-lede" data-i18n="labPageLede">示意图只表达结构关系，不按真实比例。拖动滑块观察各部件怎样运动，或者打开自动演示。</p>
+        <p class="page-lede" data-i18n="labPageLede">示意图表达各机械构型的力学与支撑拓扑。支持切换“12组对比实验”与“55种机制全图谱”，拖动滑块观察运动或开启自动演示。</p>
       </header>
       <div class="wrap lab-layout">
-        <div class="lab-list" id="lab-list" role="tablist" aria-label="实验列表" data-i18n-aria="labListAria"></div>
+        <aside class="lab-sidebar">
+          <div class="lab-mode-switch" id="lab-mode-switch" role="tablist" aria-label="切换原理模式">
+            <button type="button" role="tab" id="lab-tab-comparisons" data-lab-mode="comparisons" aria-selected="true">十二组对比实验</button>
+            <button type="button" role="tab" id="lab-tab-atlas" data-lab-mode="atlas" aria-selected="false">55 种机制图谱</button>
+          </div>
+          <div class="lab-list" id="lab-list" role="tablist" aria-label="实验列表" data-i18n-aria="labListAria"></div>
+        </aside>
         <div class="lab-stage">
           <div class="lab-sheet">
             <div class="lab-canvas" id="lab-canvas"></div>

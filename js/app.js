@@ -173,9 +173,13 @@
     part: "ride",
     mech: "1.1.3.1",
     collapsed: {},
+    labView: "comparisons",
     lab: 0,
+    labMech: "1.1.1.1",
     labParams: {},
     playing: false,
+    mechParams: {},
+    mechPlaying: false,
     park: "disney",
     parkQ: "",
     fact: Math.floor(Math.random() * Math.max(FACTS.length, 1)),
@@ -537,6 +541,7 @@
     });
     updateDocumentTitle();
     if (name !== "lab") stopLab();
+    if (name !== "mechanisms") stopMechInline();
     if (changed) window.scrollTo(0, 0);
     return changed;
   }
@@ -1000,8 +1005,78 @@
     }
   }
 
+  let mechRaf = 0;
+  let mechFrame = 0;
+  let mechStart = 0;
+  let mechElapsed = 0;
+
+  function renderMechControls(code) {
+    const m = LAB.mechs[code] || LAB.mechs["1.1.1.1"];
+    const controls = m.controls || [];
+    const box = $("#mech-inline-controls");
+    if (!box) return;
+    box.innerHTML =
+      controls
+        .map((c) =>
+          '<div class="range-field"><label for="mctl-' + c.k + '"><span>' + esc(c.label) + '</span><output id="mout-' + c.k + '">' + fmt(state.mechParams[c.k], c.unit) + "</output></label>" +
+          '<input id="mctl-' + c.k + '" type="range" min="' + c.min + '" max="' + c.max + '" step="1" value="' + state.mechParams[c.k] + '" data-mctl="' + c.k + '"></div>')
+        .join("") +
+      '<div class="lab-buttons"><button class="btn btn-sm" type="button" data-action="mech-play" id="mech-play"></button>' +
+      '<button class="btn btn-sm" type="button" data-action="mech-reset">' + icon("refresh") + esc(T("labReset")) + "</button></div>";
+    updateMechPlayButton();
+  }
+
+  function updateMechPlayButton() {
+    const b = $("#mech-play");
+    if (b) b.innerHTML = state.mechPlaying ? icon("pause") + esc(T("labPause")) : icon("play") + esc(T("labAutoPlay"));
+  }
+
+  function drawMechInline() {
+    const canvas = $("#mech-inline-canvas");
+    if (canvas) canvas.innerHTML = LAB.renderMech(state.mech, state.mechParams);
+  }
+
+  function mechTick(now) {
+    mechRaf = requestAnimationFrame(mechTick);
+    if ((mechFrame++ & 1) === 1) return;
+    mechElapsed = now - mechStart;
+    const m = LAB.mechs[state.mech] || LAB.mechs["1.1.1.1"];
+    const vals = m.auto(mechElapsed / 1000);
+    m.controls.forEach((c) => {
+      const v = clamp(vals[c.k], c.min, c.max);
+      state.mechParams[c.k] = v;
+      const inp = document.getElementById("mctl-" + c.k);
+      const out = document.getElementById("mout-" + c.k);
+      if (inp) inp.value = v;
+      if (out) out.textContent = fmt(v, c.unit);
+    });
+    drawMechInline();
+  }
+
+  function startMechInline() {
+    if (state.mechPlaying) return;
+    state.mechPlaying = true;
+    mechStart = performance.now() - mechElapsed;
+    mechRaf = requestAnimationFrame(mechTick);
+    updateMechPlayButton();
+  }
+
+  function stopMechInline() {
+    if (!state.mechPlaying) return;
+    state.mechPlaying = false;
+    cancelAnimationFrame(mechRaf);
+    updateMechPlayButton();
+  }
+
   function renderMechArticle(e) {
+    stopMechInline();
+    mechElapsed = 0;
     const n = e.node;
+    state.mech = n.code;
+    state.mechParams = {};
+    const mDef = LAB.mechs[n.code] || LAB.mechs["1.1.1.1"];
+    mDef.controls.forEach((c) => (state.mechParams[c.k] = c.v));
+
     const crumbs = [e.part.title, e.cat.num + " · " + e.cat.title].concat(e.path.map((b) => b.code + " " + b.title));
     const related = ridesFor(n.code);
     let video = null;
@@ -1013,6 +1088,8 @@
     const prev = LEAVES[e.index - 1];
     const next = LEAVES[e.index + 1];
 
+    const dists = NOTES.filter((d) => (d.subtitle && d.subtitle.indexOf(n.code) !== -1) || (d.rows && d.rows.some((r) => r.some((c) => c && c.indexOf(n.code) !== -1))));
+
     $("#mech-article").innerHTML =
       '<nav class="crumbs" aria-label="' + esc(T("crumbsAria")) + '">' + crumbs.map((c) => "<span>" + esc(c) + "</span>").join("") + "</nav>" +
       '<p class="article-code">' + n.code + "</p>" +
@@ -1022,6 +1099,25 @@
       '<dl class="spec-grid"><div><dt>' + esc(T("specSupport")) + "</dt><dd>" + esc(n.support) + "</dd></div>" +
       "<div><dt>" + esc(T("specDof")) + "</dt><dd>" + esc(n.dof) + "</dd></div>" +
       "<div><dt>" + esc(T("specMfg")) + "</dt><dd>" + esc(n.mfg) + "</dd></div></dl>" +
+      '<section class="article-section mech-lab-box">' +
+        '<div class="mech-lab-head">' +
+          '<h3 class="article-h">' + esc(T("mechBlueprintTitle", "可交互工程原理图")) + '</h3>' +
+          '<div style="display:flex;gap:12px;align-items:center;">' +
+            '<span class="mech-lab-badge">' + icon("gear") + esc(T("mechLabInteractiveBadge", "60fps 可交互模拟")) + '</span>' +
+            '<a class="text-link" href="#/lab/' + n.code + '">' + esc(T("mechOpenInLab", "在原理实验室打开")) + icon("arrowRight") + '</a>' +
+          '</div>' +
+        '</div>' +
+        '<div class="lab-sheet mech-inline-sheet">' +
+          '<div class="lab-canvas" id="mech-inline-canvas">' + LAB.renderMech(n.code, state.mechParams) + '</div>' +
+          '<div class="title-block"><span><small>' + esc(T("labTbNo")) + '</small>MECH–' + n.code + '</span><span><small>' + esc(T("labTbScale")) + '</small>' + esc(T("labTbScaleVal")) + '</span><span><small>DOF</small>' + esc(n.dof) + '</span></div>' +
+        '</div>' +
+        '<div class="lab-controls mech-inline-controls" id="mech-inline-controls"></div>' +
+        (dists.length
+          ? '<div class="mech-dist-links"><span class="dist-label">' + esc(T("mechRelatedDistinctions", "关联工程辨析：")) + '</span>' +
+            dists.map((d) => '<a class="text-link" href="#/notes/' + (NOTES.indexOf(d) + 1) + '">' + esc(shortTitle(d.title)) + ' →</a>').join("") +
+            '</div>'
+          : '') +
+      '</section>' +
       (video
         ? '<figure class="article-video">' + playerHTML(video.id, "") +
           "<figcaption><span>" + esc(video.caption || "") + "</span><span>" + (VIDEOS[video.id] && VIDEOS[video.id].c ? (isBili(video.id) ? "Bilibili · " : "YouTube · ") + esc(VIDEOS[video.id].c) : "") + "</span></figcaption></figure>"
@@ -1037,6 +1133,8 @@
       (prev ? '<a href="#/mechanisms/' + prev.node.code + '"><small>' + esc(T("pagerPrev")) + '</small><span class="code">' + prev.node.code + "</span>" + esc(prev.node.short) + "</a>" : "<span></span>") +
       (next ? '<a class="next" href="#/mechanisms/' + next.node.code + '"><small>' + esc(T("pagerNext")) + '</small><span class="code">' + next.node.code + "</span>" + esc(next.node.short) + "</a>" : "") +
       "</nav>";
+
+    renderMechControls(n.code);
   }
 
   /* ----------------------------------------------------------------- lab */
@@ -1048,14 +1146,27 @@
   const fmt = (v, unit) => Math.round(v) + unit;
 
   function renderLabList() {
-    $("#lab-list").innerHTML = LAB.modes
-      .map((m, i) =>
-        '<button class="lab-item" type="button" role="tab" data-lab="' + i + '" aria-selected="' + (i === state.lab) + '">' +
-        '<span class="num">' + pad(i + 1) + '</span><span class="t">' + esc(m.t) + '</span><span class="s">' + esc(m.s) + "</span></button>")
-      .join("");
+    const btns = $$("#lab-mode-switch button");
+    btns.forEach((b) => b.setAttribute("aria-selected", String(b.dataset.labMode === state.labView)));
+
+    if (state.labView === "comparisons") {
+      $("#lab-list").innerHTML = LAB.modes
+        .map((m, i) =>
+          '<button class="lab-item" type="button" role="tab" data-lab="' + i + '" aria-selected="' + (i === state.lab) + '">' +
+          '<span class="num">' + pad(i + 1) + '</span><span class="t">' + esc(m.t) + '</span><span class="s">' + esc(m.s) + "</span></button>")
+        .join("");
+    } else {
+      $("#lab-list").innerHTML = LEAVES
+        .map((e) =>
+          '<button class="lab-item" type="button" role="tab" data-lab-mech="' + e.node.code + '" aria-selected="' + (e.node.code === state.labMech) + '">' +
+          '<span class="num">' + e.node.code + '</span><span class="t">' + esc(e.node.short) + '</span><span class="s">' + esc(e.cat.title) + "</span></button>")
+        .join("");
+    }
   }
 
   function selectLab(i) {
+    stopLab();
+    state.labView = "comparisons";
     if (!(i >= 0 && i < LAB.modes.length)) i = 0;
     state.lab = i;
     const m = LAB.modes[i];
@@ -1071,12 +1182,35 @@
       "<span><small>" + esc(T("labTbVs")) + "</small>" + esc(m.s) + "</span>";
   }
 
+  function selectLabMech(code) {
+    stopLab();
+    state.labView = "atlas";
+    if (!LAB.mechs[code]) code = "1.1.1.1";
+    state.labMech = code;
+    const m = LAB.mechs[code];
+    state.labParams = {};
+    m.controls.forEach((c) => (state.labParams[c.k] = c.v));
+    renderLabList();
+    renderLabControls();
+    drawLab();
+    renderLabNotes();
+    const leaf = LEAF[code];
+    $("#lab-tb").innerHTML =
+      "<span><small>" + esc(T("labTbNo")) + "</small>MECH–" + code + "</span>" +
+      "<span><small>" + esc(T("labTbScale")) + "</small>" + esc(T("labTbScaleVal")) + "</span>" +
+      "<span><small>DOF</small>" + esc(leaf ? leaf.node.dof : "多自由度") + "</span>";
+  }
+
   function drawLab() {
-    $("#lab-canvas").innerHTML = LAB.render(state.lab, state.labParams);
+    if (state.labView === "comparisons") {
+      $("#lab-canvas").innerHTML = LAB.render(state.lab, state.labParams);
+    } else {
+      $("#lab-canvas").innerHTML = LAB.renderMech(state.labMech, state.labParams);
+    }
   }
 
   function renderLabControls() {
-    const m = LAB.modes[state.lab];
+    const m = state.labView === "comparisons" ? LAB.modes[state.lab] : LAB.mechs[state.labMech];
     $("#lab-controls").innerHTML =
       m.controls
         .map((c) =>
@@ -1089,19 +1223,43 @@
   }
 
   function renderLabNotes() {
-    const m = LAB.modes[state.lab];
-    $("#lab-notes").innerHTML =
-      '<div><p class="eyebrow">' + pad(state.lab + 1) + " · " + esc(m.s) + "</p><h2>" + esc(m.title) + "</h2><p>" + esc(m.body) + "</p>" +
-      '<div class="links">' +
-      m.links.map((c) => '<a class="text-link" href="#/mechanisms/' + c + '">' + c + " " + esc(LEAF[c] ? LEAF[c].node.short : "") + "</a>").join("") +
-      '<a class="text-link" href="#/notes/' + (m.note + 1) + '">' + esc(T("labReadNote")) + icon("arrowRight") + "</a></div></div>" +
-      '<div><p class="eyebrow" style="margin-bottom:10px">' + esc(T("labRelatedVideos")) + '</p><div class="video-list">' +
-      m.videos
-        .map((v) =>
-          '<button class="video-row" type="button" data-video="' + v.id + '" data-title="' + esc(v.label) + '">' +
-          '<img src="' + thumb(v.id) + '" alt="" loading="lazy"><span><span class="vt">' + esc(v.label) + '</span><span class="vs">' + esc(VIDEOS[v.id] ? VIDEOS[v.id].c : "") + "</span></span></button>")
-        .join("") +
-      "</div></div>";
+    if (state.labView === "comparisons") {
+      const m = LAB.modes[state.lab];
+      $("#lab-notes").innerHTML =
+        '<div><p class="eyebrow">' + pad(state.lab + 1) + " · " + esc(m.s) + "</p><h2>" + esc(m.title) + "</h2><p>" + esc(m.body) + "</p>" +
+        '<div class="links">' +
+        m.links.map((c) => '<a class="text-link" href="#/mechanisms/' + c + '">' + c + " " + esc(LEAF[c] ? LEAF[c].node.short : "") + "</a>").join("") +
+        '<a class="text-link" href="#/notes/' + (m.note + 1) + '">' + esc(T("labReadNote")) + icon("arrowRight") + "</a></div></div>" +
+        '<div><p class="eyebrow" style="margin-bottom:10px">' + esc(T("labRelatedVideos")) + '</p><div class="video-list">' +
+        m.videos
+          .map((v) =>
+            '<button class="video-row" type="button" data-video="' + v.id + '" data-title="' + esc(v.label) + '">' +
+            '<img src="' + thumb(v.id) + '" alt="" loading="lazy"><span><span class="vt">' + esc(v.label) + '</span><span class="vs">' + esc(VIDEOS[v.id] ? VIDEOS[v.id].c : "") + "</span></span></button>")
+          .join("") +
+        "</div></div>";
+    } else {
+      const leaf = LEAF[state.labMech];
+      const n = leaf ? leaf.node : { code: state.labMech, title: "", text: "", support: "", dof: "", mfg: "" };
+      const dists = NOTES.filter((d) => (d.subtitle && d.subtitle.indexOf(n.code) !== -1) || (d.rows && d.rows.some((r) => r.some((c) => c && c.indexOf(n.code) !== -1))));
+      const related = ridesFor(n.code);
+      $("#lab-notes").innerHTML =
+        '<div><p class="eyebrow">' + n.code + ' · ' + esc(leaf ? leaf.cat.title : "") + '</p><h2>' + esc(n.title) + '</h2><p>' + esc(n.text) + '</p>' +
+        '<div class="links">' +
+        '<a class="text-link" href="#/mechanisms/' + n.code + '">' + esc(T("heroBtnMech")) + ' (' + n.code + ') ' + icon("arrowRight") + '</a>' +
+        dists.map((d) => '<a class="text-link" href="#/notes/' + (NOTES.indexOf(d) + 1) + '">' + esc(shortTitle(d.title)) + icon("arrowRight") + '</a>').join("") +
+        '</div></div>' +
+        '<div><p class="eyebrow" style="margin-bottom:10px">' + esc(T("mechRelatedTitle")) + ' (' + related.length + ')</p><div class="video-list">' +
+        (related.length
+          ? related.slice(0, 4).filter((r) => r.v && firstVideo(r))
+            .map((r) => {
+              const vid = firstVideo(r);
+              return '<button class="video-row" type="button" data-video="' + vid + '" data-title="' + esc(r.zh) + '">' +
+                '<img src="' + thumb(vid) + '" alt="" loading="lazy"><span><span class="vt">' + esc(r.zh) + '</span><span class="vs">' + esc(r.park) + '</span></span></button>';
+            })
+            .join("")
+          : '<p style="font-size:13px;color:var(--text-3);">' + esc(T("emptyParksText")) + '</p>') +
+        '</div></div>';
+    }
   }
 
   function updatePlayButton() {
@@ -1113,7 +1271,7 @@
     raf = requestAnimationFrame(tick);
     if ((frame++ & 1) === 1) return;
     labElapsed = now - labStart;
-    const m = LAB.modes[state.lab];
+    const m = state.labView === "comparisons" ? LAB.modes[state.lab] : LAB.mechs[state.labMech];
     const vals = m.auto(labElapsed / 1000);
     m.controls.forEach((c) => {
       const v = clamp(vals[c.k], c.min, c.max);
@@ -1182,7 +1340,7 @@
   }
 
   /* --------------------------------------------------------------- notes */
-  const cleanTitle = (t) => String(t).replace(/^(辨析[一二三四五六]|Distinction\s*\d+|Distinción\s*\d+|Distinction\s*[IVX\d]+|Различие\s*\d+|التمييز\s*\S+|구분\s*\d+|検証\s*\d+|Unterscheidung\s*\d+)\s*[：:—–-]\s*/i, "").replace("终极", "");
+  const cleanTitle = (t) => String(t).replace(/^(辨析[一二三四五六七八九十百\d]+|Distinction\s*\d+|Distinción\s*\d+|Distinction\s*[IVX\d]+|Различие\s*\d+|التمييز\s*\S+|구분\s*\d+|検証\s*\d+|Unterscheidung\s*\d+)\s*[：:—–-]\s*/i, "").replace("终极", "");
   const shortTitle = (t) => cleanTitle(t).split("——")[0].split(" — ")[0].split("（")[0].split(" (")[0];
   let noteObserver = null;
 
@@ -1195,6 +1353,11 @@
         '<h2 class="note-title">' + esc(cleanTitle(d.title)) + "</h2>" +
         '<p class="note-sub">' + esc(d.subtitle) + "</p>" +
         '<p class="note-intro">' + esc(d.intro) + "</p>" +
+        '<div class="note-schematic-wrap"><div class="lab-sheet note-lab-sheet">' +
+        '<div class="lab-canvas">' + LAB.render(d.labTab, {}) + '</div>' +
+        '<div class="title-block"><span><small>' + esc(T("labTbNo")) + '</small>DRA–' + pad(d.labTab + 1) + '</span><span><small>' + esc(T("labTbScale")) + '</small>' + esc(T("labTbScaleVal")) + '</span><span><small>' + esc(T("labTbVs")) + '</small>' + esc(LAB.modes[d.labTab] ? LAB.modes[d.labTab].s : "") + '</span>' +
+        '<a href="#/lab/' + (d.labTab + 1) + '" style="margin-left:auto;padding:8px 14px;color:var(--accent);font-weight:500;">' + esc(T("notesSeeLab")) + " " + icon("arrowRight") + "</a>" +
+        '</div></div></div>' +
         '<div class="table-wrap"><table class="data-table"><thead><tr>' + d.headers.map((h) => "<th>" + esc(h) + "</th>").join("") + "</tr></thead><tbody>" +
         d.rows.map((row) => "<tr>" + row.map((c) => "<td>" + c + "</td>").join("") + "</tr>").join("") +
         "</tbody></table></div>" +
@@ -1334,7 +1497,13 @@
       }
       case "lab":
         showView("lab");
-        selectLab(arg ? Number(arg) - 1 : state.lab);
+        if (arg) {
+          if (LAB.mechs[arg] || LEAF[arg]) selectLabMech(arg);
+          else selectLab(Number(arg) - 1);
+        } else {
+          if (state.labView === "atlas") selectLabMech(state.labMech);
+          else selectLab(state.lab);
+        }
         break;
       case "parks":
         showView("parks");
@@ -1417,8 +1586,10 @@
         const a = action.dataset.action;
         if (a === "next-fact") { state.fact++; renderFact(); }
         else if (a === "reset-filters") resetFilters();
+        else if (a === "mech-play") (state.mechPlaying ? stopMechInline : startMechInline)();
+        else if (a === "mech-reset") { stopMechInline(); mechElapsed = 0; selectMech(state.mech); }
         else if (a === "lab-play") (state.playing ? stopLab : startLab)();
-        else if (a === "lab-reset") { stopLab(); labElapsed = 0; selectLab(state.lab); }
+        else if (a === "lab-reset") { stopLab(); labElapsed = 0; if (state.labView === "comparisons") selectLab(state.lab); else selectLabMech(state.labMech); }
         else if (a === "open-search") openPalette();
         else if (a === "scroll-index") document.getElementById("index").scrollIntoView({ behavior: "smooth" });
         return;
@@ -1439,6 +1610,18 @@
         const k = cat.dataset.toggleCat;
         state.collapsed[k] = !state.collapsed[k];
         return renderMechNav();
+      }
+      const labMode = t.closest("[data-lab-mode]");
+      if (labMode) {
+        const mode = labMode.dataset.labMode;
+        if (mode === "comparisons") selectLab(state.lab);
+        else selectLabMech(state.labMech);
+        return;
+      }
+      const labMech = t.closest("[data-lab-mech]");
+      if (labMech) {
+        location.hash = "#/lab/" + labMech.dataset.labMech;
+        return;
       }
       const lab = t.closest("[data-lab]");
       if (lab) {
@@ -1491,10 +1674,24 @@
       const k = e.target.dataset.ctl;
       if (!k) return;
       stopLab();
-      const c = LAB.modes[state.lab].controls.find((x) => x.k === k);
+      const m = state.labView === "comparisons" ? LAB.modes[state.lab] : LAB.mechs[state.labMech];
+      const c = m.controls.find((x) => x.k === k);
       state.labParams[k] = Number(e.target.value);
-      $("#out-" + k).textContent = fmt(state.labParams[k], c.unit);
+      const out = document.getElementById("out-" + k);
+      if (out && c) out.textContent = fmt(state.labParams[k], c.unit);
       drawLab();
+    });
+
+    $("#mech-article").addEventListener("input", (e) => {
+      const k = e.target.dataset.mctl;
+      if (!k) return;
+      stopMechInline();
+      const m = LAB.mechs[state.mech] || LAB.mechs["1.1.1.1"];
+      const c = m.controls.find((x) => x.k === k);
+      state.mechParams[k] = Number(e.target.value);
+      const out = document.getElementById("mout-" + k);
+      if (out && c) out.textContent = fmt(state.mechParams[k], c.unit);
+      drawMechInline();
     });
 
     // Larger YouTube stills are not available for every video; fall back to hqdefault.

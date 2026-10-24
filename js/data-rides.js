@@ -29,8 +29,9 @@ window.RIDES = [
     en: "La Machine à voyager dans le temps",
     g: "europe",
     park: "Futuroscope",
+    year: 2013,
     code: "1.1.1.1",
-    mfg: "ETF Ride Systems",
+    mfg: "ETF Ride Systems / Jora Vision",
     text: "乘客坐在会旋转、震动的“马桶”车厢里，在实景走廊与几块 3D 屏幕之间穿行，跟着疯狂兔子在不同年代之间乱窜。轻松的家庭向有轨车。",
     v: { pov: "sKV60IUtROE" }
   },
@@ -55,7 +56,7 @@ window.RIDES = [
     park: "未来世界 EPCOT",
     year: 1982,
     code: "1.1.1.2",
-    mfg: "WDI",
+    mfg: "WDI / Arrow Development",
     text: "车厢沿螺旋轨道爬进 EPCOT 大球内部，一路经过人类传播史的布景，到顶后倒退着倾斜下行。同样是连续移动的 Omnimover。",
     v: { pov: "dXbbO2AioOg" }
   },
@@ -67,6 +68,7 @@ window.RIDES = [
     park: "好莱坞环球影城",
     year: 2021,
     code: "1.1.1.2",
+    mfg: "Sansei Technologies / Universal Creative",
     text: "连续移动的纸箱车厢，乘客以小狗的视角穿过纽约街景，场景里布满机械宠物。上车前的扫描会把每位乘客做成一只小狗，在结尾出现。",
     v: { pov: "miRHxLxpqHc" }
   },
@@ -90,6 +92,7 @@ window.RIDES = [
     park: "Efteling",
     year: 1984,
     code: "1.1.1.2",
+    mfg: "Mack Rides",
     text: "连续移动的车厢载着乘客环游“世界各国”，几百个木偶载歌载舞。风格接近《小小世界》，但走的是有轨车而不是水道。",
     v: { pov: "VRHWrWhC6qo" },
     note: { pov: "Efteling 官方频道" }
@@ -100,9 +103,10 @@ window.RIDES = [
     en: "Castello dei Medici",
     g: "europe",
     park: "Europa-Park",
+    year: 2024,
     code: "1.1.1.2",
     mfg: "Mack Rides",
-    text: "由老牌鬼屋 Geisterschloss 改造而来的双层 Omnimover，2024 年以意大利文艺复兴古堡的新故事重新开放。",
+    text: "由 1982 年老牌鬼屋 Geisterschloss 改造而来的双层 Omnimover，2024 年以意大利文艺复兴古堡的新故事重新开放。",
     v: { pov: "QI2qseAD3CQ" }
   },
   {
@@ -113,7 +117,7 @@ window.RIDES = [
     park: "好莱坞影城 · 加州冒险乐园 · 东京迪士尼海洋",
     year: 2008,
     code: "1.1.1.3",
-    mfg: "WDI",
+    mfg: "WDI / Sansei Technologies",
     text: "车厢在一块块 3D 屏幕前停下并快速转向，乘客拉动车上的弹簧发射器，向屏幕里的游戏靶子投掷虚拟弹道。后来许多 3D 射击车都以它为模板。",
     v: { pov: "MpwXsX9XE60" }
   },
@@ -125,7 +129,7 @@ window.RIDES = [
     park: "上海迪士尼",
     year: 2016,
     code: "1.1.1.3",
-    mfg: "WDI",
+    mfg: "WDI / Sansei Technologies",
     text: "经典激光打靶车的上海版本：乘客可手动旋转车厢，用激光枪射击实景与屏幕上的靶点，枪口会实时显示准星反馈。",
     v: { pov: "c7HA92di29c" }
   },
@@ -137,7 +141,7 @@ window.RIDES = [
     park: "东京迪士尼乐园",
     year: 2009,
     code: "1.1.1.3",
-    mfg: "WDI",
+    mfg: "WDI / Ride & Show Engineering",
     text: "不计分的互动车：乘客用手电筒照亮场景里藏着的怪兽标记，被照到的角色和机关会做出反应。玩法偏探索，没有排名压力。",
     v: { pov: "BUqsoWBXwcY" }
   },
@@ -149,7 +153,7 @@ window.RIDES = [
     park: "加州冒险乐园 · 巴黎迪士尼",
     year: 2021,
     code: "1.1.1.3",
-    mfg: "WDI",
+    mfg: "WDI / Oceaneering",
     text: "不用持枪，车上的体感摄像头识别乘客的手势，做出“吐丝”动作就能向屏幕里的蜘蛛机器人射网。",
     v: { pov: "ex1MZ83NSvQ" }
   },
@@ -161,6 +165,7 @@ window.RIDES = [
     park: "日本环球影城 · 好莱坞 · 史诗宇宙",
     year: 2021,
     code: "1.1.1.3",
+    mfg: "Universal Creative / Dynamic Attractions / Holovis",
     text: "乘客戴上 AR 护目镜，虚拟赛车与龟壳叠加在真实布景上；看向哪里就能把龟壳打向哪里，车辆会配合方向盘做出漂移动作。",
     v: { pov: "1-8RuVHo4tw" },
     note: { pov: "史诗宇宙版，AR 护目镜视角" }
@@ -173,6 +178,7 @@ window.RIDES = [
     park: "奥兰多环球影城",
     year: 2000,
     code: "1.1.1.3",
+    mfg: "MTS Systems / Universal Creative",
     text: "两条轨道上的车辆并排前进，乘客射击纽约街头的机械外星人，也可以瞄准对面车上的目标，让对方车辆失控打转。",
     v: { pov: "xEYsXF7KDRY" }
   },
@@ -184,7 +190,7 @@ window.RIDES = [
     park: "Phantasialand",
     year: 2011,
     code: "1.1.1.3",
-    mfg: "ETF Ride Systems",
+    mfg: "ETF Ride Systems / Alterface",
     text: "柏林老式甜品店里闹鼠灾，乘客用“奶油裱花袋”向 3D 屏幕里的老鼠发射奶油。玩法与《玩具总动员疯狂游戏屋》相近。",
     v: { pov: "gWK2apK--no" }
   },
@@ -194,6 +200,7 @@ window.RIDES = [
     en: "Abenteuer Atlantis",
     g: "europe",
     park: "Europa-Park",
+    year: 2007,
     code: "1.1.1.3",
     mfg: "Mack Rides",
     text: "连续移动的车厢可手动旋转，乘客用激光枪射击深海布景里的靶点，是 Europa-Park 的经典互动乘骑。",
@@ -205,7 +212,9 @@ window.RIDES = [
     en: "Night at the Museum: Midnight Mayhem",
     g: "asia-other",
     park: "云顶天城世界",
+    year: 2022,
     code: "1.1.1.3",
+    mfg: "ETF Ride Systems / Alterface",
     text: "乘坐博物馆巡逻车，在复活的恐龙骨架与展品之间穿行，用手中的发射器向 3D 屏幕射击。",
     v: { pov: "7ifK11Sw6eM" }
   },
@@ -215,6 +224,7 @@ window.RIDES = [
     en: "Boonie Bears Adventure",
     g: "fantawild",
     park: "方特多个园区",
+    year: 2015,
     code: "1.1.1.3",
     mfg: "华强方特",
     text: "方特覆盖面最广的 3D 互动射击车。车辆在森林布景与屏幕之间自动转向，乘客跟着熊大熊二射击并计分。",
@@ -279,6 +289,7 @@ window.RIDES = [
     en: "Invasion of the Planet of the Apes",
     g: "asia-other",
     park: "云顶天城世界",
+    year: 2022,
     code: "1.1.2.1",
     mfg: "Oceaneering",
     text: "云顶的旗舰项目。车载动感平台在 3D 屏幕与坍塌的城市实景之间穿梭，凯撒的大型机械人偶是全程的视觉焦点。",
@@ -304,6 +315,7 @@ window.RIDES = [
     park: "迪拜 IMG 冒险世界",
     year: 2016,
     code: "1.1.2.1",
+    mfg: "Oceaneering",
     text: "室内乐园里的车载动感平台项目，3D 屏幕与实景交替，乘客在车上参与射击。",
     v: { pov: "mCNXsUSznBM" }
   },
@@ -322,9 +334,10 @@ window.RIDES = [
   {
     id: "fantawild-nuwa",
     zh: "女娲补天",
-    en: "Goddess Nuwa: Mending the Heavens",
+    en: "Legend of Nuwa",
     g: "fantawild",
     park: "方特东方神画等园区",
+    year: 2015,
     code: "1.1.2.1",
     mfg: "华强方特",
     text: "方特自研的车载动感平台项目，路线与环球的同类系统相近：在多块 3D 屏幕和火山、天宫实景之间穿行，跟随女娲修补苍天。",
@@ -333,9 +346,10 @@ window.RIDES = [
   {
     id: "fantawild-dino-crisis",
     zh: "恐龙危机",
-    en: "Dinosaur Crisis",
+    en: "Dino Rampage",
     g: "fantawild",
     park: "方特欢乐世界 · 梦幻王国等",
+    year: 2007,
     code: "1.1.2.1",
     mfg: "华强方特",
     text: "未来城市遭恐龙入侵，车载动感平台载着乘客在屏幕与实景之间逃生，是方特早期的代表性动感车项目。",
@@ -348,6 +362,7 @@ window.RIDES = [
     en: "Railroad Warriors",
     g: "fantawild",
     park: "方特东方欲晓",
+    year: 2021,
     code: "1.1.2.1",
     mfg: "华强方特",
     text: "抗战题材的动感轨道车，车辆冲进被占领的火车站与铁路桥，乘客可在车上参与射击。",
@@ -373,7 +388,7 @@ window.RIDES = [
     park: "加州迪士尼乐园 · 东京迪士尼海洋",
     year: 1995,
     code: "1.1.2.3",
-    mfg: "WDI（EMV）",
+    mfg: "WDI / MTS Systems（EMV）",
     text: "12 座越野吉普在古庙里颠簸、急刹、下坠。车不旋转、乘客不戴眼镜，所有刺激都来自车身的液压悬挂与实景机关——这就是迪士尼的 EMV 路线。",
     v: { pov: "7RJLNQRBRYI", lights: "kGaMdu4s7fk" },
     note: { lights: "加州迪士尼乐园版，开灯拆解" }
@@ -384,9 +399,10 @@ window.RIDES = [
     en: "Qin Dynasty Adventure",
     g: "fantawild",
     park: "方特梦幻王国（株洲 · 芜湖 · 厦门）",
+    year: 2010,
     code: "1.1.2.3",
     mfg: "华强方特",
-    text: "与《印第安纳琼斯》同一路线：12 座考古吉普在实体兵马俑墓道里颠簸穿行，靠车灯、机关和裸眼投影制造惊险，而不是戴眼镜看屏幕。青岛梦幻王国的《秦俑地宫》也属于这一类。",
+    text: "与《印第安纳琼斯》同一路线：12 座考古吉普在实体兵马俑墓道里颠簸穿行，靠车灯、机关和裸眼投影制造惊险，而不是戴眼镜看屏幕。青岛梦幻王国的《秦俑地宫》（Warrior's Tomb）也属于这一类。",
     v: { pov: "H4Z2IZCkG18" },
     note: { pov: "株洲方特梦幻王国，2024 年拍摄" },
     bili: "方特 秦陵历险 梦幻王国"
@@ -412,7 +428,7 @@ window.RIDES = [
     park: "史诗宇宙 · 奥兰多",
     year: 2025,
     code: "1.1.3.1",
-    mfg: "KUKA",
+    mfg: "KUKA / Dynamic Attractions",
     text: "沿用地面轨道 + 机械臂的结构，但把《禁忌之旅》的球幕换成了更多大型机械怪物与 LED 屏幕，节奏更快。",
     v: { pov: "7AbnllQNN4o", demo: "2_SEJHxlmWw" },
     note: { demo: "KUKA RoboCoaster 展会演示" }
@@ -425,7 +441,7 @@ window.RIDES = [
     park: "阿布扎比华纳兄弟世界",
     year: 2018,
     code: "1.1.3.2",
-    mfg: "Dynamic Attractions",
+    mfg: "Dynamic Attractions / KUKA",
     text: "把机械臂式座舱装在能高速行驶的底盘上，座舱可以在冲刺时大角度俯仰、侧倾，在球幕之间穿梭。",
     v: { pov: "aZPwWSRKcdg" }
   },
@@ -437,7 +453,7 @@ window.RIDES = [
     park: "加州冒险乐园",
     year: 2012,
     code: "1.1.4.1",
-    mfg: "WDI",
+    mfg: "WDI / Dynamic Attractions",
     text: "前半段在室内慢速经过汽车总动员的机械角色，后半段驶出室外，两车并排在峡谷里加速竞赛。底层是《测试赛道》的槽轨系统。",
     v: { pov: "NkJRM55tujM" }
   },
@@ -449,7 +465,7 @@ window.RIDES = [
     park: "未来世界 EPCOT",
     year: 1999,
     code: "1.1.4.1",
-    mfg: "WDI",
+    mfg: "WDI / Dynamic Attractions",
     text: "槽轨测试车的原型：室内是各种模拟测试场景，最后冲上室外的高速环道。2025 年再次改版。",
     v: { pov: "OdtzBnw5crk" },
     note: { pov: "2025 年改版后" }
@@ -462,7 +478,7 @@ window.RIDES = [
     park: "东京迪士尼海洋",
     year: 2001,
     code: "1.1.4.1",
-    mfg: "WDI",
+    mfg: "WDI / Dynamic Attractions",
     text: "钻地车先在火山内部慢慢穿过发光的地下世界，遇到熔岩怪兽后突然加速，从火山口冲出。",
     v: { pov: "Pe0Tr9StlS8" }
   },
@@ -486,7 +502,7 @@ window.RIDES = [
     park: "未来世界 EPCOT",
     year: 2022,
     code: "1.1.4.2",
-    mfg: "Vekoma",
+    mfg: "Vekoma / WDI",
     text: "车厢能自主旋转的室内过山车：高速飞行时，车载电机把乘客精确地转向屏幕和星球模型，把 Omnimover 的“取景”搬到了过山车上。",
     v: { pov: "w5JmLk1F6jQ" }
   },
@@ -496,6 +512,7 @@ window.RIDES = [
     en: "Mission Ferrari",
     g: "uae",
     park: "阿布扎比法拉利世界",
+    year: 2023,
     code: "1.1.4.2",
     mfg: "Dynamic Attractions",
     text: "Dynamic 的 SFX 过山车：前段是室内特工剧情，轨道会带着整列车横向平移、倾斜下落，再接倒退与发射。",
@@ -509,7 +526,7 @@ window.RIDES = [
     park: "奥兰多 · 好莱坞 · 新加坡",
     year: 2004,
     code: "1.1.4.3",
-    mfg: "Premier Rides",
+    mfg: "Premier Rides / Dynamic Attractions",
     text: "前半段是完整的慢速古墓暗黑乘骑，木乃伊人偶、圣甲虫与火焰依次登场；之后车辆倒退、换轨，被弹射进黑暗的过山车段。",
     v: { pov: "WYI4ljAx4lk", lights: "_mEledy4U1E" },
     note: { pov: "奥兰多环球官方频道" }
@@ -522,7 +539,7 @@ window.RIDES = [
     park: "神奇王国 · 上海迪士尼",
     year: 2014,
     code: "1.1.4.3",
-    mfg: "Vekoma",
+    mfg: "Vekoma / WDI",
     text: "家庭过山车中段有一段室内矿洞，矿车放慢经过七个小矮人边干活边唱歌的机械人偶场景。",
     v: { pov: "C3oAHvx8Bn8" },
     note: { pov: "上海迪士尼版" }
@@ -535,7 +552,8 @@ window.RIDES = [
     park: "奥兰多环球影城",
     year: 2023,
     code: "1.2",
-    text: "没有车厢：乘客站在蜿蜒的移动步道上，手持射击器穿过一个个屏幕大厅；射击器可与手机 App 绑定，累计分数和装备。",
+    mfg: "Universal Creative / Doppelmayr",
+    text: "没有车厢：乘客站在蜿蜒的移动步道上，手持射击器穿过一个个屏幕大厅；射击器可与手机 App 绑定，累计分数和装备（DRdb 归入 Endless Chain 连续链系统）。",
     bili: "小黄人恶人大会 Villain-Con Minion Blast",
     v: { pov: "Blnu761johU" }
   },
@@ -549,7 +567,7 @@ window.RIDES = [
     park: "香港迪士尼",
     year: 2013,
     code: "2.1",
-    mfg: "WDI",
+    mfg: "WDI / Jervis B. Webb / Roush",
     text: "无轨车系统的经典之作。几辆车结伴进入一个房间，各自停在不同位置看同一段机关表演，再分头离开。全程几乎没有屏幕，靠实景与特效讲故事。",
     v: { pov: "VcI9p9AqCEk" }
   },
@@ -559,7 +577,7 @@ window.RIDES = [
     en: "Symbolica: Palace of Fantasy",
     g: "europe",
     park: "Efteling",
-    year: 2012,
+    year: 2017,
     code: "2.1",
     mfg: "ETF Ride Systems",
     text: "排队时就能选择三条不同路线之一。无轨马车在大厅里围着魔术师共舞，随后各自开进不同的房间。",
@@ -574,7 +592,7 @@ window.RIDES = [
     park: "好莱坞影城 · 加州迪士尼乐园",
     year: 2020,
     code: "2.1",
-    mfg: "WDI",
+    mfg: "WDI / Jervis B. Webb",
     text: "看似一列火车，进入场景后车厢自动解开、分头行动，最后再重新编组。房间大量使用投影映射，布景像卡通一样变形。",
     v: { pov: "Pty8uiJ6vXw" }
   },
@@ -586,7 +604,7 @@ window.RIDES = [
     park: "东京迪士尼乐园",
     year: 2000,
     code: "2.1",
-    mfg: "WDI",
+    mfg: "WDI / Sansei Technologies",
     text: "早期无轨车的里程碑：蜂蜜罐车厢不按固定顺序行驶，几辆车在房间里各走各的，到了跳跳虎一段，车辆也跟着“蹦”了起来。",
     v: { pov: "DXZ-myto6hk" }
   },
@@ -598,7 +616,7 @@ window.RIDES = [
     park: "巴黎迪士尼 · 未来世界 EPCOT",
     year: 2014,
     code: "2.1",
-    mfg: "WDI",
+    mfg: "WDI / Jervis B. Webb / Roush",
     text: "无轨的“老鼠车”在大幅 3D 屏幕与放大的厨房实景之间穿行，乘客以小老鼠的视角躲避厨师。",
     v: { pov: "m6G71xPiAHE" },
     note: { pov: "EPCOT 版" }
@@ -609,9 +627,10 @@ window.RIDES = [
     en: "Ice Age: Expedition Thin Ice",
     g: "asia-other",
     park: "云顶天城世界",
+    year: 2022,
     code: "2.1",
-    mfg: "ETF Ride Systems",
-    text: "浮冰造型的无轨车在冰洞里旋转、交错，穿过猛犸象、松鼠奎特等机械角色。",
+    mfg: "Oceaneering",
+    text: "浮冰造型的无轨动感车在冰洞里旋转、交错，穿过猛犸象、松鼠奎特等机械角色。",
     v: { pov: "XX_Ugq1RLvk" }
   },
   {
@@ -634,6 +653,7 @@ window.RIDES = [
     park: "阿布扎比华纳兄弟世界",
     year: 2018,
     code: "2.1",
+    mfg: "ETF Ride Systems / Thinkwell",
     text: "无轨车穿过闹鬼博物馆，机关与小把戏密集，适合全家。",
     v: { pov: "Oc6uSS4d6cs" }
   },
@@ -657,7 +677,7 @@ window.RIDES = [
     park: "上海迪士尼",
     year: 2023,
     code: "2.2.1",
-    mfg: "WDI",
+    mfg: "WDI / Roush / Jervis B. Webb",
     text: "无轨车跑得更快，还能甩尾、侧倾，配合屏幕模拟警车在冰川镇打滑、在高架上俯冲。",
     v: { pov: "F_H-ohgVWS8" }
   },
@@ -670,15 +690,16 @@ window.RIDES = [
     year: 2013,
     code: "2.2.1",
     mfg: "Oceaneering",
-    text: "无轨车加车载动感平台的早期案例。排队时可以选择温和版或颠簸版，两种车辆的动作幅度不同。",
+    text: "无轨车加车载动感平台的早期案例。排队时可以选择温和版或颠簸版，两种车辆的动作幅度不同（注：乘骑部分已于 2020 年关闭，仅保留企鹅展区）。",
     v: { pov: "HKyNcwmuM9I" }
   },
   {
     id: "fantawild-shenhua",
     zh: "神画",
-    en: "Shenhua",
+    en: "Magic Gallery (Shenhua)",
     g: "fantawild",
-    park: "方特东方神画（太原 · 绵阳 · 鹰潭）",
+    park: "方特东方神画（太原 · 绵阳 · 鹰潭 · 长沙）",
+    year: 2019,
     code: "2.2.2",
     mfg: "华强方特",
     text: "无轨车上装有多自由度平台。前半段穿行于名画长廊，最后驶到倾斜球幕的边缘，车身前倾、侧倾，配合航拍画面“飞”进《千里江山图》。",
@@ -688,12 +709,13 @@ window.RIDES = [
   {
     id: "fantawild-qiangu",
     zh: "千古风华",
-    en: "Qiangu Fenghua",
+    en: "Magic Gallery (Qiangu Fenghua)",
     g: "fantawild",
-    park: "方特东方神画（宁波 · 荆州）· 国色春秋",
+    park: "方特东方神画（宁波 · 荆州）· 国色春秋（邯郸）",
+    year: 2016,
     code: "2.2.2",
     mfg: "华强方特",
-    text: "与《神画》同一套“无轨车 + 车载动感平台 + 倾斜球幕”系统。下方视野被球幕填满，车身的俯仰让人以为自己在飞。",
+    text: "与《神画》同一套“无轨车 + 车载动感平台 + 倾斜球幕”系统（官方英文名同为 Magic Gallery）。下方视野被球幕填满，车身的俯仰让人以为自己在飞。",
     v: { pov: "PptiYHy7W1c" },
     note: { pov: "荆州方特" }
   },
@@ -705,7 +727,7 @@ window.RIDES = [
     park: "好莱坞影城 · 加州迪士尼乐园",
     year: 2019,
     code: "2.3",
-    mfg: "WDI",
+    mfg: "WDI / Jervis B. Webb / E2M / Zierer",
     text: "一个项目串起好几种系统：步行剧场、模拟运输舱、无轨车穿越歼星舰机库，最后连车带人驶进逃生舱自由落体。",
     v: { pov: "YxCErBfzcNY" }
   },
@@ -719,7 +741,7 @@ window.RIDES = [
     park: "加州迪士尼乐园等",
     year: 1955,
     code: "3.1",
-    mfg: "WDI",
+    mfg: "WDI / Arrow Development",
     text: "海盗船吊在头顶的轨道上，乘客从伦敦夜空和梦幻岛的微缩景观上方飞过。经典的顶部悬挂暗黑乘骑。",
     v: { pov: "9z6yxmOKAJU" },
     note: { pov: "加州迪士尼乐园版" }
@@ -732,7 +754,7 @@ window.RIDES = [
     park: "东京迪士尼海洋",
     year: 2001,
     code: "3.1",
-    mfg: "WDI",
+    mfg: "WDI / Sansei Technologies",
     text: "潜艇其实挂在干燥场馆的顶部轨道上。舷窗的双层玻璃中间注水、打气泡，再加上乘客可操控的探照灯，营造出潜入深海的错觉。",
     v: { pov: "3YIHOJeajPI" }
   },
@@ -744,6 +766,7 @@ window.RIDES = [
     park: "奥兰多环球影城",
     year: 1990,
     code: "3.1",
+    mfg: "Intamin / Universal Creative",
     text: "乘客骑着悬挂在轨道下的“自行车”，带着 E.T. 飞过森林和外星球，是奥兰多环球开园至今仍在运营的项目。",
     v: { pov: "z0jalOtgGV8" },
     note: { pov: "奥兰多环球官方频道" }
@@ -754,7 +777,9 @@ window.RIDES = [
     en: "Sesame Street Spaghetti Space Chase",
     g: "universal",
     park: "新加坡环球影城",
+    year: 2013,
     code: "3.1",
+    mfg: "Intamin / Universal Creative",
     text: "面向小朋友的悬挂式暗黑乘骑，太空船挂在顶部轨道上，穿过芝麻街角色的太空冒险。",
     v: { pov: "aKZyc1225jw" }
   },
@@ -766,6 +791,7 @@ window.RIDES = [
     park: "Efteling",
     year: 1993,
     code: "3.2",
+    mfg: "Translift / BHS",
     text: "吊舱慢慢飘过精灵森林与悬浮城堡，最后进入一棵巨树内部，沿螺旋轨道盘旋而下。",
     v: { pov: "sBY_ZLb6bJM" }
   },
@@ -775,9 +801,10 @@ window.RIDES = [
     en: "Devil's Peak",
     g: "fantawild",
     park: "方特多个园区",
+    year: 2011,
     code: "3.3",
     mfg: "华强方特",
-    text: "座舱吊在天花板轨道下，可以大幅度前后翻仰、水平旋转，模拟被芭蕉扇吹上天。它和《禁忌之旅》常被混为一谈，但结构完全不同。",
+    text: "座舱吊在天花板轨道下，可以大幅度前后翻仰、水平旋转，模拟被芭蕉扇吹上天。它和《禁忌之旅》常被混为一谈，但结构完全不同（注：部分早期园区版本现已停运或改建）。",
     v: { pov: "AHwngQlJcto", demo: "pz82Nr5MVyY" },
     note: { pov: "天津方特版", demo: "方特官方介绍" }
   },
@@ -811,7 +838,7 @@ window.RIDES = [
     en: "Dragon Gliders",
     g: "uae",
     park: "迪拜 Motiongate",
-    year: 2016,
+    year: 2017,
     code: "3.4",
     mfg: "Mack Rides",
     text: "与《亚瑟》同类的悬挂动力系统，全程在室内，从博克岛村落与巨幕前飞过。",
@@ -827,7 +854,7 @@ window.RIDES = [
     park: "好莱坞影城 · 奥兰多",
     year: 1994,
     code: "4.1",
-    mfg: "WDI",
+    mfg: "WDI / Otis / Eaton",
     text: "奥兰多原版最特别：电梯厢升到“第五维度”楼层后会离开井道，水平驶过一段走廊，再进入另一条井道完成下落。",
     v: { pov: "6nXRJsNuuoY" }
   },
@@ -839,7 +866,7 @@ window.RIDES = [
     park: "加州冒险乐园",
     year: 2017,
     code: "4.2",
-    mfg: "WDI",
+    mfg: "WDI / Otis",
     text: "由惊魂古塔改造。电梯在井道内多次升降，每停一层就打开窗口展示收藏家的藏品与角色，配合音乐节拍坠落。",
     v: { pov: "2RW2L8SQkok" }
   },
@@ -849,6 +876,7 @@ window.RIDES = [
     en: "Shenzhou Tower",
     g: "fantawild",
     park: "方特东方神画等",
+    year: 2015,
     code: "4.2",
     mfg: "华强方特",
     text: "室内垂直升降塔，四周是围合的 3D 屏幕，座舱随剧情分段悬停、冲顶和坠落。济南、芜湖等地称《雷峰塔》。",
@@ -865,7 +893,7 @@ window.RIDES = [
     park: "加州迪士尼乐园等",
     year: 1967,
     code: "5.1.1.1",
-    mfg: "WDI",
+    mfg: "WDI / Arrow Development / Intamin",
     text: "顺水漂流的平底船穿过海盗洗劫的小镇，中途有两段暗处的下坡。几十年来一直是水道暗黑乘骑的标杆。",
     v: { pov: "YnBNFjRKuIg", lights: "fZJH9xbFqXQ" },
     note: { pov: "加州迪士尼乐园版" }
@@ -878,7 +906,7 @@ window.RIDES = [
     park: "动物王国 · 奥兰多",
     year: 2017,
     code: "5.1.1.1",
-    mfg: "WDI",
+    mfg: "WDI / Sansei Technologies",
     text: "安静的夜光雨林水道，结尾的纳美萨满是迪士尼动作最细腻的机械人偶之一。",
     v: { pov: "B9kUfQVaD2k" }
   },
@@ -902,6 +930,7 @@ window.RIDES = [
     park: "北京环球影城",
     year: 2021,
     code: "5.1.1.1",
+    mfg: "Intamin / Universal Creative",
     text: "北京独有的室内水道，花灯与水乡布景配合投影和机械人偶，讲阿宝的成长故事。",
     v: { pov: "b2XOT65WJX0" }
   },
@@ -925,7 +954,7 @@ window.RIDES = [
     park: "神奇王国 · 加州迪士尼乐园",
     year: 2024,
     code: "5.1.1.2",
-    mfg: "WDI",
+    mfg: "WDI / Hopkins Rides",
     text: "由飞溅山改造的原木船：大半程在室内看机械人偶和音乐场景，最后从高处冲下水面。",
     v: { pov: "RLmhNWq5kT0" },
     note: { pov: "迪士尼官方频道 · 神奇王国版" }
@@ -938,7 +967,8 @@ window.RIDES = [
     park: "好莱坞环球影城",
     year: 2019,
     code: "5.1.1.2",
-    text: "船只先在室外看恐龙，再驶入室内经历沧龙与霸王龙的场景，最后从高处俯冲落水。",
+    mfg: "Vekoma / Universal Creative",
+    text: "由 1996 年《侏罗纪公园》升级而来：船只先在室外看恐龙，再驶入室内经历沧龙水下巨幕与霸王龙实景，最后从 26 米高处俯冲落水。",
     v: { pov: "MZ6uNvMpr9I" }
   },
   {
@@ -985,7 +1015,7 @@ window.RIDES = [
     park: "未来世界 EPCOT · 香港迪士尼",
     year: 2016,
     code: "5.1.1.3",
-    mfg: "WDI",
+    mfg: "WDI / Intamin / Ride & Show Engineering",
     text: "沿用旧项目的水道，船在高潮处倒退滑下一段斜坡，再转回正向继续前进。",
     v: { pov: "1WdsPGle3iQ" },
     note: { pov: "EPCOT 版，人偶面部更新后" }
@@ -1010,6 +1040,7 @@ window.RIDES = [
     park: "日本环球影城",
     year: 2001,
     code: "5.1.2.1",
+    mfg: "Intamin / Ride & Show Engineering",
     text: "游船沿水下导轨行驶，船长现场演出，机械大白鲨多次从水下扑出，油库段还有真火。奥兰多版已经拆除。",
     v: { pov: "9l7lG2PEhO8" }
   },
@@ -1021,19 +1052,21 @@ window.RIDES = [
     park: "Efteling",
     year: 1986,
     code: "5.1.2.1",
-    text: "水下导轨牵引的游船穿过《一千零一夜》式的集市、宫殿与地牢，场景规模与人偶数量都很可观。",
+    mfg: "Intamin",
+    text: "Intamin 水下缆索与导槽牵引的 16 座游船（Tow-boat）穿过《一千零一夜》式的集市、宫殿与地牢，场景规模与人偶数量都很可观。",
     v: { pov: "mXdXR82IkvQ" },
     note: { pov: "Efteling 官方频道" }
   },
   {
     id: "fantawild-jinshansi",
     zh: "决战金山寺",
-    en: "Battle of Jinshan Temple",
+    en: "Jinshan Temple Showdown",
     g: "fantawild",
     park: "方特东方神画等",
+    year: 2012,
     code: "5.1.2.2",
     mfg: "华强方特",
-    text: "大船沿导轨穿过江南街巷与水战巨幕，最后停在金山寺前，数百吨真水迎面倾泻而下。",
+    text: "大船沿导轨穿过江南街巷与水战巨幕，最后停在金山寺前，数百吨真水迎面倾泻而下（部分园区英文名作 White Snake Maiden's Fury）。",
     bili: "方特 决战金山寺",
     v: { pov: "BV1Y541147kR" }
   },
@@ -1057,7 +1090,7 @@ window.RIDES = [
     park: "上海迪士尼",
     year: 2016,
     code: "5.1.3.1",
-    mfg: "WDI",
+    mfg: "WDI / Sansei Technologies",
     text: "船浮在水面，船底却连着水下导轨与直线电机，所以能原地转向、横着平移、倒退，再和巨幕、实景精确同步。",
     v: { pov: "BP4JFCTlZ1U", explain: "lpX8YHcepW8" },
     note: { explain: "第三方原理解析" }
@@ -1103,13 +1136,13 @@ window.RIDES = [
   {
     id: "chimelong-deep-sea",
     zh: "深海潜艇",
-    en: "Deep Sea Submarine",
+    en: "Dive the Abyss - Submarine Journey",
     g: "chimelong",
     park: "珠海长隆宇宙飞船",
     year: 2023,
     code: "5.2",
     mfg: "Mack Rides / Legacy Entertainment",
-    text: "中国唯一的真实水下有轨潜艇 Dark Ride。8 艘 24 座半潜式真潜艇潜入养着数万条真鲨鱼、黄貂鱼与热带鱼的巨型海水池，窗外既有真鱼群，也有水下防水 LED 巨幕呈现的火山与深渊奇观。",
+    text: "中国唯一的真实水下有轨潜艇 Dark Ride（DRdb 归入 Endless Chain + Suspended）。8 艘 24 座半潜式真潜艇潜入养着数万条真鲨鱼、黄貂鱼与热带鱼的巨型海水池，窗外既有真鱼群，也有水下防水 LED 巨幕呈现的火山与深渊奇观。",
     v: { pov: "9hzpz_G3_PA" }
   },
 
@@ -1122,7 +1155,7 @@ window.RIDES = [
     park: "未来世界 EPCOT · 加州 · 上海 · 东京",
     year: 2001,
     code: "T1.1",
-    mfg: "WDI",
+    mfg: "WDI / Dynamic Attractions",
     text: "乘客在平地上分三排坐好，悬臂把座椅整体举起、推入球幕，双脚悬空。现代飞行影院的原型。",
     v: { pov: "m5tYn38g7LU" },
     note: { pov: "EPCOT 版" }
@@ -1135,7 +1168,7 @@ window.RIDES = [
     park: "动物王国 · 奥兰多",
     year: 2017,
     code: "T1.2",
-    mfg: "WDI",
+    mfg: "WDI / Dynamic Attractions",
     text: "三层座椅像骑摩托一样跨坐，开场后前方墙面打开露出巨幕。座椅会模拟斑溪兽的呼吸起伏，是飞行影院里身体感受最细腻的一个。",
     v: { pov: "8Kq4_z4A6g0" }
   },
@@ -1147,15 +1180,17 @@ window.RIDES = [
     park: "Europa-Park",
     year: 2017,
     code: "T1.2",
+    mfg: "Brogent Technologies / MackNeXT",
     text: "欧洲规模最大的飞行影院之一，两座球幕厅同时运行，排队区是两位发明家兄弟的工坊。",
     v: { pov: "TaPpq_qVYRc" }
   },
   {
     id: "fantawild-banni-feixiang",
     zh: "伴你飞翔",
-    en: "Soaring with You",
+    en: "Let's Fly",
     g: "fantawild",
     park: "方特多个园区",
+    year: 2015,
     code: "T1.2",
     mfg: "华强方特",
     text: "方特最普及的飞行影院，多层座椅向前推入球幕，飞越祖国山河。",
@@ -1170,15 +1205,17 @@ window.RIDES = [
     park: "阿布扎比华纳兄弟世界",
     year: 2018,
     code: "T1.2",
+    mfg: "Brogent Technologies / Thinkwell",
     text: "以绿灯侠为主题的球幕飞行影院，乘客在银河中追击反派。",
     v: { pov: "YfmyA7uHUp8" }
   },
   {
     id: "fantawild-feiyue",
     zh: "飞越极限",
-    en: "Flying Over the Limit",
+    en: "Sky Sailor",
     g: "fantawild",
     park: "方特欢乐世界 · 梦幻王国",
+    year: 2007,
     code: "T1.3",
     mfg: "华强方特",
     text: "上百名乘客坐进一座多层钢架里，整座钢架被垂直吊起、推向巨大的半球幕。启动过程本身就很有工业感。",
@@ -1191,6 +1228,7 @@ window.RIDES = [
     en: "L'Extraordinaire Voyage",
     g: "europe",
     park: "Futuroscope",
+    year: 2016,
     code: "T1.4",
     mfg: "Dynamic Attractions",
     text: "乘客像在普通影院一样平地入座，随后整块座椅平台向上翻转 90°，三排座椅变成悬在巨幕前的三层。",
@@ -1203,7 +1241,9 @@ window.RIDES = [
     en: "Independence Day: Defiance",
     g: "asia-other",
     park: "云顶天城世界",
+    year: 2022,
     code: "T1.4",
+    mfg: "Dynamic Attractions",
     text: "乘客在“机库”里平层入座，平台转动、翻转后进入球幕，参与对抗外星母舰的空战。",
     v: { pov: "csTocPcqTLY" }
   },
@@ -1217,8 +1257,8 @@ window.RIDES = [
     park: "加州迪士尼乐园等",
     year: 2011,
     code: "T2.1",
-    mfg: "WDI",
-    text: "密闭的飞船舱坐在六自由度液压平台上，舱内屏幕与舱体动作同步；每次乘坐会随机组合不同的星球与剧情。",
+    mfg: "WDI / Thales",
+    text: "密闭的飞船舱坐在六自由度液压平台上，舱内屏幕与舱体动作同步；每次乘坐会随机组合不同的星球与剧情（初代星际旅行于 1987 年开业，2011 年升级为 3D 随机分支版）。",
     v: { pov: "1DF4fyk6GLo" }
   },
   {
@@ -1229,7 +1269,7 @@ window.RIDES = [
     park: "加州迪士尼乐园 · 好莱坞影城",
     year: 2019,
     code: "T2.1",
-    mfg: "WDI",
+    mfg: "WDI / E2M Technologies",
     text: "六个人分别担任驾驶员、炮手和工程师，操作结果会影响飞船的受损程度和结局。",
     v: { pov: "q2n9TrtgKvE" }
   },
@@ -1239,7 +1279,9 @@ window.RIDES = [
     en: "Arthur, l'Aventure 4D",
     g: "europe",
     park: "Futuroscope",
+    year: 2009,
     code: "T2.2",
+    mfg: "Simworx / Thomson Entertainment",
     text: "巨大的半球幕前排列着多台动感座舱，乘客缩小成迷你墨大小，在花园里高速穿行。",
     v: { pov: "8c9CuNJPzDU" }
   },
@@ -1249,6 +1291,7 @@ window.RIDES = [
     en: "Hypersphere 360°",
     g: "uae",
     park: "阿布扎比海洋世界",
+    year: 2023,
     code: "T2.5",
     mfg: "Intamin",
     text: "乘客坐在一个完整球形屏幕的中心，连脚下都是画面；座椅环在球心旋转、倾斜，模拟深海潜游。",
@@ -1258,9 +1301,10 @@ window.RIDES = [
   {
     id: "fantawild-niulang",
     zh: "牛郎织女",
-    en: "The Cowherd and the Weaver Girl",
+    en: "Bridge to Love",
     g: "fantawild",
     park: "方特东方神画等",
+    year: 2015,
     code: "T2.6",
     mfg: "华强方特",
     text: "观众先在一楼看实景预演，随后整座圆形看台缓缓升起、旋转，进入二楼的穹顶球幕，仰望鹊桥星河。",
@@ -1273,6 +1317,7 @@ window.RIDES = [
     en: "Danse avec les Robots",
     g: "europe",
     park: "Futuroscope",
+    year: 2006,
     code: "T2.7",
     mfg: "KUKA",
     text: "十台工业机械臂固定在电音舞池里，举着座椅随音乐翻转。机械臂不沿路线移动，所以它不算行进式暗黑乘骑。",
@@ -1309,12 +1354,13 @@ window.RIDES = [
   {
     id: "fantawild-qinling-1",
     zh: "秦陵历险（行走看台版）",
-    en: "Qin Mausoleum Adventure",
+    en: "Qin Dynasty Adventure",
     g: "fantawild",
     park: "方特欢乐世界（一期）",
+    year: 2007,
     code: "T3.2",
     mfg: "华强方特",
-    text: "数十人的阶梯看台装着轨道轮，整座看台开进地宫深处，在轨道上前进、后退、颠簸。注意它和梦幻王国的 12 座吉普版是两种设备。",
+    text: "数十人的阶梯看台装着轨道轮，整座看台开进地宫深处，在轨道上前进、后退、颠簸（DRdb 将此与天津《龙王传说》、厦门《大闹水晶宫》等 40 座大车统一归为有轨 Car Ride）。注意它和梦幻王国的 12 座吉普版是两种设备。",
     bili: "方特 秦陵历险",
     v: { pov: "BV12T421r7kQ" }
   },
@@ -1326,6 +1372,7 @@ window.RIDES = [
     park: "迪拜 IMG 冒险世界",
     year: 2016,
     code: "T3.3",
+    mfg: "Dynamic Attractions / CAVU Designwerks",
     text: "观众席位于中央旋转平台上，四周和头顶被环幕与球幕包围，看台旋转对准不同画面。",
     v: { pov: "z4AX0ePT0x0" }
   },
@@ -1339,7 +1386,8 @@ window.RIDES = [
     park: "冒险岛 · 奥兰多",
     year: 2016,
     code: "T4.1",
-    text: "大型探险车驶入环幕隧道，画面与车辆的颠簸配合，营造在峡谷里被恐龙和金刚追赶的速度感；高潮是巨大的金刚机械头像。",
+    mfg: "Oceaneering / Universal Creative",
+    text: "72 座无轨探险巴士驶入环幕隧道，画面与车辆下方动感桥的颠簸配合，营造在峡谷里被恐龙和金刚追赶的速度感；高潮是巨大的金刚机械头像（DRdb 按无轨行进路径归入 Semi-Dark Ride → Car Ride）。",
     v: { pov: "g9fCukK5YKE" }
   },
   {
@@ -1347,10 +1395,11 @@ window.RIDES = [
     zh: "速度与激情：超动力",
     en: "Fast & Furious – Supercharged",
     g: "universal",
-    park: "奥兰多环球影城",
+    park: "奥兰多环球影城 · 好莱坞影城之旅",
     year: 2018,
     code: "T4.1",
-    text: "派对巴士驶进环幕隧道，车辆在原地颠簸，环幕里的飞车追逐让人以为车子在高速行驶。",
+    mfg: "Oceaneering / Universal Creative",
+    text: "派对巴士驶进 360° 环幕隧道，车辆在动感桥上原地颠簸，环幕里的飞车追逐让人以为车子在高速行驶（DRdb 归入无轨 Car Ride；注：奥兰多独立版已停运关闭，好莱坞影城之旅段仍在运营）。",
     v: { pov: "O-ILbwQsX7s" }
   },
   {
@@ -1384,6 +1433,7 @@ window.RIDES = [
     en: "Fluch der Kassandra",
     g: "europe",
     park: "Europa-Park",
+    year: 2000,
     code: "T5.1",
     mfg: "Mack Rides",
     text: "古希腊题材的疯屋，同样是房间翻转、座椅微动的视错觉原理。",
@@ -1395,6 +1445,7 @@ window.RIDES = [
     en: "Liaozhai",
     g: "fantawild",
     park: "方特多个园区",
+    year: 2007,
     code: "T6.1",
     mfg: "华强方特",
     text: "真人演员与半透明的幻象同台，书生与鬼魅相恋、消失，用的是佩珀尔幻象原理。",
@@ -1407,6 +1458,7 @@ window.RIDES = [
     en: "Lady Meng Jiang",
     g: "fantawild",
     park: "方特东方神画等",
+    year: 2015,
     code: "T6.2",
     mfg: "华强方特",
     text: "上千块由程控卷扬机吊起的“砖块”在空中组成长城，又在高潮时轰然“坍塌”。",
@@ -1421,6 +1473,7 @@ window.RIDES = [
     park: "奥兰多环球影城",
     year: 2020,
     code: "T6.4",
+    mfg: "Universal Creative / Tait Towers",
     text: "巨型 LED 屏幕前，载着布景的无轨平台与屏幕画面精确同步移动，真人特技穿插其中，屏幕与实物的界线很难分辨。",
     v: { pov: "F4XX9Z4KVEY" }
   },
@@ -1495,7 +1548,7 @@ window.RIDES = [
     en: "Alien Attack",
     g: "chimelong",
     park: "广州长隆欢乐世界",
-    year: 2016,
+    year: 2015,
     code: "T2.6",
     mfg: "Dynamic Attractions / Kraftwerk",
     text: "经过“铁甲金刚”巨型机械人偶预演厅后，180 名乘客同时登上一座单平台多自由度动感母舰，在 360° 全包围环形立体巨幕中体验太空激战。",
@@ -1641,8 +1694,8 @@ window.RIDES = [
     park: "英国 Thorpe Park",
     year: 2016,
     code: "T4.1",
-    mfg: "Intamin / Simworx",
-    text: "外部伪装成悬吊在半空的维多利亚铸铁车厢，内部嵌套 1:1 伦敦地铁车厢，搭载横向平移转场轨在多个实景站台与密室间秘密切换；2023 年移除 VR 头显，改为真人特技演员冲入车厢与幻象大秀。",
+    mfg: "Intamin / Severn Lamb / Simworx",
+    text: "外部伪装成悬吊在半空的维多利亚铸铁车厢，内部嵌套 1:1 伦敦地铁车厢，搭载横向平移转场轨在多个实景站台与密室间秘密切换；前身 Derren Brown's Ghost Train 于 2022 年关闭改造，2023 年移除 VR 头显改为纯真人特技演员冲入车厢与幻象大秀。",
     v: { pov: "mxVlJSf35KI" }
   },
   {
@@ -1653,8 +1706,8 @@ window.RIDES = [
     park: "英国 Chessington World of Adventures",
     year: 1987,
     code: "1.1.1.3",
-    mfg: "Mack Rides / Megazone",
-    text: "罕见的顶部单轨悬挂式 5 节编组探险列车（前身 Terror Tomb），穿过古埃及神庙、眼镜蛇深渊与巨型木乃伊机械人偶，在分区驻停时用激光枪射击靶点。",
+    mfg: "Mack Rides / Lagotronics Projects（原 Megazone）",
+    text: "罕见的顶部高架单轨式 5 节编组 30 座探险列车（1987 年初版 The 5th Dimension，1994 年改版 Terror Tomb，2002 年起改为 Tomb Blaster），车厢不自旋，穿过古埃及神庙、眼镜蛇深渊与巨型木乃伊机械人偶，在分区驻停时用激光枪射击靶点（2020 年换装 Lagotronics 互动系统）。",
     v: { pov: "2OdIE5rslPc" }
   },
   {
@@ -1665,8 +1718,8 @@ window.RIDES = [
     park: "英国 Chessington World of Adventures",
     year: 1990,
     code: "5.1.1.1",
-    mfg: "Mack Rides",
-    text: "沿用 1990 年传奇汽水工厂 Bubbleworks 的圆形水道船与结尾拱形喷泉水柱隧道，2017 年升级为绘本《咕噜牛》主题，结合投影映射、雾幕与森林气味。",
+    mfg: "WGH Transportation Engineering / Leisurtec",
+    text: "沿用 1990 年传奇汽水工厂 Professor Burp's BubbleWorks 的 WGH 圆形水道船与结尾拱形喷泉水柱隧道，2017 年升级为绘本《咕噜牛》主题，结合投影映射、雾幕与森林气味。",
     v: { pov: "ttkWUL3d3Bw" }
   },
   {
@@ -1725,8 +1778,8 @@ window.RIDES = [
     park: "全球 11 座乐高乐园（含上海 2025）",
     year: 2016,
     code: "1.1.1.3",
-    mfg: "Triotech",
-    text: "彻底取消实体玩具枪，在扶手前方内嵌红外深度手势传感器（Leap Motion），游客直接挥舞双手向 3D 巨幕隔空投掷火球、冰霜与闪电。",
+    mfg: "ART Engineering / Triotech",
+    text: "由 ART Engineering 制造有轨旋转车底盘、Triotech 提供互动系统：彻底取消实体玩具枪，在扶手前方内嵌红外深度手势传感器，游客直接挥舞双手向 3D 巨幕隔空投掷火球、冰霜与闪电。",
     v: { pov: "CUog0A6T6lU" }
   },
   {
@@ -1738,7 +1791,7 @@ window.RIDES = [
     year: 2011,
     code: "5.2",
     mfg: "Mack Rides",
-    text: "真水下导轨半潜艇真实潜入数十万加仑的室内水族馆水体中，透过圆形舷窗同时观赏活体鲨鱼、鳐鱼群与水下乐高积木遗迹。",
+    text: "真水下导轨半潜艇真实潜入数十万加仑的室内水族馆水体中（DRdb 归入 Endless Chain + Suspended），透过圆形舷窗同时观赏活体鲨鱼、鳐鱼群与水下乐高积木遗迹。",
     v: { pov: "6UEAKx9Itjg" }
   },
 
@@ -1823,8 +1876,8 @@ window.RIDES = [
     park: "Kings Island · Kings Dominion · Carowinds · Canada's Wonderland",
     year: 2010,
     code: "1.1.1.3",
-    mfg: "Sally Dark Rides / Mauri / Mack Rides",
-    text: "原雪松会四园通用的哥特古堡有轨激光射击鬼屋（Kings Island 版前身为 1972 年蓝精灵水道船与 1992 年传奇 Omnimover 歌剧幽灵鬼屋 Phantom Theater）。",
+    mfg: "Sally Dark Rides / Mack Rides / Barbisan / Horacek",
+    text: "原雪松会四园通用的哥特古堡有轨激光射击鬼屋，由 Sally 统一换装，底层轨道车分别采用 Mack（Carowinds / Canada's Wonderland）、Barbisan（Kings Dominion）与 Horacek（Kings Island，2026 年改建回归 Phantom Theater: Opening Nightmare）。",
     v: { pov: "x8evkeIgp7Y", lights: "9jLk-Kr9s74" },
     note: { lights: "Kings Island 版清场开灯实拍" }
   },
@@ -1876,7 +1929,7 @@ window.RIDES = [
     year: 2008,
     code: "T5.1",
     mfg: "Mack Rides / CL Corporation",
-    text: "由 Mack Rides 制造的旗舰级多厅疯屋（Madhouse）：拥有极长且爆笑的 4 段式预演厅（含实时抓取游客人脸贴入罗马士兵漫画、站在晃动甲板上直面三面环幕与水雾冲击的罗马战舰厅），最后进入 360° 翻转的高卢间谍船主厅。",
+    text: "由 Mack Rides 制造的旗舰级多厅疯屋（Madhouse）：拥有极长且爆笑的 4 段式预演厅（含实时抓取游客人脸贴入罗马士兵漫画、站在晃动甲板上直面三面环幕与水雾冲击的罗马战舰厅），最后进入 360° 翻转的高卢间谍船主厅（注：2025 年起停运改造）。",
     v: { pov: "UM7zDT5D_Gs" }
   },
   {
@@ -1900,7 +1953,7 @@ window.RIDES = [
     year: 2006,
     code: "T6.5",
     mfg: "Movieland 特种液压与水力工程",
-    text: "全球最硬核的步入式实景灾难模拟器（需穿雨衣）：经历空袭轰炸机库预演后钻入 1:1 二战鱼雷潜艇狭长舱室对坐；深水炸弹引爆时整座液压潜艇剧烈倾斜摇晃，舱顶破裂管线直接向乘客头顶倾泻数吨真实高压冷水。",
+    text: "全球最硬核的步入式实景灾难模拟器（需穿雨衣）：经历空袭轰炸机库预演后钻入 1:1 二战鱼雷潜艇狭长舱室对坐；深水炸弹引爆时整座液压潜艇剧烈倾斜摇晃，舱顶破裂管线直接向乘客头顶倾泻数吨真实高压冷水（2024 年底起融入 Disaster 影城巡游）。",
     v: { pov: "SrOW16nwX18" }
   },
   {
@@ -1921,10 +1974,10 @@ window.RIDES = [
     en: "Underlandet",
     g: "europe",
     park: "瑞典里瑟本游乐园（Liseberg）",
-    year: 2020,
+    year: 2021,
     code: "1.1.1.1",
-    mfg: "Gosetto / P&P Projects",
-    text: "北欧标杆级原创童话暗黑乘骑：隐藏导槽旋转车载着乘客深入绿兔子在地底建造的胡萝卜加工厂，全线配备数十具动作细腻的机械兔子玩偶，结局整辆车直接驶入垂直提升电梯重返地面树洞车站。",
+    mfg: "Gosetto / Quarry Fold Studio / P&P Projects",
+    text: "北欧标杆级原创童话暗黑乘骑：隐藏导槽 4 座旋转车载着乘客深入绿兔子在地底建造的胡萝卜加工厂，全线配备数十具动作细腻的机械兔子玩偶，尾段加速爬坡重返地面树洞车站。",
     v: { pov: "yqZzOGCR7E4" }
   },
 
@@ -1959,7 +2012,7 @@ window.RIDES = [
     en: "Escape from Pompeii",
     g: "seaworld",
     park: "威廉斯堡布什花园（Busch Gardens Williamsburg）",
-    year: 1996,
+    year: 1995,
     code: "5.1.1.2",
     mfg: "Intamin",
     text: "以维苏威火山爆发为背景的重型真火特效暗黑激流船：游船升入庞贝古城废墟内部，两侧石柱与雕像随地震轰鸣倾倒，头顶木梁与水面燃起熊熊真火，最后推开城门从高空俯冲入水。",
@@ -2062,7 +2115,7 @@ window.RIDES = [
     year: 2005,
     code: "1.1.2.3",
     mfg: "Intamin",
-    text: "耗资逾 500 亿韩元在室内乐园四层顶部兴建的旗舰级越野吉普探险：采用与迪士尼《印第安纳琼斯》同门类的 Intamin 12 座多自由度液压动感越野车，在古埃及神庙崩塌、滚石与火海中剧烈颠簸俯冲。",
+    text: "耗资逾 500 亿韩元在室内乐园四层顶部兴建的旗舰级越野吉普探险：采用与迪士尼《印第安纳琼斯》同门类的 Intamin 8/12 座多自由度液压动感越野车，在古埃及神庙崩塌、滚石与火海中剧烈颠簸俯冲。",
     v: { pov: "qNKejhgNyw8" }
   },
   {
@@ -2098,7 +2151,7 @@ window.RIDES = [
     year: 2000,
     code: "1.1.2.3",
     mfg: "Intamin / Sally Dark Rides",
-    text: "耗资 12 亿新台币打造的亚洲罕见 Intamin 越野吉普暗黑乘骑：12 座探险吉普车深入阿拉伯皇宫地下宝藏洞穴，在失灵熄火、旋转断桥、喷火木乃伊与巨型守护魔兽的突袭中高速逃生。",
+    text: "耗资 12 亿新台币打造的亚洲罕见 Intamin 越野吉普暗黑乘骑：12 座探险吉普车深入阿拉伯皇宫地下宝藏洞穴，在失灵熄火、旋转断桥、喷火木乃伊与巨型守护魔兽的突袭中高速逃生（注：现已长期停运关闭，DRdb 标为 Defunct）。",
     v: { pov: "PlepdTdVBNc" }
   }
 ];

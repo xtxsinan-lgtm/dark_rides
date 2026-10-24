@@ -1,4 +1,4 @@
-// Complete Part 3: Exhaustive Global Park-by-Park Matrices (6 Major Systems)
+// Complete Part 3: Exhaustive Global Park-by-Park Matrices (12 Major Park Groups)
 window.PARK_MATRIX_DATA = {
   disney: {
     title: "3.1 全球迪士尼（6 大度假区 12 座乐园）Dark Ride 与暗黑剧场全项目盘点表",
@@ -88,7 +88,7 @@ window.PARK_MATRIX_DATA = {
         col3: [
           "<strong>Millennium Falcon: Smuggler's Run</strong>（<code>T2.1</code> 6 人分工交互驾驶模拟舱）",
           "<strong>Star Tours – The Adventures Continue</strong>（<code>T2.1</code> 40 座液压 6-DOF 模拟舱）",
-          "<strong>Muppet*Vision 3D</strong>（<code>T6.7</code> 4D 剧场 + 实景机械木偶乐队与真烟花）",
+          "<strong>Muppet*Vision 3D</strong>（<code>T6.7</code> 4D 剧场 + 实景机械木偶乐队与真烟花；2025.06 关闭退役以改建怪兽电力公司园区）",
           "<em>历史传奇</em>：<strong>The Great Movie Ride</strong>（<code>T3.2</code> 大型导引行走剧场车 + 真人劫持演出）、<strong>Catastrophe Canyon</strong>（<code>T6.5</code> 真水山洪爆破）"
         ]
       },
@@ -106,11 +106,11 @@ window.PARK_MATRIX_DATA = {
       {
         col1: "东京迪士尼度假区<br><strong>7. Tokyo Disneyland（东京陆地）</strong>",
         col2: [
-          "<strong>Enchanted Tale of Beauty and the Beast</strong>（<code>2.2.1</code> 6 座无轨大茶杯 + 车载 6-DOF 液压倾斜摇摆器）",
+          "<strong>Enchanted Tale of Beauty and the Beast</strong>（<code>2.2.1</code> 10 座无轨大茶杯 + 车载 6-DOF 液压倾斜摇摆器）",
           "<strong>Pooh's Hunny Hunt</strong>（<code>2.1</code> 2000 年全球现代无轨鼻祖，含多车共舞与跳跳虎弹跳地板）",
           "<strong>Monsters, Inc. Ride & Go Seek!</strong>（<code>1.1.1.3</code> 3 节编组有轨旋转车 + 手电筒照亮怪兽安全帽触发机械机关）",
           "<strong>Pirates of the Caribbean</strong> & <strong>It's a Small World</strong>（<code>5.1.1.1</code>） & <strong>Splash Mountain</strong>（<code>5.1.1.2</code>）",
-          "<strong>Haunted Mansion</strong>（<code>1.1.1.2</code>）、<strong>Peter Pan's Flight</strong>（<code>3.1</code>）、<strong>Snow White / Pinocchio / Roger Rabbit</strong>（<code>1.1.1.1</code>）"
+          "<strong>Haunted Mansion</strong>（<code>1.1.1.2</code>）、<strong>Peter Pan's Flight</strong>（<code>3.1</code>）、<strong>Snow White / Pinocchio / Roger Rabbit</strong>（<code>1.1.1.1</code>）；<em>退役改建</em>：<strong>Buzz Lightyear's Astro Blasters</strong>（2024.10 关闭，改建无敌破坏王主题射击乘骑）"
         ],
         col3: [
           "<strong>Star Tours: The Adventures Continue</strong>（<code>T2.1</code> 40 座 6-DOF 液压太空舱）",
@@ -200,7 +200,7 @@ window.PARK_MATRIX_DATA = {
           "<strong>The Bourne Stuntacular (杰森·伯恩特技秀)</strong>（<code>T6.4</code> 340㎡ 弧形 LED 巨幕 + 高速无轨 AGV 实景道具车 + 真人特技）",
           "<strong>The Simpsons Ride (原回到未来)</strong>（<code>T2.2</code> 巨型 IMAX 半球幕 + 3 层 24 台液压剪刀叉顶升飞车舱）",
           "<strong>Despicable Me Minion Mayhem</strong> & <strong>Race Through New York Starring Jimmy Fallon</strong>（<code>T2.4</code>）",
-          "<strong>Fast & Furious: Supercharged</strong>（<code>T4.1</code> 派对大巴驶入 360° 环幕隧道动感桥）"
+          "<strong>Fast & Furious: Supercharged</strong>（<code>T4.1</code> Dynamic Attractions 无轨派对大巴驶入 360° 环幕隧道动感桥；DRdb 归入行进式 Car Ride，奥兰多版已关闭退役）"
         ]
       },
       {
@@ -212,7 +212,7 @@ window.PARK_MATRIX_DATA = {
           "<strong>The Cat in the Hat</strong>（<code>1.1.1.1</code> 有轨高速自转沙发车） & <strong>High in the Sky Seuss Trolley / Pteranodon Flyers</strong>（<code>3.1</code>）"
         ],
         col3: [
-          "<strong>Skull Island: Reign of Kong (金刚：骷髅岛)</strong>（<code>T4.1</code> 72 座无轨自动驾驶远征大巴 + 360° 环幕隧道动感桥 + 巨型实景金刚机械头）",
+          "<strong>Skull Island: Reign of Kong (金刚：骷髅岛)</strong>（<code>T4.1</code> Oceaneering 72 座无轨自动驾驶远征大巴 + 360° 环幕隧道动感桥 + 巨型实景金刚机械头；DRdb 归入 Semi-Dark Ride Car Ride）",
           "<em>历史经典</em>：<strong>Poseidon's Fury (波塞冬之怒)</strong>（<code>T6.5</code> 步入式高压真水漩涡水幕隧道特效剧场）"
         ]
       },
@@ -277,7 +277,7 @@ window.PARK_MATRIX_DATA = {
         col2: [
           "<strong>Transformers: The Ride 3D</strong>（<code>1.1.2.1</code> 全球首发地，车载 6-DOF SCOOP 动感车）",
           "<strong>Revenge of the Mummy</strong>（<code>1.1.4.3</code> 前半程慢速古墓 Dark Ride + 后半程弹射过山车）",
-          "<strong>Sesame Street Spaghetti Space Chase (芝麻街意大利面太空追逐)</strong>（<code>3.1</code> Mack 顶部悬挂单轨太空飞船 Dark Ride）",
+          "<strong>Sesame Street Spaghetti Space Chase (芝麻街意大利面太空追逐)</strong>（<code>3.1</code> Intamin 顶部悬挂单轨太空飞船 Dark Ride）",
           "<strong>Jurassic Park Rapids Adventure</strong>（<code>5.1.1.2</code> 圆形皮筏激流船 + 室内暗黑恐龙电梯提升俯冲段）"
         ],
         col3: [
@@ -366,7 +366,7 @@ window.PARK_MATRIX_DATA = {
         col1: "<strong>第二部分：行走看台、旋转看台与全息矩阵（T3 & T6）</strong>",
         col2: ["<code>T3.2</code> 45~80座有轨行走看台车 & <code>T3.3</code> 旋转看台 & <code>T6.1 / T6.2</code> 全息与魔砖矩阵"],
         col3: [
-          "<strong>T3.2 行走看台车（45~80座）</strong>：<strong>《秦陵历险（一期欢乐世界版）》</strong>、<strong>《龙王传说》</strong>(郑州 45座)、<strong>《哪吒闹海（株洲/绵阳 45座看台版）》</strong>、<strong>《大闹水晶宫（天津缆车看台版）》</strong>",
+          "<strong>T3.2 行走看台车（40~80座，DRdb 亦将其按有轨跨房间位移归入 Car Ride）</strong>：<strong>《秦陵历险（一期欢乐世界版）》</strong>、<strong>《龙王传说》</strong>(郑州 40~45座)、<strong>《哪吒闹海（株洲/绵阳 45座看台版）》</strong>、<strong>《大闹水晶宫（天津缆车看台版）》</strong>",
           "<strong>T3.3 旋转看台</strong>：《岁月如歌》、《万世春秋》(资阳)、《熊出没之重返侏罗纪》、《马尼拉马尼拉》(南宁)、《周易》(安阳双面旋转八卦魔球)",
           "<strong>T6.1 佩珀尔幻象</strong>：《聊斋》、《梁山伯与祝英台》/《千古蝶恋》、《骠国乐》(南宁)、《屈原》(荆州/长沙)、《黄粱一梦》(邯郸)、《巾帼》、《青铜祭》",
           "<strong>T6.2 空间魔砖/魔球矩阵</strong>：《孟姜女》/《长城绝恋》、《飞翔之歌》/《飞上蓝天》、《千岛之歌》(南宁)、《楚乐》(荆州/长沙)"
@@ -384,7 +384,7 @@ window.PARK_MATRIX_DATA = {
         col2: [
           "<strong>Batman: Knight Flight (蝙蝠侠：暗夜飞行)</strong>（<code>1.1.3.2</code> 全球唯一投运的 Dynamic 高速导轨底盘 + 多自由度机器人悬臂）",
           "<strong>Justice League: Warworld Attack (正义联盟)</strong>（<code>1.1.2.1</code> Oceaneering EVO 6-DOF 车载动感车 + 3D 巨幕与实景）",
-          "<strong>Scooby-Doo: The Museum of Mysteries (史酷比神秘博物馆)</strong>（<code>2.1</code> Oceaneering 无轨系统 + 幽灵走廊机械机关）",
+          "<strong>Scooby-Doo: The Museum of Mysteries (史酷比神秘博物馆)</strong>（<code>2.1</code> ETF Ride Systems 无轨系统 + Sally Dark Rides 幽灵走廊机械机关）",
           "<strong>Ani-Mayhem (乐一通大混乱)</strong>（<code>1.1.1.3</code> 有轨受控旋转快递车 + 3D 虚拟条形码扫描枪互动射击）",
           "<strong>The Flintstones Bedrock River Adventure (摩登原始人)</strong>（<code>5.1.1.2</code> 室内石器时代机械恐龙水道船 + 跌落）"
         ],
@@ -461,13 +461,13 @@ window.PARK_MATRIX_DATA = {
         col1: "<strong>马来西亚云顶天城世界<br>1. Genting SkyWorlds</strong><br>（原二十世纪福斯主题乐园）",
         col2: [
           "<strong>Invasion of the Planet of the Apes (猩球崛起：入侵)</strong>（<code>1.1.2.1</code> <strong>Oceaneering 6-DOF SCOOP 动感车 + 3D 巨幕与实景</strong>：结合巨型凯撒仿生机械人偶与崩塌金门大桥实景）",
-          "<strong>Ice Age: Expedition Thin Ice (冰川时代：薄冰远征)</strong>（<code>2.1</code> <strong>ETF Multi Mover 无轨多路径分道系统</strong>：浮冰小车在冰洞中自由旋转穿行，躲避松鼠奎特与冰封霸王龙机械人偶）",
+          "<strong>Ice Age: Expedition Thin Ice (冰川时代：薄冰远征)</strong>（<code>2.1 / 2.2.1</code> <strong>Oceaneering 无轨多路径分道动感系统</strong>：浮冰小车在冰洞中自由旋转穿行，躲避松鼠奎特与冰封霸王龙机械人偶）",
           "<strong>Epic Voyage to Moonhaven (森林战士：月之谷奇幻漂流)</strong>（<code>5.1.1.2</code> <strong>ABC Rides 室内暗黑发光森林 + 俯冲漂流船</strong>）",
-          "<strong>Night at the Museum: Midnight Mayhem (博物馆奇妙夜：午夜大混乱)</strong>（<code>1.1.1.3</code> <strong>Simworx / Alterface 有轨旋转巡逻车 + 3D 虚拟手电筒射击</strong>）",
-          "<strong>Terraform Tower Challenge (地球改造塔挑战)</strong>（<code>4.2</code> 底部封闭暗黑声光演艺 + S&S 冲顶弹射塔） & <strong>Bigweld's Zeppelins</strong>（<code>3.1</code> 顶部悬挂飞艇）"
+          "<strong>Night at the Museum: Midnight Mayhem (博物馆奇妙夜：午夜大混乱)</strong>（<code>1.1.1.3</code> <strong>ETF Ride Systems / Alterface 有轨旋转巡逻车 + 3D 虚拟手电筒射击</strong>）",
+          "<strong>Terraform Tower Challenge (地球改造塔挑战)</strong>（<code>4.2</code> 底部封闭暗黑声光演艺 + S&S 冲顶弹射塔） & <strong>Bigweld's Zeppelins</strong>（<code>3.1</code> Zamperla 顶部悬挂飞艇）"
         ],
         col3: [
-          "<strong>Independence Day: Defiance (独立日：绝地反击)</strong>（<code>T1.4</code> <strong>Brogent 智崴水平入座旋转/翻转切入式球幕飞行影院</strong>：太空母舰机库平层入座后整座平台旋转下翻地板，瞬间切入球幕体验太空激战）"
+          "<strong>Independence Day: Defiance (独立日：绝地反击)</strong>（<code>T1.4</code> <strong>Dynamic Attractions 平地入座 90° 整体翻转竖立式球幕飞行影院</strong>：太空母舰机库平层入座后整座平台向上翻转竖立切入球幕体验太空激战）"
         ]
       },
       {
@@ -500,7 +500,7 @@ window.PARK_MATRIX_DATA = {
       {
         col1: "<strong>中国台湾六福村 & 香港海洋公园 & 越南珍珠乐园<br>4. Leofoo Village, Ocean Park HK & VinWonders</strong>",
         col2: [
-          "<strong>台湾六福村《苏丹王大冒险 (Sultan's Adventure)》</strong>（<code>1.1.2.3</code> <strong>Intamin 12 座多自由度越野吉普 EMV</strong>：耗资 12 亿新台币打造阿拉伯皇宫地下洞穴，经历熄火失灵、旋转断桥、喷火木乃伊与巨型守护魔兽突袭）",
+          "<strong>台湾六福村《苏丹王大冒险 (Sultan's Adventure，现已停运 Defunct)》</strong>（<code>1.1.2.3</code> <strong>Intamin 12 座多自由度越野吉普 EMV</strong>：耗资 12 亿新台币打造阿拉伯皇宫地下洞穴，经历熄火失灵、旋转断桥、喷火木乃伊与巨型守护魔兽突袭）",
           "<strong>台湾九族文化村《西班牙海岸：水战船 / 无敌舰队》</strong>（<code>5.1.1.3</code> 含室内暗黑海战段与倒退转盘变轨的水上过山车）",
           "<strong>越南富国岛 VinWonders《Wrath of Zeus (宙斯之怒)》</strong>（<code>1.1.4.3</code> Vekoma 室内外古希腊冥界暗黑特效弹射过山车）"
         ],
@@ -539,14 +539,14 @@ window.PARK_MATRIX_DATA = {
         col2: [
           "<strong>Symbolica</strong>（<code>2.1</code> ETF 无轨多车共舞 + 排队自主选 3 条路线分支）",
           "<strong>Droomvlucht</strong>（<code>3.2</code> 顶部悬挂变速 + 精灵沼泽高速螺旋俯冲）",
-          "<strong>Fata Morgana</strong>（<code>5.1.2.1</code> Intamin 水下钢缆牵引阿拉伯一千零一夜游船）",
+          "<strong>Fata Morgana</strong>（<code>5.1.2.1</code> Intamin 水下导引系统牵引阿拉伯一千零一夜游船）",
           "<strong>Carnaval Festival</strong>（<code>1.1.1.2</code> Mack 连续移动 Omnimover 木偶世界游历）",
           "<strong>De Vliegende Hollander</strong>（<code>5.1.2.3</code> 前半程室内 17 世纪港口与真实浓雾暗黑船 + 后半程水上过山车）"
         ],
         col3: [
           "<strong>Danse Macabre 骷髅之舞</strong>（<code>T3.1</code> 2024 新，Intamin 18 米倾斜升降高速旋转主转盘 + 6 子转盘哥特修道院剧场）",
           "<strong>Villa Volta</strong>（<code>T5.1</code> Vekoma 全球首座现代主题化疯屋滚筒剧场）",
-          "<strong>Fabula (原 PandaVision)</strong>（<code>T6.7</code> 4D 特效影院 + 树枝坠落机关）",
+          "<strong>Fabula (原 PandaDroom)</strong>（<code>T6.7</code> 4D 特效影院 + 树枝坠落机关）",
           "<strong>De Indische Waterlelies</strong>（<code>T6.3</code> 室内自动机械人偶音乐剧场）",
           "<em>退役经典</em>：<strong>Spookslot</strong>（<code>T6.3</code> 玻璃幕墙机械幽灵交响剧场）"
         ]
@@ -602,7 +602,7 @@ window.PARK_MATRIX_DATA = {
           "<strong>Pangea: The World of Dinosaurs (盘古大陆：恐龙世界，2018)</strong>（<code>1.1.1.1</code> <strong>全球首创由游客真正手握方向盘与油门自驾真吉普车的恐龙 Dark Ride</strong>：在宽幅隐藏导槽与车载雷达保护下亲自操控铃木真吉普转向与加减速穿越机械霸王龙丛林）"
         ],
         col3: [
-          "<strong>U-571 Submarine Simulator (U-571 潜艇极限灾难模拟器，2006)</strong>（<code>T6.5 + T2.4</code> <strong>步入式真水灌舱灾难模拟器</strong>：钻入 1:1 二战鱼雷潜艇狭长舱室对坐，深水炸弹引爆时整座液压潜艇剧烈摇晃，<strong>舱顶破裂管线向乘客直接倾泻数吨高压冷水</strong>）",
+          "<strong>U-571 Submarine Simulator (U-571 潜艇极限灾难模拟器，2006–2024)</strong>（<code>T6.5 + T2.4</code> <strong>步入式真水灌舱灾难模拟器</strong>：钻入 1:1 二战鱼雷潜艇狭长舱室对坐，深水炸弹引爆时整座液压潜艇剧烈摇晃，<strong>舱顶破裂管线向乘客直接倾泻数吨高压冷水</strong>；2024.09 关闭并入 Disaster 游览线）",
           "<strong>Magma 2.1 (岩浆号重型越野卡车劫难)</strong>（<code>T3.2 + T6.5</code> 真人特技车手驾驶重型 <strong>MAN 敞篷军卡</strong>高速冲入地热发电厂灾难大厅，亲历桥面坍塌、烈焰喷射与山洪瀑布从车顶砸下）",
           "<strong>Disaster – The Blockbuster Tour (2024 新)</strong>（<code>T3.2 + T6.5</code> 双节铰接观光车穿越多座电影摄影棚亲历龙卷风与金刚袭击） & <strong>Android 3D</strong>（<code>T4.1 / T2.4</code>）"
         ]
@@ -615,14 +615,14 @@ window.PARK_MATRIX_DATA = {
           "<em>历史经典</em>：<strong>Transdemonium (2003–2017)</strong>（<code>1.1.1.1</code> WGH 古堡地牢多区段变速倾斜弯道中世纪惊悚有轨车）"
         ],
         col3: [
-          "<strong>Le Défi de César (凯撒的挑战，2008)</strong>（<code>T5.1</code> <strong>Mack Rides 80 座旗舰级多厅疯屋 Madhouse</strong>：4 段式爆笑预演厅含人脸识别贴入罗马士兵漫画、晃动甲板直面三面环幕与水雾冲击的罗马战舰厅，最后进入 360° 翻转的高卢间谍船主厅）",
+          "<strong>Le Défi de César (凯撒的挑战，2008，2025 年起停运 SBNO)</strong>（<code>T5.1</code> <strong>Mack Rides 80 座旗舰级多厅疯屋 Madhouse</strong>：4 段式爆笑预演厅含人脸识别贴入罗马士兵漫画、晃动甲板直面三面环幕与水雾冲击的罗马战舰厅，最后进入 360° 翻转的高卢间谍船主厅）",
           "<strong>Attention Menhir! (小心巨石！4D 剧场，2019)</strong>（<code>T6.7</code> CL Corporation 300 座高动态气动升降 4D 影院 + 佩珀尔幻象预演厅）"
         ]
       },
       {
         col1: "<strong>瑞典里瑟本游乐园<br>8. Liseberg（哥德堡）</strong>",
         col2: [
-          "<strong>Underlandet (兔子地底秘密王国，2020)</strong>（<code>1.1.1.1 / 2.1</code> <strong>Gosetto 隐藏导槽旋转车 + P&P Projects 机械木偶</strong>：深入绿兔子在地底建造的胡萝卜加工厂，<strong>结局整辆乘骑车直接驶入伪装成矿井升降机的垂直提升电梯</strong>重返地面树洞车站）",
+          "<strong>Underlandet (兔子地底秘密王国，2021)</strong>（<code>1.1.1.1</code> <strong>Gosetto 隐藏导槽旋转车 + Quarry Fold Studio / P&P Projects 机械木偶与布景</strong>：排队区乘模拟电梯深入绿兔子的地下胡萝卜加工厂，终段车厢沿上坡提升段爬升并经投影隧道营造飞升返地错觉）",
           "<em>历史经典</em>：<strong>Sagoslottet (童话城堡，1968–2017)</strong>（<code>3.1</code> Mack 顶部悬挂单轨皇家金色飞船）"
         ],
         col3: [
@@ -814,7 +814,7 @@ window.PARK_MATRIX_DATA = {
           "<em>历史经典</em>：<strong>Wicked Witches Haunt (原 Phantom Fantasia)</strong>（<code>1.1.1.2</code> Mack Omnimover 哥特鬼屋，2000 年毁于大火）、<strong>Mr. Rabbit's Tropical Travels</strong>（<code>5.1.1.1</code> Mack 室内水道船）"
         ],
         col3: [
-          "<strong>Ghost Train (原 Derren Brown's Ghost Train)</strong>（<code>T4.1 + T3.2</code> <strong>Intamin / Simworx 悬空维多利亚车厢 + 内部伦敦地铁横向平移转场轨 Transfer Track</strong>，在多座实景站台与密室间秘密切换；2023 年移除 VR 改为真人特技与幻象惊悚秀）",
+          "<strong>Ghost Train (原 Derren Brown's Ghost Train)</strong>（<code>T4.1 + T3.2</code> <strong>Intamin / Simworx 悬空维多利亚车厢 + 内部伦敦地铁横向平移转场轨 Transfer Track</strong>，在多座实景站台与密室间秘密切换；2023 年移除 VR 改为真人特技与幻象惊悚秀，2025 年起停运）",
           "<strong>Black Mirror Labyrinth (黑镜迷宫)</strong>（<code>T6.6</code> 人脸识别实时采集游客面部照片并投射吞噬于全黑镜面迷宫中）",
           "<strong>Sunset Cinema (Pirates 4D)</strong>（<code>T6.7</code> SimEx-Iwerks 4D 影院）"
         ]
@@ -822,8 +822,8 @@ window.PARK_MATRIX_DATA = {
       {
         col1: "<strong>英国 Chessington World of Adventures<br>（切辛顿冒险世界）</strong>",
         col2: [
-          "<strong>Tomb Blaster (古墓神枪手，原 The 5th Dimension / Terror Tomb)</strong>（<code>1.1.1.3 + 3.1</code> <strong>Mack Rides 顶部单轨悬挂式 5 节编组 20 座列车</strong> + Megazone 激光枪，在古埃及神庙、眼镜蛇深渊与巨型木乃伊人偶间分区驻停射击）",
-          "<strong>The Gruffalo River Ride Adventure (咕噜牛河漂流，原 Professor Burp's Bubbleworks)</strong>（<code>5.1.1.1</code> <strong>Mack Rides 室内圆形水道船</strong> + 投影映射雾幕与结尾标志性的拱形喷泉水柱隧道）",
+          "<strong>Tomb Blaster (古墓神枪手，原 The 5th Dimension / Terror Tomb)</strong>（<code>3.1 + 1.1.1.3</code> <strong>Mack Rides 顶部单轨悬挂式 5 节编组 30 座列车（不自旋）</strong> + Lagotronics Projects 激光枪（原 Megazone），在古埃及神庙、眼镜蛇深渊与巨型木乃伊人偶间分区驻停射击）",
+          "<strong>The Gruffalo River Ride Adventure (咕噜牛河漂流，原 Professor Burp's Bubbleworks)</strong>（<code>5.1.1.1</code> <strong>WGH Transportation Engineering / Leisurtec 室内圆形水道船</strong> + 投影映射雾幕与结尾标志性的拱形喷泉水柱隧道）",
           "<strong>Vampire (吸血鬼悬挂过山车)</strong>（<code>1.1.4.3 / 3.1</code> Arrow / Vekoma 哥特管风琴烛光上客大厅 + 地底暗黑隧道悬挂过山车）"
         ],
         col3: [
@@ -855,7 +855,7 @@ window.PARK_MATRIX_DATA = {
         col1: "<strong>全球 11 座乐高乐园<br>LEGOLAND Parks（比隆 / 温莎 / 德国 / 加州 / 佛州 / 纽约 / 日本 / 迪拜 / 韩国 / 马来西亚 / 上海 2025）</strong>",
         col2: [
           "<strong>LEGO Factory Adventure Ride (乐高工厂奇幻之旅 — 纽约/韩国)</strong>（<code>2.1</code> <strong>ETF Mystic Mover 无轨车 + Holovis HoloTrac 实时动捕</strong>：在巨幕上将每位乘客本人实时变成发型衣着同步的乐高小人仔）",
-          "<strong>LEGO NINJAGO The Ride (乐高幻影忍者 — 全球 11 园标配，含上海 2025)</strong>（<code>1.1.1.3</code> <strong>Triotech Maestro 隔空手势感应有轨车</strong>：扶手内嵌 Leap Motion 红外传感器，挥手直接向 3D 巨幕投掷火球雷电）",
+          "<strong>LEGO NINJAGO The Ride (乐高幻影忍者 — 全球 11 园标配，含上海 2025)</strong>（<code>1.1.1.3</code> <strong>ART Engineering 有轨底盘 + Triotech Maestro 隔空手势感应系统</strong>：扶手内嵌 Leap Motion 红外传感器，挥手直接向 3D 巨幕投掷火球雷电）",
           "<strong>Submarine Adventure / Deep Sea Adventure (深海探险潜艇 — 温莎/德国/加州/日本/迪拜)</strong>（<code>5.2</code> <strong>Mack Rides 真水下导轨潜艇</strong>：潜入养有活体鲨鱼、鳐鱼与乐高积木遗迹的巨型室内水族池）",
           "<strong>Lost Kingdom Adventure / Laser Raiders / Kingdom Quest</strong>（<code>1.1.1.3</code> Sally / Bertazzon / ETF 古埃及或城堡有轨激光射击探险车）",
           "<strong>The Dragon (飞龙过山车 — 全球 11 园标配)</strong>（<code>1.1.4.3</code> 前半程 90 秒作为低速有轨 Dark Ride 穿越中世纪积木城堡与巨型喷烟乐高红龙人偶，后半程冲出城堡进入过山车段）",
@@ -918,7 +918,7 @@ window.PARK_MATRIX_DATA = {
         col1: "<strong>加拿大奇幻乐园 / 国王岛 / 国王领地 / 卡罗温兹 / 加州大美洲<br>Canada's Wonderland, Kings Island, Kings Dominion, Carowinds, California's Great America</strong>",
         col2: [
           "<strong>Wonder Mountain's Guardian (奇幻山守护者 — Canada's Wonderland，2014)</strong>（<code>1.1.4.3 + 1.1.1.3</code> <strong>ART Engineering 过山车 + Triotech 150 米超长连续 3D 屏幕侧滑射击 + 结局恶龙巢穴 9 米垂直自由落体跌落轨 Drop Track</strong>）",
-          "<strong>Boo Blasters on Boo Hill (嘘嘘山幽灵猎手 — Kings Island / Kings Dominion / Carowinds / Canada's Wonderland 四园通用)</strong>（<code>1.1.1.3</code> <strong>Sally Dark Rides</strong> 有轨激光射击鬼屋；其中 Kings Island 版建筑前身为 1972 年蓝精灵水道船与 1992 年传奇歌剧幽灵 Omnimover <strong>Phantom Theater</strong>）",
+          "<strong>Boo Blasters on Boo Hill (嘘嘘山幽灵猎手 — Kings Dominion / Carowinds / Canada's Wonderland 等)</strong>（<code>1.1.1.3</code> <strong>Sally Dark Rides 演艺设计 + Mack / Barbisan / Horacek 有轨车底盘</strong>；其中 Kings Island 版建筑前身为 1972 年蓝精灵水道船与 1992 年传奇歌剧幽灵 Omnimover，并计划于 2026 年升级回归为 <strong>Phantom Theater: Opening Nightmare</strong>）",
           "<strong>Flight of Fear (恐惧飞行 — Kings Island & Kings Dominion，1996)</strong>（<code>1.1.4.3</code> <strong>Premier Rides 全球首台 LIM 直线感应电机弹射过山车</strong>：51 区机库 UFO 飞碟步入式队列 + 全黑碗状太空舱内 4 次翻转）",
           "<strong>Adventure Express (冒险快车 — Kings Island)</strong>（<code>1.1.4.3</code> Arrow 矿山车，终段室内全黑玛雅神庙爬升坡两侧高大石雕守卫机械人偶挥锤高呼）"
         ],
@@ -938,7 +938,7 @@ window.PARK_MATRIX_DATA = {
       {
         col1: "<strong>奥兰多海洋世界<br>1. SeaWorld Orlando</strong>",
         col2: [
-          "<strong>Antarctica: Empire of the Penguin (南极洲：企鹅帝国，2013)</strong>（<code>2.2.1</code> <strong>Oceaneering 无轨 AGV + 车载 2-DOF 动感平台</strong>：乘客可在排队时自选温和或剧烈摇摆模式，无轨冰车穿过冰川声光洞穴后，直接驶入饲养有百余只真帝企鹅与王企鹅的零下极地生态馆）",
+          "<strong>Antarctica: Empire of the Penguin (南极洲：企鹅帝国，2013–2020)</strong>（<code>2.2.1</code> <strong>Oceaneering 无轨 AGV + 车载 2-DOF 动感平台</strong>：乘客可在排队时自选温和或剧烈摇摆模式，无轨冰车穿过冰川声光洞穴后，直接驶入饲养有百余只真帝企鹅与王企鹅的零下极地生态馆；<em>注：无轨乘骑部分于 2020 年关闭退役，现仅保留极地企鹅生态馆</em>）",
           "<strong>Journey to Atlantis (亚特兰蒂斯之旅，1998)</strong>（<code>5.1.2.3</code> <strong>Mack Rides 全球首台水路过山车 Water Coaster</strong>：前半程作为慢速室内水道船深入沉没的亚特兰蒂斯黄金城与海妖密室，随后经历两段高空激流俯冲并切换至过山车钢轨高速滑行）",
           "<strong>Infinity Falls (无尽瀑布)</strong>（<code>5.1.1.2</code> Intamin 热带雨林激流皮筏，配备巨型垂直升降电梯塔）"
         ],
@@ -964,7 +964,7 @@ window.PARK_MATRIX_DATA = {
         col1: "<strong>威廉斯堡布什花园<br>3. Busch Gardens Williamsburg</strong>",
         col2: [
           "<strong>DarKoaster (达卡斯：狼人诅咒，2023)</strong>（<code>1.1.4.3</code> <strong>Intamin 北美首台全室内全黑跨骑式雪地摩托过山车</strong>：直接建于原《达卡斯堡的诅咒》古堡建筑内，在暴风雪与狼人幽影环伺的暗室中连续经历 4 次 LSM 直线电机弹射）",
-          "<strong>Escape from Pompeii (庞贝末日，1996)</strong>（<code>5.1.1.2</code> <strong>Intamin 重型真火特效暗黑激流船</strong>：游船升入庞贝古迹室内展厅，经历石柱雕像倾倒、屋顶横梁坍塌与水面熊熊真火包围，最后冲破城门高空入水）",
+          "<strong>Escape from Pompeii (庞贝末日，1995)</strong>（<code>5.1.1.2</code> <strong>Intamin 重型真火特效暗黑激流船</strong>：游船升入庞贝古迹室内展厅，经历石柱雕像倾倒、屋顶横梁坍塌与水面熊熊真火包围，最后冲破城门高空入水）",
           "<strong>Verbolten (禁林狂飙，2012)</strong>（<code>1.1.4.3</code> <strong>Zierer 多段发射过山车</strong>：冲入全封闭德国黑森林特效大棚，经历风暴闪电/狼人/女巫三种随机声光结局与 <strong>5.5 米垂直自由落体跌落轨 Drop Track</strong>）",
           "<strong>Loch Ness Monster (尼斯湖水怪，2024 焕新版)</strong>（<code>1.1.4.3</code> Arrow 经典双环过山车，螺旋洞穴隧道内增设尼斯湖水怪声光巨幕暗黑段）",
           "<em>历史神作</em>：<strong>Curse of DarKastle (达卡斯堡的诅咒，2005–2017)</strong>（<code>1.1.2.1</code> <strong>Oceaneering 车载 6-DOF 黄金雪橇动感车</strong> + 3D 巨幕与冰雪冷风实景，曾被公认为环球《蜘蛛侠》之外最强的第一代 SCOOP 动感暗黑乘骑）"
